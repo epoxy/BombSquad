@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class GamePlayState extends BasicGameState {
 	int stateID = -1;
 	//private TiledMap map;
+	private GameTile gameTile[][] ;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -39,5 +40,8 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public int getID() {
 		return stateID;
+	}
+	public GameTile getTile(int x, int y)	{
+		return gameTile[x][y];
 	}
 }

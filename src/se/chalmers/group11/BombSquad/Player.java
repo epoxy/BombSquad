@@ -27,12 +27,12 @@ public class Player {
 			deltaY=-1;
 		}
 		
-		GameTile t = GamePlayState.getTile(x+deltaX, y+deltaY);
-				t.recievesPlayer(this);
+		//GameTile t = GamePlayState.getTile(x+deltaX, y+deltaY);
+			//	t.recievesPlayer(this);
 	}
-	public void movePlayer(int x, int y){
-		newX=x;
-		newY=y;
+	//public void movePlayer(int x, int y){
+		//newX=x;
+		//newY=y;
 		//player.getTile(newX,newY);
-	}
+	//}
 }
