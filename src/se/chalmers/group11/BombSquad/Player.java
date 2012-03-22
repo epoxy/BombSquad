@@ -27,7 +27,7 @@ public class Player {
 			deltaY=-1;
 		}
 		
-		GameTile t = GameBoard.getTile(x+deltaX, y+deltaY);
+		GameTile t = GamePlayState.getTile(x+deltaX, y+deltaY);
 				t.recievesPlayer(this);
 	}
 	public void movePlayer(int x, int y){
