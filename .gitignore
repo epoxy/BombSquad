@@ -9,7 +9,7 @@ bin
 *.class
 *.dll
 *.exe
-*.o
+*.classpath*.o
 *.so
 
 # Packages #
