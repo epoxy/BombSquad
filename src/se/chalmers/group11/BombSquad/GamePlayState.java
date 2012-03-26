@@ -2,17 +2,17 @@ package se.chalmers.group11.BombSquad;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
-
-import se.chalmers.group11.BombSquad.GameTile;
 
 public class GamePlayState extends BasicGameState {
+
 	int stateID = -1;
-	//private TiledMap map;
-	private GameTile gameTile[][] ;
+	private Player playerOne;
+	// we don«t use this for now!
+	private GameBoard gameBoard;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -21,30 +21,37 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		//map = new TiledMap("lib/TileBoard.tmx");
 
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		//map.render(0, 0);
 
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int i)
 			throws SlickException {
-		// TODO Auto-generated method stub
-		
+		Input input = gc.getInput();
 
+		if (input.isKeyDown(input.KEY_W)) {
+			playerOne.setPosition(0, -1);
+		}
+		if (input.isKeyDown(input.KEY_A)) {
+			playerOne.setPosition(-1, 0);
+		}
+		if (input.isKeyDown(input.KEY_S)) {
+			playerOne.setPosition(0, 1);
+		}
+		if (input.isKeyDown(input.KEY_D)) {
+			playerOne.setPosition(0, 1);
+		}
 	}
 
 	@Override
 	public int getID() {
 		return stateID;
 	}
-	public GameTile getTile(int x, int y)	{
-		return gameTile[x][y];
-	}
+
 }
