@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GamePlayState extends BasicGameState {
 
 	int stateID = -1;
-	private Player playerOne;
+	private Player playerOne = new Player();
 	// we don«t use this for now!
 	private GameBoard gameBoard;
 
@@ -35,17 +35,17 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 
-		if (input.isKeyDown(input.KEY_W)) {
+		if (input.isKeyPressed(Input.KEY_W)) {
 			playerOne.setPosition(0, -1);
 		}
-		if (input.isKeyDown(input.KEY_A)) {
+		if (input.isKeyPressed(Input.KEY_A)) {
 			playerOne.setPosition(-1, 0);
 		}
-		if (input.isKeyDown(input.KEY_S)) {
+		if (input.isKeyPressed(Input.KEY_S)) {
 			playerOne.setPosition(0, 1);
 		}
-		if (input.isKeyDown(input.KEY_D)) {
-			playerOne.setPosition(0, 1);
+		if (input.isKeyPressed(Input.KEY_D)) {
+			playerOne.setPosition(1, 0);
 		}
 	}
 

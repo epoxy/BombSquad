@@ -8,6 +8,13 @@ public class GameBoard {
 
 	private GameBoard() {
 		gameTiles = new GameTile[12][12];
+		for(int i = 0; i<gameTiles.length; i++){
+			for (int j = 0; j < gameTiles[i].length; j++) {
+				gameTiles[i][j] = new EmptyTile();
+				System.out.print(gameTiles[i][j]);//skriver ut vilken tile det är
+			}
+			gameTiles[1][1] = new BlockTile();
+		}
 	}
 
 	public static synchronized GameBoard getInstance() {
