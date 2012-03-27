@@ -25,6 +25,7 @@ public class Main extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new Main());
 		app.setTitle("BombSquad");
+		app.setDisplayMode(720, 720, false);
 		app.start();
 	}
 

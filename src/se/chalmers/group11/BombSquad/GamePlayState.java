@@ -2,13 +2,14 @@ package se.chalmers.group11.BombSquad;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GamePlayState extends BasicGameState {
-
+	Image player = null;
 	int stateID = -1;
 	private Player playerOne = new Player();
 	// we don«t use this for now!
@@ -16,17 +17,21 @@ public class GamePlayState extends BasicGameState {
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
+
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-
+		gameBoard = GameBoard.getInstance();
+		player = new Image("Images/PlayerIcon.png");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+
+		player.draw(playerOne.getX() * 60, playerOne.getY() * 60, 60, 60);
 
 	}
 
