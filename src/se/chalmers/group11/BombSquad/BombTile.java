@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class BombTile implements GameTile{
-	public BombTile(){
-		System.out.println("Bomb läggs ut");
+	public BombTile(int x, int y){
+		System.out.println("Bomb läggs ut" + x + " " + y);
+		
 		int delay = 3000; //milliseconds
 		  ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Eld ritas ut");
-				
 				//fire
 			}
 		  };

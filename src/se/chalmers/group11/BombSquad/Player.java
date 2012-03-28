@@ -29,4 +29,8 @@ public class Player {
 	public int getY() {
 		return y;
 	}
+
+	public void releaseBomb() {
+		new BombTile(x, y);
+	}
 }

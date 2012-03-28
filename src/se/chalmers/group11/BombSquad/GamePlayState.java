@@ -57,7 +57,7 @@ public class GamePlayState extends BasicGameState {
 			playerOne.setPosition(1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			new BombTile();
+			playerOne.releaseBomb();
 		}
 	}
 
