@@ -36,7 +36,6 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 
 		player.draw(playerOne.getX() * 60, playerOne.getY() * 60, 60, 60);
-		
 
 	}
 
@@ -58,7 +57,7 @@ public class GamePlayState extends BasicGameState {
 			playerOne.setPosition(1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-
+			new BombTile();
 		}
 	}
 
