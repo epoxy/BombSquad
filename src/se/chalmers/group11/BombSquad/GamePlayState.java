@@ -9,8 +9,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GamePlayState extends BasicGameState {
+
+	Image bomb = null;
 	Image player = null;
 	int stateID = -1;
+
 	private Player playerOne = new Player();
 	// we don«t use this for now!
 	private GameBoard gameBoard;
@@ -25,6 +28,7 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 		gameBoard = GameBoard.getInstance();
 		player = new Image("Images/PlayerIcon.png");
+		bomb = new Image("Images/Bomb.jpg");
 	}
 
 	@Override
@@ -32,6 +36,7 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 
 		player.draw(playerOne.getX() * 60, playerOne.getY() * 60, 60, 60);
+		
 
 	}
 
@@ -51,6 +56,9 @@ public class GamePlayState extends BasicGameState {
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
 			playerOne.setPosition(1, 0);
+		}
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+
 		}
 	}
 
