@@ -7,4 +7,8 @@ public interface GameTile {
 	public void receivesFire();
 	
 	public void performOnPlayer();
+
+	public int getX();
+
+	public int getY();
 }

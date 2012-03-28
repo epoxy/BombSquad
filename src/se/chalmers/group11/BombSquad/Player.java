@@ -31,6 +31,6 @@ public class Player {
 	}
 
 	public void releaseBomb() {
-		new BombTile(x, y);
+		GameBoard.getInstance().setTile(new BombTile(x,y));
 	}
 }

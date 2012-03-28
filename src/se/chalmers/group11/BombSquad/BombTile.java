@@ -5,20 +5,22 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class BombTile implements GameTile{
+	private int x, y;
 	public BombTile(int x, int y){
+		this.x = x;
+		this.y = y;
 		System.out.println("Bomb läggs ut" + x + " " + y);
-		
 		int delay = 3000; //milliseconds
-		  ActionListener taskPerformer = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Eld ritas ut");
-				//fire
-			}
-		  };
-		  Timer t = new Timer(delay, taskPerformer);		  
-		  t.setRepeats(false);
-		  t.start();
+			ActionListener taskPerformer = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println("Eld ritas ut");
+					//fire
+				}
+			};
+			Timer t = new Timer(delay, taskPerformer);		  
+			t.setRepeats(false);
+			t.start();
 	}
 	@Override
 	public boolean recievesPlayer() {
@@ -36,6 +38,10 @@ public class BombTile implements GameTile{
 		// TODO Auto-generated method stub
 		
 	}
-	
-
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}	
 }
