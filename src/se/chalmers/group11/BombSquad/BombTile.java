@@ -6,6 +6,7 @@ import javax.swing.Timer;
 
 public class BombTile implements GameTile {
 	private int x, y;
+	private int aa;
 
 	public BombTile(int x, int y) {
 		this.x = x;
