@@ -8,7 +8,4 @@ public interface GameTile {
 	
 	public void performOnPlayer();
 
-	public int getX();
-
-	public int getY();
-}
+	}

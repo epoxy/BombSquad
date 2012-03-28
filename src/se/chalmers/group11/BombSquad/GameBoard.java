@@ -1,10 +1,12 @@
 package se.chalmers.group11.BombSquad;
 
+import java.awt.event.ActionListener;
+
 public class GameBoard {
 
 	private static GameBoard gameBoard = null;
 	private int sideLength = 12;
-	private GameTile gameTiles[][];//ändra till praivate!
+	private GameTile[][] gameTiles;// ändra till praivate!
 
 	private GameBoard() {
 		gameTiles = new GameTile[sideLength][sideLength];
@@ -30,11 +32,13 @@ public class GameBoard {
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-	public void setTile(GameTile g){
-		gameTiles[g.getX()][g.getY()] = g;
+
+	public void setBomb(BombTile b) {
+		gameTiles[b.getX()][b.getY()] = b;
 	}
 
 	public int getSideLength() {
 		return sideLength;
 	}
+
 }

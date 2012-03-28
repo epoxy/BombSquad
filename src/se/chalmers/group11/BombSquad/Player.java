@@ -31,6 +31,7 @@ public class Player {
 	}
 
 	public void releaseBomb() {
-		GameBoard.getInstance().setTile(new BombTile(x,y)); //TODO set bomb
+		new BombTile(x, y);
+		//GameBoard.getInstance().setBomb(new BombTile(x,y)); //TODO set bomb
 	}
 }
