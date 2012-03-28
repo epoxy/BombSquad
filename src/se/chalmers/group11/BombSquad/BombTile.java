@@ -12,10 +12,13 @@ public class BombTile implements GameTile{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Eld ritas ut");
+				
 				//fire
 			}
 		  };
-		  new Timer(delay, taskPerformer).start();
+		  Timer t = new Timer(delay, taskPerformer);		  
+		  t.setRepeats(false);
+		  t.start();
 	}
 	@Override
 	public boolean recievesPlayer() {
