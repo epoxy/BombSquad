@@ -14,7 +14,7 @@ public class GamePlayState extends BasicGameState {
 	Image player = null;
 	int stateID = -1;
 
-	private Player playerOne = new Player();
+	// private Player playerOne = new Player();
 	// we don«t use this for now!
 	private GameBoard gameBoard;
 
@@ -35,7 +35,9 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-		player.draw(playerOne.getX() * 60, playerOne.getY() * 60, 60, 60);
+		player.draw(gameBoard.getPlayerX() * 60, gameBoard.getPlayerY() * 60,
+				60, 60);
+		
 
 	}
 
@@ -45,20 +47,20 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_W)) {
-			playerOne.setPosition(0, -1);
+			gameBoard.setPlayerPosition(0, -1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
-			playerOne.setPosition(-1, 0);
+			gameBoard.setPlayerPosition(-1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
-			playerOne.setPosition(0, 1);
+			gameBoard.setPlayerPosition(0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
-			playerOne.setPosition(1, 0);
+			gameBoard.setPlayerPosition(1, 0);
 		}
-		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			playerOne.releaseBomb();
-		}
+		// if (input.isKeyPressed(Input.KEY_SPACE)) {
+		// playerOne.releaseBomb();
+		// }
 	}
 
 	@Override
