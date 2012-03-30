@@ -46,16 +46,16 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 
-		if (input.isKeyPressed(Input.KEY_W)) {
+		if (input.isKeyPressed(Input.KEY_UP)) {
 			gameBoard.setPlayerPosition(0, -1);
 		}
-		if (input.isKeyPressed(Input.KEY_A)) {
+		if (input.isKeyPressed(Input.KEY_LEFT)) {
 			gameBoard.setPlayerPosition(-1, 0);
 		}
-		if (input.isKeyPressed(Input.KEY_S)) {
+		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			gameBoard.setPlayerPosition(0, 1);
 		}
-		if (input.isKeyPressed(Input.KEY_D)) {
+		if (input.isKeyPressed(Input.KEY_RIGHT)) {
 			gameBoard.setPlayerPosition(1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {

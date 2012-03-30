@@ -56,12 +56,12 @@ public class GameBoard {
 	}
 
 	public void setBomb() {
-		int bombX = playerOne.getX();
-		int bombY = playerOne.getY();
+		final int bombX = playerOne.getX();
+		final int bombY = playerOne.getY();
 		gameTiles[bombX][bombY] = new BombTile();
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0){
 				explodeBomb(bombX, bombY);
 				System.out.println("Eld ritas ut");
 				// fire
@@ -90,10 +90,15 @@ public class GameBoard {
 		gameTiles[bombX][bombY] = new FireTile();
 		for(int i=1; i<=firePower; i++){
 			if(!gameTiles[bombX][bombY+i].canReceiveFire() || !isInbounds(bombX, bombY+i)){
-				break;		
+				break;
 			}
-				
-				gameTiles[bombX][bombY+i] = new FireTile();
+			if(gameTiles[bombX][bombY+i] instanceof BoxTile){
+				//gameTiles[bombX][bombY+i] = new FireTile();
+				//TODO Fixa eld och animation senare
+				gameTiles[bombX][bombY+i] = new EmptyTile();
+				break;
+			}
+			gameTiles[bombX][bombY+i] = new FireTile();
 		}
 		for(int i=1; i<=firePower; i++){
 			gameTiles[bombX+i][bombY] = new FireTile();

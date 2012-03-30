@@ -11,7 +11,7 @@ public class Player {
 		x = 0;
 		y = 0;
 		amountOfBombs = 1;
-		firePower = 1;
+		firePower = 5;
 	}
 
 	// public void setPosition(int deltaX, int deltaY) {
@@ -38,7 +38,6 @@ public class Player {
 	public int getX() {
 		return x;
 	}
-
 	public int getY() {
 		return y;
 	}
@@ -47,10 +46,5 @@ public class Player {
 	}
 	public int getFirePower(){
 		return firePower;
-	}
-
-	public void releaseBomb() {
-		new BombTile(x, y);
-		// GameBoard.getInstance().setBomb(new BombTile(x,y)); //TODO set bomb
 	}
 }
