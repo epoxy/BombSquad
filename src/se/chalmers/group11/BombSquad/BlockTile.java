@@ -2,13 +2,13 @@ package se.chalmers.group11.BombSquad;
 
 public class BlockTile implements GameTile {
 	@Override
-	public boolean recievesPlayer() {
+	public boolean canReceivePlayer() {
 		return false;
 	}
 
 	@Override
-	public void receivesFire() {
-
+	public boolean canReceiveFire() {
+		return false;
 	}
 
 	@Override

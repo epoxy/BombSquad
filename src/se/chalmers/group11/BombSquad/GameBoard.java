@@ -1,14 +1,17 @@
 package se.chalmers.group11.BombSquad;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 public class GameBoard {
 
 	private Player playerOne;
-
 	private static GameBoard gameBoard = null;
 	private int sideLength = 12;
 	private GameTile gameTiles[][];// ändra till private!
+	private final int BOMB_COUNTDOWN = 3000;
 
 	private GameBoard() {
 		playerOne = new Player();
@@ -39,13 +42,10 @@ public class GameBoard {
 	public void setPlayerPosition(int deltaX, int deltaY) {
 		// int newPositionOfPlayerX = playerOne.getX();
 		// int newPositionOfPlayerY = playerOne.getY();
-		if (playerOne.getX() + deltaX >= 0
-				&& playerOne.getX() + deltaX < sideLength
-				&& playerOne.getY() + deltaY >= 0
-				&& playerOne.getY() + deltaY < sideLength) {
+		if (isInbounds(playerOne.getX() + deltaX, playerOne.getY() + deltaY)) {
 
 			if (gameTiles[playerOne.getX() + deltaX][playerOne.getY() + deltaY]
-					.recievesPlayer()) {
+					.canReceivePlayer()) {
 				playerOne.move(deltaX, deltaY);
 				gameTiles[playerOne.getX()][playerOne.getY()].performOnPlayer();
 
@@ -55,8 +55,21 @@ public class GameBoard {
 
 	}
 
-	public void setBomb(BombTile b) {
-		gameTiles[b.getX()][b.getY()] = b;
+	public void setBomb() {
+		int bombX = playerOne.getX();
+		int bombY = playerOne.getY();
+		gameTiles[bombX][bombY] = new BombTile();
+		ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				explodeBomb(bombX, bombY);
+				System.out.println("Eld ritas ut");
+				// fire
+			}
+		};
+		Timer t = new Timer(BOMB_COUNTDOWN, taskPerformer);
+		t.setRepeats(false);
+		t.start();
 	}
 
 	public int getSideLength() {
@@ -71,5 +84,29 @@ public class GameBoard {
 	public int getPlayerY() {
 
 		return playerOne.getY();
+	}
+	public void explodeBomb(int bombX, int bombY){
+		int firePower = playerOne.getFirePower();
+		gameTiles[bombX][bombY] = new FireTile();
+		for(int i=1; i<=firePower; i++){
+			if(!gameTiles[bombX][bombY+i].canReceiveFire() || !isInbounds(bombX, bombY+i)){
+				break;		
+			}
+				
+				gameTiles[bombX][bombY+i] = new FireTile();
+		}
+		for(int i=1; i<=firePower; i++){
+			gameTiles[bombX+i][bombY] = new FireTile();
+		}
+		for(int i=1; i<=firePower; i++){
+			gameTiles[bombX][bombY-i] = new FireTile();
+		}
+		for(int i=1; i<=firePower; i++){
+			gameTiles[bombX-i][bombY] = new FireTile();
+		}
+	}
+	
+	private boolean isInbounds(int x, int y){
+		return x>= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
 }

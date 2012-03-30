@@ -5,39 +5,33 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class BombTile implements GameTile {
-	private int x, y;
-	private int aa;
-
-	public BombTile(int x, int y) {
-		this.x = x;
-		this.y = y;
-		GameBoard.getInstance().setBomb(this);
+	public BombTile() {
 
 		// GameBoard.gameTiles[b.getX()][b.getY()] = b;
 		// GameBoard.getInstance().setTile(this);
 
-		System.out.println("Bomb läggs ut" + x + " " + y);
-		int delay = 3000; // milliseconds
-		ActionListener taskPerformer = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Eld ritas ut" + getX() + " " + getY());
-
-				// fire
-			}
-		};
-		Timer t = new Timer(delay, taskPerformer);
-		t.setRepeats(false);
-		t.start();
+//		int delay = 3000; // milliseconds
+//		ActionListener taskPerformer = new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				System.out.println("Eld ritas ut");
+//				// fire
+//			}
+//		};
+//		Timer t = new Timer(delay, taskPerformer);
+//		t.setRepeats(false);
+//		t.start();
 	}
 
 	@Override
-	public boolean recievesPlayer() {
+	public boolean canReceivePlayer() {
 		return false;
 	}
 
 	@Override
-	public void receivesFire() {
+	public boolean canReceiveFire() {
+		return false;
+		//TODO lägg till receivesFire()==true så att eld på bomb leder till sprängningskedjereaktion
 		// TODO Auto-generated method stub
 
 	}
@@ -45,14 +39,5 @@ public class BombTile implements GameTile {
 	@Override
 	public void performOnPlayer() {
 		// TODO Auto-generated method stub
-
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
 	}
 }

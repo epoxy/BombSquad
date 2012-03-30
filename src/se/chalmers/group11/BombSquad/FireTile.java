@@ -5,12 +5,13 @@ public class FireTile implements GameTile {
 	private int y;
 
 	@Override
-	public boolean recievesPlayer() {
+	public boolean canReceivePlayer() {
 		return true;
 	}
 
 	@Override
-	public void receivesFire() {
+	public boolean canReceiveFire() {
+		return true;
 		// TODO Auto-generated method stub
 
 	}

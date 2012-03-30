@@ -58,9 +58,10 @@ public class GamePlayState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_D)) {
 			gameBoard.setPlayerPosition(1, 0);
 		}
-		// if (input.isKeyPressed(Input.KEY_SPACE)) {
-		// playerOne.releaseBomb();
-		// }
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+		gameBoard.setBomb();
+		//playerOne.releaseBomb();
+		}
 	}
 
 	@Override

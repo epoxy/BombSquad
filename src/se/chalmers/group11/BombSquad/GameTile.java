@@ -2,9 +2,9 @@ package se.chalmers.group11.BombSquad;
 
 public interface GameTile {
 	
-	public boolean recievesPlayer();
+	public boolean canReceivePlayer();
 	
-	public void receivesFire();
+	public boolean canReceiveFire();
 	
 	public void performOnPlayer();
 
