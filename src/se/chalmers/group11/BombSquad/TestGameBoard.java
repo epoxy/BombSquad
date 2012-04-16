@@ -15,13 +15,10 @@ public class TestGameBoard {
 	public void testGetPlayerX() {
 		GameBoard gameBoard;
 		gameBoard = GameBoard.getInstance();
-		Player player = gameBoard.getPlayer();
-		int i = gameBoard.getPlayerX();
+		Player player = gameBoard.getPlayer(1);
 		int t = player.getX();
-		gameBoard.setPlayerPosition(1, 0);
-		int j = gameBoard.getPlayerX();
+		gameBoard.setPlayerPosition(1, 0, 1);
 		int r = player.getX();
-		System.out.println(i + "" + j);
 		assertTrue(r-t == 1); // The logical check
 	}
 

@@ -7,14 +7,16 @@ import javax.swing.Timer;
 
 public class GameBoard {
 
-	private Player playerOne;
+	private Player[] player;
 	private static GameBoard gameBoard = null;
 	private int sideLength = 12;
 	private GameTile gameTiles[][];// ändra till private!
 	private final int BOMB_COUNTDOWN = 3000;
 
 	private GameBoard() {
-		playerOne = new Player();
+		player = new Player[2];
+		player[0] = new Player();
+		player[1] = new Player();
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
@@ -39,15 +41,15 @@ public class GameBoard {
 		return gameTiles[x][y];
 	}
 //TODO fixa för flera spelare
-	public void setPlayerPosition(int deltaX, int deltaY) {
+	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
 		// int newPositionOfPlayerX = playerOne.getX();
 		// int newPositionOfPlayerY = playerOne.getY();
-		if (isInbounds(playerOne.getX() + deltaX, playerOne.getY() + deltaY)) {
+		if (isInbounds(player[playerIndex].getX() + deltaX, player[playerIndex].getY() + deltaY)) {
 
-			if (gameTiles[playerOne.getX() + deltaX][playerOne.getY() + deltaY]
+			if (gameTiles[player[playerIndex].getX() + deltaX][player[playerIndex].getY() + deltaY]
 					.canReceivePlayer()) {
-				playerOne.move(deltaX, deltaY);
-				gameTiles[playerOne.getX()][playerOne.getY()].performOnPlayer();
+				player[playerIndex].move(deltaX, deltaY);
+				gameTiles[player[playerIndex].getX()][player[playerIndex].getY()].performOnPlayer();
 
 			}
 
@@ -55,9 +57,9 @@ public class GameBoard {
 
 	}
 
-	public void setBomb() {
-		final int bombX = playerOne.getX();
-		final int bombY = playerOne.getY();
+	public void setBomb(int playerIndex) {
+		final int bombX = player[playerIndex].getX();
+		final int bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = new BombTile();
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
@@ -75,21 +77,12 @@ public class GameBoard {
 	public int getSideLength() {
 		return sideLength;
 	}
-	public Player getPlayer(){
-		return playerOne;
-	}
-	
-	public int getPlayerX() {
-
-		return playerOne.getX();
+	public Player getPlayer(int playerIndex){
+		return player[playerIndex];
 	}
 
-	public int getPlayerY() {
-
-		return playerOne.getY();
-	}
 	public void explodeBomb(int bombX, int bombY){
-		int firePower = playerOne.getFirePower();
+		int firePower = player[1].getFirePower();
 		gameTiles[bombX][bombY] = new FireTile();
 		for(int i=1; i<=firePower; i++){
 			if(!gameTiles[bombX][bombY+i].canReceiveFire() || !isInbounds(bombX, bombY+i)){

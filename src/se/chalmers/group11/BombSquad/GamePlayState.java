@@ -34,11 +34,10 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-
-		player.draw(gameBoard.getPlayerX() * 60, gameBoard.getPlayerY() * 60,
+		for(int i=0; i<2; i++){
+		player.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard.getPlayer(i).getY() * 60,
 				60, 60);
-		
-
+		}
 	}
 
 	@Override
@@ -47,22 +46,38 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
-			gameBoard.setPlayerPosition(0, -1);
+			gameBoard.setPlayerPosition(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
-			gameBoard.setPlayerPosition(-1, 0);
+			gameBoard.setPlayerPosition(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			gameBoard.setPlayerPosition(0, 1);
+			gameBoard.setPlayerPosition(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
-			gameBoard.setPlayerPosition(1, 0);
+			gameBoard.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-		gameBoard.setBomb();
+		gameBoard.setBomb(0);
 		//playerOne.releaseBomb();
 		}
-		System.out.println(gameBoard.getPlayerX() + " " + gameBoard.getPlayerY());
+		//System.out.println(gameBoard.getPlayerX() + " " + gameBoard.getPlayerY());
+		if (input.isKeyPressed(Input.KEY_W)) {
+			gameBoard.setPlayerPosition(0, -1, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_A)) {
+			gameBoard.setPlayerPosition(-1, 0, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_S)) {
+			gameBoard.setPlayerPosition(0, 1, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_D)) {
+			gameBoard.setPlayerPosition(1, 0, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_T)) {
+		gameBoard.setBomb(1);
+		//playerOne.releaseBomb();
+		}
 	}
 
 	@Override
