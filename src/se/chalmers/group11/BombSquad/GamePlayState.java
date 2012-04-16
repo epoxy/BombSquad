@@ -62,6 +62,7 @@ public class GamePlayState extends BasicGameState {
 		gameBoard.setBomb();
 		//playerOne.releaseBomb();
 		}
+		System.out.println(gameBoard.getPlayerX() + " " + gameBoard.getPlayerY());
 	}
 
 	@Override

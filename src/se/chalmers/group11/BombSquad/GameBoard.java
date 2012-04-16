@@ -38,7 +38,7 @@ public class GameBoard {
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-
+//TODO fixa för flera spelare
 	public void setPlayerPosition(int deltaX, int deltaY) {
 		// int newPositionOfPlayerX = playerOne.getX();
 		// int newPositionOfPlayerY = playerOne.getY();
@@ -75,7 +75,10 @@ public class GameBoard {
 	public int getSideLength() {
 		return sideLength;
 	}
-
+	public Player getPlayer(){
+		return playerOne;
+	}
+	
 	public int getPlayerX() {
 
 		return playerOne.getX();
