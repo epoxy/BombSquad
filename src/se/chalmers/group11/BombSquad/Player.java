@@ -6,10 +6,12 @@ public class Player {
 	private int y;
 	private int amountOfBombs;
 	private int firePower;
+	private int firePower2;
 
 	public Player() {
 		x = 0;
 		y = 0;
+		firePower2 = 1;
 		amountOfBombs = 1;
 		firePower = 5;
 	}
@@ -38,13 +40,21 @@ public class Player {
 	public int getX() {
 		return x;
 	}
+
 	public int getY() {
 		return y;
 	}
-	public int getAmountOfBombs(){
+
+	public int getAmountOfBombs() {
 		return amountOfBombs;
 	}
-	public int getFirePower(){
-		return firePower;
+
+	public int getFirePower(int playerIndex) {
+		if (playerIndex == 0) {
+			return firePower;
+		} else {
+			return firePower2;
+		}
+
 	}
 }
