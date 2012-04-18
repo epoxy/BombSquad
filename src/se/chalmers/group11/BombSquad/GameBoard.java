@@ -53,7 +53,7 @@ public class GameBoard {
 					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()].performOnPlayer();
+						.getY()].performOnPlayer();//unrelevant method, already done in update()
 
 			}
 
