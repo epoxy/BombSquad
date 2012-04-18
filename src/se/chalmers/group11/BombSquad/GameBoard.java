@@ -63,7 +63,7 @@ public class GameBoard {
 		gameTiles[bombX][bombY] = new BombTile();
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0){
+			public void actionPerformed(ActionEvent arg0) {
 				explodeBomb(bombX, bombY);
 				System.out.println("Eld ritas ut");
 				// fire
@@ -84,30 +84,31 @@ public class GameBoard {
 	public void explodeBomb(int bombX, int bombY){
 		int firePower = player[1].getFirePower();
 		gameTiles[bombX][bombY] = new FireTile();
-		for(int i=1; i<=firePower; i++){
-			if(!gameTiles[bombX][bombY+i].canReceiveFire() || !isInbounds(bombX, bombY+i)){
+		for (int i = 1; i <= firePower; i++) {
+			if (!gameTiles[bombX][bombY + i].canReceiveFire()
+					|| !isInbounds(bombX, bombY + i)) {
 				break;
 			}
-			if(gameTiles[bombX][bombY+i] instanceof BoxTile){
-				//gameTiles[bombX][bombY+i] = new FireTile();
-				//TODO Fixa eld och animation senare
-				gameTiles[bombX][bombY+i] = new EmptyTile();
+			if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
+				// gameTiles[bombX][bombY+i] = new FireTile();
+				// TODO Fixa eld och animation senare
+				gameTiles[bombX][bombY + i] = new EmptyTile();
 				break;
 			}
-			gameTiles[bombX][bombY+i] = new FireTile();
+			gameTiles[bombX][bombY + i] = new FireTile();
 		}
-		for(int i=1; i<=firePower; i++){
-			gameTiles[bombX+i][bombY] = new FireTile();
+		for (int i = 1; i <= firePower; i++) {
+			gameTiles[bombX + i][bombY] = new FireTile();
 		}
-		for(int i=1; i<=firePower; i++){
-			gameTiles[bombX][bombY-i] = new FireTile();
+		for (int i = 1; i <= firePower; i++) {
+			gameTiles[bombX][bombY - i] = new FireTile();
 		}
-		for(int i=1; i<=firePower; i++){
-			gameTiles[bombX-i][bombY] = new FireTile();
+		for (int i = 1; i <= firePower; i++) {
+			gameTiles[bombX - i][bombY] = new FireTile();
 		}
 	}
-	
-	private boolean isInbounds(int x, int y){
-		return x>= 0 && x < sideLength && y >= 0 && y < sideLength;
+
+	private boolean isInbounds(int x, int y) {
+		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
 }
