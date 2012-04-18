@@ -100,25 +100,31 @@ public class GameBoard {
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
-				gameTiles[bombX - i][bombY] = new FireTile();
-				break;
+			if (isInbounds(bombX - i, bombY)) {
+				if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
+					gameTiles[bombX - i][bombY] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX - i, bombY);
 			}
-			tryToPutOutFire(bombX - i, bombY);
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
-				gameTiles[bombX][bombY + i] = new FireTile();
-				break;
+			if (isInbounds(bombX, bombY + i)) {
+				if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
+					gameTiles[bombX][bombY + i] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX, bombY + i);
 			}
-			tryToPutOutFire(bombX, bombY + i);
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
-				gameTiles[bombX][bombY - i] = new FireTile();
-				break;
+			if (isInbounds(bombX, bombY - i)) {
+				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
+					gameTiles[bombX][bombY - i] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX, bombY - i);
 			}
-			tryToPutOutFire(bombX, bombY - i);
 		}
 	}
 
