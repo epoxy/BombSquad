@@ -41,16 +41,19 @@ public class GameBoard {
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-//TODO fixa för flera spelare
+
+	// TODO fixa för flera spelare
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
 		// int newPositionOfPlayerX = playerOne.getX();
 		// int newPositionOfPlayerY = playerOne.getY();
-		if (isInbounds(player[playerIndex].getX() + deltaX, player[playerIndex].getY() + deltaY)) {
+		if (isInbounds(player[playerIndex].getX() + deltaX,
+				player[playerIndex].getY() + deltaY)) {
 
-			if (gameTiles[player[playerIndex].getX() + deltaX][player[playerIndex].getY() + deltaY]
-					.canReceivePlayer()) {
+			if (gameTiles[player[playerIndex].getX() + deltaX][player[playerIndex]
+					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
-				gameTiles[player[playerIndex].getX()][player[playerIndex].getY()].performOnPlayer();
+				gameTiles[player[playerIndex].getX()][player[playerIndex]
+						.getY()].performOnPlayer();
 
 			}
 
@@ -78,7 +81,8 @@ public class GameBoard {
 	public int getSideLength() {
 		return sideLength;
 	}
-	public Player getPlayer(int playerIndex){
+
+	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
 
@@ -87,11 +91,13 @@ public class GameBoard {
 		gameTiles[bombX][bombY] = new FireTile();
 		setFireTileToEmptyTile(bombX, bombY);
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
-				gameTiles[bombX + i][bombY] = new FireTile();
-				break;
+			if (isInbounds(bombX + i, bombY)) {
+				if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
+					gameTiles[bombX + i][bombY] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX + i, bombY);
 			}
-			tryToPutOutFire(bombX + i, bombY);
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
@@ -118,12 +124,12 @@ public class GameBoard {
 
 	private void tryToPutOutFire(int bombX, int bombY) {
 
-		if (gameTiles[bombX][bombY].canReceiveFire()
-				&& isInbounds(bombX, bombY)) {
+		if (gameTiles[bombX][bombY].canReceiveFire()) {
 
 			gameTiles[bombX][bombY] = new FireTile();
+			setFireTileToEmptyTile(bombX, bombY);
 		}
-		setFireTileToEmptyTile(bombX, bombY);
+
 	}
 
 	private void setFireTileToEmptyTile(final int bombX, final int bombY) {
@@ -139,6 +145,7 @@ public class GameBoard {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	private boolean isInbounds(int x, int y) {
 		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
