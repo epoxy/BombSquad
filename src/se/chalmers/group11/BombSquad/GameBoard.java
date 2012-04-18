@@ -11,6 +11,7 @@ public class GameBoard {
 	private static GameBoard gameBoard = null;
 	private int sideLength = 12;
 	private GameTile gameTiles[][];// ändra till private!
+
 	private final int BOMB_COUNTDOWN = 3000;
 	private final int FIRE_COUNTDOWN = 1000;
 
@@ -91,43 +92,51 @@ public class GameBoard {
 		gameTiles[bombX][bombY] = new FireTile();
 		setFireTileToEmptyTile(bombX, bombY);
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
-				gameTiles[bombX + i][bombY] = new FireTile();
-				break;
+			if (isInbounds(bombX + i, bombY)) {
+				if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
+					gameTiles[bombX + i][bombY] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX + i, bombY);
 			}
-			tryToPutOutFire(bombX + i, bombY);
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
-				gameTiles[bombX - i][bombY] = new FireTile();
-				break;
+			if (isInbounds(bombX - i, bombY)) {
+				if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
+					gameTiles[bombX - i][bombY] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX - i, bombY);
 			}
-			tryToPutOutFire(bombX - i, bombY);
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
-				gameTiles[bombX][bombY + i] = new FireTile();
-				break;
+			if (isInbounds(bombX, bombY + i)) {
+				if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
+					gameTiles[bombX][bombY + i] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX, bombY + i);
 			}
-			tryToPutOutFire(bombX, bombY + i);
 		}
 		for (int i = 1; i <= firePower; i++) {
-			if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
-				gameTiles[bombX][bombY - i] = new FireTile();
-				break;
+			if (isInbounds(bombX, bombY - i)) {
+				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
+					gameTiles[bombX][bombY - i] = new FireTile();
+					break;
+				}
+				tryToPutOutFire(bombX, bombY - i);
 			}
-			tryToPutOutFire(bombX, bombY - i);
 		}
 	}
 
 	private void tryToPutOutFire(int bombX, int bombY) {
 
-		if (gameTiles[bombX][bombY].canReceiveFire()
-				&& isInbounds(bombX, bombY)) {
+		if (gameTiles[bombX][bombY].canReceiveFire()) {
 
 			gameTiles[bombX][bombY] = new FireTile();
+			setFireTileToEmptyTile(bombX, bombY);
+
 		}
-		setFireTileToEmptyTile(bombX, bombY);
 	}
 
 	private void setFireTileToEmptyTile(final int bombX, final int bombY) {

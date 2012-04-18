@@ -13,7 +13,7 @@ public class Player {
 		y = 0;
 		firePower2 = 1;
 		amountOfBombs = 1;
-		firePower = 3;
+		firePower = 1;
 	}
 
 	// public void setPosition(int deltaX, int deltaY) {
