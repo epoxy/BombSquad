@@ -26,8 +26,8 @@ public class GameBoard {
 													// det
 													// är
 			}
-			gameTiles[1][1] = new BlockTile();
-			gameTiles[2][2] = new FireTile();
+			gameTiles[1][1] = TileFactory.getBlockTile();
+			gameTiles[2][2] = TileFactory.getFireTile();
 		}
 	}
 
