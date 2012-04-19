@@ -10,10 +10,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenuState extends BasicGameState {
 
-	private int startX = 500;
-	private int startY = 200;
-	private int exitX = 500;
-	private int exitY = 600;
+	private int startX = 440;
+	private int startY = 150;
+	private int exitX = 440;
+	private int exitY = 550;
 
 	private float exitImageScale = 1;
 	private float startImageScale = 0.5f;
@@ -80,7 +80,7 @@ public class MainMenuState extends BasicGameState {
 			if (insideExitGame) {
 				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
 					gc.exit();
-				
+
 				if (exitImageScale < 1.05f)
 					exitImageScale += scaleStep * delta;
 			} else {

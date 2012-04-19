@@ -18,10 +18,10 @@ public class Player {
 		y = 0;
 		firePower2 = 3;
 		amountOfBombs = 1;
-		firePower = 1;
+		firePower = 3;
 	}
 
-	public void placeBomb(final int bombX, final int bombY,
+	public void countDownToExplosion(final int bombX, final int bombY,
 			final int playerIndex) {
 
 		ActionListener taskPerformer = new ActionListener() {

@@ -9,10 +9,13 @@ public class GameBoard {
 
 	private Player[] player;
 	private static GameBoard gameBoard = null;
-	private int sideLength = 12;
+	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
 
 	private final int FIRE_COUNTDOWN = 1000;
+
+	private int bombX;
+	private int bombY;
 
 	private GameBoard() {
 		player = new Player[2];
@@ -23,11 +26,16 @@ public class GameBoard {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				gameTiles[i][j] = new EmptyTile();
 				System.out.println(gameTiles[i][j]);// skriver ut vilken tile
-													// det
-													// är
+				// det
+				// är
 			}
-			gameTiles[1][1] = new BlockTile();
-			gameTiles[2][2] = new FireTile();
+		}
+		for (int i = 1; i < gameTiles.length - 1; i += 2) {
+			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
+				gameTiles[i][j] = new BlockTile();
+			}
+			// gameTiles[0][1] = new BoxTile();
+
 		}
 	}
 
@@ -62,16 +70,24 @@ public class GameBoard {
 	}
 
 	public void setBomb(final int playerIndex) {
-		final int bombX = player[playerIndex].getX();
-		final int bombY = player[playerIndex].getY();
+		bombX = player[playerIndex].getX();
+		bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = new BombTile();
-		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
+		player[playerIndex].countDownToExplosion(bombX, bombY, playerIndex);
 
 	}
 
-	// public int getSideLength() {
-	// return sideLength;
-	// }
+	public int getBombX() {
+		return bombX;
+	}
+
+	public int getBombY() {
+		return bombY;
+	}
+
+	public int getSideLength() {
+		return sideLength;
+	}
 
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
@@ -84,34 +100,48 @@ public class GameBoard {
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
-					gameTiles[bombX + i][bombY] = new FireTile();
+					tryToPutOutFire(bombX + i, bombY);
+					break;
+				} else if (gameTiles[bombX + i][bombY] instanceof BlockTile) {
 					break;
 				}
+				// TODO still doesn«t work good, if you hit the fire with a
+				// stone the next tile in the same direction should not be fired
+				// up! but it does now a bad solution is to do the instanceof
+				// check, we have to find a better solution though
+
 				tryToPutOutFire(bombX + i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX - i, bombY)) {
 				if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
-					gameTiles[bombX - i][bombY] = new FireTile();
+					tryToPutOutFire(bombX - i, bombY);
+					break;
+				} else if (gameTiles[bombX - i][bombY] instanceof BlockTile) {
 					break;
 				}
+
 				tryToPutOutFire(bombX - i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY + i)) {
 				if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
-					gameTiles[bombX][bombY + i] = new FireTile();
+					tryToPutOutFire(bombX, bombY + i);
+					break;
+				} else if (gameTiles[bombX][bombY + i] instanceof BlockTile) {
 					break;
 				}
+
 				tryToPutOutFire(bombX, bombY + i);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
-					gameTiles[bombX][bombY - i] = new FireTile();
+					break;
+				} else if (gameTiles[bombX][bombY - i] instanceof BlockTile) {
 					break;
 				}
 				tryToPutOutFire(bombX, bombY - i);

@@ -14,7 +14,7 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new MainMenuState(MAINMENUSTATE));
-		this.enterState(MAINMENUSTATE);
+		this.enterState(GAMEPLAYSTATE);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,7 +28,7 @@ public class Main extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new Main());
 		app.setTitle("BombSquad");
-		app.setDisplayMode(720, 720, false);
+		app.setDisplayMode(660, 660, false);
 		app.start();
 	}
 

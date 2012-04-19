@@ -1,6 +1,11 @@
 package se.chalmers.group11.BombSquad;
 
 public class BlockTile implements GameTile {
+
+	public BlockTile() {
+		;
+	}
+
 	@Override
 	public boolean canReceivePlayer() {
 		return false;

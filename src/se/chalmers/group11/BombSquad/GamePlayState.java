@@ -10,8 +10,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GamePlayState extends BasicGameState {
 
-	Image bomb = null;
-	Image player = null;
+	Image bombImage = null;
+	Image playerImage = null;
+	Image grassImage = null;
 	int stateID = 0;
 
 	// private Player playerOne = new Player();
@@ -27,16 +28,31 @@ public class GamePlayState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		gameBoard = GameBoard.getInstance();
-		player = new Image("Images/PlayerIcon.png");
-		bomb = new Image("Images/Bomb.jpg");
+		playerImage = new Image("Images/PlayerIcon.png");
+		bombImage = new Image("Images/Bomb.jpg");
+		grassImage = new Image("Images/grass.jpg");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		for(int i=0; i<2; i++){
-		player.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard.getPlayer(i).getY() * 60,
-				60, 60);
+
+		for (int i = 0; i < gameBoard.getSideLength(); i++) {
+			for (int j = 0; j < gameBoard.getSideLength(); j++) {
+				if (GameBoard.getInstance().getTile(i, j) instanceof BombTile) {
+					bombImage.draw(gameBoard.getBombX() * 60,
+							gameBoard.getBombY() * 60, 60, 60);
+				}
+				if (gameBoard.getInstance().getTile(i, j) instanceof EmptyTile) {
+					grassImage.getScaledCopy(0.08f)
+							.draw(i * 60, j * 60, 60, 60);
+
+				}
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			playerImage.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard
+					.getPlayer(i).getY() * 60, 60, 60);
 		}
 	}
 
@@ -58,10 +74,11 @@ public class GamePlayState extends BasicGameState {
 			gameBoard.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-		gameBoard.setBomb(0);
-		//playerOne.releaseBomb();
+			gameBoard.setBomb(0);
+			// playerOne.releaseBomb();
 		}
-		//System.out.println(gameBoard.getPlayerX() + " " + gameBoard.getPlayerY());
+		// System.out.println(gameBoard.getPlayerX() + " " +
+		// gameBoard.getPlayerY());
 		if (input.isKeyPressed(Input.KEY_W)) {
 			gameBoard.setPlayerPosition(0, -1, 1);
 		}
@@ -75,8 +92,8 @@ public class GamePlayState extends BasicGameState {
 			gameBoard.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_T)) {
-		gameBoard.setBomb(1);
-		//playerOne.releaseBomb();
+			gameBoard.setBomb(1);
+			// playerOne.releaseBomb();
 		}
 	}
 
