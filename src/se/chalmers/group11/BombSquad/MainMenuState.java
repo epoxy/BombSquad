@@ -1,0 +1,101 @@
+package se.chalmers.group11.BombSquad;
+
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
+public class MainMenuState extends BasicGameState {
+
+	private int startX = 500;
+	private int startY = 200;
+	private int exitX = 500;
+	private int exitY = 600;
+
+	private float exitImageScale = 1;
+	private float startImageScale = 0.5f;
+	private float scaleStep = 0.0001f;
+
+	int stateID = 0;
+	private Image startImage = null;
+	private Image exitImage = null;
+
+	public MainMenuState(int stateID) {
+		this.stateID = stateID;
+
+	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		startImage = new Image("Images/start.png");
+		exitImage = new Image("Images/exit.jpg");
+
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		startImage.draw(startX, startY, startImageScale);
+		exitImage.draw(exitX, exitY, exitImageScale);
+
+	}
+
+	@Override
+	public void update(GameContainer gc, StateBasedGame sb, int delta)
+			throws SlickException {
+		Input input = gc.getInput();
+
+		int mouseX = input.getMouseX();
+		int mouseY = input.getMouseY();
+
+		boolean insideStartGame = false;
+		boolean insideExitGame = false;
+
+		if (mouseX >= startX && mouseX <= startX + startImage.getWidth()
+				&& mouseY >= startY
+				&& mouseY <= startY + startImage.getHeight()) {
+			insideStartGame = true;
+
+		} else if (mouseX >= exitX && mouseX <= exitX + exitImage.getWidth()
+				&& mouseY >= exitY && mouseY <= exitY + exitImage.getHeight()) {
+			insideExitGame = true;
+		}
+		if (insideStartGame) {
+			if (startImageScale < 0.55f)
+				startImageScale += scaleStep * delta;
+
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				sb.enterState(Main.GAMEPLAYSTATE);
+			}
+		} else {
+
+			if (startImageScale > 0.5f) {
+				startImageScale -= scaleStep * delta;
+
+			}
+			if (insideExitGame) {
+				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
+					gc.exit();
+
+				if (exitImageScale < 1.05f)
+					exitImageScale += scaleStep * delta;
+			} else {
+				if (exitImageScale > 1.0f)
+					exitImageScale -= scaleStep * delta;
+			}
+
+		}
+
+	}
+
+	@Override
+	public int getID() {
+
+		return stateID;
+	}
+
+}

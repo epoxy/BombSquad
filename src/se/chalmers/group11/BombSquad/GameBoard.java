@@ -11,7 +11,6 @@ public class GameBoard {
 	private static GameBoard gameBoard = null;
 	private int sideLength = 12;
 	private GameTile gameTiles[][];// ändra till private!
-	private final int BOMB_COUNTDOWN = 3000;
 	private final int FIRE_COUNTDOWN = 1000;
 
 	private GameBoard() {
@@ -50,7 +49,10 @@ public class GameBoard {
 					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()].performOnPlayer(playerIndex);//unrelevant method, already done in update()
+						.getY()].performOnPlayer(playerIndex);// unrelevant
+																// method,
+																// already done
+																// in update()
 
 			}
 
@@ -62,17 +64,8 @@ public class GameBoard {
 		final int bombX = player[playerIndex].getX();
 		final int bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = TileFactory.getBombTile();
-		ActionListener taskPerformer = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				explodeBomb(bombX, bombY, playerIndex);
-				System.out.println("Eld ritas ut");
-				// fire
-			}
-		};
-		Timer t = new Timer(BOMB_COUNTDOWN, taskPerformer);
-		t.setRepeats(false);
-		t.start();
+		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
+
 	}
 
 	public int getSideLength() {
@@ -83,7 +76,7 @@ public class GameBoard {
 		return player[playerIndex];
 	}
 
-	private void explodeBomb(int bombX, int bombY, int playerIndex) {
+	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower(playerIndex);
 		gameTiles[bombX][bombY] = TileFactory.getFireTile();
 		setFireTileToEmptyTile(bombX, bombY);
