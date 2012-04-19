@@ -1,9 +1,5 @@
 package se.chalmers.group11.BombSquad;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-
 public class BombTile implements GameTile {
 	public BombTile() {
 	}
@@ -16,7 +12,8 @@ public class BombTile implements GameTile {
 	@Override
 	public boolean canReceiveFire() {
 		return false;
-		//TODO lägg till receivesFire()==true så att eld på bomb leder till sprängningskedjereaktion
+		// TODO lägg till receivesFire()==true så att eld på bomb leder till
+		// sprängningskedjereaktion
 		// TODO Auto-generated method stub
 
 	}

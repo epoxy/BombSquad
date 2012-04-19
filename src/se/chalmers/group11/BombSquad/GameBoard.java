@@ -66,28 +66,19 @@ public class GameBoard {
 		final int bombX = player[playerIndex].getX();
 		final int bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = new BombTile();
-		ActionListener taskPerformer = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				explodeBomb(bombX, bombY, playerIndex);
-				System.out.println("Eld ritas ut");
-				// fire
-			}
-		};
-		Timer t = new Timer(BOMB_COUNTDOWN, taskPerformer);
-		t.setRepeats(false);
-		t.start();
+		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
+
 	}
 
-	public int getSideLength() {
-		return sideLength;
-	}
+	// public int getSideLength() {
+	// return sideLength;
+	// }
 
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
 
-	private void explodeBomb(int bombX, int bombY, int playerIndex) {
+	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower(playerIndex);
 		gameTiles[bombX][bombY] = new FireTile();
 		setFireTileToEmptyTile(bombX, bombY);

@@ -1,5 +1,10 @@
 package se.chalmers.group11.BombSquad;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 public class Player {
 
 	private int x;
@@ -11,27 +16,28 @@ public class Player {
 	public Player() {
 		x = 0;
 		y = 0;
-		firePower2 = 1;
+		firePower2 = 3;
 		amountOfBombs = 1;
 		firePower = 1;
 	}
 
-	// public void setPosition(int deltaX, int deltaY) {
-	// if (x + deltaX >= 0
-	// && x + deltaX < GameBoard.getInstance().getSideLength()
-	// && y + deltaY >= 0
-	// && y + deltaY < GameBoard.getInstance().getSideLength()) {
-	//
-	// GameTile gt = GameBoard.getInstance().getTile(deltaX + x,
-	// deltaY + y);
-	// if (gt.recievesPlayer()) {
-	// x = x + deltaX;
-	// y = y + deltaY;
-	// gt.performOnPlayer();
-	// System.out.println(x + " + " + y);
-	// }
-	// }
-	// }
+	public void placeBomb(final int bombX, final int bombY,
+			final int playerIndex) {
+
+		ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				GameBoard.getInstance().explodeBomb(bombX, bombY, playerIndex);
+				System.out.println("Eld ritas ut");
+				// fire
+			}
+		};
+		Timer t = new Timer(3000, taskPerformer);
+		t.setRepeats(false);
+		t.start();
+	}
+
 	public void move(int deltaX, int deltaY) {
 		x = x + deltaX;
 		y = y + deltaY;
