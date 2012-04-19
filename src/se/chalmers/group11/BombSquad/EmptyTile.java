@@ -13,7 +13,7 @@ public class EmptyTile implements GameTile{
 	}
 
 	@Override
-	public void performOnPlayer() {
+	public void performOnPlayer(int playerIndex) {
 		
 		
 	}

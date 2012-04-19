@@ -6,6 +6,6 @@ public interface GameTile {
 	
 	public boolean canReceiveFire();
 	
-	public void performOnPlayer();
+	public void performOnPlayer(int playerIndex);
 
 	}

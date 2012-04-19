@@ -42,10 +42,7 @@ public class GameBoard {
 		return gameTiles[x][y];
 	}
 
-	// TODO fixa för flera spelare
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
-		// int newPositionOfPlayerX = playerOne.getX();
-		// int newPositionOfPlayerY = playerOne.getY();
 		if (isInbounds(player[playerIndex].getX() + deltaX,
 				player[playerIndex].getY() + deltaY)) {
 
@@ -53,7 +50,7 @@ public class GameBoard {
 					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()].performOnPlayer();//unrelevant method, already done in update()
+						.getY()].performOnPlayer(playerIndex);//unrelevant method, already done in update()
 
 			}
 

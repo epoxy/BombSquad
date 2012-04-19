@@ -15,7 +15,7 @@ public class BoxTile implements GameTile{
 	}
 
 	@Override
-	public void performOnPlayer() {
+	public void performOnPlayer(int playerIndex) {
 		// TODO Auto-generated method stub
 		
 	}

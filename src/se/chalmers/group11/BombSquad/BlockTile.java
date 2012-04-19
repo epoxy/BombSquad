@@ -12,7 +12,7 @@ public class BlockTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer() {
+	public void performOnPlayer(int playerIndex) {
 
 	}
 
