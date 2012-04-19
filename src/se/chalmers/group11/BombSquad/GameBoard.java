@@ -12,7 +12,6 @@ public class GameBoard {
 	private int sideLength = 12;
 	private GameTile gameTiles[][];// ändra till private!
 
-	private final int BOMB_COUNTDOWN = 3000;
 	private final int FIRE_COUNTDOWN = 1000;
 
 	private GameBoard() {
