@@ -1,6 +1,6 @@
 package se.chalmers.group11.BombSquad;
 
-public class EmptyTile implements GameTile{
+public class EmptyTile implements GameTile {
 	@Override
 	public boolean canReceivePlayer() {
 		return true;
@@ -13,12 +13,11 @@ public class EmptyTile implements GameTile{
 	}
 
 	@Override
-	public void performOnPlayer() {
-		
-		
+	public void performOnPlayer(int playerIndex) {
+
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return "EmptyTile";
 	}
 

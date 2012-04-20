@@ -14,7 +14,7 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new MainMenuState(MAINMENUSTATE));
-		this.enterState(GAMEPLAYSTATE);
+		this.enterState(MAINMENUSTATE);
 		// TODO Auto-generated constructor stub
 	}
 

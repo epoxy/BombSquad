@@ -17,7 +17,7 @@ public class FireTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer() {
+	public void performOnPlayer(int playerIndex) {
 		System.out.println("you suck");
 		System.exit(0);
 

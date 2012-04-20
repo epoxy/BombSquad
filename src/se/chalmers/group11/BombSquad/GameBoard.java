@@ -24,17 +24,22 @@ public class GameBoard {
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
-				gameTiles[i][j] = new EmptyTile();
-				System.out.println(gameTiles[i][j]);// skriver ut vilken tile
-				// det
-				// är
+				if (Math.random() > 0.8) {
+					gameTiles[i][j] = new BoxTile();
+				} else {
+					gameTiles[i][j] = new EmptyTile();
+					System.out.println(gameTiles[i][j]);// skriver ut vilken
+														// tile
+					// det
+					// är
+				}
 			}
 		}
+
 		for (int i = 1; i < gameTiles.length - 1; i += 2) {
 			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
 				gameTiles[i][j] = new BlockTile();
 			}
-			// gameTiles[0][1] = new BoxTile();
 
 		}
 	}
@@ -61,7 +66,7 @@ public class GameBoard {
 					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()].performOnPlayer();
+						.getY()].performOnPlayer(playerIndex);
 
 			}
 
@@ -140,6 +145,7 @@ public class GameBoard {
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
+					tryToPutOutFire(bombX, bombY -i);
 					break;
 				} else if (gameTiles[bombX][bombY - i] instanceof BlockTile) {
 					break;
