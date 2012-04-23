@@ -7,7 +7,7 @@ import javax.swing.Timer;
 
 public class GameBoard {
 
-	private Player[] player;
+	private Player player[];
 	private static GameBoard gameBoard = null;
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!

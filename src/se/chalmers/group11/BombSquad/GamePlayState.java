@@ -41,7 +41,7 @@ public class GamePlayState extends BasicGameState {
 
 		for (int i = 0; i < gameBoard.getSideLength(); i++) {
 			for (int j = 0; j < gameBoard.getSideLength(); j++) {
-				if (GameBoard.getInstance().getTile(i, j) instanceof BombTile) {
+				if (gameBoard.getTile(i, j) instanceof BombTile) {
 					bombImage.draw(gameBoard.getBombX() * 60,
 							gameBoard.getBombY() * 60, 60, 60);
 				}
