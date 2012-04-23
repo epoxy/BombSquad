@@ -13,12 +13,12 @@ public class Player {
 	private int firePower;
 	private int firePower2;
 
-	public Player() {
-		x = 0;
-		y = 0;
-		firePower2 = 3;
+	public Player(int x, int y) {
+		this.x = x;
+		this.y = y;
+		firePower2 = 1;
 		amountOfBombs = 1;
-		firePower = 3;
+		firePower = 1;
 	}
 
 	public void countDownToExplosion(final int bombX, final int bombY,
@@ -55,11 +55,19 @@ public class Player {
 		return amountOfBombs;
 	}
 
-	public int getFirePower(int playerindex) {
-		if (playerindex == 0) {
+	public int getFirePower(int playerIndex) {
+		if (playerIndex == 0) {
 			return firePower;
 		} else {
 			return firePower2;
+		}
+	}
+
+	public void setFirePower(int playerIndex) {
+		if (playerIndex == 0) {
+			firePower++;
+		} else {
+			firePower2++;
 		}
 	}
 }

@@ -14,6 +14,7 @@ public class GamePlayState extends BasicGameState {
 	Image playerImage = null;
 	Image grassImage = null;
 	Image treeImage = null;
+	Image extraFirePower = null;
 	int stateID = 0;
 
 	// private Player playerOne = new Player();
@@ -33,6 +34,7 @@ public class GamePlayState extends BasicGameState {
 		bombImage = new Image("Images/Bomb.jpg");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
+		extraFirePower = new Image("Images/extraFire.jpg");
 	}
 
 	@Override
@@ -51,6 +53,9 @@ public class GamePlayState extends BasicGameState {
 				}
 				if (gameBoard.getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
+				}
+				if (gameBoard.getTile(i, j) instanceof PowerItemTile) {
+					extraFirePower.draw(i * 60, j * 60, 60, 60);
 				}
 			}
 		}
@@ -99,11 +104,11 @@ public class GamePlayState extends BasicGameState {
 			gameBoard.setBomb(1);
 			// playerOne.releaseBomb();
 		}
-		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
-										// ser om han ska dö på rutan han är
-			gameBoard.getTile(gameBoard.getPlayer(j).getX(),
-					gameBoard.getPlayer(j).getY()).performOnPlayer(j);
-		}
+		// for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
+		// // ser om han ska dö på rutan han är
+		// gameBoard.getTile(gameBoard.getPlayer(j).getX(),
+		// gameBoard.getPlayer(j).getY()).performOnPlayer(j);
+		// }
 	}
 
 	@Override

@@ -11,6 +11,7 @@ public class GameBoard {
 	private static GameBoard gameBoard = null;
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
+	private GameTile gameTilestmp[][];
 
 	private final int FIRE_COUNTDOWN = 1000;
 
@@ -19,13 +20,16 @@ public class GameBoard {
 
 	private GameBoard() {
 		player = new Player[2];
-		player[0] = new Player();
-		player[1] = new Player();
+		player[0] = new Player(0, 0);
+		player[1] = new Player(10, 10);
+		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				if (Math.random() > 0.8) {
+
 					gameTiles[i][j] = new BoxTile();
+					gameTilestmp[i][j] = new BoxTile();
 				} else {
 					gameTiles[i][j] = new EmptyTile();
 					System.out.println(gameTiles[i][j]);// skriver ut vilken
@@ -66,7 +70,8 @@ public class GameBoard {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
 						.getY()].performOnPlayer(playerIndex);
-
+				gameTiles[player[playerIndex].getX()][player[playerIndex]
+						.getY()] = new EmptyTile();
 			}
 		}
 	}
@@ -166,8 +171,16 @@ public class GameBoard {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				gameTiles[bombX][bombY] = new EmptyTile();
-				System.out.println("emptyTile?");
+				if (gameTilestmp[bombX][bombY] instanceof BoxTile
+						&& Math.random() > 0.5) {
+
+					gameTiles[bombX][bombY] = new PowerItemTile();
+					System.out.println("powerItemTile");
+				} else {
+					gameTiles[bombX][bombY] = new EmptyTile();
+					System.out.println("emptyTile?");
+				}
+				gameTilestmp[bombX][bombY] = new EmptyTile();
 				// fire
 			}
 		};
