@@ -45,11 +45,11 @@ public class GamePlayState extends BasicGameState {
 					bombImage.draw(gameBoard.getBombX() * 60,
 							gameBoard.getBombY() * 60, 60, 60);
 				}
-				if (gameBoard.getInstance().getTile(i, j) instanceof EmptyTile) {
+				if (gameBoard.getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
 							.draw(i * 60, j * 60, 60, 60);
 				}
-				if (gameBoard.getInstance().getTile(i, j) instanceof BoxTile) {
+				if (gameBoard.getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
 			}
@@ -95,7 +95,7 @@ public class GamePlayState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_D)) {
 			gameBoard.setPlayerPosition(1, 0, 1);
 		}
-		if (input.isKeyPressed(Input.KEY_T)) {
+		if (input.isKeyPressed(Input.KEY_Q)) {
 			gameBoard.setBomb(1);
 			// playerOne.releaseBomb();
 		}

@@ -40,7 +40,6 @@ public class GameBoard {
 			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
 				gameTiles[i][j] = new BlockTile();
 			}
-
 		}
 	}
 
@@ -69,9 +68,7 @@ public class GameBoard {
 						.getY()].performOnPlayer(playerIndex);
 
 			}
-
 		}
-
 	}
 
 	public void setBomb(final int playerIndex) {
@@ -145,7 +142,7 @@ public class GameBoard {
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
-					tryToPutOutFire(bombX, bombY -i);
+					tryToPutOutFire(bombX, bombY - i);
 					break;
 				} else if (gameTiles[bombX][bombY - i] instanceof BlockTile) {
 					break;
