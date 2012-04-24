@@ -1,5 +1,6 @@
 package se.chalmers.group11.BombSquad;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -17,6 +18,7 @@ public class GamePlayState extends BasicGameState {
 	Image extraFirePower = null;
 	int stateID = 0;
 
+	private Animation sprite, up, down, left, right;
 	// private Player playerOne = new Player();
 	// we don«t use this for now!
 	private GameBoard gameBoard;
@@ -29,6 +31,22 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		Image[] movementUp = { new Image("Images/bombManUP.gif"),
+				new Image("Images/bombManUP2.gif") };
+		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
+				new Image("Images/bombManDOWN2.gif") };
+		Image[] movementLeft = { new Image("Images/bombManLEFT.gif"),
+				new Image("Images/bombManLEFT2.gif") };
+		Image[] movementRight = { new Image("Images/bombManRIGHT.gif"),
+				new Image("Images/bombManRIGHT2.gif") };
+		int[] duration = { 300, 300 };
+		up = new Animation(movementUp, duration, true);
+		down = new Animation(movementDown, duration, false);
+		left = new Animation(movementLeft, duration, false);
+		right = new Animation(movementRight, duration, false);
+
+		sprite = right;
+
 		gameBoard = GameBoard.getInstance();
 		playerImage = new Image("Images/PlayerIcon.png");
 		bombImage = new Image("Images/Bomb.jpg");
@@ -60,7 +78,7 @@ public class GamePlayState extends BasicGameState {
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			playerImage.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard
+			sprite.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard
 					.getPlayer(i).getY() * 60, 60, 60);
 		}
 	}
@@ -71,15 +89,20 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
+			sprite = up;
+			sprite.update(i);
 			gameBoard.setPlayerPosition(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
+			sprite = left;
 			gameBoard.setPlayerPosition(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
+			sprite = down;
 			gameBoard.setPlayerPosition(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
+			sprite = right;
 			gameBoard.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -89,15 +112,19 @@ public class GamePlayState extends BasicGameState {
 		// System.out.println(gameBoard.getPlayerX() + " " +
 		// gameBoard.getPlayerY());
 		if (input.isKeyPressed(Input.KEY_W)) {
+			sprite = up;
 			gameBoard.setPlayerPosition(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
+			sprite = left;
 			gameBoard.setPlayerPosition(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
+			sprite = down;
 			gameBoard.setPlayerPosition(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
+			sprite = right;
 			gameBoard.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_Q)) {
