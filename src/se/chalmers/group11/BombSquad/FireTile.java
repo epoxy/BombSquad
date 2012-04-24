@@ -1,8 +1,12 @@
 package se.chalmers.group11.BombSquad;
 
+import org.newdawn.slick.state.StateBasedGame;
+
+import com.sun.org.apache.xml.internal.security.Init;
+
+
 public class FireTile implements GameTile {
-	private int x;
-	private int y;
+	
 
 	@Override
 	public boolean canReceivePlayer() {
@@ -18,6 +22,7 @@ public class FireTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(int playerIndex) {
+		game.enterState(2);
 		System.out.println("Player" + (playerIndex+1) + " sucks");
 	}
 

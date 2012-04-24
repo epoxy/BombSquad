@@ -12,7 +12,7 @@ public class GamePlayState extends BasicGameState {
 
 	Image bomb = null;
 	Image player = null;
-	int stateID = -1;
+	int stateID = 1;
 
 	// private Player playerOne = new Player();
 	// we don«t use this for now!
