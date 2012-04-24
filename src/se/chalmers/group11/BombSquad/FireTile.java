@@ -1,7 +1,7 @@
 package se.chalmers.group11.BombSquad;
 
 public class FireTile implements GameTile {
-
+	MainMenuState main = new MainMenuState(0);
 	@Override
 	public boolean canReceivePlayer() {
 		return true;
@@ -17,6 +17,7 @@ public class FireTile implements GameTile {
 	@Override
 	public void performOnPlayer(int playerIndex) {
 		System.out.println("you suck");
+		
 		// System.exit(0);
 
 	}
