@@ -7,11 +7,13 @@ import javax.swing.Timer;
 
 public class Player {
 
+	private final int BOMB_COUNTDOWN = 3000;
 	private int x;
 	private int y;
 	private int amountOfBombs;
 	private int firePower;
 	private int firePower2;
+
 
 	public Player(int x, int y) {
 		this.x = x;
@@ -21,9 +23,9 @@ public class Player {
 		firePower = 1;
 	}
 
-	public void countDownToExplosion(final int bombX, final int bombY,
-			final int playerIndex) {
 
+	public void placeBomb(final int bombX, final int bombY,
+			final int playerIndex) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -33,7 +35,9 @@ public class Player {
 				// fire
 			}
 		};
-		Timer t = new Timer(3000, taskPerformer);
+
+		Timer t = new Timer(BOMB_COUNTDOWN, taskPerformer);
+
 		t.setRepeats(false);
 		t.start();
 	}
@@ -61,6 +65,7 @@ public class Player {
 		} else {
 			return firePower2;
 		}
+
 	}
 
 	public void setFirePower(int playerIndex) {
@@ -69,5 +74,6 @@ public class Player {
 		} else {
 			firePower2++;
 		}
+
 	}
 }
