@@ -187,6 +187,7 @@ public class GameBoard {
 						&& Math.random() > 0.5) {
 
 					gameTiles[bombX][bombY] = TileFactory.getPowerItemTile();
+					gameTilestmp[bombX][bombY] = TileFactory.getEmptyTile();
 					System.out.println("powerItemTile");
 				} else {
 					gameTiles[bombX][bombY] = TileFactory.getEmptyTile();
