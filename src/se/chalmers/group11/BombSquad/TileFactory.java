@@ -16,4 +16,7 @@ public class TileFactory {
 	public static GameTile getEmptyTile(){
 		return new EmptyTile();
 	}
+	public static GameTile getPowerItemTile(){
+		return new PowerItemTile();
+	}
 }

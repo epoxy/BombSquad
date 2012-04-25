@@ -27,10 +27,10 @@ public class GameBoard {
 
 				if (Math.random() > 0.8) {
 
-					gameTiles[i][j] = new BoxTile();
-					gameTilestmp[i][j] = new BoxTile();
+					gameTiles[i][j] = TileFactory.getBlockTile();
+					gameTilestmp[i][j] = TileFactory.getBoxTile();
 				} else {
-					gameTiles[i][j] = new EmptyTile();
+					gameTiles[i][j] = TileFactory.getEmptyTile();
 					System.out.println(gameTiles[i][j]);// skriver ut vilken
 														// tile
 					// det
@@ -41,7 +41,7 @@ public class GameBoard {
 
 		for (int i = 1; i < gameTiles.length - 1; i += 2) {
 			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
-				gameTiles[i][j] = new BlockTile();
+				gameTiles[i][j] = TileFactory.getBlockTile();
 			}
 
 		}
@@ -70,7 +70,7 @@ public class GameBoard {
 
 				.getY()].performOnPlayer(playerIndex);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()] = new EmptyTile();
+						.getY()] = TileFactory.getEmptyTile();
 
 			}
 		}
@@ -186,10 +186,10 @@ public class GameBoard {
 				if (gameTilestmp[bombX][bombY] instanceof BoxTile
 						&& Math.random() > 0.5) {
 
-					gameTiles[bombX][bombY] = new PowerItemTile();
+					gameTiles[bombX][bombY] = TileFactory.getPowerItemTile();
 					System.out.println("powerItemTile");
 				} else {
-					gameTiles[bombX][bombY] = new EmptyTile();
+					gameTiles[bombX][bombY] = TileFactory.getEmptyTile();
 					System.out.println("emptyTile?");
 				}
 
