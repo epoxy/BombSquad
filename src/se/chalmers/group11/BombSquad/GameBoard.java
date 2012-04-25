@@ -27,7 +27,7 @@ public class GameBoard {
 
 				if (Math.random() > 0.8) {
 
-					gameTiles[i][j] = TileFactory.getBlockTile();
+					gameTiles[i][j] = TileFactory.getBoxTile();
 					gameTilestmp[i][j] = TileFactory.getBoxTile();
 				} else {
 					gameTiles[i][j] = TileFactory.getEmptyTile();
