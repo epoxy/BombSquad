@@ -14,25 +14,30 @@ public class Player {
 	private int firePower;
 	private int firePower2;
 
-	public Player() {
-		x = 0;
-		y = 0;
+
+	public Player(int x, int y) {
+		this.x = x;
+		this.y = y;
 		firePower2 = 1;
 		amountOfBombs = 1;
-		firePower = 5;
+		firePower = 1;
 	}
+
 
 	public void placeBomb(final int bombX, final int bombY,
 			final int playerIndex) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
 				GameBoard.getInstance().explodeBomb(bombX, bombY, playerIndex);
 				System.out.println("Eld ritas ut");
 				// fire
 			}
 		};
+
 		Timer t = new Timer(BOMB_COUNTDOWN, taskPerformer);
+
 		t.setRepeats(false);
 		t.start();
 	}
@@ -59,6 +64,15 @@ public class Player {
 			return firePower;
 		} else {
 			return firePower2;
+		}
+
+	}
+
+	public void setFirePower(int playerIndex) {
+		if (playerIndex == 0) {
+			firePower++;
+		} else {
+			firePower2++;
 		}
 
 	}

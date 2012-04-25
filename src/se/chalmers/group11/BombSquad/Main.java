@@ -15,7 +15,11 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new MainMenuState(MAINMENUSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
+<<<<<<< HEAD
 		this.addState(new GameOverState(GAMEOVERSTATE));
+=======
+
+>>>>>>> origin/master
 		this.enterState(MAINMENUSTATE);
 		//this.enterState(GAMEOVERSTATE);
 	}
@@ -31,7 +35,7 @@ public class Main extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new Main());
 		app.setTitle("BombSquad");
-		app.setDisplayMode(720, 720, false);
+		app.setDisplayMode(660, 660, false);
 		app.start();
 	}
 

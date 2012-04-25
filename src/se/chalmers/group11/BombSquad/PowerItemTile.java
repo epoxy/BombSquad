@@ -1,23 +1,21 @@
 package se.chalmers.group11.BombSquad;
 
-public class BoxTile implements GameTile {
+public class PowerItemTile implements GameTile {
 
 	@Override
 	public boolean canReceivePlayer() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean canReceiveFire() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public void performOnPlayer(int playerIndex) {
-		// TODO Auto-generated method stub
-
+		Player p = GameBoard.getInstance().getPlayer(playerIndex);
+		p.setFirePower(playerIndex);
 	}
 
 }

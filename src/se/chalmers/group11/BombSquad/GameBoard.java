@@ -7,26 +7,43 @@ import javax.swing.Timer;
 
 public class GameBoard {
 
-	private Player[] player;
+	private Player player[];
 	private static GameBoard gameBoard = null;
-	private int sideLength = 12;
+	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
+	private GameTile gameTilestmp[][];
 	private final int FIRE_COUNTDOWN = 1000;
+	private int bombX;
+	private int bombY;
 
 	private GameBoard() {
 		player = new Player[2];
-		player[0] = new Player();
-		player[1] = new Player();
+		player[0] = new Player(0, 0);
+		player[1] = new Player(10, 10);
+		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
-				gameTiles[i][j] = TileFactory.getEmptyTile();
-				System.out.println(gameTiles[i][j]);// skriver ut vilken tile
-													// det
-													// är
+
+				if (Math.random() > 0.8) {
+
+					gameTiles[i][j] = new BoxTile();
+					gameTilestmp[i][j] = new BoxTile();
+				} else {
+					gameTiles[i][j] = new EmptyTile();
+					System.out.println(gameTiles[i][j]);// skriver ut vilken
+														// tile
+					// det
+					// är
+				}
 			}
-			gameTiles[1][1] = TileFactory.getBlockTile();
-			gameTiles[2][2] = TileFactory.getFireTile();
+		}
+
+		for (int i = 1; i < gameTiles.length - 1; i += 2) {
+			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
+				gameTiles[i][j] = new BlockTile();
+			}
+
 		}
 	}
 
@@ -42,6 +59,7 @@ public class GameBoard {
 	}
 
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
+
 		if (isInbounds(player[playerIndex].getX() + deltaX,
 				player[playerIndex].getY() + deltaY)) {
 
@@ -49,22 +67,29 @@ public class GameBoard {
 					.getY() + deltaY].canReceivePlayer()) {
 				player[playerIndex].move(deltaX, deltaY);
 				gameTiles[player[playerIndex].getX()][player[playerIndex]
-						.getY()].performOnPlayer(playerIndex);// unrelevant
-																// method,
-																// already done
-																// in update()
+
+				.getY()].performOnPlayer(playerIndex);
+				gameTiles[player[playerIndex].getX()][player[playerIndex]
+						.getY()] = new EmptyTile();
 
 			}
-
 		}
-
 	}
 
 	public void setBomb(final int playerIndex) {
+
 		final int bombX = player[playerIndex].getX();
 		final int bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = TileFactory.getBombTile();
 		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
+	}
+
+	public int getBombX() {
+		return bombX;
+	}
+
+	public int getBombY() {
+		return bombY;
 
 	}
 
@@ -78,43 +103,68 @@ public class GameBoard {
 
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower(playerIndex);
+
 		gameTiles[bombX][bombY] = TileFactory.getFireTile();
+
 		setFireTileToEmptyTile(bombX, bombY);
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameTiles[bombX + i][bombY] instanceof BoxTile) {
-					gameTiles[bombX + i][bombY] = TileFactory.getFireTile();
+
+					tryToPutOutFire(bombX + i, bombY);
+					break;
+				} else if (gameTiles[bombX + i][bombY] instanceof BlockTile) {
 					break;
 				}
-				tryToPutOutFire(bombX + i, bombY);
+				// TODO still doesn«t work good, if you hit the fire with a
+				// stone the next tile in the same direction should not be fired
+				// up! but it does now a bad solution is to do the instanceof
+				// check, we have to find a better solution though
+
 			}
+
+			tryToPutOutFire(bombX + i, bombY);
 		}
+
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX - i, bombY)) {
 				if (gameTiles[bombX - i][bombY] instanceof BoxTile) {
-					gameTiles[bombX - i][bombY] = TileFactory.getFireTile();
+
+					tryToPutOutFire(bombX - i, bombY);
+					break;
+				} else if (gameTiles[bombX - i][bombY] instanceof BlockTile) {
 					break;
 				}
+
 				tryToPutOutFire(bombX - i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY + i)) {
 				if (gameTiles[bombX][bombY + i] instanceof BoxTile) {
-					gameTiles[bombX][bombY + i] = TileFactory.getFireTile();
+
+					tryToPutOutFire(bombX, bombY + i);
+					break;
+				} else if (gameTiles[bombX][bombY + i] instanceof BlockTile) {
 					break;
 				}
+
 				tryToPutOutFire(bombX, bombY + i);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameTiles[bombX][bombY - i] instanceof BoxTile) {
-					gameTiles[bombX][bombY - i] = TileFactory.getFireTile();
+
+					tryToPutOutFire(bombX, bombY - i);
+					break;
+				} else if (gameTiles[bombX][bombY - i] instanceof BlockTile) {
+
 					break;
 				}
 				tryToPutOutFire(bombX, bombY - i);
 			}
+
 		}
 	}
 
@@ -132,8 +182,20 @@ public class GameBoard {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
+				if (gameTilestmp[bombX][bombY] instanceof BoxTile
+						&& Math.random() > 0.5) {
+
+					gameTiles[bombX][bombY] = new PowerItemTile();
+					System.out.println("powerItemTile");
+				} else {
+					gameTiles[bombX][bombY] = new EmptyTile();
+					System.out.println("emptyTile?");
+				}
+
 				gameTiles[bombX][bombY] = TileFactory.getEmptyTile();
 				System.out.println("emptyTile?");
+
 				// fire
 			}
 		};
