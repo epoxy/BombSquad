@@ -101,6 +101,11 @@ public class GamePlayState extends BasicGameState {
 
 				gameBoard.setPlayerPosition(0, -1, 0);
 			}
+			if (input.isKeyDown(Input.KEY_UP)) {
+				sprite = up;
+
+				gameBoard.setPlayerPosition(0, -1, 0);
+			}
 			if (input.isKeyDown(Input.KEY_LEFT)) {
 				sprite = left;
 				gameBoard.setPlayerPosition(-1, 0, 0);
@@ -143,11 +148,11 @@ public class GamePlayState extends BasicGameState {
 		}
 
 
-		// for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
-		// // ser om han ska dö på rutan han är
-		// gameBoard.getTile(gameBoard.getPlayer(j).getX(),
-		// gameBoard.getPlayer(j).getY()).performOnPlayer(j);
-		// }
+		 for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
+		 // ser om han ska dö på rutan han är
+		 gameBoard.getTile(gameBoard.getPlayer(j).getX(),
+		 gameBoard.getPlayer(j).getY()).performOnPlayer(j);
+		 }
 
 
 //		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
