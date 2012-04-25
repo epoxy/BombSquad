@@ -194,7 +194,7 @@ public class GameBoard {
 					System.out.println("emptyTile?");
 				}
 
-				gameTiles[bombX][bombY] = TileFactory.getEmptyTile();
+				gameTilestmp[bombX][bombY] = TileFactory.getEmptyTile();
 				System.out.println("emptyTile?");
 
 				// fire
