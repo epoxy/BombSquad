@@ -78,8 +78,8 @@ public class GameBoard {
 
 	public void setBomb(final int playerIndex) {
 
-		final int bombX = player[playerIndex].getX();
-		final int bombY = player[playerIndex].getY();
+		bombX = player[playerIndex].getX();
+		bombY = player[playerIndex].getY();
 		gameTiles[bombX][bombY] = TileFactory.getBombTile();
 		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
 	}
