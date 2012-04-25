@@ -11,17 +11,16 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GamePlayState extends BasicGameState {
 
-<<<<<<< HEAD
+
 	Image bomb = null;
 	Image player = null;
 	int stateID = 1;
-=======
+
 	Image bombImage = null;
 	Image grassImage = null;
 	Image treeImage = null;
 	Image extraFirePower = null;
-	int stateID = 0;
->>>>>>> origin/master
+
 
 	private int counter = 50;
 
