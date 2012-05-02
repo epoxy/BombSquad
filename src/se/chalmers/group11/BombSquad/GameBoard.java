@@ -7,14 +7,7 @@ import javax.swing.Timer;
 
 public class GameBoard {
 
-	private Player player[];
-	private static GameBoard gameBoard = null;
-	private int sideLength = 11;
-	private GameTile gameTiles[][];// ändra till private!
-	private GameTile gameTilestmp[][];
-	private final int FIRE_COUNTDOWN = 1000;
-	private int bombX;
-	private int bombY;
+
 
 	private GameBoard() {
 		player = new Player[2];
