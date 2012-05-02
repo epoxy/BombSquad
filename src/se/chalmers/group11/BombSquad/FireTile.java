@@ -6,6 +6,9 @@ import com.sun.org.apache.xml.internal.security.Init;
 
 
 public class FireTile implements GameTile {
+	
+	private int x;
+	private int y;
 
 	@Override
 	public boolean canReceivePlayer() {
@@ -23,6 +26,18 @@ public class FireTile implements GameTile {
 	public void performOnPlayer(int playerIndex) {
 		System.out.println("Player" + (playerIndex+1) + " sucks");
 
+	}
+
+	@Override
+	public int getX() {
+
+		return x;
+	}
+
+	@Override
+	public int getY() {
+
+		return y;
 	}
 
 }
