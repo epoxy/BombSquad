@@ -6,12 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class GameBoard {
+
+	private Player player[];
+	private static GameBoard gameBoard = null;
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
 	private GameTile gameTilestmp[][];
-
+	private final int FIRE_COUNTDOWN = 1000;
+	private int bombX;
+	private int bombY;
 
 	private GameBoard() {
+		player = new Player[2];
+		player[0] = new Player(0, 0);
+		player[1] = new Player(10, 10);
 		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
