@@ -1,6 +1,9 @@
 package se.chalmers.group11.BombSquad;
 
 public class BlockTile implements GameTile {
+	
+	private int x;
+	private int y;
 
 	public BlockTile() {
 		;
@@ -19,6 +22,18 @@ public class BlockTile implements GameTile {
 	@Override
 	public void performOnPlayer(int playerIndex) {
 
+	}
+
+	@Override
+	public int getX() {
+
+		return x;
+	}
+
+	@Override
+	public int getY() {
+		
+		return y;
 	}
 
 }
