@@ -64,26 +64,26 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-		for (int i = 0; i < game.getInstance().getSideLength(); i++) {
-			for (int j = 0; j < gameBoard.getSideLength(); j++) {
-				if (gameBoard.getTile(i, j) instanceof BombTile) {
-					bombImage.draw(gameBoard.getBombX() * 60,
-							gameBoard.getBombY() * 60, 60, 60);
+		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
+			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
+				if (game.getBoard().getTile(i, j) instanceof BombTile) {
+					bombImage.draw(game.getBombX() * 60,
+							game.getBombY() * 60, 60, 60);
 				}
-				if (gameBoard.getTile(i, j) instanceof EmptyTile) {
+				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
 							.draw(i * 60, j * 60, 60, 60);
 				}
-				if (gameBoard.getTile(i, j) instanceof BoxTile) {
+				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
-				if (gameBoard.getTile(i, j) instanceof PowerItemTile) {
+				if (game.getBoard().getTile(i, j) instanceof PowerItemTile) {
 					extraFirePower.draw(i * 60, j * 60, 60, 60);
 				}
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			sprite.draw(gameBoard.getPlayer(i).getX() * 60, gameBoard
+			sprite.draw(game.getPlayer(i).getX() * 60, game
 					.getPlayer(i).getY() * 60, 60, 60);
 		}
 	}
@@ -98,49 +98,49 @@ public class GamePlayState extends BasicGameState {
 			if (input.isKeyDown(Input.KEY_UP)) {
 				sprite = up;
 
-				gameBoard.setPlayerPosition(0, -1, 0);
+				game.setPlayerPosition(0, -1, 0);
 			}
 			if (input.isKeyDown(Input.KEY_UP)) {
 				sprite = up;
 
-				gameBoard.setPlayerPosition(0, -1, 0);
+				game.setPlayerPosition(0, -1, 0);
 			}
 			if (input.isKeyDown(Input.KEY_LEFT)) {
 				sprite = left;
-				gameBoard.setPlayerPosition(-1, 0, 0);
+				game.setPlayerPosition(-1, 0, 0);
 			}
 			if (input.isKeyDown(Input.KEY_DOWN)) {
 				sprite = down;
-				gameBoard.setPlayerPosition(0, 1, 0);
+				game.setPlayerPosition(0, 1, 0);
 			}
 			if (input.isKeyDown(Input.KEY_RIGHT)) {
 				sprite = right;
-				gameBoard.setPlayerPosition(1, 0, 0);
+				game.setPlayerPosition(1, 0, 0);
 			}
 			if (input.isKeyDown(Input.KEY_SPACE)) {
-				gameBoard.setBomb(0);
+				game.setBomb(0);
 				// playerOne.releaseBomb();
 			}
 			// System.out.println(gameBoard.getPlayerX() + " " +
 			// gameBoard.getPlayerY());
 			if (input.isKeyDown(Input.KEY_W)) {
 				sprite = up;
-				gameBoard.setPlayerPosition(0, -1, 1);
+				game.setPlayerPosition(0, -1, 1);
 			}
 			if (input.isKeyDown(Input.KEY_A)) {
 				sprite = left;
-				gameBoard.setPlayerPosition(-1, 0, 1);
+				game.setPlayerPosition(-1, 0, 1);
 			}
 			if (input.isKeyDown(Input.KEY_S)) {
 				sprite = down;
-				gameBoard.setPlayerPosition(0, 1, 1);
+				game.setPlayerPosition(0, 1, 1);
 			}
 			if (input.isKeyDown(Input.KEY_D)) {
 				sprite = right;
-				gameBoard.setPlayerPosition(1, 0, 1);
+				game.setPlayerPosition(1, 0, 1);
 			}
 			if (input.isKeyDown(Input.KEY_Q)) {
-				gameBoard.setBomb(1);
+				game.setBomb(1);
 				// playerOne.releaseBomb();
 			}
 			counter = 45;
@@ -149,8 +149,8 @@ public class GamePlayState extends BasicGameState {
 
 		 for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
 		 // ser om han ska dö på rutan han är
-		 gameBoard.getTile(gameBoard.getPlayer(j).getX(),
-		 gameBoard.getPlayer(j).getY()).performOnPlayer(j);
+		 game.getBoard().getTile(game.getPlayer(j).getX(),
+		 game.getPlayer(j).getY()).performOnPlayer(j);
 		 }
 
 
