@@ -27,7 +27,7 @@ public class GamePlayState extends BasicGameState {
 	private Animation sprite, up, down, left, right;
 	// private Player playerOne = new Player();
 	// we don«t use this for now!
-	private GameBoard gameBoard;
+	private Game game;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -54,7 +54,6 @@ public class GamePlayState extends BasicGameState {
 
 		sprite = right;
 
-		gameBoard = GameBoard.getInstance();
 		bombImage = new Image("Images/Bomb.jpg");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
@@ -65,7 +64,7 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-		for (int i = 0; i < gameBoard.getSideLength(); i++) {
+		for (int i = 0; i < game.getInstance().getSideLength(); i++) {
 			for (int j = 0; j < gameBoard.getSideLength(); j++) {
 				if (gameBoard.getTile(i, j) instanceof BombTile) {
 					bombImage.draw(gameBoard.getBombX() * 60,
