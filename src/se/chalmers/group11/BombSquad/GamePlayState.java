@@ -64,8 +64,8 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
-			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
+		for (int i = 0; i < /*game.getBoard().getSideLength()*/5; i++) {
+			for (int j = 0; j < /*game.getBoard().getSideLength()*/5; j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
 					bombImage.draw(game.getBombX() * 60,
 							game.getBombY() * 60, 60, 60);
@@ -149,8 +149,9 @@ public class GamePlayState extends BasicGameState {
 
 		 for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
 		 // ser om han ska dö på rutan han är
-		 game.getBoard().getTile(game.getPlayer(j).getX(),
-		 game.getPlayer(j).getY()).performOnPlayer(j);
+//		 game.getBoard().getTile(game.getPlayer(j).getX(),
+//		 game.getPlayer(j).getY()).performOnPlayer(j);
+//		 GameTile t = game.getPlayer(j).getX();
 		 }
 
 
