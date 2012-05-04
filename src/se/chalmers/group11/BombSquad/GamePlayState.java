@@ -31,9 +31,9 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		//((MainMenuState)sbg.getState(1)).getNameFieldText();
 		game = Game.getInstance(new BoardEmpty());
-
+		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
+		game.getPlayer(1).put(10, 10);
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
 				new Image("Images/bombManUP2.gif") };
 		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
@@ -86,7 +86,6 @@ public class GamePlayState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int i)
 			throws SlickException {
 		Input input = gc.getInput();
-
 		
 			if (input.isKeyPressed(Input.KEY_UP)) {
 				sprite = up;

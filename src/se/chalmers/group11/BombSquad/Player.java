@@ -18,6 +18,10 @@ public class Player {
 		x = x + deltaX;
 		y = y + deltaY;
 	}
+	public void put(int x, int y){
+		this.x=x;
+		this.y=y;
+	}
 
 	public int getX() {
 		return x;
