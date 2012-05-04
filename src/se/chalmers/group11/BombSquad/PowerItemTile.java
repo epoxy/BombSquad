@@ -18,7 +18,7 @@ public class PowerItemTile implements GameTile {
 	@Override
 	public void performOnPlayer(Player p) {
 		
-		p.setFirePower();
+		p.addFirePower();
 	}
 
 	@Override
