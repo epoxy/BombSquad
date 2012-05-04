@@ -1,6 +1,5 @@
 package se.chalmers.group11.BombSquad;
 
-
 public class Player {
 
 	private int x;
@@ -8,17 +7,12 @@ public class Player {
 	private int amountOfBombs;
 	private int firePower;
 
-
-
 	public Player(int x, int y) {
 		this.x = x;
 		this.y = y;
 		amountOfBombs = 1;
 		firePower = 1;
 	}
-
-
-	
 
 	public void move(int deltaX, int deltaY) {
 		x = x + deltaX;
@@ -38,15 +32,23 @@ public class Player {
 	}
 
 	public int getFirePower() {
-	
-			return firePower;
-		
+
+		return firePower;
+
 	}
 
 	public void addFirePower() {
-	firePower ++;
-	System.out.println("FirePower: " + firePower);
+		firePower++;
+		System.out.println("FirePower: " + firePower);
 	}
 
+	public void incrementBombs() {
+		amountOfBombs++;
+		System.out.println("AmountOfBombs " + amountOfBombs);
 	}
 
+	public void decrementBombs() {
+		amountOfBombs--;
+		System.out.println("AmountOfBombs " + amountOfBombs);
+	}
+}

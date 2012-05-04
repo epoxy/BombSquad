@@ -11,33 +11,30 @@ public class Game {
 	private Board gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int sideLength = 11;
+	private int amountOfBombs;
 
-	private Game(){
+	private Game() {
 		player = new Player[2];
 		player[0] = new Player(0, 0);
 		player[1] = new Player(10, 10);
 		gameBoard = new Board();
+
 	}
+
 	public static synchronized Game getInstance() {
 		if (game == null) {
-			game= new Game();
+			game = new Game();
 		}
 		return game;
 	}
 
 	/*
-	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
-
-		Player p = player[playerIndex];
-		if( moveIsPossible(p, deltaX, deltaY)){
-			p.move(deltaX, deltaY);
-			if( this.checkSomething( getTile ){
-				p.kill
-			}
-		}
-
-	}
-
+	 * public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
+	 * 
+	 * Player p = player[playerIndex]; if( moveIsPossible(p, deltaX, deltaY)){
+	 * p.move(deltaX, deltaY); if( this.checkSomething( getTile ){ p.kill } }
+	 * 
+	 * }
 	 */
 
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
@@ -45,27 +42,33 @@ public class Game {
 		int nextPosX = p.getX() + deltaX;
 		int nextPosY = p.getY() + deltaY;
 
-		if (isInbounds(nextPosX,
-				nextPosY)) {
+		if (isInbounds(nextPosX, nextPosY)) {
 
-			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()){
+			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()) {
 
 				p.move(deltaX, deltaY);
 
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
-				//Ny metod
-				gameBoard.setToTile(p.getX(), p
-						.getY(), TileFactory.getEmptyTile());		
+				// Ny metod
+				gameBoard.setToTile(p.getX(), p.getY(),
+						TileFactory.getEmptyTile());
 			}
 		}
 	}
-	public void setBomb(final int playerIndex) {
 
-		int bombX = player[playerIndex].getX();
-		int bombY = player[playerIndex].getY();
-		gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());	
-		bombCountdown(bombX, bombY, playerIndex);
+	public void setBomb(final int playerIndex) {
+		amountOfBombs = player[playerIndex].getAmountOfBombs();
+		if (amountOfBombs > 0) {
+			int bombX = player[playerIndex].getX();
+			int bombY = player[playerIndex].getY();
+			gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
+			player[playerIndex].decrementBombs();
+			bombCountdown(bombX, bombY, playerIndex);
+			// doNothing
+		} else if (amountOfBombs < 1) {
+			;
+		}
 	}
 
 	public Player getPlayer(int playerIndex) {
@@ -89,6 +92,7 @@ public class Game {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 
@@ -107,8 +111,6 @@ public class Game {
 				// stone the next tile in the same direction should not be fired
 				// up! but it does now a bad solution is to do the instanceof
 				// check, we have to find a better solution though
-
-
 
 				tryToPlaceFire(bombX + i, bombY);
 			}
@@ -153,7 +155,9 @@ public class Game {
 			}
 
 		}
+		player[playerIndex].incrementBombs();
 	}
+
 	private void tryToPlaceFire(int bombX, int bombY) {
 
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
@@ -169,15 +173,22 @@ public class Game {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if (gameBoard.getTileTmp(bombX, bombY) instanceof BoxTile
-						&& Math.random() > 0.5) {
-					gameBoard.setToTile(bombX, bombY, TileFactory.getPowerItemTile());
-					gameBoard.setTmpToTile(bombX, bombY, TileFactory.getEmptyTile());
+						&& Math.random() > 0.3) {
+					gameBoard.setToTile(bombX, bombY,
+							TileFactory.getPowerItemTile());
+
 					System.out.println("powerItemTile");
+				} else if (gameBoard.getTileTmp(bombX, bombY) instanceof BoxTile
+						&& Math.random() > 0.5) {
+					gameBoard.setToTile(bombX, bombY,
+							TileFactory.getExtraBombs());
 				} else {
-					gameBoard.setToTile(bombX, bombY, TileFactory.getEmptyTile());
+					gameBoard.setToTile(bombX, bombY,
+							TileFactory.getEmptyTile());
 					System.out.println("emptyTile?");
 				}
-				gameBoard.setTmpToTile(bombX, bombY, TileFactory.getEmptyTile());
+				gameBoard
+						.setTmpToTile(bombX, bombY, TileFactory.getEmptyTile());
 				System.out.println("emptyTile?");
 
 				// fire
@@ -187,10 +198,12 @@ public class Game {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	private boolean isInbounds(int x, int y) {
 		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
-	public Board getBoard(){
+
+	public Board getBoard() {
 		return gameBoard;
 	}
 }
