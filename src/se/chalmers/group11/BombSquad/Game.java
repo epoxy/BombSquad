@@ -10,10 +10,8 @@ public class Game {
 	private static Game game = null;
 	private Board gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
-	private int bombX;
-	private int bombY;
 	private int sideLength = 11;
-	
+
 	private Game(){
 		player = new Player[2];
 		player[0] = new Player(0, 0);
@@ -26,10 +24,10 @@ public class Game {
 		}
 		return game;
 	}
-	
+
 	/*
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
-		
+
 		Player p = player[playerIndex];
 		if( moveIsPossible(p, deltaX, deltaY)){
 			p.move(deltaX, deltaY);
@@ -37,11 +35,11 @@ public class Game {
 				p.kill
 			}
 		}
-		
+
 	}
-	
-	*/
-	
+
+	 */
+
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
 		Player p = player[playerIndex];
 		int nextPosX = p.getX() + deltaX;
@@ -51,10 +49,9 @@ public class Game {
 				nextPosY)) {
 
 			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()){
-				
+
 				p.move(deltaX, deltaY);
-				
-				
+
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				//Ny metod
@@ -65,23 +62,16 @@ public class Game {
 	}
 	public void setBomb(final int playerIndex) {
 
-		bombX = player[playerIndex].getX();
-		bombY = player[playerIndex].getY();
+		int bombX = player[playerIndex].getX();
+		int bombY = player[playerIndex].getY();
 		gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());	
 		placeBomb(bombX, bombY, playerIndex);
 	}
-	public int getBombX() {
-		return bombX;
-	}
 
-	public int getBombY() {
-		return bombY;
-
-	}
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
-	
+
 	public void placeBomb(final int bombX, final int bombY,
 			final int playerIndex) {
 		ActionListener taskPerformer = new ActionListener() {

@@ -68,8 +68,8 @@ public class GamePlayState extends BasicGameState {
 		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
 			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
-					bombImage.draw(game.getBombX() * 60,
-							game.getBombY() * 60, 60, 60);
+					bombImage.draw(i * 60,
+							j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
