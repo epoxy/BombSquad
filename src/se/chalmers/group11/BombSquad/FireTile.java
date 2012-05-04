@@ -1,6 +1,7 @@
 package se.chalmers.group11.BombSquad;
 
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.GameContainer;
 
 import com.sun.org.apache.xml.internal.security.Init;
 
@@ -23,9 +24,9 @@ public class FireTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p) {
+	public void performOnPlayer(Player p, StateBasedGame sbg) {
 		System.out.println("Player" + (p) + " sucks");
-
+		sbg.enterState(Main.GAMEOVERSTATE);
 	}
 
 	@Override

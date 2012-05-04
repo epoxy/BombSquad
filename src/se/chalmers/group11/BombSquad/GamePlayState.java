@@ -31,6 +31,7 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		//((MainMenuState)sbg.getState(1)).getNameFieldText();
 		game = Game.getInstance(new BoardEmpty());
 
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
@@ -129,7 +130,7 @@ public class GamePlayState extends BasicGameState {
 
 		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
 			game.getBoard().getTile(game.getPlayer(j).getX(), game.getPlayer(j).
-					getY()).performOnPlayer(game.getPlayer(j));
+					getY()).performOnPlayer(game.getPlayer(j), sbg);
 		}
 	}
 

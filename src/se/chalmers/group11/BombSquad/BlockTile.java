@@ -1,5 +1,7 @@
 package se.chalmers.group11.BombSquad;
 
+import org.newdawn.slick.state.StateBasedGame;
+
 public class BlockTile implements GameTile {
 	
 	private int x;
@@ -20,7 +22,7 @@ public class BlockTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p) {
+	public void performOnPlayer(Player p, StateBasedGame sbg) {
 
 	}
 

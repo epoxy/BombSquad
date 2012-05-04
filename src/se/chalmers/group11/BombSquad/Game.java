@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import org.newdawn.slick.state.StateBasedGame;
+
 public class Game {
 	private Player player[];
 	private static Game game = null;
@@ -12,12 +14,13 @@ public class Game {
 	private final int FIRE_COUNTDOWN = 1000;
 	private int sideLength = 11;
 	private int amountOfBombs;
+	private StateBasedGame sbg;
 
 	private Game(IBoard iB) {
+		gameBoard = iB;
 		player = new Player[2];
 		player[0] = new Player(0, 0);
 		player[1] = new Player(10, 10);
-		gameBoard = iB;
 	}
 
 	public static synchronized Game getInstance(IBoard iB) {
@@ -47,7 +50,7 @@ public class Game {
 
 				p.move(deltaX, deltaY);
 
-				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
+				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p, sbg);
 
 				// Ny metod
 				gameBoard.setToTile(p.getX(), p.getY(),
@@ -203,5 +206,8 @@ public class Game {
 
 	public IBoard getBoard() {
 		return gameBoard;
+	}
+	public void gameOver(){
+		sbg.enterState(2);
 	}
 }

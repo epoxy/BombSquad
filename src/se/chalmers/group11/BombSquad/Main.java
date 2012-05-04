@@ -17,7 +17,7 @@ public class Main extends StateBasedGame {
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new GameOverState(GAMEOVERSTATE));
 		this.enterState(MAINMENUSTATE);
-		//this.enterState(GAMEOVERSTATE);
+//		this.enterState(GAMEOVERSTATE);
 	}
 
 	@Override

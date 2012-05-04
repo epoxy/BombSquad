@@ -1,5 +1,7 @@
 package se.chalmers.group11.BombSquad;
 
+import org.newdawn.slick.state.StateBasedGame;
+
 public class BoxTile implements GameTile {
 
 	private int x;
@@ -18,7 +20,7 @@ public class BoxTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p) {
+	public void performOnPlayer(Player p, StateBasedGame sbg) {
 		// TODO Auto-generated method stub
 
 	}
