@@ -92,11 +92,6 @@ public class GamePlayState extends BasicGameState {
 
 				game.setPlayerPosition(0, -1, 0);
 			}
-			if (input.isKeyPressed(Input.KEY_UP)) {
-				sprite = up;
-
-				game.setPlayerPosition(0, -1, 0);
-			}
 			if (input.isKeyPressed(Input.KEY_LEFT)) {
 				sprite = left;
 				game.setPlayerPosition(-1, 0, 0);
