@@ -154,10 +154,10 @@ public class GamePlayState extends BasicGameState {
 		 }
 
 
-//		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
-//			gameBoard.getTile(gameBoard.getPlayer(j).getX(), gameBoard.getPlayer(j).
-//					getY()).performOnPlayer(j);
-//		}
+		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
+			game.getBoard().getTile(game.getPlayer(j).getX(), game.getPlayer(j).
+					getY()).performOnPlayer(game.getPlayer(j));
+		}
 
 	}
 
