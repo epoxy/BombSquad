@@ -9,8 +9,7 @@ public class Board {
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
 	private GameTile gameTilestmp[][];
-	private static Board gameBoard = null;
-	private Board() {
+	public Board() {
 		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
@@ -38,12 +37,7 @@ public class Board {
 		}
 	}
 
-	public static synchronized Board getInstance() {
-		if (gameBoard == null) {
-			gameBoard = new Board();
-		}
-		return gameBoard;
-	}
+
 
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];

@@ -18,7 +18,7 @@ public class Game {
 		player = new Player[2];
 		player[0] = new Player(0, 0);
 		player[1] = new Player(10, 10);
-		gameBoard = Board.getInstance();
+		gameBoard = new Board();
 	}
 	public static synchronized Game getInstance() {
 		if (game == null) {

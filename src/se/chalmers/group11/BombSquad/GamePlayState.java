@@ -37,6 +37,7 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		game = Game.getInstance();
 
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
 				new Image("Images/bombManUP2.gif") };
@@ -64,8 +65,8 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-		for (int i = 0; i < /*game.getBoard().getSideLength()*/5; i++) {
-			for (int j = 0; j < /*game.getBoard().getSideLength()*/5; j++) {
+		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
+			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
 					bombImage.draw(game.getBombX() * 60,
 							game.getBombY() * 60, 60, 60);
@@ -93,58 +94,56 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 
-		counter -= 1;
-		if (counter < 0) {
-			if (input.isKeyDown(Input.KEY_UP)) {
+		
+			if (input.isKeyPressed(Input.KEY_UP)) {
 				sprite = up;
 
 				game.setPlayerPosition(0, -1, 0);
 			}
-			if (input.isKeyDown(Input.KEY_UP)) {
+			if (input.isKeyPressed(Input.KEY_UP)) {
 				sprite = up;
 
 				game.setPlayerPosition(0, -1, 0);
 			}
-			if (input.isKeyDown(Input.KEY_LEFT)) {
+			if (input.isKeyPressed(Input.KEY_LEFT)) {
 				sprite = left;
 				game.setPlayerPosition(-1, 0, 0);
 			}
-			if (input.isKeyDown(Input.KEY_DOWN)) {
+			if (input.isKeyPressed(Input.KEY_DOWN)) {
 				sprite = down;
 				game.setPlayerPosition(0, 1, 0);
 			}
-			if (input.isKeyDown(Input.KEY_RIGHT)) {
+			if (input.isKeyPressed(Input.KEY_RIGHT)) {
 				sprite = right;
 				game.setPlayerPosition(1, 0, 0);
 			}
-			if (input.isKeyDown(Input.KEY_SPACE)) {
+			if (input.isKeyPressed(Input.KEY_SPACE)) {
 				game.setBomb(0);
 				// playerOne.releaseBomb();
 			}
 			// System.out.println(gameBoard.getPlayerX() + " " +
 			// gameBoard.getPlayerY());
-			if (input.isKeyDown(Input.KEY_W)) {
+			if (input.isKeyPressed(Input.KEY_W)) {
 				sprite = up;
 				game.setPlayerPosition(0, -1, 1);
 			}
-			if (input.isKeyDown(Input.KEY_A)) {
+			if (input.isKeyPressed(Input.KEY_A)) {
 				sprite = left;
 				game.setPlayerPosition(-1, 0, 1);
 			}
-			if (input.isKeyDown(Input.KEY_S)) {
+			if (input.isKeyPressed(Input.KEY_S)) {
 				sprite = down;
 				game.setPlayerPosition(0, 1, 1);
 			}
-			if (input.isKeyDown(Input.KEY_D)) {
+			if (input.isKeyPressed(Input.KEY_D)) {
 				sprite = right;
 				game.setPlayerPosition(1, 0, 1);
 			}
-			if (input.isKeyDown(Input.KEY_Q)) {
+			if (input.isKeyPressed(Input.KEY_Q)) {
 				game.setBomb(1);
 				// playerOne.releaseBomb();
 			}
-			counter = 45;
-		}
+		
 
 
 		 for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
