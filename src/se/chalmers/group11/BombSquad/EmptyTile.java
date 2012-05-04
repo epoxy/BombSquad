@@ -17,7 +17,7 @@ public class EmptyTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(int playerIndex) {
+	public void performOnPlayer(Player p) {
 
 	}
 

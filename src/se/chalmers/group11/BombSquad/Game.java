@@ -43,21 +43,22 @@ public class Game {
 	*/
 	
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
+		Player p = player[playerIndex];
+		int nextPosX = p.getX() + deltaX;
+		int nextPosY = p.getY() + deltaY;
 
-		if (isInbounds(player[playerIndex].getX() + deltaX,
-				player[playerIndex].getY() + deltaY)) {
+		if (isInbounds(nextPosX,
+				nextPosY)) {
 
-			if (gameBoard.getTile(player[playerIndex].getX() + deltaX, player[playerIndex]
-					.getY() + deltaY).canReceivePlayer()){
+			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()){
 				
-				player[playerIndex].move(deltaX, deltaY);
+				p.move(deltaX, deltaY);
 				
 				
-				gameBoard.getTile(player[playerIndex].getX() + deltaX, player[playerIndex]
-						.getY() + deltaY).performOnPlayer(playerIndex);
+				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				//Ny metod
-				gameBoard.setToTile(player[playerIndex].getX(), player[playerIndex]
+				gameBoard.setToTile(p.getX(), p
 						.getY(), TileFactory.getEmptyTile());		
 			}
 		}
@@ -67,7 +68,7 @@ public class Game {
 		bombX = player[playerIndex].getX();
 		bombY = player[playerIndex].getY();
 		gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());	
-		player[playerIndex].placeBomb(bombX, bombY, playerIndex);
+		placeBomb(bombX, bombY, playerIndex);
 	}
 	public int getBombX() {
 		return bombX;
@@ -80,8 +81,26 @@ public class Game {
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
+	
+	public void placeBomb(final int bombX, final int bombY,
+			final int playerIndex) {
+		ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				explodeBomb(bombX, bombY, playerIndex);
+				System.out.println("Eld ritas ut");
+				// fire
+			}
+		};
+
+		Timer t = new Timer(3000, taskPerformer);
+
+		t.setRepeats(false);
+		t.start();
+	}
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
-		int firePower = player[playerIndex].getFirePower(playerIndex);
+		int firePower = player[playerIndex].getFirePower();
 
 		gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());	
 

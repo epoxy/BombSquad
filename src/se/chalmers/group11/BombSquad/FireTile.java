@@ -23,8 +23,8 @@ public class FireTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(int playerIndex) {
-		System.out.println("Player" + (playerIndex+1) + " sucks");
+	public void performOnPlayer(Player p) {
+		System.out.println("Player" + (p) + " sucks");
 
 	}
 

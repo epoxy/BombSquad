@@ -16,9 +16,9 @@ public class PowerItemTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(int playerIndex) {
-		Player p = GameBoard.getInstance().getPlayer(playerIndex);
-		p.setFirePower(playerIndex);
+	public void performOnPlayer(Player p) {
+		
+		p.setFirePower();
 	}
 
 	@Override
