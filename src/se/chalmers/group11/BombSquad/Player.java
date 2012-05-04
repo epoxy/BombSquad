@@ -45,6 +45,7 @@ public class Player {
 
 	public void setFirePower() {
 	firePower ++;
+	System.out.println("FirePower: " + firePower);
 	}
 
 	}
