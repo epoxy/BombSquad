@@ -29,5 +29,10 @@ public class TestGame {
 		int r = game.getPlayer(0).getX();
 		assertTrue(r-s == 1); // Difference between destination and source should be 1
 	}
-
+	@Test
+	public void testExtraFire(){
+		Game game = Game.getInstance();
+		game.explodeBomb(4, 4, 0);
+		
+	}
 }
