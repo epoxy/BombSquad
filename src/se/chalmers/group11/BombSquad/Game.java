@@ -8,22 +8,21 @@ import javax.swing.Timer;
 public class Game {
 	private Player player[];
 	private static Game game = null;
-	private Board gameBoard;
+	private IBoard gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int sideLength = 11;
 	private int amountOfBombs;
 
-	private Game() {
+	private Game(IBoard iB) {
 		player = new Player[2];
 		player[0] = new Player(0, 0);
 		player[1] = new Player(10, 10);
-		gameBoard = new Board();
-
+		gameBoard = iB;
 	}
 
-	public static synchronized Game getInstance() {
+	public static synchronized Game getInstance(IBoard iB) {
 		if (game == null) {
-			game = new Game();
+			game = new Game(iB);
 		}
 		return game;
 	}
@@ -96,13 +95,13 @@ public class Game {
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 
-		tryToPlaceFire(bombX, bombY);
+		placeFire(bombX, bombY);
 
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
 
-					tryToPlaceFire(bombX + i, bombY);
+					placeFire(bombX + i, bombY);
 					break;
 				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
 					break;
@@ -112,54 +111,53 @@ public class Game {
 				// up! but it does now a bad solution is to do the instanceof
 				// check, we have to find a better solution though
 
-				tryToPlaceFire(bombX + i, bombY);
+				placeFire(bombX + i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX - i, bombY)) {
 				if (gameBoard.getTile(bombX - i, bombY) instanceof BoxTile) {
 
-					tryToPlaceFire(bombX - i, bombY);
+					placeFire(bombX - i, bombY);
 					break;
 				} else if (gameBoard.getTile(bombX - i, bombY) instanceof BlockTile) {
 					break;
 				}
 
-				tryToPlaceFire(bombX - i, bombY);
+				placeFire(bombX - i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY + i)) {
 				if (gameBoard.getTile(bombX, bombY + i) instanceof BoxTile) {
 
-					tryToPlaceFire(bombX, bombY + i);
+					placeFire(bombX, bombY + i);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY + i) instanceof BlockTile) {
 					break;
 				}
 
-				tryToPlaceFire(bombX, bombY + i);
+				placeFire(bombX, bombY + i);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameBoard.getTile(bombX, bombY - i) instanceof BoxTile) {
 
-					tryToPlaceFire(bombX, bombY - i);
+					placeFire(bombX, bombY - i);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY - i) instanceof BlockTile) {
 
 					break;
 				}
-				tryToPlaceFire(bombX, bombY - i);
+				placeFire(bombX, bombY - i);
 			}
 
 		}
 		player[playerIndex].incrementBombs();
 	}
 
-	private void tryToPlaceFire(int bombX, int bombY) {
-
+	private void placeFire(int bombX, int bombY) {
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
 			setFireTileToEmptyTile(bombX, bombY);
@@ -203,7 +201,7 @@ public class Game {
 		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
 
-	public Board getBoard() {
+	public IBoard getBoard() {
 		return gameBoard;
 	}
 }

@@ -33,12 +33,8 @@ public class Board implements IBoard{
 			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
 				gameTiles[i][j] = TileFactory.getBlockTile();
 			}
-
 		}
 	}
-
-
-
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
