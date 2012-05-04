@@ -65,14 +65,14 @@ public class Game {
 		int bombX = player[playerIndex].getX();
 		int bombY = player[playerIndex].getY();
 		gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());	
-		placeBomb(bombX, bombY, playerIndex);
+		bombCountdown(bombX, bombY, playerIndex);
 	}
 
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
 
-	public void placeBomb(final int bombX, final int bombY,
+	public void bombCountdown(final int bombX, final int bombY,
 			final int playerIndex) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
@@ -92,14 +92,13 @@ public class Game {
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 
-		gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());	
+		tryToPlaceFire(bombX, bombY);
 
-		setFireTileToEmptyTile(bombX, bombY);
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
 
-					tryToPutOutFire(bombX + i, bombY);
+					tryToPlaceFire(bombX + i, bombY);
 					break;
 				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
 					break;
@@ -109,53 +108,53 @@ public class Game {
 				// up! but it does now a bad solution is to do the instanceof
 				// check, we have to find a better solution though
 
+
+
+				tryToPlaceFire(bombX + i, bombY);
 			}
-
-			tryToPutOutFire(bombX + i, bombY);
 		}
-
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX - i, bombY)) {
 				if (gameBoard.getTile(bombX - i, bombY) instanceof BoxTile) {
 
-					tryToPutOutFire(bombX - i, bombY);
+					tryToPlaceFire(bombX - i, bombY);
 					break;
 				} else if (gameBoard.getTile(bombX - i, bombY) instanceof BlockTile) {
 					break;
 				}
 
-				tryToPutOutFire(bombX - i, bombY);
+				tryToPlaceFire(bombX - i, bombY);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY + i)) {
 				if (gameBoard.getTile(bombX, bombY + i) instanceof BoxTile) {
 
-					tryToPutOutFire(bombX, bombY + i);
+					tryToPlaceFire(bombX, bombY + i);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY + i) instanceof BlockTile) {
 					break;
 				}
 
-				tryToPutOutFire(bombX, bombY + i);
+				tryToPlaceFire(bombX, bombY + i);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameBoard.getTile(bombX, bombY - i) instanceof BoxTile) {
 
-					tryToPutOutFire(bombX, bombY - i);
+					tryToPlaceFire(bombX, bombY - i);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY - i) instanceof BlockTile) {
 
 					break;
 				}
-				tryToPutOutFire(bombX, bombY - i);
+				tryToPlaceFire(bombX, bombY - i);
 			}
 
 		}
 	}
-	private void tryToPutOutFire(int bombX, int bombY) {
+	private void tryToPlaceFire(int bombX, int bombY) {
 
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());

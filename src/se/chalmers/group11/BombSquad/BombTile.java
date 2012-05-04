@@ -14,7 +14,7 @@ public class BombTile implements GameTile {
 
 	@Override
 	public boolean canReceiveFire() {
-		return false;
+		return true;
 		// TODO lägg till receivesFire()==true så att eld på bomb leder till
 		// sprängningskedjereaktion
 		// TODO Auto-generated method stub
