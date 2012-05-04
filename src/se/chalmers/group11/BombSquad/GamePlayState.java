@@ -11,7 +11,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GamePlayState extends BasicGameState {
 
-
 	Image bomb = null;
 	Image player = null;
 	int stateID = 1;
@@ -21,17 +20,12 @@ public class GamePlayState extends BasicGameState {
 	Image treeImage = null;
 	Image extraFirePower = null;
 
-
 	private int counter = 50;
-
 	private Animation sprite, up, down, left, right;
-	// private Player playerOne = new Player();
-	// we don«t use this for now!
 	private Game game;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
-
 	}
 
 	@Override
@@ -52,9 +46,7 @@ public class GamePlayState extends BasicGameState {
 		down = new Animation(movementDown, duration, false);
 		left = new Animation(movementLeft, duration, false);
 		right = new Animation(movementRight, duration, false);
-
 		sprite = right;
-
 		bombImage = new Image("Images/Bomb.jpg");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
@@ -119,10 +111,7 @@ public class GamePlayState extends BasicGameState {
 			}
 			if (input.isKeyPressed(Input.KEY_SPACE)) {
 				game.setBomb(0);
-				// playerOne.releaseBomb();
 			}
-			// System.out.println(gameBoard.getPlayerX() + " " +
-			// gameBoard.getPlayerY());
 			if (input.isKeyPressed(Input.KEY_W)) {
 				sprite = up;
 				game.setPlayerPosition(0, -1, 1);
@@ -141,29 +130,16 @@ public class GamePlayState extends BasicGameState {
 			}
 			if (input.isKeyPressed(Input.KEY_Q)) {
 				game.setBomb(1);
-				// playerOne.releaseBomb();
 			}
-		
-
-
-		 for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
-		 // ser om han ska dö på rutan han är
-//		 game.getBoard().getTile(game.getPlayer(j).getX(),
-//		 game.getPlayer(j).getY()).performOnPlayer(j);
-//		 GameTile t = game.getPlayer(j).getX();
-		 }
-
 
 		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
 			game.getBoard().getTile(game.getPlayer(j).getX(), game.getPlayer(j).
 					getY()).performOnPlayer(game.getPlayer(j));
 		}
-
 	}
 
 	@Override
 	public int getID() {
 		return stateID;
 	}
-
 }
