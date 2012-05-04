@@ -45,7 +45,7 @@ public class Player {
 
 	public void setFirePower() {
 	firePower ++;
-		}
+	}
 
 	}
 
