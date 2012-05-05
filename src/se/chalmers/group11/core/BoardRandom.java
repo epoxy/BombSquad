@@ -10,10 +10,10 @@ public class BoardRandom implements IBoard{
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				double rand = Math.random();
-				if (rand > 0.6) {
+				if (rand > 0.5) {
 					gameTiles[i][j] = TileFactory.getBoxTile();
 					gameTilestmp[i][j] = TileFactory.getBoxTile();
-				} else if(0.3 <= rand && rand <= 0.6){
+				} else if(0.2 <= rand && rand <= 0.5){
 					gameTiles[i][j] = TileFactory.getEmptyTile();
 				}
 				else{
@@ -21,6 +21,7 @@ public class BoardRandom implements IBoard{
 				}
 			}
 		}
+		Functions.makeRoomForPlayers(this);
 	}
 	@Override
 	public GameTile getTile(int x, int y) {
