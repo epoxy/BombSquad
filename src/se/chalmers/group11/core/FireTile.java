@@ -22,12 +22,12 @@ public class FireTile implements GameTile {
 	public boolean canReceiveFire() {
 		return true;
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		System.out.println("Player" + (p) + " sucks");
+		System.out.println("Player: " + (p.getPlayerNumber()) + " sucks");
+		
 		sbg.enterState(Main.GAMEOVERSTATE);
 	}
 

@@ -19,8 +19,8 @@ public class Game {
 	public Game(IBoard iB) {
 		gameBoard = iB;
 		player = new Player[2];
-		player[0] = new Player(0, 0);
-		player[1] = new Player(10, 10);
+		player[0] = new Player(0, 0, 1);
+		player[1] = new Player(10, 10, 2);
 	}
 
 //	public static synchronized Game getInstance(IBoard iB) {

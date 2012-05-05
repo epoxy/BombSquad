@@ -14,19 +14,7 @@ public class BoardWithoutBlocks implements IBoard {
 				gameTilestmp[i][j] = TileFactory.getBoxTile();
 			}
 		}
-		for (int j = 0; j < 2; j++) {
-			for (int k = 0; k < 2; k++) {
-				gameTiles[j][k] = TileFactory.getEmptyTile();
-				gameTilestmp[j][k] = TileFactory.getEmptyTile();
-			}
-		}
-		for (int i = 9; i < gameTiles.length; i++) {
-			for (int j = 9; j < gameTiles.length; j++) {
-				gameTiles[i][j] = TileFactory.getEmptyTile();
-				gameTilestmp[i][j] = TileFactory.getEmptyTile();
-			}
-		}
-
+		Functions.makeRoomForPlayers(this);
 	}
 
 	@Override
