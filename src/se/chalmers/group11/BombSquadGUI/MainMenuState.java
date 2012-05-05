@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.BombSquadGUI;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -7,6 +7,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import se.chalmers.group11.core.Board;
+import se.chalmers.group11.core.IBoard;
+import se.chalmers.group11.main.Main;
 
 public class MainMenuState extends BasicGameState {
 

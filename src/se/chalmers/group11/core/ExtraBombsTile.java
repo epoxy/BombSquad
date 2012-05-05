@@ -1,12 +1,9 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
-public class PowerItemTile implements GameTile {
+public class ExtraBombsTile implements GameTile {
 
-	private int x;
-	private int y;
-	
 	@Override
 	public boolean canReceivePlayer() {
 		return true;
@@ -19,20 +16,17 @@ public class PowerItemTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		
-		p.addFirePower();
+		p.incrementBombs();
 	}
 
 	@Override
 	public int getX() {
-
-		return x;
+		return 0;
 	}
 
 	@Override
 	public int getY() {
-
-		return y;
+		return 0;
 	}
 
 }

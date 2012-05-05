@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.core;
 
 public interface IBoard {
 	//private int sideLength;

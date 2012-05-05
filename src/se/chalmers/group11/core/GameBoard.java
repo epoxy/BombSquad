@@ -1,3 +1,4 @@
+package se.chalmers.group11.core;
 /*package se.chalmers.group11.BombSquad;
 
 import java.awt.event.ActionEvent;

@@ -1,32 +1,29 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.GameContainer;
 
-import com.sun.org.apache.xml.internal.security.Init;
-
-
-public class FireTile implements GameTile {
+public class BlockTile implements GameTile {
 	
 	private int x;
 	private int y;
 
+	public BlockTile() {
+		;
+	}
+
 	@Override
 	public boolean canReceivePlayer() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean canReceiveFire() {
-		return true;
-		// TODO Auto-generated method stub
-
+		return false;
 	}
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		System.out.println("Player" + (p) + " sucks");
-		sbg.enterState(Main.GAMEOVERSTATE);
+
 	}
 
 	@Override
@@ -37,7 +34,7 @@ public class FireTile implements GameTile {
 
 	@Override
 	public int getY() {
-
+		
 		return y;
 	}
 

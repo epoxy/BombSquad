@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.BombSquadGUI;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -8,6 +8,12 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import se.chalmers.group11.core.BombTile;
+import se.chalmers.group11.core.BoxTile;
+import se.chalmers.group11.core.EmptyTile;
+import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.PowerItemTile;
 
 public class GamePlayState extends BasicGameState {
 

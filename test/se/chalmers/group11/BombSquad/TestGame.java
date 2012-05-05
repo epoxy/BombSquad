@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import se.chalmers.group11.core.BoardEmpty;
+import se.chalmers.group11.core.FireTile;
+import se.chalmers.group11.core.Game;
+
 public class TestGame {
 
 	@Test

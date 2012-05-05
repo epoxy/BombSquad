@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.core;
 
 public class BoardEmpty implements IBoard{
 	private int sideLength = 11;

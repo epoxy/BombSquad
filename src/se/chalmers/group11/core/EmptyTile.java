@@ -1,9 +1,12 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
-public class ExtraBombsTile implements GameTile {
-
+public class EmptyTile implements GameTile {
+	
+	private int x;
+	private int y;
+	
 	@Override
 	public boolean canReceivePlayer() {
 		return true;
@@ -12,21 +15,28 @@ public class ExtraBombsTile implements GameTile {
 	@Override
 	public boolean canReceiveFire() {
 		return true;
+
 	}
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		p.incrementBombs();
+
+	}
+
+	public String toString() {
+		return "EmptyTile";
 	}
 
 	@Override
 	public int getX() {
-		return 0;
+	
+		return x;
 	}
 
 	@Override
 	public int getY() {
-		return 0;
+		
+		return y;
 	}
 
 }
