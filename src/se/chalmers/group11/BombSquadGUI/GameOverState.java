@@ -124,6 +124,4 @@ public class GameOverState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
-	
 }
-

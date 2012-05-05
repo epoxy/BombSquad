@@ -7,7 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.group11.BombSquadGUI.GameOverState;
 import se.chalmers.group11.BombSquadGUI.GamePlayState;
-import se.chalmers.group11.BombSquadGUI.MainMenuState;
+import se.chalmers.group11.BombSquadGUI.ChooseBoarderState;
 
 public class Main extends StateBasedGame {
 
@@ -17,7 +17,7 @@ public class Main extends StateBasedGame {
 
 	public Main() {
 		super("BombSquad");
-		this.addState(new MainMenuState(MAINMENUSTATE));
+		this.addState(new ChooseBoarderState(MAINMENUSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new GameOverState(GAMEOVERSTATE));
 		this.enterState(MAINMENUSTATE);
