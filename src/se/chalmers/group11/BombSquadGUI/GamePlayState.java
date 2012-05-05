@@ -15,6 +15,7 @@ import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
+import se.chalmers.group11.utils.InitSound;
 
 public class GamePlayState extends BasicGameState {
 
@@ -27,7 +28,8 @@ public class GamePlayState extends BasicGameState {
 	Image treeImage = null;
 	Image extraFirePower = null;
 
-	private int counter = 50;
+	InitSound sound = null;
+
 	private Animation sprite, up, down, left, right;
 	private Game game;
 
@@ -38,9 +40,9 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-//		game = Game.getInstance(MainMenuState.getBoard());
-//		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
-//		game.getPlayer(1).put(10, 10);
+		// game = Game.getInstance(MainMenuState.getBoard());
+		// game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
+		// game.getPlayer(1).put(10, 10);
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
 				new Image("Images/bombManUP2.gif") };
 		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
@@ -59,6 +61,7 @@ public class GamePlayState extends BasicGameState {
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
 		extraFirePower = new Image("Images/extraFire.jpg");
+		sound = new InitSound();
 	}
 
 	@Override
@@ -68,8 +71,7 @@ public class GamePlayState extends BasicGameState {
 		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
 			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
-					bombImage.draw(i * 60,
-							j * 60, 60, 60);
+					bombImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
@@ -84,8 +86,8 @@ public class GamePlayState extends BasicGameState {
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			sprite.draw(game.getPlayer(i).getX() * 60, game
-					.getPlayer(i).getY() * 60, 60, 60);
+			sprite.draw(game.getPlayer(i).getX() * 60,
+					game.getPlayer(i).getY() * 60, 60, 60);
 		}
 	}
 
@@ -93,50 +95,55 @@ public class GamePlayState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int i)
 			throws SlickException {
 		Input input = gc.getInput();
-		
-			if (input.isKeyPressed(Input.KEY_UP)) {
-				sprite = up;
 
-				game.setPlayerPosition(0, -1, 0);
-			}
-			if (input.isKeyPressed(Input.KEY_LEFT)) {
-				sprite = left;
-				game.setPlayerPosition(-1, 0, 0);
-			}
-			if (input.isKeyPressed(Input.KEY_DOWN)) {
-				sprite = down;
-				game.setPlayerPosition(0, 1, 0);
-			}
-			if (input.isKeyPressed(Input.KEY_RIGHT)) {
-				sprite = right;
-				game.setPlayerPosition(1, 0, 0);
-			}
-			if (input.isKeyPressed(Input.KEY_SPACE)) {
-				game.setBomb(0);
-			}
-			if (input.isKeyPressed(Input.KEY_W)) {
-				sprite = up;
-				game.setPlayerPosition(0, -1, 1);
-			}
-			if (input.isKeyPressed(Input.KEY_A)) {
-				sprite = left;
-				game.setPlayerPosition(-1, 0, 1);
-			}
-			if (input.isKeyPressed(Input.KEY_S)) {
-				sprite = down;
-				game.setPlayerPosition(0, 1, 1);
-			}
-			if (input.isKeyPressed(Input.KEY_D)) {
-				sprite = right;
-				game.setPlayerPosition(1, 0, 1);
-			}
-			if (input.isKeyPressed(Input.KEY_Q)) {
-				game.setBomb(1);
-			}
+		if (input.isKeyPressed(Input.KEY_UP)) {
+			sprite = up;
 
-		for(int j=0; j<2; j++){//Loopar igenom spelarens placering och ser om han ska dö på rutan han är
-			game.getBoard().getTile(game.getPlayer(j).getX(), game.getPlayer(j).
-					getY()).performOnPlayer(game.getPlayer(j), sbg);
+			game.setPlayerPosition(0, -1, 0);
+		}
+		if (input.isKeyPressed(Input.KEY_LEFT)) {
+			sprite = left;
+			game.setPlayerPosition(-1, 0, 0);
+		}
+		if (input.isKeyPressed(Input.KEY_DOWN)) {
+			sprite = down;
+			game.setPlayerPosition(0, 1, 0);
+		}
+		if (input.isKeyPressed(Input.KEY_RIGHT)) {
+			sprite = right;
+			game.setPlayerPosition(1, 0, 0);
+		}
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+			sound.startPlayBombSound();
+			game.setBomb(0);
+
+		}
+		if (input.isKeyPressed(Input.KEY_W)) {
+			sprite = up;
+			game.setPlayerPosition(0, -1, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_A)) {
+			sprite = left;
+			game.setPlayerPosition(-1, 0, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_S)) {
+			sprite = down;
+			game.setPlayerPosition(0, 1, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_D)) {
+			sprite = right;
+			game.setPlayerPosition(1, 0, 1);
+		}
+		if (input.isKeyPressed(Input.KEY_Q)) {
+			sound.startPlayBombSound();
+			game.setBomb(1);
+		}
+
+		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
+										// ser om han ska dö på rutan han är
+			game.getBoard()
+					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
+					.performOnPlayer(game.getPlayer(j), sbg);
 		}
 	}
 
@@ -144,13 +151,14 @@ public class GamePlayState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
+
 	@Override
-    public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
-    {
-        super.enter(gc, sb);
-        game = Game.getInstance(MainMenuState.getBoard());
-		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar nu! TODO
+	public void enter(GameContainer gc, StateBasedGame sb)
+			throws SlickException {
+		super.enter(gc, sb);
+		game = Game.getInstance(MainMenuState.getBoard());
+		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
-		
-    }
+
+	}
 }
