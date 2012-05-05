@@ -97,7 +97,7 @@ public class GameOverState extends BasicGameState {
 					menuImageScale += scaleStep * delta;
 
 				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-					game.enterState(Main.CHOOSEBOARDERSTATE);
+					game.enterState(Main.SPLASHSCREENSTATE);
 				}
 			} else {
 

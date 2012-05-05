@@ -16,6 +16,7 @@ import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
+import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
 
 public class GamePlayState extends BasicGameState {
@@ -138,6 +139,9 @@ public class GamePlayState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_Q)) {
 			sound.startPlayBombSound();
 			game.setBomb(1);
+		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)){
+			sbg.enterState(Main.GAMEOVERSTATE);
 		}
 
 		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
