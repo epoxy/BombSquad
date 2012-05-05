@@ -151,5 +151,6 @@ public class GamePlayState extends BasicGameState {
         game = Game.getInstance(MainMenuState.getBoard());
 		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
+		
     }
 }
