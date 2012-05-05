@@ -24,9 +24,12 @@ public class MainMenuState extends BasicGameState {
 	int stateID = 0;
 	private Image startImage = null;
 	private Image exitImage = null;
+	
+	private static IBoard iB;
 
 	public MainMenuState(int stateID) {
 		this.stateID = stateID;
+		iB = new Board();
 
 	}
 
@@ -35,7 +38,6 @@ public class MainMenuState extends BasicGameState {
 			throws SlickException {
 		startImage = new Image("Images/start.png");
 		exitImage = new Image("Images/exit.jpg");
-
 	}
 
 	@Override
@@ -89,17 +91,14 @@ public class MainMenuState extends BasicGameState {
 				if (exitImageScale > 1.0f)
 					exitImageScale -= scaleStep * delta;
 			}
-
 		}
-
 	}
-
 	@Override
 	public int getID() {
-
 		return stateID;
 	}
-
+	public static IBoard getBoard(){
+		return iB;
+	}
 
 }
-
