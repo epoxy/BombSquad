@@ -18,11 +18,11 @@ import se.chalmers.group11.main.Main;
 public class ChooseBoarderState extends BasicGameState {
 
 	private int startX = 50;
-	private int startY = 50;
+	private int startY = 100;
 	private int exitX = 50;
 	private int exitY = 400;
 	private int boxBoardStartX = 250;
-	private int boxBoardStartY = 50;
+	private int boxBoardStartY = 100;
 	private static int boardChooser = 1;
 
 	private float boardWithoutBlocksImageScale = 0.2f;
@@ -80,7 +80,8 @@ public class ChooseBoarderState extends BasicGameState {
 				&& mouseY <= exitY + 150) {
 			insideExitGame = true;
 
-		} else if (mouseX >= boxBoardStartX && boxBoardStartX <= boxBoardStartX + 150
+		} else if (mouseX >= boxBoardStartX
+				&& mouseX <= boxBoardStartX + 150
 				&& mouseY >= boxBoardStartY && mouseY <= boxBoardStartY + 150) {
 			insideBoxBoard = true;
 		}
@@ -88,7 +89,7 @@ public class ChooseBoarderState extends BasicGameState {
 			if (randomBoardImageScale < 0.25f)
 				randomBoardImageScale += scaleStep * delta;
 
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
@@ -98,7 +99,7 @@ public class ChooseBoarderState extends BasicGameState {
 
 			}
 			if (insideExitGame) {
-				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 					boardChooser = 0;
 					sb.enterState(Main.GAMEPLAYSTATE);
 				}
@@ -111,10 +112,15 @@ public class ChooseBoarderState extends BasicGameState {
 			}
 		}
 		if (insideBoxBoard) {
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				boardChooser = 3;
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
+			if (boardWithBoxes < 0.25f)
+				boardWithBoxes += scaleStep * delta;
+		} else {
+			if (boardWithBoxes > 0.2f)
+				boardWithBoxes -= scaleStep * delta;
 		}
 	}
 	@Override
