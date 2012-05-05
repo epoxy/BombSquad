@@ -21,6 +21,7 @@ public class BoardRandom implements IBoard{
 				}
 			}
 		}
+		Functions.makeRoomForPlayers(this);
 	}
 	@Override
 	public GameTile getTile(int x, int y) {
