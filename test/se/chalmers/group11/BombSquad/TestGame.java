@@ -13,7 +13,7 @@ public class TestGame {
 
 	@Test
 	public void testExplodeBomb() {
-		Game game = Game.getInstance(new BoardEmpty());
+		Game game = new Game(new BoardEmpty());
 		game.explodeBomb(2, 2, 0);//Explodes a bomb at coordinates 2,2
 		//Checks that the fire from the bomb is spreading to the five tiles nearby but not further
 		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile); // The logical check
@@ -28,7 +28,7 @@ public class TestGame {
 	}
 	@Test
 	public void testSetPlayerPosition() { //Use case: move
-		Game game = Game.getInstance(new BoardEmpty());
+		Game game = new Game(new BoardEmpty());
 		int s = game.getPlayer(0).getX();
 		game.setPlayerPosition(1, 0, 0);//Moves player one step to the right
 		int r = game.getPlayer(0).getX();
@@ -36,7 +36,7 @@ public class TestGame {
 	}
 	@Test
 	public void pickUpExtraFire(){
-		Game game = Game.getInstance(new BoardEmpty());
+		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
 		int fP = game.getPlayer(0).getFirePower();
 		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
@@ -45,7 +45,7 @@ public class TestGame {
 	}
 	@Test
 	public void explodeBombExtraFire(){
-		Game game = Game.getInstance(new BoardEmpty());
+		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
 		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
 		game.setPlayerPosition(1, 0, 0);//Moves player one step to the right

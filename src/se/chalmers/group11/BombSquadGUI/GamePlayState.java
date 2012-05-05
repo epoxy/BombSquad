@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.group11.core.Board;
 import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.BoxTile;
 import se.chalmers.group11.core.EmptyTile;
@@ -148,7 +149,7 @@ public class GamePlayState extends BasicGameState {
     public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
     {
         super.enter(gc, sb);
-        game = Game.getInstance(MainMenuState.getBoard());
+        game = new Game(MainMenuState.getBoard());
 		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
     }

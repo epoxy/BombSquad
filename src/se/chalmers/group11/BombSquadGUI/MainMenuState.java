@@ -9,6 +9,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.group11.core.Board;
+import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.main.Main;
 
@@ -33,8 +34,6 @@ public class MainMenuState extends BasicGameState {
 
 	public MainMenuState(int stateID) {
 		this.stateID = stateID;
-		iB = new Board();
-
 	}
 
 	@Override
@@ -100,6 +99,12 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public int getID() {
 		return stateID;
+	}
+	public void setBoard(){
+		iB = new Board();
+	}
+	public void setBoardEmpty(){
+		iB = new BoardEmpty();
 	}
 	public static IBoard getBoard(){
 		return iB;

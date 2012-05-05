@@ -9,26 +9,26 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game {
 	private Player player[];
-	private static Game game = null;
+	//private static Game game = null;
 	private IBoard gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int sideLength = 11;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
 
-	private Game(IBoard iB) {
+	public Game(IBoard iB) {
 		gameBoard = iB;
 		player = new Player[2];
 		player[0] = new Player(0, 0);
 		player[1] = new Player(10, 10);
 	}
 
-	public static synchronized Game getInstance(IBoard iB) {
-		if (game == null) {
-			game = new Game(iB);
-		}
-		return game;
-	}
+//	public static synchronized Game getInstance(IBoard iB) {
+//		if (game == null) {
+//			game = new Game(iB);
+//		}
+//		return game;
+//	}
 
 	/*
 	 * public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
