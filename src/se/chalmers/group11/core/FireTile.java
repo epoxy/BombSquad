@@ -27,7 +27,8 @@ public class FireTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		System.out.println("Player" + (p) + " sucks");
+		System.out.println("Player" + (p.getPlayerNumber()) + " sucks");
+		
 		sbg.enterState(Main.GAMEOVERSTATE);
 	}
 

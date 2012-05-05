@@ -4,12 +4,14 @@ public class Player {
 
 	private int x;
 	private int y;
+	private int playerNumber;
 	private int amountOfBombs;
 	private int firePower;
 
-	public Player(int x, int y) {
+	public Player(int x, int y, int playerNumber) {
 		this.x = x;
 		this.y = y;
+		this.playerNumber=playerNumber;
 		amountOfBombs = 1;
 		firePower = 1;
 	}
@@ -36,9 +38,10 @@ public class Player {
 	}
 
 	public int getFirePower() {
-
 		return firePower;
-
+	}
+	public int getPlayerNumber(){
+		return playerNumber;
 	}
 
 	public void addFirePower() {
