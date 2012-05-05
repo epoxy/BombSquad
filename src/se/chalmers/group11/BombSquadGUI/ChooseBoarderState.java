@@ -49,7 +49,7 @@ public class ChooseBoarderState extends BasicGameState {
 			throws SlickException {
 		randomBoard = new Image("Images/randomBoard.png");
 		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
-		boxBoard = new Image("Images/start.png");
+		boxBoard = new Image("Images/boxBoard.png");
 	}
 
 	@Override
