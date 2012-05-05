@@ -31,7 +31,7 @@ public class ChooseBoarderState extends BasicGameState {
 	private float boardWithoutBlocksImageScale = 0.2f;
 	private float randomBoardImageScale = 0.2f;
 	private float boardWithBoxes = 0.2f;
-	private float randomboard2ImageScale = 1f;
+	private float randomboard2ImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
 	int stateID = 0;
@@ -55,7 +55,7 @@ public class ChooseBoarderState extends BasicGameState {
 		randomBoard = new Image("Images/randomBoard.png");
 		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
 		boxBoard = new Image("Images/boxBoard.png");
-		randomboard2 = new Image("Images/rocks.png");
+		randomboard2 = new Image("Images/randomBoard2.png");
 	}
 
 	@Override
@@ -88,15 +88,12 @@ public class ChooseBoarderState extends BasicGameState {
 				&& mouseY <= exitY + 150) {
 			insideExitGame = true;
 
-		} else if (mouseX >= boxBoardStartX
-				&& mouseX <= boxBoardStartX + 150
+		} else if (mouseX >= boxBoardStartX && mouseX <= boxBoardStartX + 150
 				&& mouseY >= boxBoardStartY && mouseY <= boxBoardStartY + 150) {
 			insideBoxBoard = true;
-		}
-		 else if (mouseX >= board2X
-					&& mouseX <= board2X + 150
-					&& mouseY >= board2Y && mouseY <= board2Y + 150) {
-				insideRandomBoard = true;
+		} else if (mouseX >= board2X && mouseX <= board2X + 150
+				&& mouseY >= board2Y && mouseY <= board2Y + 150) {
+			insideRandomBoard = true;
 		}
 		if (insideStartGame) {
 			if (randomBoardImageScale < 0.25f)
@@ -147,20 +144,20 @@ public class ChooseBoarderState extends BasicGameState {
 				boardWithBoxes -= scaleStep * delta;
 		}
 	}
+
 	@Override
 	public int getID() {
 		return stateID;
 	}
+
 	public static IBoard getBoard() {
 		if (boardChooser == 1) {
 			return new Board();
 		} else if (boardChooser == 0) {
 			return new BoardEmpty();
-		}
-		  else if (boardChooser == 4) {
+		} else if (boardChooser == 4) {
 			return new BoardRandom();
-		}
-		else {
+		} else {
 			return new BoardWithoutBlocks();
 		}
 	}
