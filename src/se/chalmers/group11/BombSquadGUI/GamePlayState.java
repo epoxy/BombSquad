@@ -15,6 +15,7 @@ import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.BoxTile;
 import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.ExtraBombsTile;
+import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
@@ -33,6 +34,7 @@ public class GamePlayState extends BasicGameState {
 	Image extraFirePower = null;
 	Image blockImage = null;
 	Image extrabomb = null;
+	Image fireImage = null;
 
 	InitSound sound = null;
 
@@ -63,12 +65,13 @@ public class GamePlayState extends BasicGameState {
 		left = new Animation(movementLeft, duration, false);
 		right = new Animation(movementRight, duration, false);
 		sprite = right;
-		bombImage = new Image("Images/Bomb.jpg");
+		bombImage = new Image("Images/Bomb.png");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
 		extraFirePower = new Image("Images/extraFire.jpg");
 		blockImage = new Image("Images/rocks.png");
 		extrabomb = new Image("Images/rocket.png");
+		fireImage = new Image("Images/Fire.png");
 		sound = new InitSound();
 	}
 
@@ -96,6 +99,9 @@ public class GamePlayState extends BasicGameState {
 				}
 				if (game.getBoard().getTile(i, j) instanceof ExtraBombsTile) {
 					extrabomb.draw(i * 60, j * 60, 60, 60);
+				}
+				if (game.getBoard().getTile(i, j) instanceof FireTile) {
+					fireImage.draw(i * 60, j * 60, 60, 60);
 				}
 			}
 		}
@@ -129,7 +135,6 @@ public class GamePlayState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sound.startPlayBombSound();
 			game.setBomb(0);
-
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
 			sprite = up;
