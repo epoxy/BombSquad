@@ -29,6 +29,7 @@ public class SplashScreenState extends BasicGameState {
 	int stateID = 3;
 	private Image startImage = null;
 	private Image exitImage = null;
+	private Image splashImage = null;
 	
 	public SplashScreenState(int stateID) {
 		this.stateID = stateID;
@@ -39,6 +40,7 @@ public class SplashScreenState extends BasicGameState {
 			throws SlickException {
 		startImage = new Image("Images/start.png");
 		exitImage = new Image("Images/exit.jpg");
+		splashImage = new Image("Images/BombSquad.png");
 	}
 
 	@Override
@@ -46,6 +48,7 @@ public class SplashScreenState extends BasicGameState {
 			throws SlickException {
 		startImage.draw(startX, startY, startImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
+		splashImage.draw(0,0,1);
 	}
 
 	@Override
