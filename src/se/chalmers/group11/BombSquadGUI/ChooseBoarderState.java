@@ -16,43 +16,41 @@ import se.chalmers.group11.main.Main;
 
 public class ChooseBoarderState extends BasicGameState {
 
-
-	private int startX = 100;
-	private int startY = 150;
-	private int exitX = 500;
-	private int exitY = 550;
+	private int startX = 50;
+	private int startY = 10;
+	private int exitX = 50;
+	private int exitY = 400;
 	private static int boardChooser = 1;
 
-
-	private float exitImageScale = 1;
-	private float startImageScale = 0.5f;
+	private float boardOneImageScale = 0.2f;
+	private float boardTwoImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
 	int stateID = 0;
-	private Image startImage = null;
-	private Image exitImage = null;
-	
+	private Image randomBoard = null;
+	private Image boardWithoutBlocks = null;
+
 	private static IBoard iB;
 
 	public ChooseBoarderState(int stateID) {
 		this.stateID = stateID;
-//		setBoard(boardChooser);
-////		iB = getBoard();
-//		iB = new Board();
+		// setBoard(boardChooser);
+		// // iB = getBoard();
+		// iB = new Board();
 	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		startImage = new Image("Images/start.png");
-		exitImage = new Image("Images/exit.jpg");
+		randomBoard = new Image("Images/randomBoard.png");
+		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		startImage.draw(startX, startY, startImageScale);
-		exitImage.draw(exitX, exitY, exitImageScale);
+		randomBoard.draw(startX, startY, boardTwoImageScale);
+		boardWithoutBlocks.draw(exitX, exitY, boardOneImageScale);
 
 	}
 
@@ -67,70 +65,68 @@ public class ChooseBoarderState extends BasicGameState {
 		boolean insideStartGame = false;
 		boolean insideExitGame = false;
 
-		if (mouseX >= startX && mouseX <= startX + startImage.getWidth()
-				&& mouseY >= startY
-				&& mouseY <= startY + startImage.getHeight()) {
+		if (mouseX >= startX && mouseX <= startX + 100 && mouseY >= startY
+				&& mouseY <= startY + 100) {
 			insideStartGame = true;
 
-		} else if (mouseX >= exitX && mouseX <= exitX + exitImage.getWidth()
-				&& mouseY >= exitY && mouseY <= exitY + exitImage.getHeight()) {
+		} else if (mouseX >= exitX && mouseX <= exitX + 100 && mouseY >= exitY
+				&& mouseY <= exitY + 100) {
 			insideExitGame = true;
 		}
 		if (insideStartGame) {
-			if (startImageScale < 0.55f)
-				startImageScale += scaleStep * delta;
+			if (boardTwoImageScale < 0.25f)
+				boardTwoImageScale += scaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
 
-			if (startImageScale > 0.5f) {
-				startImageScale -= scaleStep * delta;
+			if (boardTwoImageScale > 0.2f) {
+				boardTwoImageScale -= scaleStep * delta;
 
 			}
 			if (insideExitGame) {
-				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 					boardChooser = 0;
 					sb.enterState(Main.GAMEPLAYSTATE);
 				}
+
+				if (boardOneImageScale < 0.25f)
+					boardOneImageScale += scaleStep * delta;
+			} else {
+				if (boardOneImageScale > 0.2f)
+					boardOneImageScale -= scaleStep * delta;
 			}
 		}
-//					gc.exit();
-//
-//				if (exitImageScale < 1.05f)
-//					exitImageScale += scaleStep * delta;
-//			} else {
-//				if (exitImageScale > 1.0f)
-//					exitImageScale -= scaleStep * delta;
-//			}
-		//}
 	}
+
 	@Override
 	public int getID() {
 		return stateID;
 	}
-	public void setBoard(int boardChooser){
-		if(boardChooser==2){
+
+	public void setBoard(int boardChooser) {
+		if (boardChooser == 2) {
 			iB = new Board();
-		}
-		else{
+		} else {
 			iB = new BoardEmpty();
 		}
 	}
-//	public void setBoardEmpty(){
-//		iB = new BoardEmpty();
-//	}
-	public static IBoard getBoard(){
-		if(boardChooser==1){
+
+	// public void setBoardEmpty(){
+	// iB = new BoardEmpty();
+	// }
+	public static IBoard getBoard() {
+		if (boardChooser == 1) {
 			return new Board();
-		}
-		else
+		} else
 			return new BoardEmpty();
 	}
-	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
-    {
-        super.enter(gc, sb);
-        iB = new Board();
+
+	public void enter(GameContainer gc, StateBasedGame sb)
+			throws SlickException {
+		super.enter(gc, sb);
+		iB = new Board();
 	}
 }
