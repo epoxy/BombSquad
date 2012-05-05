@@ -13,6 +13,7 @@ import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.BoxTile;
 import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
 
 public class GamePlayState extends BasicGameState {
@@ -37,9 +38,9 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		game = Game.getInstance(MainMenuState.getBoard());
-		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
-		game.getPlayer(1).put(10, 10);
+//		game = Game.getInstance(MainMenuState.getBoard());
+//		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
+//		game.getPlayer(1).put(10, 10);
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
 				new Image("Images/bombManUP2.gif") };
 		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
@@ -143,4 +144,12 @@ public class GamePlayState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
+	@Override
+    public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
+    {
+        super.enter(gc, sb);
+        game = Game.getInstance(MainMenuState.getBoard());
+		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar nu! TODO
+		game.getPlayer(1).put(10, 10);
+    }
 }
