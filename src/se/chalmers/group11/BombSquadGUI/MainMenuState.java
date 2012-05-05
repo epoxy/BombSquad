@@ -61,6 +61,8 @@ public class MainMenuState extends BasicGameState {
 
 		boolean insideStartGame = false;
 		boolean insideExitGame = false;
+		boolean insideBoard = false;
+		boolean insideBoardEmpty = false;
 
 		if (mouseX >= startX && mouseX <= startX + startImage.getWidth()
 				&& mouseY >= startY
