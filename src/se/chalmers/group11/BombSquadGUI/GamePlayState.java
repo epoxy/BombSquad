@@ -20,6 +20,7 @@ import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
+import se.chalmers.group11.utils.SpriteSheets;
 
 public class GamePlayState extends BasicGameState {
 
@@ -36,7 +37,7 @@ public class GamePlayState extends BasicGameState {
 
 	InitSound sound = null;
 
-	private Animation sprite, up, down, left, right;
+	private SpriteSheets sprite;
 	private Game game;
 
 	public GamePlayState(int stateID) {
@@ -49,20 +50,9 @@ public class GamePlayState extends BasicGameState {
 		// game = Game.getInstance(MainMenuState.getBoard());
 		// game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
 		// game.getPlayer(1).put(10, 10);
-		Image[] movementUp = { new Image("Images/bombManUP.gif"),
-				new Image("Images/bombManUP2.gif") };
-		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
-				new Image("Images/bombManDOWN2.gif") };
-		Image[] movementLeft = { new Image("Images/bombManLEFT.gif"),
-				new Image("Images/bombManLEFT2.gif") };
-		Image[] movementRight = { new Image("Images/bombManRIGHT.gif"),
-				new Image("Images/bombManRIGHT2.gif") };
-		int[] duration = { 150, 150 };
-		up = new Animation(movementUp, duration, true);
-		down = new Animation(movementDown, duration, false);
-		left = new Animation(movementLeft, duration, false);
-		right = new Animation(movementRight, duration, false);
-		sprite = right;
+
+		sprite = new SpriteSheets();
+		sprite.AnimationRight();
 		bombImage = new Image("Images/Bomb.jpg");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
@@ -100,7 +90,7 @@ public class GamePlayState extends BasicGameState {
 			}
 		}
 		for (int i = 0; i < 2; i++) {
-			sprite.draw(game.getPlayer(i).getX() * 60,
+			sprite.drawAnimation(game.getPlayer(i).getX() * 60,
 					game.getPlayer(i).getY() * 60, 60, 60);
 		}
 	}
@@ -111,19 +101,19 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
-			sprite = up;
+			sprite.AnimationUp();
 			game.setPlayerPosition(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
-			sprite = left;
+			sprite.AnimationLeft();
 			game.setPlayerPosition(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			sprite = down;
+			sprite.AnimationDown();
 			game.setPlayerPosition(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
-			sprite = right;
+			sprite.AnimationRight();
 			game.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -132,26 +122,26 @@ public class GamePlayState extends BasicGameState {
 
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
-			sprite = up;
+			sprite.AnimationUp();
 			game.setPlayerPosition(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
-			sprite = left;
+			sprite.AnimationDown();
 			game.setPlayerPosition(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
-			sprite = down;
+			sprite.AnimationDown();
 			game.setPlayerPosition(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
-			sprite = right;
+			sprite.AnimationRight();
 			game.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_Q)) {
 			sound.startPlayBombSound();
 			game.setBomb(1);
 		}
-		if (input.isKeyPressed(Input.KEY_ESCAPE)){
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			sbg.enterState(Main.GAMEOVERSTATE);
 		}
 
@@ -169,11 +159,11 @@ public class GamePlayState extends BasicGameState {
 	}
 
 	@Override
-    public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
-    {
-        super.enter(gc, sb);
-        game = new Game(ChooseBoarderState.getBoard());
-		game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar nu! TODO
+	public void enter(GameContainer gc, StateBasedGame sb)
+			throws SlickException {
+		super.enter(gc, sb);
+		game = new Game(ChooseBoarderState.getBoard());
+		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
 
 	}
