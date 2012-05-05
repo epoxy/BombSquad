@@ -16,7 +16,6 @@ public class Board implements IBoard{
 			for (int j = 0; j < gameTiles[i].length; j++) {
 
 				if (Math.random() > 0.8) {
-
 					gameTiles[i][j] = TileFactory.getBoxTile();
 					gameTilestmp[i][j] = TileFactory.getBoxTile();
 				} else {
@@ -34,6 +33,7 @@ public class Board implements IBoard{
 				gameTiles[i][j] = TileFactory.getBlockTile();
 			}
 		}
+		Functions.makeRoomForPlayers(this);
 	}
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];

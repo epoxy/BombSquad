@@ -58,7 +58,6 @@ public class ChooseBoarderState extends BasicGameState {
 		randomBoard.draw(startX, startY, randomBoardImageScale);
 		boardWithoutBlocks.draw(exitX, exitY, boardWithoutBlocksImageScale);
 		boxBoard.draw(boxBoardStartX, boxBoardStartY, boardWithBoxes);
-
 	}
 
 	@Override
@@ -118,25 +117,10 @@ public class ChooseBoarderState extends BasicGameState {
 			}
 		}
 	}
-
 	@Override
 	public int getID() {
 		return stateID;
 	}
-
-//	public void setBoard(int boardChooser) {
-//		if (boardChooser == 1) {
-//			iB = new Board();
-//		} else if (boardChooser == 0) {
-//			iB = new BoardEmpty();
-//		} else {
-//			iB = new BoardWithoutBlocks();
-//		}
-//	}
-
-	// public void setBoardEmpty(){
-	// iB = new BoardEmpty();
-	// }
 	public static IBoard getBoard() {
 		if (boardChooser == 1) {
 			return new Board();
