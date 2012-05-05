@@ -34,6 +34,7 @@ public class MainMenuState extends BasicGameState {
 
 	public MainMenuState(int stateID) {
 		this.stateID = stateID;
+		iB = new Board();
 	}
 
 	@Override
