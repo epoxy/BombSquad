@@ -21,7 +21,7 @@ public class ChooseBoarderState extends BasicGameState {
 	private int startY = 150;
 	private int exitX = 440;
 	private int exitY = 550;
-	private static int boardChooser = 2;
+	private static int boardChooser = 1;
 
 
 	private float exitImageScale = 1;
@@ -91,7 +91,7 @@ public class ChooseBoarderState extends BasicGameState {
 			}
 			if (insideExitGame) {
 				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-					boardChooser = 1;
+					boardChooser = 0;
 					sb.enterState(Main.GAMEPLAYSTATE);
 				}
 			}
@@ -111,7 +111,7 @@ public class ChooseBoarderState extends BasicGameState {
 		return stateID;
 	}
 	public void setBoard(int boardChooser){
-		if(boardChooser==1){
+		if(boardChooser==2){
 			iB = new Board();
 		}
 		else{

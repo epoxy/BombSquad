@@ -53,4 +53,7 @@ public class Board implements IBoard{
 	public void setTmpToTile(int x, int y, GameTile tile) {
 		gameTilestmp[x][y] = tile;		
 	}
+	
+		
+	
 }

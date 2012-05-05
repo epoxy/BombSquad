@@ -5,6 +5,7 @@ public interface IBoard {
 	public GameTile getTile(int x, int y);
 	public int getSideLength();
 	public void setToTile(int x, int y, GameTile tile);
-	public GameTile getTileTmp(int bombX, int bombY);
-	public void setTmpToTile(int bombX, int bombY, GameTile emptyTile);
+	public GameTile getTileTmp(int x, int y);
+	public void setTmpToTile(int x, int y, GameTile emptyTile);
+	
 }
