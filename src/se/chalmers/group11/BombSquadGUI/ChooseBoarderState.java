@@ -1,0 +1,136 @@
+package se.chalmers.group11.BombSquadGUI;
+
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
+import se.chalmers.group11.core.Board;
+import se.chalmers.group11.core.BoardEmpty;
+import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.IBoard;
+import se.chalmers.group11.main.Main;
+
+public class ChooseBoarderState extends BasicGameState {
+
+
+	private int startX = 440;
+	private int startY = 150;
+	private int exitX = 440;
+	private int exitY = 550;
+	private static int boardChooser = 2;
+
+
+	private float exitImageScale = 1;
+	private float startImageScale = 0.5f;
+	private float scaleStep = 0.0001f;
+
+	int stateID = 0;
+	private Image startImage = null;
+	private Image exitImage = null;
+	
+	private static IBoard iB;
+
+	public ChooseBoarderState(int stateID) {
+		this.stateID = stateID;
+//		setBoard(boardChooser);
+////		iB = getBoard();
+//		iB = new Board();
+	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		startImage = new Image("Images/start.png");
+		exitImage = new Image("Images/exit.jpg");
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		startImage.draw(startX, startY, startImageScale);
+		exitImage.draw(exitX, exitY, exitImageScale);
+
+	}
+
+	@Override
+	public void update(GameContainer gc, StateBasedGame sb, int delta)
+			throws SlickException {
+		Input input = gc.getInput();
+
+		int mouseX = input.getMouseX();
+		int mouseY = input.getMouseY();
+
+		boolean insideStartGame = false;
+		boolean insideExitGame = false;
+
+		if (mouseX >= startX && mouseX <= startX + startImage.getWidth()
+				&& mouseY >= startY
+				&& mouseY <= startY + startImage.getHeight()) {
+			insideStartGame = true;
+
+		} else if (mouseX >= exitX && mouseX <= exitX + exitImage.getWidth()
+				&& mouseY >= exitY && mouseY <= exitY + exitImage.getHeight()) {
+			insideExitGame = true;
+		}
+		if (insideStartGame) {
+			if (startImageScale < 0.55f)
+				startImageScale += scaleStep * delta;
+
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				sb.enterState(Main.GAMEPLAYSTATE);
+			}
+		} else {
+
+			if (startImageScale > 0.5f) {
+				startImageScale -= scaleStep * delta;
+
+			}
+			if (insideExitGame) {
+				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+					boardChooser = 1;
+					sb.enterState(Main.GAMEPLAYSTATE);
+				}
+			}
+		}
+//					gc.exit();
+//
+//				if (exitImageScale < 1.05f)
+//					exitImageScale += scaleStep * delta;
+//			} else {
+//				if (exitImageScale > 1.0f)
+//					exitImageScale -= scaleStep * delta;
+//			}
+		//}
+	}
+	@Override
+	public int getID() {
+		return stateID;
+	}
+	public void setBoard(int boardChooser){
+		if(boardChooser==1){
+			iB = new Board();
+		}
+		else{
+			iB = new BoardEmpty();
+		}
+	}
+//	public void setBoardEmpty(){
+//		iB = new BoardEmpty();
+//	}
+	public static IBoard getBoard(){
+		if(boardChooser==1){
+			return new Board();
+		}
+		else
+			return new BoardEmpty();
+	}
+	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
+    {
+        super.enter(gc, sb);
+        iB = new Board();
+	}
+}
