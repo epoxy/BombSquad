@@ -9,10 +9,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.group11.core.BlockTile;
 import se.chalmers.group11.core.Board;
 import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.BoxTile;
 import se.chalmers.group11.core.EmptyTile;
+import se.chalmers.group11.core.ExtraBombsTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
@@ -29,6 +31,8 @@ public class GamePlayState extends BasicGameState {
 	Image grassImage = null;
 	Image treeImage = null;
 	Image extraFirePower = null;
+	Image blockImage = null;
+	Image extrabomb = null;
 
 	InitSound sound = null;
 
@@ -63,6 +67,8 @@ public class GamePlayState extends BasicGameState {
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
 		extraFirePower = new Image("Images/extraFire.jpg");
+		blockImage = new Image("Images/rocks.png");
+		extrabomb = new Image("Images/rocket.png");
 		sound = new InitSound();
 	}
 
@@ -84,6 +90,12 @@ public class GamePlayState extends BasicGameState {
 				}
 				if (game.getBoard().getTile(i, j) instanceof PowerItemTile) {
 					extraFirePower.draw(i * 60, j * 60, 60, 60);
+				}
+				if (game.getBoard().getTile(i, j) instanceof BlockTile) {
+					blockImage.draw(i * 60, j * 60, 60, 60);
+				}
+				if (game.getBoard().getTile(i, j) instanceof ExtraBombsTile) {
+					extrabomb.draw(i * 60, j * 60, 60, 60);
 				}
 			}
 		}
