@@ -110,5 +110,4 @@ public class MainMenuState extends BasicGameState {
 	public static IBoard getBoard(){
 		return iB;
 	}
-
 }
