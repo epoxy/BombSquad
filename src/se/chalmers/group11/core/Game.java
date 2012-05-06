@@ -221,10 +221,19 @@ public class Game {
 		int direction;
 		if(rand>0 && rand<1){
 			direction = 1;
+			tryToMoveEnemy(1,0);
 		}
 		else{
 			direction = 1;
+			tryToMoveEnemy(1,0);
 		}
-		enemy.tryToMove(direction);
+	}
+	private void tryToMoveEnemy(int i, int j) {
+		if (gameBoard.getTile(i+enemy.getX(), j+enemy.getY()).canReceivePlayer()) {
+			enemy.move(i, j);
+		}
+		else{
+			;
+		}
 	}
 }
