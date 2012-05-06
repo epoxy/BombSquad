@@ -217,23 +217,20 @@ public class Game {
 	}
 
 	public void moveEnemyRandomly() {
-		double rand = Math.random()*1;
-		int direction;
-		if(rand>0 && rand<1){
-			direction = 1;
-			tryToMoveEnemy(1,0);
-		}
-		else{
-			direction = 1;
-			tryToMoveEnemy(1,0);
-		}
+		double rand = Math.random()*4;
+				if(rand>=0 && rand<1){
+					tryToMoveEnemy(1,0);
+				}else if(rand>=1 && rand<2){
+					tryToMoveEnemy(0,1);
+				}else if(rand>=2 && rand<3){
+					tryToMoveEnemy(-1,0);
+				}else{
+					tryToMoveEnemy(0,-1);
+				}		
 	}
 	private void tryToMoveEnemy(int i, int j) {
 		if (gameBoard.getTile(i+enemy.getX(), j+enemy.getY()).canReceivePlayer()) {
 			enemy.move(i, j);
-		}
-		else{
-			;
 		}
 	}
 }

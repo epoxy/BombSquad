@@ -1,5 +1,10 @@
 package se.chalmers.group11.BombSquadGUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -162,9 +167,16 @@ public class GamePlayState extends BasicGameState {
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 					.performOnPlayer(game.getPlayer(j), sbg);
 		}
-		game.moveEnemyRandomly();
-		
-	}
+			ActionListener taskPerformer = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					game.moveEnemyRandomly();
+				}
+			};
+			Timer t = new Timer(1000, taskPerformer);
+			t.setRepeats(true);
+			//t.stop();
+		}
 
 	@Override
 	public int getID() {
