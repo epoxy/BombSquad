@@ -32,6 +32,6 @@ public class Functions {
 			iB.setToTile(10, 8, TileFactory.getEmptyTile());
 			iB.setTmpToTile(10, 8, TileFactory.getEmptyTile());
 		}
-		
+
 	}
 }

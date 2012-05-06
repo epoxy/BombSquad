@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.Board;
+import se.chalmers.group11.core.BoardClassic;
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.BoardRandom;
 import se.chalmers.group11.core.BoardWithoutBlocks;
@@ -152,7 +152,7 @@ public class ChooseBoarderState extends BasicGameState {
 
 	public static IBoard getBoard() {
 		if (boardChooser == 1) {
-			return new Board();
+			return new BoardClassic();
 		} else if (boardChooser == 0) {
 			return new BoardEmpty();
 		} else if (boardChooser == 4) {
@@ -165,6 +165,6 @@ public class ChooseBoarderState extends BasicGameState {
 	public void enter(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
-		iB = new Board();
+		iB = new BoardClassic();
 	}
 }

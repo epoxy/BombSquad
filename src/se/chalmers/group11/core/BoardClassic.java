@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-public class Board implements IBoard{
+public class BoardClassic implements IBoard{
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
 	private GameTile gameTilestmp[][];
-	public Board() {
+	public BoardClassic() {
 		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
