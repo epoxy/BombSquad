@@ -49,24 +49,7 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		// game = Game.getInstance(MainMenuState.getBoard());
-		// game.getPlayer(0).put(0, 0);//Reset Playerpositions Funkar inte! TODO
-		// game.getPlayer(1).put(10, 10);
-
-		Image[] movementUp = { new Image("Images/bombManUP.gif"),
-				new Image("Images/bombManUP2.gif") };
-		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
-				new Image("Images/bombManDOWN2.gif") };
-		Image[] movementLeft = { new Image("Images/bombManLEFT.gif"),
-				new Image("Images/bombManLEFT2.gif") };
-		Image[] movementRight = { new Image("Images/bombManRIGHT.gif"),
-				new Image("Images/bombManRIGHT2.gif") };
-		int[] duration = { 150, 150 };
-		up = new Animation(movementUp, duration, true);
-		down = new Animation(movementDown, duration, false);
-		left = new Animation(movementLeft, duration, false);
-		right = new Animation(movementRight, duration, false);
-		sprite = right;
+	
 		bombImage = new Image("Images/Bomb.png");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
@@ -75,6 +58,7 @@ public class GamePlayState extends BasicGameState {
 		extrabomb = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
 		sound = new InitSound();
+		sprite = new SpriteSheets();
 	}
 
 	@Override
@@ -86,10 +70,10 @@ public class GamePlayState extends BasicGameState {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
 					bombImage.draw(i * 60, j * 60, 60, 60);
 				}
-				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
+				/*if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
 							.draw(i * 60, j * 60, 60, 60);
-				}
+				}*/
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
