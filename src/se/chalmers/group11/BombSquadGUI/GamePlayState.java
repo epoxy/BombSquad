@@ -167,16 +167,8 @@ public class GamePlayState extends BasicGameState {
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 					.performOnPlayer(game.getPlayer(j), sbg);
 		}
-			ActionListener taskPerformer = new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					game.moveEnemyRandomly();
-				}
-			};
-			Timer t = new Timer(1000, taskPerformer);
-			t.setRepeats(false);
-			t.start();
-		}
+		game.moveEnemyRandomly();
+	}
 
 	@Override
 	public int getID() {

@@ -226,11 +226,13 @@ public class Game {
 					tryToMoveEnemy(-1,0);
 				}else{
 					tryToMoveEnemy(0,-1);
-				}		
+				}
 	}
 	private void tryToMoveEnemy(int i, int j) {
-		if (gameBoard.getTile(i+enemy.getX(), j+enemy.getY()).canReceivePlayer()) {
-			enemy.move(i, j);
+		if(isInbounds(i+enemy.getX(), j+enemy.getY())){
+			if (gameBoard.getTile(i+enemy.getX(), j+enemy.getY()).canReceivePlayer()) {
+				enemy.move(i, j);
+			}
 		}
 	}
 }
