@@ -174,8 +174,8 @@ public class GamePlayState extends BasicGameState {
 				}
 			};
 			Timer t = new Timer(1000, taskPerformer);
-			t.setRepeats(true);
-			//t.stop();
+			t.setRepeats(false);
+			t.start();
 		}
 
 	@Override
