@@ -8,7 +8,7 @@ public class BlockTile implements GameTile {
 	private int y;
 
 	public BlockTile() {
-		;
+	
 	}
 
 	@Override

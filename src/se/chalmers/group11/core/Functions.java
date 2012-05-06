@@ -1,6 +1,12 @@
 package se.chalmers.group11.core;
 
 public class Functions {
+
+/**
+ * 	@makeRoomForPlayers makes sure that the players
+ *  isn't locked in at the beginning
+ * @param iB the board
+ */
 	public static void makeRoomForPlayers(IBoard iB){
 		iB.setToTile(0, 0, TileFactory.getEmptyTile());
 		iB.setToTile(1, 0, TileFactory.getEmptyTile());

@@ -1,9 +1,13 @@
 package se.chalmers.group11.core;
 
 public class BoardRandom implements IBoard{
+	
 	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
+/**
+ * @constructor generates a board with random placed blocks and boxes 	
+ */
 	public BoardRandom(){
 		gameTiles = new GameTile[sideLength][sideLength];
 		gameTilestmp = new GameTile[sideLength][sideLength];
@@ -23,11 +27,18 @@ public class BoardRandom implements IBoard{
 		}
 		Functions.makeRoomForPlayers(this);
 	}
+/**
+ * @return the tile on that position
+ * @param int x the x coordinate in board array
+ * @param int y the y coordinate in board array	
+ */
 	@Override
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-
+/**
+ * @return the sideLength of the board
+ */
 	@Override
 	public int getSideLength() {
 		return sideLength;

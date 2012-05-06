@@ -24,36 +24,58 @@ public class Player {
 		this.x=x;
 		this.y=y;
 	}
-
+/**
+ * 
+ * @return players x coordinate
+ */
 	public int getX() {
 		return x;
 	}
-
+/**
+ * 
+ * @return players y coordinate
+ */
 	public int getY() {
 		return y;
 	}
-
+/**
+ * 
+ * @return players amount of bombs
+ */
 	public int getAmountOfBombs() {
 		return amountOfBombs;
 	}
-
+/**
+ * 
+ * @return players amount of firepower
+ */
 	public int getFirePower() {
 		return firePower;
 	}
+/**
+ * 	
+ * @return number of the player
+ */
 	public int getPlayerNumber(){
 		return playerNumber;
 	}
-
+/**
+ * @addFirepower increases the players firepower
+ */
 	public void addFirePower() {
 		firePower++;
 		System.out.println("FirePower: " + firePower);
 	}
-
+/**
+ * @incrementBombs increases players amount of bombs
+ */
 	public void incrementBombs() {
 		amountOfBombs++;
 		System.out.println("AmountOfBombs " + amountOfBombs);
 	}
-
+/**
+ * @decrementBombs decreases players amount of bombs
+ */
 	public void decrementBombs() {
 		amountOfBombs--;
 		System.out.println("AmountOfBombs " + amountOfBombs);
