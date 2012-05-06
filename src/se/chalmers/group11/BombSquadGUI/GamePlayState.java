@@ -59,8 +59,8 @@ public class GamePlayState extends BasicGameState {
 		extrabomb = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
 		sound = new InitSound();
-		sprite1 = new SpriteSheets();
-		sprite2 = new SpriteSheets();
+		sprite1 = new SpriteSheets("BombMan");
+		sprite2 = new SpriteSheets("Devil");
 	}
 
 	@Override
