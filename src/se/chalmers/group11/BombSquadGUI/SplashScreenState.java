@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.Board;
+import se.chalmers.group11.core.BoardClassic;
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
