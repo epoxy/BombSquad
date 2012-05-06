@@ -70,10 +70,10 @@ public class GamePlayState extends BasicGameState {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
 					bombImage.draw(i * 60, j * 60, 60, 60);
 				}
-				/*if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
+				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
 							.draw(i * 60, j * 60, 60, 60);
-				}*/
+				}
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
@@ -127,7 +127,7 @@ public class GamePlayState extends BasicGameState {
 			game.setPlayerPosition(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
-			sprite.AnimationDown();
+			sprite.AnimationLeft();
 			game.setPlayerPosition(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
