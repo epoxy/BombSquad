@@ -39,7 +39,8 @@ public class GamePlayState extends BasicGameState {
 
 	InitSound sound = null;
 
-	private SpriteSheets sprite;
+	private SpriteSheets sprite1;
+	private SpriteSheets sprite2;
 	private Game game;
 
 	public GamePlayState(int stateID) {
@@ -58,7 +59,8 @@ public class GamePlayState extends BasicGameState {
 		extrabomb = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
 		sound = new InitSound();
-		sprite = new SpriteSheets();
+		sprite1 = new SpriteSheets();
+		sprite2 = new SpriteSheets();
 	}
 
 	@Override
@@ -91,10 +93,13 @@ public class GamePlayState extends BasicGameState {
 				}
 			}
 		}
-		for (int i = 0; i < 2; i++) {
-			sprite.drawAnimation(game.getPlayer(i).getX() * 60,
-					game.getPlayer(i).getY() * 60, 60, 60);
-		}
+		
+			sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
+					game.getPlayer(0).getY() * 60, 60, 60);
+		
+			sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
+					game.getPlayer(1).getY() * 60, 60, 60);
+		
 	}
 
 	@Override
@@ -103,19 +108,19 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
-			sprite.AnimationUp();
+			sprite1.AnimationUp();
 			game.setPlayerPosition(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
-			sprite.AnimationLeft();
+			sprite1.AnimationLeft();
 			game.setPlayerPosition(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			sprite.AnimationDown();
+			sprite1.AnimationDown();
 			game.setPlayerPosition(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
-			sprite.AnimationRight();
+			sprite1.AnimationRight();
 			game.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -123,19 +128,19 @@ public class GamePlayState extends BasicGameState {
 			game.setBomb(0);
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
-			sprite.AnimationUp();
+			sprite2.AnimationUp();
 			game.setPlayerPosition(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
-			sprite.AnimationLeft();
+			sprite2.AnimationLeft();
 			game.setPlayerPosition(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
-			sprite.AnimationDown();
+			sprite2.AnimationDown();
 			game.setPlayerPosition(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
-			sprite.AnimationRight();
+			sprite2.AnimationRight();
 			game.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_Q)) {

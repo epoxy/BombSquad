@@ -5,11 +5,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class SpriteSheets {
-
+	
+	
 	private Animation sprite, up, down, left, right;
 
 	public SpriteSheets() throws SlickException {
-
+		
 		Image[] movementUp = { new Image("Images/bombManUP.gif"),
 				new Image("Images/bombManUP2.gif") };
 		Image[] movementDown = { new Image("Images/bombManDOWN.gif"),
@@ -18,6 +19,7 @@ public class SpriteSheets {
 				new Image("Images/bombManLEFT2.gif") };
 		Image[] movementRight = { new Image("Images/bombManRIGHT.gif"),
 				new Image("Images/bombManRIGHT2.gif") };
+		
 
 		int[] duration = { 150, 150 };
 		up = new Animation(movementUp, duration, true);
