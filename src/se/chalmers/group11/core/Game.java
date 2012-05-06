@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game {
 	private Player player[];
+	private Enemy enemy;
 	//private static Game game = null;
 	private IBoard gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
@@ -21,6 +22,7 @@ public class Game {
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
 		player[1] = new Player(10, 10, 2);
+		enemy = new Enemy();
 	}
 
 //	public static synchronized Game getInstance(IBoard iB) {
@@ -209,5 +211,20 @@ public class Game {
 	}
 	public void gameOver(){
 		sbg.enterState(2);
+	}
+	public Enemy getEnemy(){
+		return enemy;
+	}
+
+	public void moveEnemyRandomly() {
+		double rand = Math.random()*1;
+		int direction;
+		if(rand>0 && rand<1){
+			direction = 1;
+		}
+		else{
+			direction = 1;
+		}
+		enemy.tryToMove(direction);
 	}
 }

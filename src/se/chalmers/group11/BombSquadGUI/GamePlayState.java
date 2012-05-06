@@ -41,6 +41,7 @@ public class GamePlayState extends BasicGameState {
 
 	private SpriteSheets sprite1;
 	private SpriteSheets sprite2;
+	private SpriteSheets sprite3;
 	private Game game;
 
 	public GamePlayState(int stateID) {
@@ -61,6 +62,7 @@ public class GamePlayState extends BasicGameState {
 		sound = new InitSound();
 		sprite1 = new SpriteSheets();
 		sprite2 = new SpriteSheets();
+		sprite3 = new SpriteSheets();
 	}
 
 	@Override
@@ -99,6 +101,9 @@ public class GamePlayState extends BasicGameState {
 		
 			sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
 					game.getPlayer(1).getY() * 60, 60, 60);
+			
+			sprite3.drawAnimation(game.getEnemy().getX() * 60,
+					game.getEnemy().getY() * 60, 60, 60);
 		
 	}
 
@@ -157,6 +162,8 @@ public class GamePlayState extends BasicGameState {
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 					.performOnPlayer(game.getPlayer(j), sbg);
 		}
+		game.moveEnemyRandomly();
+		
 	}
 
 	@Override
