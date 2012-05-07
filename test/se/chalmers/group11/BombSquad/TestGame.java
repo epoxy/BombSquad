@@ -29,10 +29,24 @@ public class TestGame {
 	@Test
 	public void testSetPlayerPosition() { //Use case: move
 		Game game = new Game(new BoardEmpty());
-		int s = game.getPlayer(0).getX();
-		game.setPlayerPosition(1, 0, 0);//Moves player one step to the right
-		int r = game.getPlayer(0).getX();
-		assertTrue(r-s == 1); // Difference between destination and source should be 1
+		game.getPlayer(1).move(-1, 0);//Adjusts player2 to so that he can move to the right
+		for(int i=0; i<=1; i++){//Testing both players
+			int s = game.getPlayer(i).getX();
+			game.setPlayerPosition(1, 0, i);//Moves player one step to the right
+			int r = game.getPlayer(i).getX();
+			assertTrue(r-s == 1); // Difference between destination and source should be 1 step
+		}
+	}
+	public void testSetPlayerPositionToObstacle() { //Use case: move
+		Game game = new Game(new BoardEmpty());
+		game.getPlayer(0).move(0, -1);//Adjusts player1 and player2 to so that they can not move to the right
+		game.getPlayer(1).put(8, 9);
+		for(int i=0; i<=1; i++){//Testing both players
+			int s = game.getPlayer(i).getX();
+			game.setPlayerPosition(1, 0, i);//Moves player one step to the right
+			int r = game.getPlayer(i).getX();
+			assertTrue(r-s == 0); // Difference between destination and source should be 1 step
+		}
 	}
 	@Test
 	public void pickUpExtraFire(){
@@ -40,7 +54,7 @@ public class TestGame {
 		game.getPlayer(0).put(0, 0);
 		int fP = game.getPlayer(0).getFirePower();
 		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
-		game.setPlayerPosition(1, 0, 0);//Moves player one step to the right
+		game.setPlayerPosition(1, 0, 0); //Moves player one step to the right
 		assertTrue(game.getPlayer(0).getFirePower()==fP+1);
 	}
 	@Test
