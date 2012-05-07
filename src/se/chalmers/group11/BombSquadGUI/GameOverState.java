@@ -24,6 +24,7 @@ public class GameOverState extends BasicGameState implements Observer{
 	private int restartY = 300;
 	private int exitX = 425;
 	private int exitY = 300;
+	private int winner;
 
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
@@ -33,6 +34,8 @@ public class GameOverState extends BasicGameState implements Observer{
 	private Image restartImage = null;
 	private Image exitImage = null;
 	private Image menuImage = null;
+	private Image winnerPlayer1 = null;
+	private Image winnerPlayer2 = null;
 	
 	int stateID = 2;
 	
@@ -50,6 +53,9 @@ public class GameOverState extends BasicGameState implements Observer{
 		restartImage = new Image("Images/reset.jpg");
 		exitImage = new Image("Images/exit.jpg");
 		menuImage = new Image("Images/menubutton.jpg");
+		winnerPlayer1 = new Image("Images/One.png");
+		winnerPlayer2 = new Image("Images/Two.png");
+		
 	}
 
 	@Override
@@ -58,6 +64,17 @@ public class GameOverState extends BasicGameState implements Observer{
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
+		winnerPlayer1.draw(20, 20, menuImageScale);
+		winnerPlayer2.draw(20, 20, menuImageScale);
+		if(winner==1){
+			winnerPlayer1.draw(20, 20, menuImageScale);
+		}
+		else if(winner==2){
+			winnerPlayer2.draw(20, 20, menuImageScale);
+		}
+		else{
+			;
+		}
 	}
 
 	@Override
@@ -139,6 +156,8 @@ public class GameOverState extends BasicGameState implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("Spelaren som vann är nummer: " + arg.toString());
+		winner = Integer.parseInt(arg.toString());
+		System.out.println("Spelaren " + winner);
 	}
 
 
