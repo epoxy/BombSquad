@@ -19,6 +19,7 @@ import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
+import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
 import se.chalmers.group11.utils.SpriteSheets;
@@ -36,6 +37,7 @@ public class GamePlayState extends BasicGameState {
 	Image blockImage = null;
 	Image extrabomb = null;
 	Image fireImage = null;
+	Image waterImage = null;
 
 	InitSound sound = null;
 
@@ -58,6 +60,7 @@ public class GamePlayState extends BasicGameState {
 		blockImage = new Image("Images/rocks.png");
 		extrabomb = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
+		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
 		sprite1 = new SpriteSheets("BombMan");
 		sprite2 = new SpriteSheets("Devil");
@@ -91,6 +94,9 @@ public class GamePlayState extends BasicGameState {
 				}
 				if (game.getBoard().getTile(i, j) instanceof FireTile) {
 					fireImage.draw(i * 60, j * 60, 60, 60);
+				}
+				if (game.getBoard().getTile(i, j) instanceof WaterTile) {
+					waterImage.draw(i * 60, j * 60, 60, 60);
 				}
 			}
 		}
