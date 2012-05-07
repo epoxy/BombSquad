@@ -1,8 +1,12 @@
 package se.chalmers.group11.core;
 
 public class BoardEmpty implements IBoard{
+	
 	private int sideLength = 11;
 	private GameTile gameTiles[][];
+/**
+ * @constructor generates a board without any boxes	
+ */
 	public BoardEmpty() {
 		gameTiles = new GameTile[sideLength][sideLength];
 		for (int i = 0; i < gameTiles.length; i++) {
@@ -16,11 +20,18 @@ public class BoardEmpty implements IBoard{
 			}
 		}
 	}
+/**
+ * @return the tile on that position
+ * @param int x the x coordinate in board array
+ * @param int y the y coordinate in board array	
+ */
 	@Override
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-
+/**
+ * @return the sideLength of the board
+ */
 	@Override
 	public int getSideLength() {
 		return sideLength;

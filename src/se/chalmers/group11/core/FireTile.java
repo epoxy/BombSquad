@@ -1,5 +1,10 @@
 package se.chalmers.group11.core;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 
@@ -25,9 +30,20 @@ public class FireTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p, StateBasedGame sbg) {
+	public void performOnPlayer(Player p, final StateBasedGame sbg) {
 		System.out.println("Player: " + (p.getPlayerNumber()) + " sucks");
-		sbg.enterState(Main.GAMEOVERSTATE);
+		
+		ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				sbg.enterState(Main.GAMEOVERSTATE);
+			}
+		};
+		
+		Timer t = new Timer(300, taskPerformer);
+		t.setRepeats(false);
+		t.start();
 	}
 
 	@Override

@@ -16,7 +16,10 @@ public class Game {
 	private int sideLength = 11;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
-
+/**
+ * @constructor creates two player start positions and a board
+ * @param iB the board
+ */
 	public Game(IBoard iB) {
 		gameBoard = iB;
 		player = new Player[2];
@@ -40,7 +43,13 @@ public class Game {
 	 * 
 	 * }
 	 */
-
+/**
+ * 
+ * @param deltaX the x direction the player will take
+ * @param deltaY the y direction the player will take
+ * @param playerIndex variable representing the two players
+ * @setPlayerPosition moves the player
+ */
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
 		Player p = player[playerIndex];
 		int nextPosX = p.getX() + deltaX;
@@ -60,7 +69,10 @@ public class Game {
 			}
 		}
 	}
-
+/**
+ * @setBomb place bombs on the board
+ * @param playerIndex variable representing the two players
+ */
 	public void setBomb(final int playerIndex) {
 		amountOfBombs = player[playerIndex].getAmountOfBombs();
 		if (amountOfBombs > 0) {
@@ -74,11 +86,21 @@ public class Game {
 			;
 		}
 	}
-
+/**
+ * 
+ * @param playerIndex variable representing the two players
+ * @return return player
+ */
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
-
+/**
+ * 
+ * @param bombX x coordinate for placed bomb
+ * @param bombY y coordinate for  placed bomb
+ * @param playerIndex variable representing the two players
+ * @bombCountdown starts bombtimer
+ */
 	public void bombCountdown(final int bombX, final int bombY,
 			final int playerIndex) {
 		ActionListener taskPerformer = new ActionListener() {
@@ -96,7 +118,13 @@ public class Game {
 		t.setRepeats(false);
 		t.start();
 	}
-
+/**
+ * 
+ * @param bombX x coordinate for placed bomb
+ * @param bombY y coordinate for placed bomb
+ * @param playerIndex variable representing the two players
+ * @explodeBomb checks tiles next to the placed bomb and explodes
+ */
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 
@@ -161,7 +189,12 @@ public class Game {
 		}
 		player[playerIndex].incrementBombs();
 	}
-
+/**
+ * 
+ * @param bombX x coordinate of placed bomb
+ * @param bombY y coordinate of placed bomb
+ * @placeFire place fire on bomb coordinates
+ */
 	private void placeFire(int bombX, int bombY) {
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
@@ -169,7 +202,12 @@ public class Game {
 		}
 
 	}
-
+/**
+ * 
+ * @param bombX x coordinate of placed bomb
+ * @param bombY y coordinate of placed bomb
+ * @setFireTileToEmptyTile changes the tiles touched by fire to either poweritemtiles or just emptytiles
+ */
 	private void setFireTileToEmptyTile(final int bombX, final int bombY) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
@@ -201,11 +239,19 @@ public class Game {
 		t.setRepeats(false);
 		t.start();
 	}
-
+/**
+ * 
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @return true if it is inside the board limits
+ */
 	private boolean isInbounds(int x, int y) {
 		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
-
+/**
+ * 
+ * @return board
+ */
 	public IBoard getBoard() {
 		return gameBoard;
 	}

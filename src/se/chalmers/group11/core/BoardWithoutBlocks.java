@@ -1,10 +1,13 @@
 package se.chalmers.group11.core;
 
 public class BoardWithoutBlocks implements IBoard {
+	
 	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
-
+/**
+ * @constructor generates a board that is without any blocks
+ */
 	public BoardWithoutBlocks() {
 		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
@@ -16,12 +19,18 @@ public class BoardWithoutBlocks implements IBoard {
 		}
 		Functions.makeRoomForPlayers(this);
 	}
-
+/**
+ * @return the tile on that position
+ * @param int x the x coordinate in board array
+ * @param int y the y coordinate in board array
+ */
 	@Override
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
-
+/**
+ * @return the sideLength of the board
+ */
 	@Override
 	public int getSideLength() {
 		return sideLength;

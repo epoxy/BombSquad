@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class BoardClassic implements IBoard{
+	
 	private int sideLength = 11;
 	private GameTile gameTiles[][];// ändra till private!
 	private GameTile gameTilestmp[][];
+/**
+ * @constructor generates a board with blocktiles on every other tile
+ */
 	public BoardClassic() {
 		gameTilestmp = new GameTile[sideLength][sideLength];
 		gameTiles = new GameTile[sideLength][sideLength];
@@ -35,6 +39,11 @@ public class BoardClassic implements IBoard{
 		}
 		Functions.makeRoomForPlayers(this);
 	}
+/**
+ * @return the tile on that position
+ * @param int x the x coordinate in board array
+ * @param int y the y coordinate in board array
+ */
 	public GameTile getTile(int x, int y) {
 		return gameTiles[x][y];
 	}
@@ -42,7 +51,9 @@ public class BoardClassic implements IBoard{
 	public GameTile getTileTmp(int x, int y) {
 		return gameTilestmp[x][y];
 	}
-
+/**
+ * @return the sideLength of the board
+ */
 	public int getSideLength() {
 		return sideLength;
 	}
