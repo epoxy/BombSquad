@@ -167,7 +167,11 @@ public class GamePlayState extends BasicGameState {
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 					.performOnPlayer(game.getPlayer(j), sbg);
 		}
-		game.moveEnemyRandomly();
+		for(long p=0; p<100000000; p++){
+			if(p==1){
+				game.moveEnemyRandomly();
+			}
+		}
 	}
 
 	@Override
