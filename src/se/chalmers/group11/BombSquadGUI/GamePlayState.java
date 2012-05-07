@@ -50,7 +50,7 @@ public class GamePlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-	
+
 		bombImage = new Image("Images/Bomb.png");
 		grassImage = new Image("Images/grass.jpg");
 		treeImage = new Image("Images/treeBox.jpg");
@@ -67,6 +67,7 @@ public class GamePlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
+
 		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
 			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
@@ -74,7 +75,7 @@ public class GamePlayState extends BasicGameState {
 				}
 				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
-							.draw(i * 60, j * 60, 60, 60);
+					.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
@@ -93,13 +94,20 @@ public class GamePlayState extends BasicGameState {
 				}
 			}
 		}
-		
-			sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
-					game.getPlayer(0).getY() * 60, 60, 60);
-		
-			sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
-					game.getPlayer(1).getY() * 60, 60, 60);
-		
+
+		int playerZeroX = game.getPlayer(0).getX();
+		int playerZeroY = game.getPlayer(0).getY();
+		int playerOneX = game.getPlayer(1).getX();
+		int playerOneY = game.getPlayer(1).getY();
+
+		if (!(game.getBoard().getTile(playerZeroX, playerZeroY) instanceof FireTile)){
+			sprite1.drawAnimation(playerZeroX*60,
+					playerZeroY*60, 60, 60);
+		}
+		if (!(game.getBoard().getTile(playerOneX, playerOneY) instanceof FireTile)){
+		sprite2.drawAnimation(playerOneX*60,
+				playerOneY*60, 60, 60);
+		}
 	}
 
 	@Override
@@ -152,10 +160,10 @@ public class GamePlayState extends BasicGameState {
 		}
 
 		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
-										// ser om han ska dö på rutan han är
+			// ser om han ska dö på rutan han är
 			game.getBoard()
-					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
-					.performOnPlayer(game.getPlayer(j), sbg);
+			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
+			.performOnPlayer(game.getPlayer(j), sbg);
 		}
 	}
 
