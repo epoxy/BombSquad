@@ -24,6 +24,7 @@ import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
+import se.chalmers.group11.core.IntrusionDetector;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;

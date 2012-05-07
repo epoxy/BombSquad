@@ -23,7 +23,7 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new ChooseBoarderState(CHOOSEBOARDERSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
-		this.addState(new GameOverState(GAMEOVERSTATE));
+		this.addState(new GameOverState(GAMEOVERSTATE, null));
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
 		this.addState(new ChooseCharacterState(CHOOSECHARACTERSTATE));
 		this.enterState(SPLASHSCREENSTATE);
