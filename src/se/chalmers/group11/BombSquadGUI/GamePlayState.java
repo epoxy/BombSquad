@@ -1,5 +1,10 @@
 package se.chalmers.group11.BombSquadGUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -26,24 +31,26 @@ import se.chalmers.group11.utils.SpriteSheets;
 
 public class GamePlayState extends BasicGameState {
 
-	Image bomb = null;
-	Image player = null;
-	int stateID = 1;
+	private Image bomb = null;
+	private Image player = null;
+	private int stateID = 1;
 
-	Image bombImage = null;
-	Image grassImage = null;
-	Image treeImage = null;
-	Image extraFirePower = null;
-	Image blockImage = null;
-	Image extrabomb = null;
-	Image fireImage = null;
-	Image waterImage = null;
+	private Image bombImage = null;
+	private Image grassImage = null;
+	private Image treeImage = null;
+	private Image extraFirePower = null;
+	private Image blockImage = null;
+	private Image extrabomb = null;
+	private Image fireImage = null;
+	private Image waterImage = null;
 
-	InitSound sound = null;
+	private InitSound sound = null;
 
 	private SpriteSheets sprite1;
 	private SpriteSheets sprite2;
+	private SpriteSheets sprite3;
 	private Game game;
+	private int enemyDelayer=1;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -62,7 +69,11 @@ public class GamePlayState extends BasicGameState {
 		fireImage = new Image("Images/Fire.png");
 		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
-		
+
+		sprite1 = new SpriteSheets("BombMan");
+		sprite2 = new SpriteSheets("Devil");
+		sprite3 = new SpriteSheets("Devil");
+
 	}
 
 	@Override
@@ -99,20 +110,16 @@ public class GamePlayState extends BasicGameState {
 				}
 			}
 		}
-
-		int playerZeroX = game.getPlayer(0).getX();
-		int playerZeroY = game.getPlayer(0).getY();
-		int playerOneX = game.getPlayer(1).getX();
-		int playerOneY = game.getPlayer(1).getY();
-
-		if (!(game.getBoard().getTile(playerZeroX, playerZeroY) instanceof FireTile)){
-			sprite1.drawAnimation(playerZeroX*60,
-					playerZeroY*60, 60, 60);
-		}
-		if (!(game.getBoard().getTile(playerOneX, playerOneY) instanceof FireTile)){
-		sprite2.drawAnimation(playerOneX*60,
-				playerOneY*60, 60, 60);
-		}
+		
+			sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
+					game.getPlayer(0).getY() * 60, 60, 60);
+		
+			sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
+					game.getPlayer(1).getY() * 60, 60, 60);
+			
+			sprite3.drawAnimation(game.getEnemy().getX() * 60,
+					game.getEnemy().getY() * 60, 60, 60);
+		
 	}
 
 	@Override
@@ -170,6 +177,11 @@ public class GamePlayState extends BasicGameState {
 			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 			.performOnPlayer(game.getPlayer(j), sbg);
 		}
+			enemyDelayer++;
+			if(enemyDelayer%50==1){
+				game.moveEnemyRandomly();
+				enemyDelayer=1;
+			}
 	}
 
 	@Override
