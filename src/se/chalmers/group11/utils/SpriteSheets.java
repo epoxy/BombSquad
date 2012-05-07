@@ -35,6 +35,16 @@ public class SpriteSheets {
 			movementRight[0] =  new Image("Images/devilRIGHT.gif");
 			movementRight[1] = new Image("Images/devilRIGHT2.gif");
 		}
+		if(s=="Ginger"){
+			movementUp[0] =  new Image("Images/gingerUP.gif");
+			movementUp[1] = new Image("Images/gingerUP2.gif");
+			movementDown[0] =  new Image("Images/gingerDOWN.gif");
+			movementDown[1] = new Image("Images/gingerDOWN2.gif");
+			movementLeft[0] =  new Image("Images/gingerLEFT.gif");
+			movementLeft[1] = new Image("Images/gingerLEFT2.gif");
+			movementRight[0] =  new Image("Images/gingerRIGHT.gif");
+			movementRight[1] = new Image("Images/gingerRIGHT2.gif");
+		}
 
 		int[] duration = { 150, 150 };
 		up = new Animation(movementUp, duration, true);

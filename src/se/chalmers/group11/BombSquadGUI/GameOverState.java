@@ -19,11 +19,11 @@ import se.chalmers.group11.main.Main;
 public class GameOverState extends BasicGameState implements Observer{
 	
 	private int menuX = 0;
-	private int menuY = 0;
+	private int menuY = 300;
 	private int restartX = 200;
 	private int restartY = 300;
-	private int exitX = 500;
-	private int exitY = 500;
+	private int exitX = 425;
+	private int exitY = 300;
 
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
@@ -72,24 +72,24 @@ public class GameOverState extends BasicGameState implements Observer{
 		boolean insideExitGame = false;
 		boolean insideMenuGame = false;
 		
-		if (mouseX >= restartX && mouseX <= restartX + restartImage.getWidth()
+		if (mouseX >= restartX && mouseX <= restartX + 150
 				&& mouseY >= restartY
-				&& mouseY <= restartY + restartImage.getHeight()) {
+				&& mouseY <= restartY + 150) {
 			insideRestartGame = true;
 
-		} else if (mouseX >= exitX && mouseX <= exitX + exitImage.getWidth()
+		} else if (mouseX >= exitX && mouseX <= exitX + 150
 				&& mouseY >= exitY 
-				&& mouseY <= exitY + exitImage.getHeight()) {
+				&& mouseY <= exitY + 150) {
 			insideExitGame = true;
 			
-		} else if (mouseX >= menuX && mouseX <= menuX + menuImage.getWidth()
+		} else if (mouseX >= menuX && mouseX <= menuX + 150
 				&& mouseY >= menuY 
-				&& mouseY <= menuY + menuImage.getHeight()) {
+				&& mouseY <= menuY + 150) {
 			insideMenuGame = true;
 		}	
 		//keeps track of the cursor location
 		if (insideRestartGame) {
-			if (restartImageScale < 1)
+			if (restartImageScale < 1.1f)
 				restartImageScale += scaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -97,12 +97,12 @@ public class GameOverState extends BasicGameState implements Observer{
 			}
 		} else {
 
-			if (restartImageScale > 0.5f) {
+			if (restartImageScale > 1f) {
 				restartImageScale -= scaleStep * delta;
 
 			}
 			if (insideMenuGame) {
-				if (menuImageScale < 1)
+				if (menuImageScale < 1.1f)
 					menuImageScale += scaleStep * delta;
 
 				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -110,7 +110,7 @@ public class GameOverState extends BasicGameState implements Observer{
 				}
 			} else {
 
-				if (menuImageScale > 0.5f) {
+				if (menuImageScale > 1f) {
 					menuImageScale -= scaleStep * delta;
 
 				}
@@ -119,10 +119,10 @@ public class GameOverState extends BasicGameState implements Observer{
 				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
 					container.exit();
 
-				if (exitImageScale < 0.85f)
+				if (exitImageScale < 1.1f)
 					exitImageScale += scaleStep * delta;
 			} else {
-				if (exitImageScale > 1.0f)
+				if (exitImageScale > 1f)
 					exitImageScale -= scaleStep * delta;
 				}
 			

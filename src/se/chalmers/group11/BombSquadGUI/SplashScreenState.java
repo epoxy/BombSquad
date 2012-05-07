@@ -76,7 +76,7 @@ public class SplashScreenState extends BasicGameState {
 				startImageScale += scaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				sb.enterState(Main.CHOOSEBOARDERSTATE);
+				sb.enterState(Main.CHOOSECHARACTERSTATE);
 			}
 		} else {
 

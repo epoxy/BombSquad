@@ -9,6 +9,7 @@ import se.chalmers.group11.BombSquadGUI.GameOverState;
 import se.chalmers.group11.BombSquadGUI.GamePlayState;
 import se.chalmers.group11.BombSquadGUI.ChooseBoarderState;
 import se.chalmers.group11.BombSquadGUI.SplashScreenState;
+import se.chalmers.group11.BombSquadGUI.ChooseCharacterState;
 
 public class Main extends StateBasedGame {
 
@@ -16,6 +17,7 @@ public class Main extends StateBasedGame {
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int GAMEOVERSTATE = 2;
 	public static final int SPLASHSCREENSTATE = 3;
+	public static final int CHOOSECHARACTERSTATE = 4;
 
 	public Main() {
 		super("BombSquad");
@@ -23,6 +25,7 @@ public class Main extends StateBasedGame {
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new GameOverState(GAMEOVERSTATE, null));
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
+		this.addState(new ChooseCharacterState(CHOOSECHARACTERSTATE));
 		this.enterState(SPLASHSCREENSTATE);
 //		this.enterState(GAMEOVERSTATE);
 	}
@@ -33,6 +36,7 @@ public class Main extends StateBasedGame {
 		this.getState(CHOOSEBOARDERSTATE).init(container, this);
 		this.getState(GAMEOVERSTATE).init(container, this);
 		this.getState(SPLASHSCREENSTATE).init(container, this);
+		this.getState(CHOOSECHARACTERSTATE).init(container, this);
 	}
 
 	public static void main(String[] args) throws SlickException {

@@ -24,10 +24,7 @@ public class BoardClassic implements IBoard{
 					gameTilestmp[i][j] = TileFactory.getBoxTile();
 				} else {
 					gameTiles[i][j] = TileFactory.getEmptyTile();
-					System.out.println(gameTiles[i][j]);// skriver ut vilken
-														// tile
-					// det
-					// är
+					
 				}
 			}
 		}

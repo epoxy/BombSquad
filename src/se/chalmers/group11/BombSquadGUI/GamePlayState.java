@@ -63,8 +63,7 @@ public class GamePlayState extends BasicGameState {
 		fireImage = new Image("Images/Fire.png");
 		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
-		sprite1 = new SpriteSheets("BombMan");
-		sprite2 = new SpriteSheets("Devil");
+		
 	}
 
 	@Override
@@ -186,6 +185,8 @@ public class GamePlayState extends BasicGameState {
 		game = new Game(ChooseBoarderState.getBoard());
 		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
+		sprite1 = new SpriteSheets(ChooseCharacterState.getPlayerOneSkin());
+		sprite2 = new SpriteSheets(ChooseCharacterState.getPlayerTwoSkin());
 
 	}
 }
