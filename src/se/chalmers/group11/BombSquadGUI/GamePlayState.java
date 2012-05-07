@@ -30,24 +30,25 @@ import se.chalmers.group11.utils.SpriteSheets;
 
 public class GamePlayState extends BasicGameState {
 
-	Image bomb = null;
-	Image player = null;
-	int stateID = 1;
+	private Image bomb = null;
+	private Image player = null;
+	private int stateID = 1;
 
-	Image bombImage = null;
-	Image grassImage = null;
-	Image treeImage = null;
-	Image extraFirePower = null;
-	Image blockImage = null;
-	Image extrabomb = null;
-	Image fireImage = null;
+	private Image bombImage = null;
+	private Image grassImage = null;
+	private Image treeImage = null;
+	private Image extraFirePower = null;
+	private Image blockImage = null;
+	private Image extrabomb = null;
+	private Image fireImage = null;
 
-	InitSound sound = null;
+	private InitSound sound = null;
 
 	private SpriteSheets sprite1;
 	private SpriteSheets sprite2;
 	private SpriteSheets sprite3;
 	private Game game;
+	private int enemyDelayer=1;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -170,11 +171,11 @@ public class GamePlayState extends BasicGameState {
 			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 			.performOnPlayer(game.getPlayer(j), sbg);
 		}
-		for(long p=0; p<100000000; p++){
-			if(p==1){
+			enemyDelayer++;
+			if(enemyDelayer%50==1){
 				game.moveEnemyRandomly();
+				enemyDelayer=1;
 			}
-		}
 	}
 
 	@Override

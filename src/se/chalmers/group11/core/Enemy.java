@@ -1,8 +1,8 @@
 package se.chalmers.group11.core;
 
 public class Enemy {
-	private int x=5;
-	private int y=5;
+	private int x=6;
+	private int y=6;
 
 	public int getX() {
 		return x;
