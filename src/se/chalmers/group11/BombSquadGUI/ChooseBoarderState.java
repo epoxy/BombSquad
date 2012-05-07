@@ -10,7 +10,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.group11.core.BoardClassic;
 import se.chalmers.group11.core.BoardEmpty;
+import se.chalmers.group11.core.BoardPower;
 import se.chalmers.group11.core.BoardRandom;
+import se.chalmers.group11.core.BoardWater;
 import se.chalmers.group11.core.BoardWithoutBlocks;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
@@ -26,12 +28,18 @@ public class ChooseBoarderState extends BasicGameState {
 	private int boxBoardStartY = 100;
 	private int board2X = 250;
 	private int board2Y = 400;
+	private int powboardX = 450;
+	private int powboardY = 100;
+	private int waterboardX = 450;
+	private int waterboardY = 400;
 	private static int boardChooser = 1;
 
 	private float boardWithoutBlocksImageScale = 0.2f;
 	private float randomBoardImageScale = 0.2f;
 	private float boardWithBoxes = 0.2f;
 	private float randomboard2ImageScale = 0.2f;
+	private float powboardImageScale = 0.2f;
+	private float waterboardImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
 	int stateID = 0;
@@ -39,6 +47,8 @@ public class ChooseBoarderState extends BasicGameState {
 	private Image boardWithoutBlocks = null;
 	private Image boxBoard = null;
 	private Image randomboard2 = null;
+	private Image powboard = null;
+	private Image waterboard = null;
 
 	private static IBoard iB;
 
@@ -56,6 +66,8 @@ public class ChooseBoarderState extends BasicGameState {
 		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
 		boxBoard = new Image("Images/boxBoard.png");
 		randomboard2 = new Image("Images/randomBoard2.png");
+		powboard = new Image("Images/powboard.png");
+		waterboard = new Image("Images/waterboard.png");
 	}
 
 	@Override
@@ -65,6 +77,8 @@ public class ChooseBoarderState extends BasicGameState {
 		boardWithoutBlocks.draw(exitX, exitY, boardWithoutBlocksImageScale);
 		boxBoard.draw(boxBoardStartX, boxBoardStartY, boardWithBoxes);
 		randomboard2.draw(board2X, board2Y, randomboard2ImageScale);
+		powboard.draw(powboardX,powboardY,powboardImageScale);
+		waterboard.draw(waterboardX,waterboardY,waterboardImageScale);
 	}
 
 	@Override
@@ -79,6 +93,8 @@ public class ChooseBoarderState extends BasicGameState {
 		boolean insideExitGame = false;
 		boolean insideBoxBoard = false;
 		boolean insideRandomBoard = false;
+		boolean insidePowBoard = false;
+		boolean insideWaterBoard = false;
 
 		if (mouseX >= startX && mouseX <= startX + 150 && mouseY >= startY
 				&& mouseY <= startY + 150) {
@@ -94,7 +110,14 @@ public class ChooseBoarderState extends BasicGameState {
 		} else if (mouseX >= board2X && mouseX <= board2X + 150
 				&& mouseY >= board2Y && mouseY <= board2Y + 150) {
 			insideRandomBoard = true;
+		} else if (mouseX >= powboardX && mouseX <= powboardX + 150
+				&& mouseY >= powboardY && mouseY <= powboardY + 150) {
+			insidePowBoard = true;
+		}else if (mouseX >= waterboardX && mouseX <= waterboardX + 150
+				&& mouseY >= waterboardY && mouseY <= waterboardY + 150) {
+			insideWaterBoard = true;
 		}
+
 		if (insideStartGame) {
 			if (randomBoardImageScale < 0.25f)
 				randomBoardImageScale += scaleStep * delta;
@@ -142,7 +165,27 @@ public class ChooseBoarderState extends BasicGameState {
 		} else {
 			if (boardWithBoxes > 0.2f)
 				boardWithBoxes -= scaleStep * delta;
-		}
+		}if (insidePowBoard) {
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+				boardChooser = 5;
+				sb.enterState(Main.GAMEPLAYSTATE);
+			}
+			if (powboardImageScale < 0.25f)
+				powboardImageScale += scaleStep * delta;
+		} else {
+			if (powboardImageScale > 0.2f)
+				powboardImageScale -= scaleStep * delta;
+		}if (insideWaterBoard) {
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+				boardChooser = 6;
+				sb.enterState(Main.GAMEPLAYSTATE);
+			}
+			if (waterboardImageScale < 0.25f)
+				waterboardImageScale += scaleStep * delta;
+		} else {
+			if (waterboardImageScale > 0.2f)
+				waterboardImageScale -= scaleStep * delta;
+		}	
 	}
 
 	@Override
@@ -157,7 +200,11 @@ public class ChooseBoarderState extends BasicGameState {
 			return new BoardEmpty();
 		} else if (boardChooser == 4) {
 			return new BoardRandom();
-		} else {
+		}else if (boardChooser == 5) {
+			return new BoardPower();
+		}else if (boardChooser == 6) {
+			return new BoardWater();	
+		}else {
 			return new BoardWithoutBlocks();
 		}
 	}

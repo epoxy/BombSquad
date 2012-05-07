@@ -17,7 +17,7 @@ import se.chalmers.group11.main.Main;
 public class SplashScreenState extends BasicGameState {
 
 	private int startX = 440;
-	private int startY = 150;
+	private int startY = 200;
 	private int exitX = 440;
 	private int exitY = 550;
 

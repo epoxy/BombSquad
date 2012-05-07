@@ -50,4 +50,11 @@ public class TileFactory {
 	public static GameTile getExtraBombs() {
 		return new ExtraBombsTile();
 	}
+/**
+ * 	
+ * @return a WaterTile
+ */
+	public static GameTile getWaterTile() {
+		return new WaterTile();
+	}
 }
