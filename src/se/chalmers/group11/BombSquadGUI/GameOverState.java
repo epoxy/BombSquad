@@ -1,5 +1,8 @@
 package se.chalmers.group11.BombSquadGUI;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -8,10 +11,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.group11.core.IntrusionDetector;
+
 import se.chalmers.group11.main.Main;
 
 
-public class GameOverState extends BasicGameState {
+public class GameOverState extends BasicGameState implements Observer{
 	
 	private int menuX = 0;
 	private int menuY = 0;
@@ -31,8 +36,12 @@ public class GameOverState extends BasicGameState {
 	
 	int stateID = 2;
 	
-	public GameOverState(int stateID){
+	private IntrusionDetector detector;
+	
+	public GameOverState(int stateID, IntrusionDetector detector){
 		this.stateID = stateID;
+		this.detector=detector;
+		
 	}
 
 	@Override
@@ -124,4 +133,23 @@ public class GameOverState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
+	public void subscribe( ) { 
+		detector.addObserver(this); 
+	}//subscriber
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("Spelaren som vann är nummer: " + arg.toString());
+	}
+
+
+	
+//	public void subscribe( ) { 
+//        detector.addObserver(this); 
+//    }//subscriber 
+//	@Override
+//	public void update(Observable arg0, Object arg1) {
+//		System.out.println("Someone won the game!");
+//		
+//	}
+	
 }
