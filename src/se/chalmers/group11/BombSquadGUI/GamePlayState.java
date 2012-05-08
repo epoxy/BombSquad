@@ -25,6 +25,7 @@ import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
 import se.chalmers.group11.core.IntrusionDetector;
+import se.chalmers.group11.core.TimeKeeper;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
@@ -52,6 +53,8 @@ public class GamePlayState extends BasicGameState {
 	private SpriteSheets sprite3;
 	private Game game;
 	private int enemyDelayer=1;
+	
+	private TimeKeeper t = new TimeKeeper();
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
