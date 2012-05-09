@@ -22,6 +22,7 @@ import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.ExtraBombsTile;
 import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
 import se.chalmers.group11.core.IntrusionDetector;
@@ -194,11 +195,11 @@ public class GamePlayState extends BasicGameState {
 	public void enter(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
-		game = new Game(ChooseBoarderState.getBoard());
+		game = new Game(GameOptions.getInstance().getBoard());
 		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
-		sprite1 = new SpriteSheets(ChooseCharacterState.getPlayerOneSkin());
-		sprite2 = new SpriteSheets(ChooseCharacterState.getPlayerTwoSkin());
+		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
+		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
 
 	}
 }

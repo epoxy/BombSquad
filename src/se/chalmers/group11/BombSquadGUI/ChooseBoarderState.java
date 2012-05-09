@@ -15,6 +15,7 @@ import se.chalmers.group11.core.BoardRandom;
 import se.chalmers.group11.core.BoardWater;
 import se.chalmers.group11.core.BoardWithoutBlocks;
 import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.main.Main;
 
@@ -32,7 +33,7 @@ public class ChooseBoarderState extends BasicGameState {
 	private int powboardY = 100;
 	private int waterboardX = 450;
 	private int waterboardY = 400;
-	private static int boardChooser = 1;
+	
 
 	private float boardWithoutBlocksImageScale = 0.2f;
 	private float randomBoardImageScale = 0.2f;
@@ -50,7 +51,7 @@ public class ChooseBoarderState extends BasicGameState {
 	private Image powboard = null;
 	private Image waterboard = null;
 
-	private static IBoard iB;
+	//private static IBoard iB;
 
 	public ChooseBoarderState(int stateID) {
 		this.stateID = stateID;
@@ -133,7 +134,7 @@ public class ChooseBoarderState extends BasicGameState {
 			}
 			if (insideExitGame) {
 				if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-					boardChooser = 0;
+					GameOptions.getInstance().setBoard(0);
 					sb.enterState(Main.GAMEPLAYSTATE);
 				}
 
@@ -146,7 +147,7 @@ public class ChooseBoarderState extends BasicGameState {
 		}
 		if (insideRandomBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-				boardChooser = 4;
+				GameOptions.getInstance().setBoard(4);
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 			if (randomboard2ImageScale < 0.25f)
@@ -157,7 +158,7 @@ public class ChooseBoarderState extends BasicGameState {
 		}
 		if (insideBoxBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-				boardChooser = 3;
+				GameOptions.getInstance().setBoard(3);
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 			if (boardWithBoxes < 0.25f)
@@ -167,7 +168,7 @@ public class ChooseBoarderState extends BasicGameState {
 				boardWithBoxes -= scaleStep * delta;
 		}if (insidePowBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-				boardChooser = 5;
+				GameOptions.getInstance().setBoard(5);
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 			if (powboardImageScale < 0.25f)
@@ -177,7 +178,7 @@ public class ChooseBoarderState extends BasicGameState {
 				powboardImageScale -= scaleStep * delta;
 		}if (insideWaterBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-				boardChooser = 6;
+				GameOptions.getInstance().setBoard(6);
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 			if (waterboardImageScale < 0.25f)
@@ -193,25 +194,11 @@ public class ChooseBoarderState extends BasicGameState {
 		return stateID;
 	}
 
-	public static IBoard getBoard() {
-		if (boardChooser == 1) {
-			return new BoardClassic();
-		} else if (boardChooser == 0) {
-			return new BoardEmpty();
-		} else if (boardChooser == 4) {
-			return new BoardRandom();
-		}else if (boardChooser == 5) {
-			return new BoardPower();
-		}else if (boardChooser == 6) {
-			return new BoardWater();	
-		}else {
-			return new BoardWithoutBlocks();
-		}
-	}
 
-	public void enter(GameContainer gc, StateBasedGame sb)
+
+	/*public void enter(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
 		iB = new BoardClassic();
-	}
+	}*/
 }
