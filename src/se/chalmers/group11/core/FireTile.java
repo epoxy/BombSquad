@@ -9,7 +9,7 @@ import javax.swing.Timer;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 
-import se.chalmers.group11.BombSquadGUI.GameOverState;
+import se.chalmers.group11.bombsquadgui.GameOverState;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
@@ -22,10 +22,10 @@ public class FireTile implements GameTile{//observable
 	private int x;
 	private int y;
 	
-	private IntrusionDetector detector;
+	private SomeoneLostDetector detector;
 	private GameOverState admin;
 	
-	public FireTile(IntrusionDetector detector){
+	public FireTile(SomeoneLostDetector detector){
 		this.detector=detector;
 		admin = new GameOverState(2, detector);
 	}
@@ -50,7 +50,7 @@ public class FireTile implements GameTile{//observable
 
 				//sbg.enterState(Main.GAMEOVERSTATE);
 				admin.subscribe();
-				detector.someoneWon(p.getPlayerNumber());
+				detector.someoneLost(p.getPlayerNumber());
 				
 				EventBus.INSTANCE.publish(new Event(Event.Tag.FIRE_STARTER, p.getPlayerNumber()));
 			}

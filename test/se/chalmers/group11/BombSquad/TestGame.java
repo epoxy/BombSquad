@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquad;
+package se.chalmers.group11.bombsquad;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,11 @@ import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.TileFactory;
-
+/**This is an integrationstest because all other classes are trivial.
+ * 
+ * @author Epoxy
+ *
+ */
 public class TestGame {
 
 	@Test

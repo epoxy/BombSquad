@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquadGUI;
+package se.chalmers.group11.bombsquadgui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +24,8 @@ import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
-import se.chalmers.group11.core.IntrusionDetector;
-import se.chalmers.group11.core.TimeKeeper;
+import se.chalmers.group11.core.SomeoneLostDetector;
+import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
@@ -53,11 +53,13 @@ public class GamePlayState extends BasicGameState {
 	private SpriteSheets sprite3;
 	private Game game;
 	private int enemyDelayer=1;
+	private StateBasedGame sb;
 	
-	private TimeKeeper t = new TimeKeeper();
+	private LoserKeeper t;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
+		//t = new TimeKeeper(sb);
 	}
 
 	@Override
@@ -77,7 +79,7 @@ public class GamePlayState extends BasicGameState {
 		sprite1 = new SpriteSheets("BombMan");
 		sprite2 = new SpriteSheets("Devil");
 		sprite3 = new SpriteSheets("Devil");
-
+		t = new LoserKeeper(sbg);
 	}
 
 	@Override
@@ -167,7 +169,7 @@ public class GamePlayState extends BasicGameState {
 			sprite2.AnimationRight();
 			game.setPlayerPosition(1, 0, 1);
 		}
-		if (input.isKeyPressed(Input.KEY_Q)) {
+		if (input.isKeyPressed(Input.KEY_LCONTROL)) {
 			sound.startPlayBombSound();
 			game.setBomb(1);
 		}
@@ -202,6 +204,7 @@ public class GamePlayState extends BasicGameState {
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(ChooseCharacterState.getPlayerOneSkin());
 		sprite2 = new SpriteSheets(ChooseCharacterState.getPlayerTwoSkin());
+		this.sb=sb;
 
 	}
 }

@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquadGUI;
+package se.chalmers.group11.bombsquadgui;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
