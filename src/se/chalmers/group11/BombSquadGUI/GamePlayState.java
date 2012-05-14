@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquadGUI;
+package se.chalmers.group11.bombsquadgui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +25,7 @@ import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.PowerItemTile;
-import se.chalmers.group11.core.IntrusionDetector;
+import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
@@ -53,9 +53,13 @@ public class GamePlayState extends BasicGameState {
 	private SpriteSheets sprite3;
 	private Game game;
 	private int enemyDelayer=1;
+	private StateBasedGame sb;
+	
+	private LoserKeeper t;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
+		//t = new TimeKeeper(sb);
 	}
 
 	@Override
@@ -75,7 +79,7 @@ public class GamePlayState extends BasicGameState {
 		sprite1 = new SpriteSheets("BombMan");
 		sprite2 = new SpriteSheets("Devil");
 		sprite3 = new SpriteSheets("Devil");
-
+		t = new LoserKeeper(sbg);
 	}
 
 	@Override
@@ -200,6 +204,6 @@ public class GamePlayState extends BasicGameState {
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
-
+		//this.sb=sb;
 	}
 }

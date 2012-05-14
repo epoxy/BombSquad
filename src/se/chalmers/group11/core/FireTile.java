@@ -9,23 +9,20 @@ import javax.swing.Timer;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 
-import se.chalmers.group11.BombSquadGUI.GameOverState;
+import se.chalmers.group11.bombsquadgui.GameOverState;
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 
 import com.sun.org.apache.xml.internal.security.Init;
 
 
-public class FireTile implements GameTile{
+public class FireTile implements GameTile{//observable
 	
 	private int x;
 	private int y;
 	
-	private IntrusionDetector detector;
-	private GameOverState admin;
-	
-	public FireTile(IntrusionDetector detector){
-		this.detector=detector;
-		admin = new GameOverState(2, detector);
+	public FireTile(){
 	}
 	@Override
 	public boolean canReceivePlayer() {
@@ -45,10 +42,7 @@ public class FireTile implements GameTile{
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				sbg.enterState(Main.GAMEOVERSTATE);
-				admin.subscribe();
-				detector.someoneWon(p.getPlayerNumber());
+				EventBus.INSTANCE.publish(new Event(Event.Tag.FIRE_STARTER, p.getPlayerNumber()));
 			}
 		};
 		

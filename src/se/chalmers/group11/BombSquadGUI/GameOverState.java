@@ -1,4 +1,4 @@
-package se.chalmers.group11.BombSquadGUI;
+package se.chalmers.group11.bombsquadgui;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -11,12 +11,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.IntrusionDetector;
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.EventBus;
+import se.chalmers.group11.eventbus.IEventHandler;
 
 import se.chalmers.group11.main.Main;
 
 
-public class GameOverState extends BasicGameState implements Observer{
+public class GameOverState extends BasicGameState implements IEventHandler{
 	
 	private int menuX = 0;
 	private int menuY = 300;
@@ -24,7 +26,7 @@ public class GameOverState extends BasicGameState implements Observer{
 	private int restartY = 300;
 	private int exitX = 425;
 	private int exitY = 300;
-	private int winner;
+	private int loser;
 
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
@@ -39,12 +41,9 @@ public class GameOverState extends BasicGameState implements Observer{
 	
 	int stateID = 2;
 	
-	private IntrusionDetector detector;
-	
-	public GameOverState(int stateID, IntrusionDetector detector){
+	public GameOverState(int stateID){
 		this.stateID = stateID;
-		this.detector=detector;
-		
+		EventBus.INSTANCE.register(this);
 	}
 
 	@Override
@@ -64,16 +63,13 @@ public class GameOverState extends BasicGameState implements Observer{
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
-		winnerPlayer1.draw(20, 20, menuImageScale);
-		winnerPlayer2.draw(20, 20, menuImageScale);
-		if(winner==1){
-			winnerPlayer1.draw(20, 20, menuImageScale);
-		}
-		else if(winner==2){
+		if(loser==1){
 			winnerPlayer2.draw(20, 20, menuImageScale);
+			System.out.println("Spelare 1s bild");
 		}
-		else{
-			;
+		if(loser==2){
+			winnerPlayer1.draw(20, 20, menuImageScale);
+			System.out.println("Spelare 2s bild");
 		}
 	}
 
@@ -150,25 +146,9 @@ public class GameOverState extends BasicGameState implements Observer{
 	public int getID() {
 		return stateID;
 	}
-	public void subscribe( ) { 
-		detector.addObserver(this); 
-	}//subscriber
 	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println("Spelaren som vann är nummer: " + arg.toString());
-		winner = Integer.parseInt(arg.toString());
-		System.out.println("Spelaren " + winner);
+	public void onEvent(Event evt) {
+		if(evt.getTag()==Event.Tag.FIRE_STARTER)
+		loser=(int)evt.getValue(); 
 	}
-
-
-	
-//	public void subscribe( ) { 
-//        detector.addObserver(this); 
-//    }//subscriber 
-//	@Override
-//	public void update(Observable arg0, Object arg1) {
-//		System.out.println("Someone won the game!");
-//		
-//	}
-	
 }

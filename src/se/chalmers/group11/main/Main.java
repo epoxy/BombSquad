@@ -5,11 +5,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.BombSquadGUI.GameOverState;
-import se.chalmers.group11.BombSquadGUI.GamePlayState;
-import se.chalmers.group11.BombSquadGUI.ChooseBoarderState;
-import se.chalmers.group11.BombSquadGUI.SplashScreenState;
-import se.chalmers.group11.BombSquadGUI.ChooseCharacterState;
+import se.chalmers.group11.bombsquadgui.ChooseBoarderState;
+import se.chalmers.group11.bombsquadgui.ChooseCharacterState;
+import se.chalmers.group11.bombsquadgui.GameOverState;
+import se.chalmers.group11.bombsquadgui.GamePlayState;
+import se.chalmers.group11.bombsquadgui.SplashScreenState;
 
 public class Main extends StateBasedGame {
 
@@ -23,7 +23,7 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new ChooseBoarderState(CHOOSEBOARDERSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
-		this.addState(new GameOverState(GAMEOVERSTATE, null));
+		this.addState(new GameOverState(GAMEOVERSTATE/*, null*/));
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
 		this.addState(new ChooseCharacterState(CHOOSECHARACTERSTATE));
 		this.enterState(SPLASHSCREENSTATE);

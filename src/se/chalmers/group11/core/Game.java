@@ -129,7 +129,7 @@ public class Game {
 		int firePower = player[playerIndex].getFirePower();
 
 		placeFire(bombX, bombY);
-
+//TODO refakrorisera, samla till en loop
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
