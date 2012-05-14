@@ -12,7 +12,7 @@ public class BoardWater implements IBoard {
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 
-				if (Math.random() > 0.5) {
+				if (Math.random() > 0.4) {
 					gameTiles[i][j] = TileFactory.getBoxTile();
 					gameTilestmp[i][j] = TileFactory.getBoxTile();
 				} else {
