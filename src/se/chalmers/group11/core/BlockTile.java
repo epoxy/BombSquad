@@ -2,11 +2,13 @@ package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A class representing a BlockTile
+ */
 public class BlockTile implements GameTile {
-	
 
 	public BlockTile() {
-	
+
 	}
 
 	@Override
