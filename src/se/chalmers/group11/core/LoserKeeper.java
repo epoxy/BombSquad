@@ -9,7 +9,7 @@ import se.chalmers.group11.main.Main;
 
 public class LoserKeeper implements IEventHandler{
 	private StateBasedGame sb;
-	private int loser;
+	private Integer loser;
 	
 	public LoserKeeper(StateBasedGame sb){
 		EventBus.INSTANCE.register(this);
@@ -20,7 +20,7 @@ public class LoserKeeper implements IEventHandler{
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.FIRE_STARTER){
 			System.out.println("Got event" + evt.getValue());
-			loser=(int)evt.getValue();
+			loser=(Integer)evt.getValue();
 			sb.enterState(Main.GAMEOVERSTATE);
 		}
 	}
