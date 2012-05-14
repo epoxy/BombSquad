@@ -138,7 +138,6 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 				if (exitImageScale > 1f)
 					exitImageScale -= scaleStep * delta;
 				}
-			
 			}
 		}
 	}	
