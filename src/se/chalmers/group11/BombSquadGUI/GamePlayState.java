@@ -24,7 +24,7 @@ import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.IBoard;
-import se.chalmers.group11.core.PowerItemTile;
+import se.chalmers.group11.core.ExtraFirePowerTile;
 import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.main.Main;
@@ -101,7 +101,7 @@ public class GamePlayState extends BasicGameState {
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					boxImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
-				if (game.getBoard().getTile(i, j) instanceof PowerItemTile) {
+				if (game.getBoard().getTile(i, j) instanceof ExtraFirePowerTile) {
 					fireUpImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BlockTile) {

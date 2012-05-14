@@ -2,15 +2,15 @@ package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A class representing a WaterTile
+ */
 public class WaterTile implements GameTile {
 
-	private int x;
-	private int y;
-	
-	public WaterTile(){
-		
+	public WaterTile() {
+
 	}
-	
+
 	@Override
 	public boolean canReceivePlayer() {
 		return false;
@@ -23,17 +23,7 @@ public class WaterTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
-		
-	}
 
-	@Override
-	public int getX() {
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		return y;
 	}
 
 }
