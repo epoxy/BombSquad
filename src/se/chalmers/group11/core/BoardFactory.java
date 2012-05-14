@@ -1,5 +1,9 @@
 package se.chalmers.group11.core;
 
+/**
+ * Factory class for available Boards
+ * 
+ */
 public class BoardFactory {
 
 	/**
