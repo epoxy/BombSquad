@@ -27,6 +27,8 @@ import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.ExtraFirePowerTile;
 import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitSound;
 import se.chalmers.group11.utils.SpriteSheets;
@@ -184,6 +186,14 @@ public class GamePlayState extends BasicGameState {
 			game.getBoard()
 			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 			.performOnPlayer(game.getPlayer(j), sbg);
+		}
+		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
+			//checks if it corresponds with position of enemy, If so, kill player
+			if(game.getPlayer(j).getX()==game.getEnemy().getX() && 
+			game.getPlayer(j).getY()==game.getEnemy().getY()){
+				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, 
+						game.getPlayer(j).getPlayerNumber()));
+			}
 		}
 		enemyDelayer++;
 		if(enemyDelayer%50==1){

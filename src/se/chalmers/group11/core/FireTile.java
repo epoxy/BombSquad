@@ -33,7 +33,7 @@ public class FireTile implements GameTile {// observable
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventBus.INSTANCE.publish(new Event(Event.Tag.FIRE_STARTER, p
+				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
 						.getPlayerNumber()));
 			}
 		};
@@ -41,6 +41,9 @@ public class FireTile implements GameTile {// observable
 		Timer t = new Timer(300, taskPerformer);
 		t.setRepeats(false);
 		t.start();
+	}
+	public void performOnEnemy(){
+		
 	}
 
 }

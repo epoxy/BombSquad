@@ -203,7 +203,7 @@ public class ChooseCharacterState extends BasicGameState {
 				nextButtonScale += nextButtonScaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				sb.enterState(Main.CHOOSEBOARDERSTATE);
+				sb.enterState(Main.CHOOSEBOARDSTATE);
 			}
 		} else {
 

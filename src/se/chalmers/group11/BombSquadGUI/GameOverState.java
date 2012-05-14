@@ -147,7 +147,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	}
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag()==Event.Tag.FIRE_STARTER)
+		if(evt.getTag()==Event.Tag.PLAYER_KILLED)
 		loser=(Integer)evt.getValue(); 
 	}
 }

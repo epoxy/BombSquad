@@ -13,7 +13,7 @@ import se.chalmers.group11.bombsquadgui.SplashScreenState;
 
 public class Main extends StateBasedGame {
 
-	public static final int CHOOSEBOARDERSTATE = 0;
+	public static final int CHOOSEBOARDSTATE = 0;
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int GAMEOVERSTATE = 2;
 	public static final int SPLASHSCREENSTATE = 3;
@@ -21,7 +21,7 @@ public class Main extends StateBasedGame {
 
 	public Main() {
 		super("BombSquad");
-		this.addState(new ChooseBoardState(CHOOSEBOARDERSTATE));
+		this.addState(new ChooseBoardState(CHOOSEBOARDSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
 		this.addState(new GameOverState(GAMEOVERSTATE/*, null*/));
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
@@ -33,7 +33,7 @@ public class Main extends StateBasedGame {
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
 		this.getState(GAMEPLAYSTATE).init(container, this);
-		this.getState(CHOOSEBOARDERSTATE).init(container, this);
+		this.getState(CHOOSEBOARDSTATE).init(container, this);
 		this.getState(GAMEOVERSTATE).init(container, this);
 		this.getState(SPLASHSCREENSTATE).init(container, this);
 		this.getState(CHOOSECHARACTERSTATE).init(container, this);

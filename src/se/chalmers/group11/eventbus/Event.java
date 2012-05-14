@@ -8,7 +8,7 @@ package se.chalmers.group11.eventbus;
 public class Event {
     // All possible types of events listed
     public enum Tag {
-        FIRE_STARTER,
+        PLAYER_KILLED,
     }
     private final Tag tag;
     // The new value (sent to GUI)
