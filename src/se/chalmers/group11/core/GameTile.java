@@ -24,8 +24,6 @@ public interface GameTile {
 	 * 
 	 * @param p
 	 *            The player that we will perform different things at
-	 * @param sbg
-	 *            A state based game isolated different stages of the game
 	 */
 	public void performOnPlayer(Player p);
 
