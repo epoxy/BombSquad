@@ -197,6 +197,14 @@ public class GamePlayState extends BasicGameState {
 						game.getPlayer(j).getPlayerNumber()));
 			}
 		}
+		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
+			// ser om han ska dö på rutan han är
+			game.getBoard()
+					.getTile(game.getEnemy().getX(), game.getEnemy().getY())
+					.performOnEnemy();
+		}
+		
+		
 		enemyDelayer++;
 		if (enemyDelayer % 50 == 1) {
 			game.moveEnemyRandomly();

@@ -7,7 +7,12 @@ import javax.swing.Timer;
 
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Game {
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.Event.Tag;
+import se.chalmers.group11.eventbus.EventBus;
+import se.chalmers.group11.eventbus.IEventHandler;
+
+public class Game implements IEventHandler {
 	private Player player[];
 	private Enemy enemy;
 	//private static Game game = null;
@@ -26,6 +31,7 @@ public class Game {
 		player[0] = new Player(0, 0, 1);
 		player[1] = new Player(10, 10, 2);
 		enemy = new Enemy();
+		EventBus.INSTANCE.register(this);
 	}
 
 	//	public static synchronized Game getInstance(IBoard iB) {
@@ -294,5 +300,13 @@ public class Game {
 				enemy.move(i, j);
 			}
 		}
+	}
+
+	@Override
+	public void onEvent(Event evt) {
+		if(evt.getTag()==Tag.ENEMY_KILLED){
+			enemy = new Enemy();
+		}
+		
 	}
 }

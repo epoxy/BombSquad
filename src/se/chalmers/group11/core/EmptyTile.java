@@ -27,4 +27,10 @@ public class EmptyTile implements GameTile {
 		return "EmptyTile";
 	}
 
+	@Override
+	public void performOnEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

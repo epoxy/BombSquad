@@ -28,4 +28,10 @@ public class BombTile implements GameTile {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void performOnEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

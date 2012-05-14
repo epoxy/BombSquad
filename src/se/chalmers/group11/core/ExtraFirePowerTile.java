@@ -23,4 +23,10 @@ public class ExtraFirePowerTile implements GameTile {
 		p.addFirePower();
 	}
 
+	@Override
+	public void performOnEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

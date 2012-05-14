@@ -22,4 +22,10 @@ public class ExtraBombsTile implements GameTile {
 		p.incrementBombs();
 	}
 
+	@Override
+	public void performOnEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

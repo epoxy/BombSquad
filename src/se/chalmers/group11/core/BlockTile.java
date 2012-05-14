@@ -26,4 +26,10 @@ public class BlockTile implements GameTile {
 
 	}
 
+	@Override
+	public void performOnEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

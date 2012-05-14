@@ -14,7 +14,8 @@ public class Event {
         MUSIC_STOPPER,
         MENUMUSIC_STARTER,
         MENUMUSIC_STOPPER,
-        WINNINGMUSIC_STARTER
+        WINNINGMUSIC_STARTER, 
+        ENEMY_KILLED
     }
     
     private final Tag tag;

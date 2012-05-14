@@ -26,4 +26,6 @@ public interface GameTile {
 	 */
 	public void performOnPlayer(Player p);
 
+	public void performOnEnemy();
+
 }
