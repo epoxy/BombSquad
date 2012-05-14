@@ -54,7 +54,7 @@ public class GamePlayState extends BasicGameState {
 	private Game game;
 	private int enemyDelayer=1;
 	private StateBasedGame sb;
-	
+
 	private LoserKeeper t;
 
 	public GamePlayState(int stateID) {
@@ -90,6 +90,8 @@ public class GamePlayState extends BasicGameState {
 		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
 			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
+					grassImage.getScaledCopy(0.08f)
+					.draw(i * 60, j * 60, 60, 60);
 					bombImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
@@ -117,15 +119,15 @@ public class GamePlayState extends BasicGameState {
 			}
 		}
 		
-			sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
-					game.getPlayer(0).getY() * 60, 60, 60);
-		
-			sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
-					game.getPlayer(1).getY() * 60, 60, 60);
-			
-			sprite3.drawAnimation(game.getEnemy().getX() * 60,
-					game.getEnemy().getY() * 60, 60, 60);
-		
+		sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
+				game.getPlayer(0).getY() * 60, 60, 60);
+
+		sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
+				game.getPlayer(1).getY() * 60, 60, 60);
+
+		sprite3.drawAnimation(game.getEnemy().getX() * 60,
+				game.getEnemy().getY() * 60, 60, 60);
+
 	}
 
 	@Override
@@ -183,11 +185,11 @@ public class GamePlayState extends BasicGameState {
 			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 			.performOnPlayer(game.getPlayer(j), sbg);
 		}
-			enemyDelayer++;
-			if(enemyDelayer%50==1){
-				game.moveEnemyRandomly();
-				enemyDelayer=1;
-			}
+		enemyDelayer++;
+		if(enemyDelayer%50==1){
+			game.moveEnemyRandomly();
+			enemyDelayer=1;
+		}
 	}
 
 	@Override
