@@ -7,7 +7,7 @@ import java.util.List;
  * Very simple event bus. All observers can register for events and an
  * observable can publish (send) events.
  * 
- * @author hajo
+ * @hajo
  * 
  */
 public enum EventBus {
