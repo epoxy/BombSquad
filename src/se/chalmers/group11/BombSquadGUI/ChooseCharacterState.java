@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.main.Main;
 
 public class ChooseCharacterState extends BasicGameState {
@@ -52,22 +53,14 @@ public class ChooseCharacterState extends BasicGameState {
 	private Image king;
 	private Image man;
 	private Image manTwo;
-	private static String playerOneSkin = "Devil";
-	private static String playerTwoSkin = "BombMan";
+
 
 	public ChooseCharacterState(int stateID) {
 		this.stateID = stateID;
 
 	}
 
-	public static String getPlayerOneSkin() {
-		return playerOneSkin;
 
-	}
-
-	public static String getPlayerTwoSkin() {
-		return playerTwoSkin;
-	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -223,7 +216,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1DevilScale < 1.65f)
 				p1DevilScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "Devil";
+				GameOptions.getInstance().setPlayerOneSkin("Devil");
 			}
 		} else {
 			if (p1DevilScale > 1.5f) {
@@ -234,7 +227,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1BombManScale < 1.65f)
 				p1BombManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "BombMan";
+				GameOptions.getInstance().setPlayerOneSkin("BombMan");
 
 			}
 		} else {
@@ -247,8 +240,8 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1GingerScale < 1.65f)
 				p1GingerScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "Ginger";
-				System.out.println("p1 ginger");
+				GameOptions.getInstance().setPlayerOneSkin("Ginger");
+				
 			}
 		} else {
 			if (p1GingerScale > 1.5f) {
@@ -259,7 +252,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2DevilScale < 1.65f)
 				p2DevilScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "Devil";
+				GameOptions.getInstance().setPlayerTwoSkin("Devil");
 			}
 		} else {
 			if (p2DevilScale > 1.5f) {
@@ -270,7 +263,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2BombManScale < 1.65f)
 				p2BombManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "BombMan";
+				GameOptions.getInstance().setPlayerTwoSkin("BombMan");
 			}
 		} else {
 
@@ -282,7 +275,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2GingerScale < 1.65f)
 				p2GingerScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "Ginger";
+				GameOptions.getInstance().setPlayerTwoSkin("Ginger");
 				System.out.println("p2 ginger");
 			}
 		} else {
@@ -294,7 +287,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1KingScale < 1.65f)
 				p1KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "king";
+				GameOptions.getInstance().setPlayerOneSkin("king");
 			}
 		} else {
 			if (p1KingScale > 1.5f) {
@@ -305,7 +298,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2KingScale < 1.65f)
 				p2KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "king";
+				GameOptions.getInstance().setPlayerTwoSkin("king");
 			}
 		} else {
 			if (p2KingScale > 1.5f) {
@@ -316,7 +309,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1ManScale < 1.65f)
 				p1ManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "man";
+				GameOptions.getInstance().setPlayerOneSkin("man");
 			}
 		} else {
 			if (p1ManScale > 1.5f) {
@@ -327,7 +320,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2ManScale < 1.65f)
 				p2ManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "man";
+				GameOptions.getInstance().setPlayerTwoSkin("man");
 			}
 		} else {
 			if (p2ManScale > 1.5f) {
@@ -338,7 +331,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1ManTwoScale < 1.65f)
 				p1ManTwoScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerOneSkin = "manTwo";
+				GameOptions.getInstance().setPlayerOneSkin("manTwo");
 			}
 		} else {
 			if (p1ManTwoScale > 1.5f) {
@@ -349,7 +342,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2ManTwoScale < 1.65f)
 				p2ManTwoScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerTwoSkin = "manTwo";
+				GameOptions.getInstance().setPlayerTwoSkin("manTwo");
 			}
 		} else {
 			if (p2ManTwoScale > 1.5f) {
