@@ -26,7 +26,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private int restartY = 300;
 	private int exitX = 425;
 	private int exitY = 300;
-	private int loser;
+	private Integer loser;
 
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
@@ -138,7 +138,6 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 				if (exitImageScale > 1f)
 					exitImageScale -= scaleStep * delta;
 				}
-			
 			}
 		}
 	}	
@@ -149,6 +148,6 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.FIRE_STARTER)
-		loser=(int)evt.getValue(); 
+		loser=(Integer)evt.getValue(); 
 	}
 }
