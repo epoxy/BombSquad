@@ -6,7 +6,7 @@ public class GameOptions {
 	private String playerOneSkin = "Devil";
 	private String playerTwoSkin = "BombMan";
 	
-	private int boardChooser = 1;
+	private int chosenBoard = 1;
 	
 	
 	public static GameOptions getInstance() {
@@ -31,15 +31,15 @@ public class GameOptions {
 	}
 	
 	public IBoard getBoard() {
-		if (boardChooser == 1) {
+		if (chosenBoard == 1) {
 			return new BoardClassic();
-		} else if (boardChooser == 0) {
+		} else if (chosenBoard == 0) {
 			return new BoardEmpty();
-		} else if (boardChooser == 4) {
+		} else if (chosenBoard == 4) {
 			return new BoardRandom();
-		}else if (boardChooser == 5) {
+		}else if (chosenBoard == 5) {
 			return new BoardPower();
-		}else if (boardChooser == 6) {
+		}else if (chosenBoard == 6) {
 			return new BoardWater();	
 		}else {
 			return new BoardWithoutBlocks();
@@ -47,7 +47,7 @@ public class GameOptions {
 	}
 	
 	public void setBoard(int i){
-		boardChooser = i;
+		chosenBoard = i;
 	}
 	
 }
