@@ -12,7 +12,10 @@ import se.chalmers.group11.core.BoardClassic;
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.IBoard;
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
+import se.chalmers.group11.utils.InitMusic;
 
 public class SplashScreenState extends BasicGameState {
 
@@ -30,7 +33,7 @@ public class SplashScreenState extends BasicGameState {
 	private Image startImage = null;
 	private Image exitImage = null;
 	private Image splashImage = null;
-	
+
 	public SplashScreenState(int stateID) {
 		this.stateID = stateID;
 	}
@@ -102,9 +105,7 @@ public class SplashScreenState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
-//	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException
-//    {
-//        super.enter(gc, sb);
-//        iB = new Board();
-//	}
+	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException{
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MENUMUSIC_STARTER, 4));
+	}
 }

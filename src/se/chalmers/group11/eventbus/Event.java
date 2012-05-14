@@ -12,7 +12,11 @@ public class Event {
         PLAYER_KILLED,
         MUSIC_STARTER, 
         MUSIC_STOPPER,
+        MENUMUSIC_STARTER,
+        MENUMUSIC_STOPPER,
+        WINNINGMUSIC_STARTER
     }
+    
     private final Tag tag;
     // The new value (sent to GUI)
     private final Object value;

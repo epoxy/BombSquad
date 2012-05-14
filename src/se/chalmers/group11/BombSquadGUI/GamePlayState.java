@@ -227,5 +227,6 @@ public class GamePlayState extends BasicGameState {
 			throws SlickException {
 		super.enter(gc, sb);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER, 3));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER, 4));
 	}
 }

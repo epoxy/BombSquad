@@ -4,15 +4,20 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.Event.Tag;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
 
 public class InitMusic implements IEventHandler {
 
 	private Music backgroundMusic;
+	private Music menuMusic;
+	private Music winningMusic;
 
 	public InitMusic() throws SlickException {
-		backgroundMusic = new Music("Music/kirby.ogg");
+		backgroundMusic = new Music("Music/battletheme.ogg");
+		menuMusic = new Music("Music/intro.ogg");
+		winningMusic = new Music("Music/winning.ogg");
 		EventBus.INSTANCE.register(this);
 	}
 
@@ -26,6 +31,16 @@ public class InitMusic implements IEventHandler {
 		}
 		if (evt.getTag() == Event.Tag.MUSIC_STOPPER) {
 			backgroundMusic.stop();
+		}
+		if (evt.getTag() == Event.Tag.MENUMUSIC_STARTER){
+			menuMusic.play();
+			menuMusic.loop();
+		}
+		if (evt.getTag() == Event.Tag.MENUMUSIC_STOPPER){
+			menuMusic.stop();
+		}
+		if (evt.getTag() == Event.Tag.WINNINGMUSIC_STARTER){
+			winningMusic.play();
 		}
 	}
 }
