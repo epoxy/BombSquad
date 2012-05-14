@@ -39,10 +39,10 @@ public class GamePlayState extends BasicGameState {
 
 	private Image bombImage = null;
 	private Image grassImage = null;
-	private Image treeImage = null;
-	private Image extraFirePower = null;
+	private Image boxImage = null;
+	private Image fireUpImage = null;
 	private Image blockImage = null;
-	private Image extrabomb = null;
+	private Image bombUpImage = null;
 	private Image fireImage = null;
 	private Image waterImage = null;
 
@@ -68,10 +68,10 @@ public class GamePlayState extends BasicGameState {
 
 		bombImage = new Image("Images/Bomb.png");
 		grassImage = new Image("Images/grass.jpg");
-		treeImage = new Image("Images/treeBox.jpg");
-		extraFirePower = new Image("Images/extraFire.jpg");
+		boxImage = new Image("Images/treeBox.jpg");
+		fireUpImage = new Image("Images/extraFire.jpg");
 		blockImage = new Image("Images/rocks.png");
-		extrabomb = new Image("Images/rocket.png");
+		bombUpImage = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
 		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
@@ -99,16 +99,16 @@ public class GamePlayState extends BasicGameState {
 					.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
-					treeImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
+					boxImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof PowerItemTile) {
-					extraFirePower.draw(i * 60, j * 60, 60, 60);
+					fireUpImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BlockTile) {
 					blockImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof ExtraBombsTile) {
-					extrabomb.draw(i * 60, j * 60, 60, 60);
+					bombUpImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof FireTile) {
 					fireImage.draw(i * 60, j * 60, 60, 60);
