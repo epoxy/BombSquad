@@ -3,7 +3,6 @@ package se.chalmers.group11.core;
 /**
  * An interface representing different tiles. 
  */
-import org.newdawn.slick.state.StateBasedGame;
 
 public interface GameTile {
 	/**
