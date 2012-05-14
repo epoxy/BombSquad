@@ -24,7 +24,7 @@ public class BombTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p, StateBasedGame sbg) {
+	public void performOnPlayer(Player p) {
 		// TODO Auto-generated method stub
 	}
 

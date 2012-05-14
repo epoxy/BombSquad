@@ -20,7 +20,7 @@ public class BoxTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p, StateBasedGame sbg) {
+	public void performOnPlayer(Player p) {
 		// TODO Auto-generated method stub
 
 	}

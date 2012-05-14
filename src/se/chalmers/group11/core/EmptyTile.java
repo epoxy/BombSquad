@@ -19,7 +19,7 @@ public class EmptyTile implements GameTile {
 	}
 
 	@Override
-	public void performOnPlayer(Player p, StateBasedGame sbg) {
+	public void performOnPlayer(Player p) {
 
 	}
 

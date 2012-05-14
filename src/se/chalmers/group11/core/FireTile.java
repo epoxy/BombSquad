@@ -27,7 +27,7 @@ public class FireTile implements GameTile {// observable
 	}
 
 	@Override
-	public void performOnPlayer(final Player p, final StateBasedGame sbg) {
+	public void performOnPlayer(final Player p) {
 		System.out.println("Player: " + (p.getPlayerNumber()) + " sucks");
 
 		ActionListener taskPerformer = new ActionListener() {

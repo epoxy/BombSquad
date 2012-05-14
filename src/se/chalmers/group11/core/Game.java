@@ -61,7 +61,7 @@ public class Game {
 
 				p.move(deltaX, deltaY);
 
-				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p, sbg);
+				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
 				gameBoard.setToTile(p.getX(), p.getY(),

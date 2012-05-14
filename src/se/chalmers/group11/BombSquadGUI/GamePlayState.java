@@ -187,7 +187,7 @@ public class GamePlayState extends BasicGameState {
 			// ser om han ska dö på rutan han är
 			game.getBoard()
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
-					.performOnPlayer(game.getPlayer(j), sbg);
+					.performOnPlayer(game.getPlayer(j));
 		}
 		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
 			//checks if it corresponds with position of enemy, If so, kill player
