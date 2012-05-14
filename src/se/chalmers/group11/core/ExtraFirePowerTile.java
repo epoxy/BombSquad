@@ -2,7 +2,10 @@ package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
-public class PowerItemTile implements GameTile {
+/**
+ * A class representing a ExtraFirePowerTile
+ */
+public class ExtraFirePowerTile implements GameTile {
 
 	@Override
 	public boolean canReceivePlayer() {

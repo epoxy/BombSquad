@@ -1,59 +1,69 @@
 package se.chalmers.group11.core;
 
-public class TileFactory {
 /**
- * 	
- * @return a BombTile
+ * Factory class for available tiles
  */
+public class TileFactory {
+	/**
+	 * 
+	 * @return a BombTile
+	 */
 	public static GameTile getBombTile() {
 		return new BombTile();
 	}
-/**
- * 
- * @return a FireTile
- */
+
+	/**
+	 * 
+	 * @return a FireTile
+	 */
 	public static GameTile getFireTile() {
 		return new FireTile();
 	}
-/**
- * 
- * @return a BoxTile
- */
+
+	/**
+	 * 
+	 * @return a BoxTile
+	 */
 	public static GameTile getBoxTile() {
 		return new BoxTile();
 	}
-/**
- * 
- * @return a BlockTile
- */
+
+	/**
+	 * 
+	 * @return a BlockTile
+	 */
 	public static GameTile getBlockTile() {
 		return new BlockTile();
 	}
-/**
- * 
- * @return a EmptyTile
- */
+
+	/**
+	 * 
+	 * @return a EmptyTile
+	 */
 	public static GameTile getEmptyTile() {
 		return new EmptyTile();
 	}
-/**
- * 
- * @return a PowerItemTile
- */
+
+	/**
+	 * 
+	 * @return a PowerItemTile
+	 */
 	public static GameTile getPowerItemTile() {
-		return new PowerItemTile();
+		return new ExtraFirePowerTile();
 	}
-/**
- * 
- * @return a ExtraBombsTile
- */
+
+	/**
+	 * 
+	 * @return a ExtraBombsTile
+	 */
 	public static GameTile getExtraBombs() {
 		return new ExtraBombsTile();
 	}
-/**
- * 	
- * @return a WaterTile
- */
+
+	/**
+	 * 
+	 * @return a WaterTile
+	 */
 	public static GameTile getWaterTile() {
 		return new WaterTile();
 	}

@@ -2,6 +2,9 @@ package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A class representing a WaterTile
+ */
 public class WaterTile implements GameTile {
 
 	public WaterTile() {

@@ -2,6 +2,9 @@ package se.chalmers.group11.core;
 
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A class representing an ExtraBombsTile
+ */
 public class ExtraBombsTile implements GameTile {
 
 	@Override
@@ -18,15 +21,5 @@ public class ExtraBombsTile implements GameTile {
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
 		p.incrementBombs();
 	}
-
-//	@Override
-//	public int getX() {
-//		return 0;
-//	}
-//
-//	@Override
-//	public int getY() {
-//		return 0;
-//	}
 
 }

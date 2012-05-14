@@ -7,6 +7,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 
+/**
+ * A class representing a FireTile
+ */
 public class FireTile implements GameTile {// observable
 
 	public FireTile() {
