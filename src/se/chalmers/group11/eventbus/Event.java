@@ -9,9 +9,6 @@ public class Event {
     // All possible types of events listed
     public enum Tag {
         FIRE_STARTER,
-        I_EVEN,
-        I_CHANGED, 
-        RESULT_CHANGED, 
     }
     private final Tag tag;
     // The new value (sent to GUI)

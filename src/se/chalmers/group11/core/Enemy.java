@@ -14,10 +14,8 @@ public class Enemy {
 	public void move(int deltaX, int deltaY) {
 		x+=deltaX;
 		y+=deltaY;
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+	}
+	public void killPlayer(){
+		
 	}
 }
