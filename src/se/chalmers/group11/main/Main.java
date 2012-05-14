@@ -10,6 +10,7 @@ import se.chalmers.group11.bombsquadgui.ChooseCharacterState;
 import se.chalmers.group11.bombsquadgui.GameOverState;
 import se.chalmers.group11.bombsquadgui.GamePlayState;
 import se.chalmers.group11.bombsquadgui.SplashScreenState;
+import se.chalmers.group11.utils.InitMusic;
 
 public class Main extends StateBasedGame {
 
@@ -23,11 +24,11 @@ public class Main extends StateBasedGame {
 		super("BombSquad");
 		this.addState(new ChooseBoardState(CHOOSEBOARDSTATE));
 		this.addState(new GamePlayState(GAMEPLAYSTATE));
-		this.addState(new GameOverState(GAMEOVERSTATE/*, null*/));
+		this.addState(new GameOverState(GAMEOVERSTATE/* , null */));
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
 		this.addState(new ChooseCharacterState(CHOOSECHARACTERSTATE));
 		this.enterState(SPLASHSCREENSTATE);
-//		this.enterState(GAMEOVERSTATE);
+		// this.enterState(GAMEOVERSTATE);
 	}
 
 	@Override
@@ -43,6 +44,7 @@ public class Main extends StateBasedGame {
 		AppGameContainer app = new AppGameContainer(new Main());
 		app.setTitle("BombSquad");
 		app.setDisplayMode(660, 660, false);
+		
 		app.start();
 	}
 

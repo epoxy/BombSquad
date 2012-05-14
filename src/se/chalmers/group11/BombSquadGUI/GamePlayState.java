@@ -30,6 +30,7 @@ import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
+import se.chalmers.group11.utils.InitMusic;
 import se.chalmers.group11.utils.InitSound;
 import se.chalmers.group11.utils.SpriteSheets;
 
@@ -54,14 +55,15 @@ public class GamePlayState extends BasicGameState {
 	private SpriteSheets sprite2;
 	private SpriteSheets sprite3;
 	private Game game;
-	private int enemyDelayer=1;
+	private int enemyDelayer = 1;
 	private StateBasedGame sb;
 
 	private LoserKeeper t;
+	private InitMusic music;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
-		//t = new TimeKeeper(sb);
+		// t = new TimeKeeper(sb);
 	}
 
 	@Override
@@ -82,23 +84,23 @@ public class GamePlayState extends BasicGameState {
 		sprite2 = new SpriteSheets("Devil");
 		sprite3 = new SpriteSheets("Devil");
 		t = new LoserKeeper(sbg);
+		music = new InitMusic();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
-
 		for (int i = 0; i < game.getBoard().getSideLength(); i++) {
 			for (int j = 0; j < game.getBoard().getSideLength(); j++) {
 				if (game.getBoard().getTile(i, j) instanceof BombTile) {
 					grassImage.getScaledCopy(0.08f)
-					.draw(i * 60, j * 60, 60, 60);
+							.draw(i * 60, j * 60, 60, 60);
 					bombImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof EmptyTile) {
 					grassImage.getScaledCopy(0.08f)
-					.draw(i * 60, j * 60, 60, 60);
+							.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BoxTile) {
 					boxImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
@@ -120,15 +122,15 @@ public class GamePlayState extends BasicGameState {
 				}
 			}
 		}
-		
-		sprite1.drawAnimation(game.getPlayer(0).getX() * 60,
-				game.getPlayer(0).getY() * 60, 60, 60);
 
-		sprite2.drawAnimation(game.getPlayer(1).getX() * 60,
-				game.getPlayer(1).getY() * 60, 60, 60);
+		sprite1.drawAnimation(game.getPlayer(0).getX() * 60, game.getPlayer(0)
+				.getY() * 60, 60, 60);
 
-		sprite3.drawAnimation(game.getEnemy().getX() * 60,
-				game.getEnemy().getY() * 60, 60, 60);
+		sprite2.drawAnimation(game.getPlayer(1).getX() * 60, game.getPlayer(1)
+				.getY() * 60, 60, 60);
+
+		sprite3.drawAnimation(game.getEnemy().getX() * 60, game.getEnemy()
+				.getY() * 60, 60, 60);
 
 	}
 
@@ -184,8 +186,8 @@ public class GamePlayState extends BasicGameState {
 		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
 			// ser om han ska dö på rutan han är
 			game.getBoard()
-			.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
-			.performOnPlayer(game.getPlayer(j), sbg);
+					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
+					.performOnPlayer(game.getPlayer(j), sbg);
 		}
 		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
 			//checks if it corresponds with position of enemy, If so, kill player
@@ -196,9 +198,9 @@ public class GamePlayState extends BasicGameState {
 			}
 		}
 		enemyDelayer++;
-		if(enemyDelayer%50==1){
+		if (enemyDelayer % 50 == 1) {
 			game.moveEnemyRandomly();
-			enemyDelayer=1;
+			enemyDelayer = 1;
 		}
 	}
 
@@ -211,11 +213,19 @@ public class GamePlayState extends BasicGameState {
 	public void enter(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER, 4));
 		game = new Game(GameOptions.getInstance().getBoard());
 		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
-		//this.sb=sb;
+		// this.sb=sb;
+	}
+
+	@Override
+	public void leave(GameContainer gc, StateBasedGame sb)
+			throws SlickException {
+		super.enter(gc, sb);
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER, 3));
 	}
 }

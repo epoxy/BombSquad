@@ -2,13 +2,16 @@ package se.chalmers.group11.eventbus;
 
 /**
  * A single event
+ * 
  * @author hajo
- *
+ * 
  */
 public class Event {
     // All possible types of events listed
     public enum Tag {
         PLAYER_KILLED,
+        MUSIC_STARTER, 
+        MUSIC_STOPPER,
     }
     private final Tag tag;
     // The new value (sent to GUI)
@@ -27,6 +30,4 @@ public class Event {
     public String toString() {
         return "Event [tag=" + tag + ", value=" + value + "]"; // Useful for debug
     } 
-    
-    
 }

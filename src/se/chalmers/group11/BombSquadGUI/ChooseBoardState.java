@@ -17,6 +17,8 @@ import se.chalmers.group11.core.BoardWithoutBlocks;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.IBoard;
+import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 
 public class ChooseBoardState extends BasicGameState {
@@ -33,7 +35,6 @@ public class ChooseBoardState extends BasicGameState {
 	private int powboardY = 100;
 	private int waterboardX = 450;
 	private int waterboardY = 400;
-	
 
 	private float boardWithoutBlocksImageScale = 0.2f;
 	private float classicBoardImageScale = 0.2f;
@@ -51,7 +52,7 @@ public class ChooseBoardState extends BasicGameState {
 	private Image powboard = null;
 	private Image waterboard = null;
 
-	//private static IBoard iB;
+	// private static IBoard iB;
 
 	public ChooseBoardState(int stateID) {
 		this.stateID = stateID;
@@ -78,8 +79,8 @@ public class ChooseBoardState extends BasicGameState {
 		boardWithoutBlocks.draw(exitX, exitY, boardWithoutBlocksImageScale);
 		boxBoard.draw(boxBoardStartX, boxBoardStartY, boardWithBoxes);
 		randomboard2.draw(board2X, board2Y, randomboard2ImageScale);
-		powboard.draw(powboardX,powboardY,powboardImageScale);
-		waterboard.draw(waterboardX,waterboardY,waterboardImageScale);
+		powboard.draw(powboardX, powboardY, powboardImageScale);
+		waterboard.draw(waterboardX, waterboardY, waterboardImageScale);
 	}
 
 	@Override
@@ -97,8 +98,8 @@ public class ChooseBoardState extends BasicGameState {
 		boolean insidePowBoard = false;
 		boolean insideWaterBoard = false;
 
-		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150 && mouseY >= classicBoardY
-				&& mouseY <= classicBoardY + 150) {
+		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150
+				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
 
 		} else if (mouseX >= exitX && mouseX <= exitX + 150 && mouseY >= exitY
@@ -114,7 +115,7 @@ public class ChooseBoardState extends BasicGameState {
 		} else if (mouseX >= powboardX && mouseX <= powboardX + 150
 				&& mouseY >= powboardY && mouseY <= powboardY + 150) {
 			insidePowBoard = true;
-		}else if (mouseX >= waterboardX && mouseX <= waterboardX + 150
+		} else if (mouseX >= waterboardX && mouseX <= waterboardX + 150
 				&& mouseY >= waterboardY && mouseY <= waterboardY + 150) {
 			insideWaterBoard = true;
 		}
@@ -167,7 +168,8 @@ public class ChooseBoardState extends BasicGameState {
 		} else {
 			if (boardWithBoxes > 0.2f)
 				boardWithBoxes -= scaleStep * delta;
-		}if (insidePowBoard) {
+		}
+		if (insidePowBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(5);
 				sb.enterState(Main.GAMEPLAYSTATE);
@@ -177,7 +179,8 @@ public class ChooseBoardState extends BasicGameState {
 		} else {
 			if (powboardImageScale > 0.2f)
 				powboardImageScale -= scaleStep * delta;
-		}if (insideWaterBoard) {
+		}
+		if (insideWaterBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(6);
 				sb.enterState(Main.GAMEPLAYSTATE);
@@ -187,7 +190,7 @@ public class ChooseBoardState extends BasicGameState {
 		} else {
 			if (waterboardImageScale > 0.2f)
 				waterboardImageScale -= scaleStep * delta;
-		}	
+		}
 	}
 
 	@Override
@@ -195,11 +198,8 @@ public class ChooseBoardState extends BasicGameState {
 		return stateID;
 	}
 
-
-
-	/*public void enter(GameContainer gc, StateBasedGame sb)
-			throws SlickException {
-		super.enter(gc, sb);
-		iB = new BoardClassic();
-	}*/
+	/*
+	 * public void enter(GameContainer gc, StateBasedGame sb) throws
+	 * SlickException { super.enter(gc, sb); iB = new BoardClassic(); }
+	 */
 }
