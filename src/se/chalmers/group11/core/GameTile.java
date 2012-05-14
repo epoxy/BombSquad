@@ -10,8 +10,6 @@ public interface GameTile {
 
 	public void performOnPlayer(Player p, StateBasedGame sbg);
 	
-	public int getX();
-	
-	public int getY();
+
 
 }

@@ -4,9 +4,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class BoxTile implements GameTile {
 
-	private int x;
-	private int y;
-	
 	@Override
 	public boolean canReceivePlayer() {
 		// TODO Auto-generated method stub
@@ -23,18 +20,6 @@ public class BoxTile implements GameTile {
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public int getX() {
-
-		return x;
-	}
-
-	@Override
-	public int getY() {
-
-		return y;
 	}
 
 }

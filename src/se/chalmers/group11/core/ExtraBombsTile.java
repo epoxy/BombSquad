@@ -19,14 +19,14 @@ public class ExtraBombsTile implements GameTile {
 		p.incrementBombs();
 	}
 
-	@Override
-	public int getX() {
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		return 0;
-	}
+//	@Override
+//	public int getX() {
+//		return 0;
+//	}
+//
+//	@Override
+//	public int getY() {
+//		return 0;
+//	}
 
 }

@@ -4,8 +4,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class BlockTile implements GameTile {
 	
-	private int x;
-	private int y;
 
 	public BlockTile() {
 	
@@ -24,18 +22,6 @@ public class BlockTile implements GameTile {
 	@Override
 	public void performOnPlayer(Player p, StateBasedGame sbg) {
 
-	}
-
-	@Override
-	public int getX() {
-
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		
-		return y;
 	}
 
 }

@@ -5,9 +5,6 @@ import org.newdawn.slick.state.StateBasedGame;
 public class BombTile implements GameTile {
 	public BombTile() {
 	}
-	
-	private int x;
-	private int y;
 
 	@Override
 	public boolean canReceivePlayer() {
@@ -28,15 +25,4 @@ public class BombTile implements GameTile {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public int getX() {
-	
-		return x;
-	}
-
-	@Override
-	public int getY() {
-
-		return y;
-	}
 }
