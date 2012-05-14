@@ -22,12 +22,7 @@ public class FireTile implements GameTile{//observable
 	private int x;
 	private int y;
 	
-	private SomeoneLostDetector detector;
-	private GameOverState admin;
-	
-	public FireTile(SomeoneLostDetector detector){
-		this.detector=detector;
-		admin = new GameOverState(2, detector);
+	public FireTile(){
 	}
 	@Override
 	public boolean canReceivePlayer() {
@@ -47,11 +42,6 @@ public class FireTile implements GameTile{//observable
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				//sbg.enterState(Main.GAMEOVERSTATE);
-				admin.subscribe();
-				detector.someoneLost(p.getPlayerNumber());
-				
 				EventBus.INSTANCE.publish(new Event(Event.Tag.FIRE_STARTER, p.getPlayerNumber()));
 			}
 		};

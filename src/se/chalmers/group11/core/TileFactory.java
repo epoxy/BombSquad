@@ -13,7 +13,7 @@ public class TileFactory {
  * @return a FireTile
  */
 	public static GameTile getFireTile() {
-		return new FireTile(new SomeoneLostDetector());
+		return new FireTile();
 	}
 /**
  * 

@@ -11,7 +11,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.SomeoneLostDetector;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
@@ -19,7 +18,7 @@ import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.main.Main;
 
 
-public class GameOverState extends BasicGameState implements Observer, IEventHandler{
+public class GameOverState extends BasicGameState implements IEventHandler{
 	
 	private int menuX = 0;
 	private int menuY = 300;
@@ -42,11 +41,8 @@ public class GameOverState extends BasicGameState implements Observer, IEventHan
 	
 	int stateID = 2;
 	
-	private SomeoneLostDetector detector;
-	
-	public GameOverState(int stateID, SomeoneLostDetector detector){
+	public GameOverState(int stateID){
 		this.stateID = stateID;
-		this.detector=detector;
 		EventBus.INSTANCE.register(this);
 	}
 
@@ -75,9 +71,6 @@ public class GameOverState extends BasicGameState implements Observer, IEventHan
 			winnerPlayer1.draw(20, 20, menuImageScale);
 			System.out.println("Spelare 2s bild");
 		}
-//		else{
-//			;
-//		}
 	}
 
 	@Override
@@ -153,16 +146,6 @@ public class GameOverState extends BasicGameState implements Observer, IEventHan
 	public int getID() {
 		return stateID;
 	}
-	public void subscribe( ) {
-		detector.addObserver(this); 
-	}//subscriber
-	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println("Spelaren som vann är nummer: " + arg.toString());
-		loser = Integer.parseInt(arg.toString());
-		System.out.println("Spelaren " + loser);
-	}
-
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.FIRE_STARTER)
