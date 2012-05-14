@@ -165,7 +165,7 @@ public class GamePlayState extends BasicGameState {
 			sprite2.AnimationRight();
 			game.setPlayerPosition(1, 0, 1);
 		}
-		if (input.isKeyPressed(Input.KEY_Q)) {
+		if (input.isKeyPressed(Input.KEY_LCONTROL)) {
 			sound.startPlayBombSound();
 			game.setBomb(1);
 		}

@@ -21,8 +21,8 @@ import se.chalmers.group11.main.Main;
 
 public class ChooseBoarderState extends BasicGameState {
 
-	private int startX = 50;
-	private int startY = 100;
+	private int classicBoardX = 50;
+	private int classicBoardY = 100;
 	private int exitX = 50;
 	private int exitY = 400;
 	private int boxBoardStartX = 250;
@@ -36,7 +36,7 @@ public class ChooseBoarderState extends BasicGameState {
 	
 
 	private float boardWithoutBlocksImageScale = 0.2f;
-	private float randomBoardImageScale = 0.2f;
+	private float classicBoardImageScale = 0.2f;
 	private float boardWithBoxes = 0.2f;
 	private float randomboard2ImageScale = 0.2f;
 	private float powboardImageScale = 0.2f;
@@ -44,7 +44,7 @@ public class ChooseBoarderState extends BasicGameState {
 	private float scaleStep = 0.0001f;
 
 	int stateID = 0;
-	private Image randomBoard = null;
+	private Image classicBoard = null;
 	private Image boardWithoutBlocks = null;
 	private Image boxBoard = null;
 	private Image randomboard2 = null;
@@ -63,7 +63,7 @@ public class ChooseBoarderState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		randomBoard = new Image("Images/randomBoard.png");
+		classicBoard = new Image("Images/randomBoard.png");
 		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
 		boxBoard = new Image("Images/boxBoard.png");
 		randomboard2 = new Image("Images/randomBoard2.png");
@@ -74,7 +74,7 @@ public class ChooseBoarderState extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		randomBoard.draw(startX, startY, randomBoardImageScale);
+		classicBoard.draw(classicBoardX, classicBoardY, classicBoardImageScale);
 		boardWithoutBlocks.draw(exitX, exitY, boardWithoutBlocksImageScale);
 		boxBoard.draw(boxBoardStartX, boxBoardStartY, boardWithBoxes);
 		randomboard2.draw(board2X, board2Y, randomboard2ImageScale);
@@ -90,16 +90,16 @@ public class ChooseBoarderState extends BasicGameState {
 		int mouseX = input.getMouseX();
 		int mouseY = input.getMouseY();
 
-		boolean insideStartGame = false;
+		boolean insideClassicBoard = false;
 		boolean insideExitGame = false;
 		boolean insideBoxBoard = false;
 		boolean insideRandomBoard = false;
 		boolean insidePowBoard = false;
 		boolean insideWaterBoard = false;
 
-		if (mouseX >= startX && mouseX <= startX + 150 && mouseY >= startY
-				&& mouseY <= startY + 150) {
-			insideStartGame = true;
+		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150 && mouseY >= classicBoardY
+				&& mouseY <= classicBoardY + 150) {
+			insideClassicBoard = true;
 
 		} else if (mouseX >= exitX && mouseX <= exitX + 150 && mouseY >= exitY
 				&& mouseY <= exitY + 150) {
@@ -119,17 +119,18 @@ public class ChooseBoarderState extends BasicGameState {
 			insideWaterBoard = true;
 		}
 
-		if (insideStartGame) {
-			if (randomBoardImageScale < 0.25f)
-				randomBoardImageScale += scaleStep * delta;
+		if (insideClassicBoard) {
+			if (classicBoardImageScale < 0.25f)
+				classicBoardImageScale += scaleStep * delta;
 
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+				GameOptions.getInstance().setBoard(1);
 				sb.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
 
-			if (randomBoardImageScale > 0.2f) {
-				randomBoardImageScale -= scaleStep * delta;
+			if (classicBoardImageScale > 0.2f) {
+				classicBoardImageScale -= scaleStep * delta;
 
 			}
 			if (insideExitGame) {

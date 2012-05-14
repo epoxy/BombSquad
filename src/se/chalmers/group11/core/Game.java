@@ -214,7 +214,7 @@ public class Game {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
-						&& Math.random() > 0.3) {
+						&& Math.random() > 0.7) {
 					gameBoard.setToTile(fireX, fireY,
 							TileFactory.getPowerItemTile());
 					gameBoard.setTmpToTile(fireX, fireY,
