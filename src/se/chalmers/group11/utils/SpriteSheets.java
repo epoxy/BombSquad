@@ -13,7 +13,7 @@ public class SpriteSheets {
 		Image[] movementDown = new Image[2];
 		Image[] movementLeft = new Image[2];
 		Image[] movementRight = new Image[2];
-
+		
 		if (s == "BombMan") {
 			movementUp[0] = new Image("Images/bombManUP.gif");
 			movementUp[1] = new Image("Images/bombManUP2.gif");
@@ -77,9 +77,9 @@ public class SpriteSheets {
 
 		int[] duration = { 150, 150 };
 		up = new Animation(movementUp, duration, true);
-		down = new Animation(movementDown, duration, false);
-		left = new Animation(movementLeft, duration, false);
-		right = new Animation(movementRight, duration, false);
+		down = new Animation(movementDown, duration, true);
+		left = new Animation(movementLeft, duration, true);
+		right = new Animation(movementRight, duration, true);
 		sprite = right;
 	}
 
