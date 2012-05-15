@@ -3,25 +3,29 @@ package se.chalmers.group11.utils;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-/**A class to handle all the sprites
+
+/**
+ * A class to handle all the sprites
  * 
  * @author BombSquad
- *
+ * 
  */
 public class SpriteSheets {
 
 	private Animation sprite, up, down, left, right;
-/**
- * 
- * @param s holds the name of the sprite
- * @throws SlickException
- */
+
+	/**
+	 * 
+	 * @param s
+	 *            holds the name of the sprite
+	 * @throws SlickException
+	 */
 	public SpriteSheets(String s) throws SlickException {
 		Image[] movementUp = new Image[2];
 		Image[] movementDown = new Image[2];
 		Image[] movementLeft = new Image[2];
 		Image[] movementRight = new Image[2];
-		
+
 		if (s == "BombMan") {
 			movementUp[0] = new Image("Images/bombManUP.gif");
 			movementUp[1] = new Image("Images/bombManUP2.gif");
@@ -101,6 +105,27 @@ public class SpriteSheets {
 			movementLeft[1] = new Image("Images/antonLEFT2.png");
 			movementRight[0] = new Image("Images/antonRIGHT.png");
 			movementRight[1] = new Image("Images/antonRIGHT2.png");
+		}
+		if (s == "tomas") {
+			movementUp[0] = new Image("Images/tomasUP.png");
+			movementUp[1] = new Image("Images/tomasUP2.png");
+			movementDown[0] = new Image("Images/tomasDOWN.png");
+			movementDown[1] = new Image("Images/tomasDOWN2.png");
+			movementLeft[0] = new Image("Images/tomasLEFT.png");
+			movementLeft[1] = new Image("Images/tomasLEFT2.png");
+			movementRight[0] = new Image("Images/tomasRIGHT.png");
+			movementRight[1] = new Image("Images/tomasRIGHT2.png");
+		}
+		if (s == "henrik") {
+			movementUp[0] = new Image("Images/henkeUP.png");
+			movementUp[1] = new Image("Images/henkeUP2.png");
+			movementDown[0] = new Image("Images/henkeDOWN.png");
+			movementDown[1] = new Image("Images/henkeDOWN2.png");
+			movementLeft[0] = new Image("Images/henkeLEFT.png");
+			movementLeft[1] = new Image("Images/henkeLEFT2.png");
+			movementRight[0] = new Image("Images/henkeRIGHT.png");
+			movementRight[1] = new Image("Images/henkeRIGHT2.png");
+
 		}
 
 		int[] duration = { 150, 150 };
