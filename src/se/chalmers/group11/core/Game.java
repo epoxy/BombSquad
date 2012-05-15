@@ -15,15 +15,17 @@ import se.chalmers.group11.eventbus.IEventHandler;
 public class Game implements IEventHandler {
 	private Player player[];
 	private Enemy enemy;
-	//private static Game game = null;
+	// private static Game game = null;
 	private IBoard gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int sideLength = 11;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
+
 	/**
 	 * @constructor creates two player start positions and a board
-	 * @param iB the board
+	 * @param iB
+	 *            the board
 	 */
 	public Game(IBoard iB) {
 		gameBoard = iB;
@@ -34,12 +36,12 @@ public class Game implements IEventHandler {
 		EventBus.INSTANCE.register(this);
 	}
 
-	//	public static synchronized Game getInstance(IBoard iB) {
-	//		if (game == null) {
-	//			game = new Game(iB);
-	//		}
-	//		return game;
-	//	}
+	// public static synchronized Game getInstance(IBoard iB) {
+	// if (game == null) {
+	// game = new Game(iB);
+	// }
+	// return game;
+	// }
 
 	/*
 	 * public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
@@ -51,9 +53,12 @@ public class Game implements IEventHandler {
 	 */
 	/**
 	 * 
-	 * @param deltaX the x direction the player will take
-	 * @param deltaY the y direction the player will take
-	 * @param playerIndex variable representing the two players
+	 * @param deltaX
+	 *            the x direction the player will take
+	 * @param deltaY
+	 *            the y direction the player will take
+	 * @param playerIndex
+	 *            variable representing the two players
 	 * @setPlayerPosition moves the player
 	 */
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
@@ -75,9 +80,11 @@ public class Game implements IEventHandler {
 			}
 		}
 	}
+
 	/**
 	 * @setBomb place bombs on the board
-	 * @param playerIndex variable representing the two players
+	 * @param playerIndex
+	 *            variable representing the two players
 	 */
 	public void setBomb(final int playerIndex) {
 		amountOfBombs = player[playerIndex].getAmountOfBombs();
@@ -92,19 +99,25 @@ public class Game implements IEventHandler {
 			;
 		}
 	}
+
 	/**
 	 * 
-	 * @param playerIndex variable representing the two players
+	 * @param playerIndex
+	 *            variable representing the two players
 	 * @return return player
 	 */
 	public Player getPlayer(int playerIndex) {
 		return player[playerIndex];
 	}
+
 	/**
 	 * 
-	 * @param bombX x coordinate for placed bomb
-	 * @param bombY y coordinate for  placed bomb
-	 * @param playerIndex variable representing the two players
+	 * @param bombX
+	 *            x coordinate for placed bomb
+	 * @param bombY
+	 *            y coordinate for placed bomb
+	 * @param playerIndex
+	 *            variable representing the two players
 	 * @bombCountdown starts bombtimer
 	 */
 	public void bombCountdown(final int bombX, final int bombY,
@@ -112,10 +125,11 @@ public class Game implements IEventHandler {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				explodeBomb(bombX, bombY, playerIndex);
-				System.out.println("Eld ritas ut");
-				// fire
+				if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
+					explodeBomb(bombX, bombY, playerIndex);
+					System.out.println("Eld ritas ut");
+					// fire
+				}
 			}
 		};
 
@@ -124,30 +138,36 @@ public class Game implements IEventHandler {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	/**
 	 * 
-	 * @param bombX x coordinate for placed bomb
-	 * @param bombY y coordinate for placed bomb
-	 * @param playerIndex variable representing the two players
+	 * @param bombX
+	 *            x coordinate for placed bomb
+	 * @param bombY
+	 *            y coordinate for placed bomb
+	 * @param playerIndex
+	 *            variable representing the two players
 	 * @explodeBomb checks tiles next to the placed bomb and explodes
 	 */
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 
 		placeFire(bombX, bombY);
-//TODO refakrorisera, samla till en loop
+		// TODO refakrorisera, samla till en loop
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
 
 					placeFire(bombX + i, bombY);
-					break;	
+					break;
 				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
 					break;
 				}
 				// TODO still doesn«t work good, if you hit the fire with a
-				// stone the next tile in the same direction should not be fired
-				// up! but it does now a bad solution is to do the instanceof
+				// stone the next tile in the same direction should not be
+				// fired
+				// up! but it does now a bad solution is to do the
+				// instanceof
 				// check, we have to find a better solution though
 
 				placeFire(bombX + i, bombY);
@@ -195,10 +215,13 @@ public class Game implements IEventHandler {
 		}
 		player[playerIndex].incrementBombs();
 	}
+
 	/**
 	 * 
-	 * @param bombX x coordinate of placed bomb
-	 * @param bombY y coordinate of placed bomb
+	 * @param bombX
+	 *            x coordinate of placed bomb
+	 * @param bombY
+	 *            y coordinate of placed bomb
 	 * @placeFire place fire on bomb coordinates
 	 */
 	private void placeFire(int bombX, int bombY) {
@@ -206,13 +229,16 @@ public class Game implements IEventHandler {
 			gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
 			setFireTileToEmptyTile(bombX, bombY);
 		}
-
 	}
+
 	/**
 	 * 
-	 * @param fireX x coordinate of placed bomb
-	 * @param fireY y coordinate of placed bomb
-	 * @setFireTileToEmptyTile changes the tiles touched by fire to either poweritemtiles or just emptytiles
+	 * @param fireX
+	 *            x coordinate of placed bomb
+	 * @param fireY
+	 *            y coordinate of placed bomb
+	 * @setFireTileToEmptyTile changes the tiles touched by fire to either
+	 *                         poweritemtiles or just emptytiles
 	 */
 	private void setFireTileToEmptyTile(final int fireX, final int fireY) {
 		ActionListener taskPerformer = new ActionListener() {
@@ -233,22 +259,21 @@ public class Game implements IEventHandler {
 							TileFactory.getExtraBombs());
 					gameBoard.setTmpToTile(fireX, fireY,
 							TileFactory.getEmptyTile());
-				}	
+				}
 
 				else {
-					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile){
+					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
 						gameBoard.setToTile(fireX, fireY,
 								TileFactory.getWaterTile());
 						System.out.println("watertile");
-					}else{
-					gameBoard.setToTile(fireX, fireY,
-							TileFactory.getEmptyTile());
-					System.out.println("emptyTile?");
-					
+					} else {
+						gameBoard.setToTile(fireX, fireY,
+								TileFactory.getEmptyTile());
+						System.out.println("emptyTile?");
 
-					gameBoard.setTmpToTile(fireX, fireY,
-							TileFactory.getEmptyTile());
-					System.out.println("emptyTile?");
+						gameBoard.setTmpToTile(fireX, fireY,
+								TileFactory.getEmptyTile());
+						System.out.println("emptyTile?");
 					}
 				}
 
@@ -259,15 +284,19 @@ public class Game implements IEventHandler {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	/**
 	 * 
-	 * @param x the x coordinate
-	 * @param y the y coordinate
+	 * @param x
+	 *            the x coordinate
+	 * @param y
+	 *            the y coordinate
 	 * @return true if it is inside the board limits
 	 */
 	private boolean isInbounds(int x, int y) {
 		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
 	}
+
 	/**
 	 * 
 	 * @return board
@@ -275,28 +304,32 @@ public class Game implements IEventHandler {
 	public IBoard getBoard() {
 		return gameBoard;
 	}
-	public void gameOver(){
+
+	public void gameOver() {
 		sbg.enterState(2);
 	}
-	public Enemy getEnemy(){
+
+	public Enemy getEnemy() {
 		return enemy;
 	}
 
 	public void moveEnemyRandomly() {
-		double rand = Math.random()*4;
-				if(rand>=0 && rand<1){
-					tryToMoveEnemy(1,0);
-				}else if(rand>=1 && rand<2){
-					tryToMoveEnemy(0,1);
-				}else if(rand>=2 && rand<3){
-					tryToMoveEnemy(-1,0);
-				}else{
-					tryToMoveEnemy(0,-1);
-				}
+		double rand = Math.random() * 4;
+		if (rand >= 0 && rand < 1) {
+			tryToMoveEnemy(1, 0);
+		} else if (rand >= 1 && rand < 2) {
+			tryToMoveEnemy(0, 1);
+		} else if (rand >= 2 && rand < 3) {
+			tryToMoveEnemy(-1, 0);
+		} else {
+			tryToMoveEnemy(0, -1);
+		}
 	}
+
 	private void tryToMoveEnemy(int i, int j) {
-		if(isInbounds(i+enemy.getX(), j+enemy.getY())){
-			if (gameBoard.getTile(i+enemy.getX(), j+enemy.getY()).canReceivePlayer()) {
+		if (isInbounds(i + enemy.getX(), j + enemy.getY())) {
+			if (gameBoard.getTile(i + enemy.getX(), j + enemy.getY())
+					.canReceivePlayer()) {
 				enemy.move(i, j);
 			}
 		}
@@ -304,9 +337,9 @@ public class Game implements IEventHandler {
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag()==Tag.ENEMY_KILLED){
+		if (evt.getTag() == Tag.ENEMY_KILLED) {
 			enemy = new Enemy();
 		}
-		
+
 	}
 }
