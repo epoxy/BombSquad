@@ -100,6 +100,9 @@ public class SplashScreenState extends BasicGameState {
 					exitImageScale -= scaleStep * delta;
 			}
 		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+			gc.exit();
+		}
 	}
 	@Override
 	public int getID() {
