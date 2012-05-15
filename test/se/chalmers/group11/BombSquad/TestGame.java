@@ -3,6 +3,7 @@ package se.chalmers.group11.bombsquad;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.newdawn.slick.SlickException;
 
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.FireTile;
@@ -16,7 +17,7 @@ import se.chalmers.group11.core.TileFactory;
 public class TestGame {
 
 	@Test
-	public void testExplodeBomb() {
+	public void testExplodeBomb() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.explodeBomb(2, 2, 0);//Explodes a bomb at coordinates 2,2
 		//Checks that the fire from the bomb is spreading to the five tiles nearby but not further
@@ -31,7 +32,7 @@ public class TestGame {
 		assertFalse(game.getBoard().getTile(2, 0) instanceof FireTile);
 	}
 	@Test
-	public void testSetPlayerPosition() { //Use case: move
+	public void testSetPlayerPosition() throws SlickException { //Use case: move
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(1).move(-1, 0);//Adjusts player2 to so that he can move to the right
 		for(int i=0; i<=1; i++){//Testing both players
@@ -41,7 +42,7 @@ public class TestGame {
 			assertTrue(r-s == 1); // Difference between destination and source should be 1 step
 		}
 	}
-	public void testSetPlayerPositionToObstacle() { //Use case: move
+	public void testSetPlayerPositionToObstacle() throws SlickException { //Use case: move
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).move(0, -1);//Adjusts player1 and player2 to so that they can not move to the right
 		game.getPlayer(1).put(8, 9);
@@ -53,7 +54,7 @@ public class TestGame {
 		}
 	}
 	@Test
-	public void pickUpExtraFire(){
+	public void pickUpExtraFire() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
 		int fP = game.getPlayer(0).getFirePower();
@@ -62,7 +63,7 @@ public class TestGame {
 		assertTrue(game.getPlayer(0).getFirePower()==fP+1);
 	}
 	@Test
-	public void explodeBombExtraFire(){
+	public void explodeBombExtraFire() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
 		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
