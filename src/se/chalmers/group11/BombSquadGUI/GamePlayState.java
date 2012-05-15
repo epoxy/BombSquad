@@ -117,6 +117,8 @@ public class GamePlayState extends BasicGameState {
 					bombUpImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof FireTile) {
+					grassImage.getScaledCopy(0.08f)
+					.draw(i * 60, j * 60, 60, 60);
 					fireImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof WaterTile) {
