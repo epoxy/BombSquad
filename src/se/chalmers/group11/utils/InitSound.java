@@ -22,7 +22,6 @@ public class InitSound implements IEventHandler{
 		playerScream = new Sound("Music/playerScream.ogg");
 		enemyScream = new Sound("Music/enemyScream.ogg");
 		EventBus.INSTANCE.register(this);
-
 	}
 	
 	public void startPlayBombSound() {
