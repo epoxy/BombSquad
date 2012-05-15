@@ -18,7 +18,8 @@ public class Event {
         ENEMY_KILLED, 
         EXPLODE_BOMB,
         PLACE_BOMB,
-        MORE_FIRE
+        MORE_FIRE,
+        MORE_BOMBS
     }
     
     private final Tag tag;
