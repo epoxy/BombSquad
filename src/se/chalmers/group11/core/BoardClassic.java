@@ -1,21 +1,37 @@
+/*
+ * BoardClassic
+ * 
+ * Version 1.0
+ *
+ * Date 2012-05-15
+ * 
+ * No rights reserved
+ */
 package se.chalmers.group11.core;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
+/**
+ *  
+        
+A class representing a classic board with blocks symmetrically placed with one tile 
+between each other. The other tiles are randomized and can either contain a box or be empty.
+ *
+ * @version
+        
+1.0 18 May 2012
+ * @author          
+        
+Anton Palmqvist
+ */
 public class BoardClassic implements IBoard{
-	
-	private int sideLength = 11;
-	private GameTile gameTiles[][];// ändra till private!
+
+	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
  * @constructor generates a board with blocktiles on every other tile
  */
 	public BoardClassic() {
-		gameTilestmp = new GameTile[sideLength][sideLength];
-		gameTiles = new GameTile[sideLength][sideLength];
+		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
+		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 
@@ -28,7 +44,6 @@ public class BoardClassic implements IBoard{
 				}
 			}
 		}
-
 		for (int i = 1; i < gameTiles.length - 1; i += 2) {
 			for (int j = 1; j < gameTiles[i].length - 1; j += 2) {
 				gameTiles[i][j] = TileFactory.getBlockTile();
@@ -49,19 +64,16 @@ public class BoardClassic implements IBoard{
 		return gameTilestmp[x][y];
 	}
 /**
- * @return the sideLength of the board
+ * @return the SIDELENGTH of the board
  */
-	public int getSideLength() {
-		return sideLength;
-	}
-
 	public void setToTile(int x, int y, GameTile tile) {
 		gameTiles[x][y] = tile;		
 	}
 	public void setTmpToTile(int x, int y, GameTile tile) {
 		gameTilestmp[x][y] = tile;		
 	}
-	
-		
-	
+	@Override
+	public int getSideLength() {
+		return SIDELENGTH;
+	}
 }

@@ -1,13 +1,12 @@
 package se.chalmers.group11.core;
 
 public class BoardPower implements IBoard {
-	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 	
 	public BoardPower(){
-		gameTiles = new GameTile[sideLength][sideLength];
-		gameTilestmp = new GameTile[sideLength][sideLength];
+		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
+		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				double rand = Math.random();
@@ -28,7 +27,7 @@ public class BoardPower implements IBoard {
 	}
 	@Override
 	public int getSideLength() {
-		return sideLength;
+		return SIDELENGTH;
 	}
 	@Override
 	public void setToTile(int x, int y, GameTile tile) {

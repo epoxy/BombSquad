@@ -2,15 +2,14 @@ package se.chalmers.group11.core;
 
 public class BoardWithoutBlocks implements IBoard {
 	
-	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
  * @constructor generates a board that is without any blocks
  */
 	public BoardWithoutBlocks() {
-		gameTilestmp = new GameTile[sideLength][sideLength];
-		gameTiles = new GameTile[sideLength][sideLength];
+		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
+		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles.length; j++) {
 				gameTiles[i][j] = TileFactory.getBoxTile();
@@ -29,11 +28,11 @@ public class BoardWithoutBlocks implements IBoard {
 		return gameTiles[x][y];
 	}
 /**
- * @return the sideLength of the board
+ * @return the SIDELENGTH of the board
  */
 	@Override
 	public int getSideLength() {
-		return sideLength;
+		return SIDELENGTH;
 	}
 
 	@Override
