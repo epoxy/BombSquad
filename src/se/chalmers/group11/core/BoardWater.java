@@ -2,13 +2,12 @@ package se.chalmers.group11.core;
 
 public class BoardWater implements IBoard {
 
-	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 	
 	public BoardWater() {
-		gameTilestmp = new GameTile[sideLength][sideLength];
-		gameTiles = new GameTile[sideLength][sideLength];
+		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
+		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 
@@ -39,7 +38,7 @@ public class BoardWater implements IBoard {
 
 	@Override
 	public int getSideLength() {
-		return sideLength;
+		return SIDELENGTH;
 	}
 
 	@Override

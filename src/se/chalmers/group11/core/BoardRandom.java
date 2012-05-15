@@ -2,15 +2,14 @@ package se.chalmers.group11.core;
 
 public class BoardRandom implements IBoard{
 	
-	private int sideLength = 11;
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
  * @constructor generates a board with random placed blocks and boxes 	
  */
 	public BoardRandom(){
-		gameTiles = new GameTile[sideLength][sideLength];
-		gameTilestmp = new GameTile[sideLength][sideLength];
+		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
+		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
 		for (int i = 0; i < gameTiles.length; i++) {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				double rand = Math.random();
@@ -37,11 +36,11 @@ public class BoardRandom implements IBoard{
 		return gameTiles[x][y];
 	}
 /**
- * @return the sideLength of the board
+ * @return the SIDELENGTH of the board
  */
 	@Override
 	public int getSideLength() {
-		return sideLength;
+		return SIDELENGTH;
 	}
 
 	@Override
