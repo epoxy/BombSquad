@@ -15,7 +15,8 @@ public class Event {
         MENUMUSIC_STARTER,
         MENUMUSIC_STOPPER,
         WINNINGMUSIC_STARTER, 
-        ENEMY_KILLED
+        ENEMY_KILLED, 
+        EXPLODE_BOMB
     }
     
     private final Tag tag;
