@@ -3,11 +3,19 @@ package se.chalmers.group11.utils;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-
+/**A class to handle all the sprites
+ * 
+ * @author BombSquad
+ *
+ */
 public class SpriteSheets {
 
 	private Animation sprite, up, down, left, right;
-
+/**
+ * 
+ * @param s holds the name of the sprite
+ * @throws SlickException
+ */
 	public SpriteSheets(String s) throws SlickException {
 		Image[] movementUp = new Image[2];
 		Image[] movementDown = new Image[2];
