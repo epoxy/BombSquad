@@ -13,12 +13,13 @@ import se.chalmers.group11.main.Main;
 
 public class ChooseCharacterState extends BasicGameState {
 	private int stateID;
-	
+
 	private int nextButtonX = 500;
 	private int nextButtonY = 500;
 	private int thumbsY = 120;
 	private int thumbsY2 = 200;
 	private int thumbsY3 = 280;
+	private int thumbsY4 = 400;
 	private int p1DevilX = 50;
 	private int p2DevilX = 360;
 	private int p1BombManX = 120;
@@ -35,7 +36,11 @@ public class ChooseCharacterState extends BasicGameState {
 	private int p2mackanX = 360;
 	private int p1antonX = 120;
 	private int p2antonX = 430;
-	
+	private int p1tomasX = 50;
+	private int p2tomasX = 360;
+	private int p1henrikX = 120;
+	private int p2henrikX = 430;
+
 	private float nextButtonScale = 0.5f;
 	private float nextButtonScaleStep = 0.0001f;
 	private float p1DevilScale = 1.5f;
@@ -55,7 +60,11 @@ public class ChooseCharacterState extends BasicGameState {
 	private float p2mackanScale = 1.5f;
 	private float p1antonScale = 1.5f;
 	private float p2antonScale = 1.5f;
-	
+	private float p1tomasScale = 1.5f;
+	private float p2tomasScale = 1.5f;
+	private float p1henrikScale = 1.5f;
+	private float p2henrikScale = 1.5f;
+
 	private Image nextButton;
 	private Image playerOneText;
 	private Image playerTwoText;
@@ -67,14 +76,13 @@ public class ChooseCharacterState extends BasicGameState {
 	private Image manTwo;
 	private Image mackan;
 	private Image anton;
-
+	private Image tomas;
+	private Image henrik;
 
 	public ChooseCharacterState(int stateID) {
 		this.stateID = stateID;
 
 	}
-
-
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -89,8 +97,9 @@ public class ChooseCharacterState extends BasicGameState {
 		man = new Image("Images/manDOWN.gif");
 		manTwo = new Image("Images/mantwoDOWN.gif");
 		mackan = new Image("Images/mackanDOWN.png");
-		anton = new Image("Images/antonDown.png");
-
+		anton = new Image("Images/antonDOWN.png");
+		tomas = new Image("Images/tomasDOWN.png");
+		henrik = new Image("Images/henkeDOWN.png");
 	}
 
 	@Override
@@ -111,10 +120,14 @@ public class ChooseCharacterState extends BasicGameState {
 		man.draw(p2manX, thumbsY2, p2ManScale);
 		manTwo.draw(p1mantwoX, thumbsY2, p1ManTwoScale);
 		manTwo.draw(p2mantwoX, thumbsY2, p2ManTwoScale);
-		mackan.draw(p1mackanX,thumbsY3,p1mackanScale);
-		mackan.draw(p2mackanX,thumbsY3,p2mackanScale);
-		anton.draw(p1antonX,thumbsY3,p1antonScale);
-		anton.draw(p2antonX,thumbsY3,p2antonScale);
+		mackan.draw(p1mackanX, thumbsY3, p1mackanScale);
+		mackan.draw(p2mackanX, thumbsY3, p2mackanScale);
+		anton.draw(p1antonX, thumbsY3, p1antonScale);
+		anton.draw(p2antonX, thumbsY3, p2antonScale);
+		tomas.draw(p1tomasX, thumbsY4, p1tomasScale);
+		tomas.draw(p2tomasX, thumbsY4, p2tomasScale);
+		henrik.draw(p1henrikX, thumbsY4, p1henrikScale);
+		henrik.draw(p2henrikX, thumbsY4, p2henrikScale);
 
 	}
 
@@ -143,6 +156,10 @@ public class ChooseCharacterState extends BasicGameState {
 		boolean insideP2mackan = false;
 		boolean insideP1anton = false;
 		boolean insideP2anton = false;
+		boolean insideP1tomas = false;
+		boolean insideP2tomas = false;
+		boolean insideP1henrik = false;
+		boolean insideP2henrik = false;
 
 		if (mouseX >= nextButtonX
 				&& mouseX <= nextButtonX + nextButton.getWidth()
@@ -211,40 +228,64 @@ public class ChooseCharacterState extends BasicGameState {
 			insideP2man = true;
 		}
 		if (mouseX >= p1mantwoX
-				&& mouseX <= p1mantwoX + man.getWidth() * p1ManScale
+				&& mouseX <= p1mantwoX + manTwo.getWidth() * p1ManScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + man.getHeight() * p1ManScale) {
+				&& mouseY <= thumbsY2 + manTwo.getHeight() * p1ManScale) {
 			insideP1manTwo = true;
 		}
 		if (mouseX >= p2mantwoX
-				&& mouseX <= p2mantwoX + man.getWidth() * p2ManScale
+				&& mouseX <= p2mantwoX + manTwo.getWidth() * p2ManScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + man.getHeight() * p2ManScale) {
+				&& mouseY <= thumbsY2 + manTwo.getHeight() * p2ManScale) {
 			insideP2manTwo = true;
 		}
 		if (mouseX >= p1mackanX
-				&& mouseX <= p1mackanX + man.getWidth() * p1mackanScale
+				&& mouseX <= p1mackanX + mackan.getWidth() * p1mackanScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + man.getHeight() * p1mackanScale) {
+				&& mouseY <= thumbsY3 + mackan.getHeight() * p1mackanScale) {
 			insideP1mackan = true;
 		}
 		if (mouseX >= p2mackanX
-				&& mouseX <= p2mackanX + man.getWidth() * p2mackanScale
+				&& mouseX <= p2mackanX + mackan.getWidth() * p2mackanScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + man.getHeight() * p2mackanScale) {
+				&& mouseY <= thumbsY3 + mackan.getHeight() * p2mackanScale) {
 			insideP2mackan = true;
 		}
 		if (mouseX >= p1antonX
-				&& mouseX <= p1antonX + man.getWidth() * p1antonScale
+				&& mouseX <= p1antonX + anton.getWidth() * p1antonScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + man.getHeight() * p1antonScale) {
+				&& mouseY <= thumbsY3 + anton.getHeight() * p1antonScale) {
 			insideP1anton = true;
 		}
 		if (mouseX >= p2antonX
-				&& mouseX <= p2antonX + man.getWidth() * p2antonScale
+				&& mouseX <= p2antonX + anton.getWidth() * p2antonScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + man.getHeight() * p2antonScale) {
+				&& mouseY <= thumbsY3 + anton.getHeight() * p2antonScale) {
 			insideP2anton = true;
+		}
+		if (mouseX >= p1tomasX
+				&& mouseX <= p1tomasX + tomas.getWidth() * p1tomasScale
+				&& mouseY >= thumbsY4
+				&& mouseY <= thumbsY4 + tomas.getHeight() * p1tomasScale) {
+			insideP1tomas = true;
+		}
+		if (mouseX >= p2tomasX
+				&& mouseX <= p2tomasX + tomas.getWidth() * p2tomasScale
+				&& mouseY >= thumbsY4
+				&& mouseY <= thumbsY4 + tomas.getHeight() * p2tomasScale) {
+			insideP2tomas = true;
+		}
+		if (mouseX >= p1henrikX
+				&& mouseX <= p1henrikX + henrik.getWidth() * p1henrikScale
+				&& mouseY >= thumbsY4
+				&& mouseY <= thumbsY4 + henrik.getHeight() * p1henrikScale) {
+			insideP1henrik = true;
+		}
+		if (mouseX >= p2henrikX
+				&& mouseX <= p2henrikX + henrik.getWidth() * p1henrikScale
+				&& mouseY >= thumbsY4
+				&& mouseY <= thumbsY4 + henrik.getHeight() * p1henrikScale) {
+			insideP2henrik = true;
 		}
 		if (insideNextButton) {
 			if (nextButtonScale < 0.55f)
@@ -289,7 +330,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p1GingerScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerOneSkin("Ginger");
-				
+
 			}
 		} else {
 			if (p1GingerScale > 1.5f) {
@@ -439,6 +480,50 @@ public class ChooseCharacterState extends BasicGameState {
 		} else {
 			if (p2antonScale > 1.5f) {
 				p2antonScale -= thumbsScaleStep * delta;
+			}
+		}
+		if (insideP1tomas) {
+			if (p1tomasScale < 1.65f)
+				p1tomasScale += thumbsScaleStep * delta;
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				GameOptions.getInstance().setPlayerOneSkin("tomas");
+			}
+		} else {
+			if (p1tomasScale > 1.5f) {
+				p1tomasScale -= thumbsScaleStep * delta;
+			}
+		}
+		if (insideP2tomas) {
+			if (p2tomasScale < 1.65f)
+				p2tomasScale += thumbsScaleStep * delta;
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				GameOptions.getInstance().setPlayerTwoSkin("tomas");
+			}
+		} else {
+			if (p2tomasScale > 1.5f) {
+				p2tomasScale -= thumbsScaleStep * delta;
+			}
+		}
+		if (insideP1henrik) {
+			if (p1henrikScale < 1.65f)
+				p1henrikScale += thumbsScaleStep * delta;
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				GameOptions.getInstance().setPlayerOneSkin("henrik");
+			}
+		} else {
+			if (p1henrikScale > 1.5f) {
+				p1henrikScale -= thumbsScaleStep * delta;
+			}
+		}
+		if (insideP2henrik) {
+			if (p2henrikScale < 1.65f)
+				p2henrikScale += thumbsScaleStep * delta;
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				GameOptions.getInstance().setPlayerTwoSkin("henrik");
+			}
+		} else {
+			if (p2henrikScale > 1.5f) {
+				p2henrikScale -= thumbsScaleStep * delta;
 			}
 		}
 	}
