@@ -191,6 +191,11 @@ public class GamePlayState extends BasicGameState {
 					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
 					.performOnPlayer(game.getPlayer(j));
 		}
+		
+		//Checks the enemyposition and kills the enemy if there is fire there
+		game.getBoard().getTile(game.getEnemy().getX(), game.getEnemy().getY())
+		.performOnEnemy();
+		
 		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
 			//checks if it corresponds with position of enemy, If so, kill player
 			if(game.getPlayer(j).getX()==game.getEnemy().getX() && 
@@ -199,13 +204,6 @@ public class GamePlayState extends BasicGameState {
 						game.getPlayer(j).getPlayerNumber()));
 			}
 		}
-		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
-			// ser om han ska dö på rutan han är
-			game.getBoard()
-					.getTile(game.getEnemy().getX(), game.getEnemy().getY())
-					.performOnEnemy();
-		}
-		
 		
 		enemyDelayer++;
 		if (enemyDelayer % 50 == 1) {
