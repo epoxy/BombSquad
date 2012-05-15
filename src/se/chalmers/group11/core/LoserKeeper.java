@@ -35,6 +35,11 @@ Anton Palmqvist
 public class LoserKeeper implements IEventHandler{
 	private StateBasedGame sb;
 	
+	/**
+	 * Constructor for creating a new LoserKeeper.
+	 * 
+	 * @param sb the current statebasedgame
+	 */
 	public LoserKeeper(StateBasedGame sb){
 		EventBus.INSTANCE.register(this);
 		this.sb=sb;
