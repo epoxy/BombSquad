@@ -92,6 +92,16 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/mackanRIGHT.png");
 			movementRight[1] = new Image("Images/mackanRIGHT2.png");
 		}
+		if (s == "anton") {
+			movementUp[0] = new Image("Images/antonUP.png");
+			movementUp[1] = new Image("Images/antonUP2.png");
+			movementDown[0] = new Image("Images/antonDOWN.png");
+			movementDown[1] = new Image("Images/antonDOWN2.png");
+			movementLeft[0] = new Image("Images/antonLEFT.png");
+			movementLeft[1] = new Image("Images/antonLEFT2.png");
+			movementRight[0] = new Image("Images/antonRIGHT.png");
+			movementRight[1] = new Image("Images/antonRIGHT2.png");
+		}
 
 		int[] duration = { 150, 150 };
 		up = new Animation(movementUp, duration, true);
