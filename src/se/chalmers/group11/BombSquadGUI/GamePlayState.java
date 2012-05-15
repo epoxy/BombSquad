@@ -81,7 +81,7 @@ public class GamePlayState extends BasicGameState {
 		sound = new InitSound();
 
 		sprite1 = new SpriteSheets("BombMan");
-		sprite2 = new SpriteSheets("Devil");
+		sprite2 = new SpriteSheets("mackan");
 		sprite3 = new SpriteSheets("Devil");
 		t = new LoserKeeper(sbg);
 		music = new InitMusic();
