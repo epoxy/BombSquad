@@ -23,6 +23,8 @@ between each other. The other tiles are randomized and can either contain a box 
 Anton Palmqvist
  */
 public class BoardClassic implements IBoard{
+	
+	/* A class implementation comment can go here. */
 
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
