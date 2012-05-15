@@ -191,6 +191,9 @@ public class ChooseBoardState extends BasicGameState {
 			if (waterboardImageScale > 0.2f)
 				waterboardImageScale -= scaleStep * delta;
 		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+			sb.enterState(Main.CHOOSECHARACTERSTATE);
+		}
 	}
 
 	@Override

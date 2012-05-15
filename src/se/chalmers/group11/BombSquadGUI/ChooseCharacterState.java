@@ -301,6 +301,9 @@ public class ChooseCharacterState extends BasicGameState {
 
 			}
 		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+			sb.enterState(Main.SPLASHSCREENSTATE);
+		}
 		if (insideP1Devil) {
 			if (p1DevilScale < 1.65f)
 				p1DevilScale += thumbsScaleStep * delta;
