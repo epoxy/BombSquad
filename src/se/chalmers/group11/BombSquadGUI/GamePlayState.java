@@ -182,7 +182,7 @@ public class GamePlayState extends BasicGameState {
 			game.setBomb(1);
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			sbg.enterState(Main.GAMEOVERSTATE);
+			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
 
 		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och

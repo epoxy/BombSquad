@@ -9,7 +9,7 @@ public class InitSound {
 
 	public InitSound() throws SlickException {
 
-		placeBomb = new Sound("Music/ohyeah.wav");
+		placeBomb = new Sound("Music/fuse.ogg");
 
 	}
 
@@ -17,4 +17,5 @@ public class InitSound {
 
 		placeBomb.play();
 	}
+	
 }
