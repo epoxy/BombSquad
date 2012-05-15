@@ -133,7 +133,7 @@ public class SpriteSheets {
 		down = new Animation(movementDown, duration, true);
 		left = new Animation(movementLeft, duration, true);
 		right = new Animation(movementRight, duration, true);
-		sprite = right;
+		sprite = down;
 	}
 
 	public void AnimationUp() {

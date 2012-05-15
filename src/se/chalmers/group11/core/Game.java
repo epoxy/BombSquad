@@ -1,3 +1,13 @@
+/*
+ * Game
+ * 
+ * Version 1.0
+ *
+ * Date 2012-05-15
+ * 
+ * No rights reserved
+ */
+
 package se.chalmers.group11.core;
 
 import java.awt.event.ActionEvent;
@@ -14,25 +24,41 @@ import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.utils.InitSound;
 
+/**
+ *  
+        
+Class containing all logical operations of the game. 
+Handels the current board, the players and the enemy.
+The logical operations are movement of the players and enemy, 
+the putting out of bombs, the explosion of the bombs and the 
+logic of their spreading fire and the elimination of obstacles, 
+players and enemy when hit by fire.
+ *
+ * @version      
+        
+1.0 15 May 2012
+ * @author          
+        
+ProjectEleven
+ */	
+
 public class Game implements IEventHandler {
 	private Player player[];
 	private Enemy enemy;
-	// private static Game game = null;
 	private IBoard gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
-	private int sideLength = 11;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
 	private InitSound sound;
 
 	/**
 	 * @constructor creates two player start positions and a board
-	 * @param iB
+	 * @param board
 	 *            the board
 	 * @throws SlickException 
 	 */
-	public Game(IBoard iB) throws SlickException {
-		gameBoard = iB;
+	public Game(IBoard board) throws SlickException {
+		gameBoard = board;
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
 		player[1] = new Player(10, 10, 2);
@@ -70,13 +96,10 @@ public class Game implements IEventHandler {
 		Player p = player[playerIndex];
 		int nextPosX = p.getX() + deltaX;
 		int nextPosY = p.getY() + deltaY;
-
 		if (isInbounds(nextPosX, nextPosY)) {
 
 			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()) {
-
 				p.move(deltaX, deltaY);
-
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
@@ -100,10 +123,10 @@ public class Game implements IEventHandler {
 			EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 			player[playerIndex].decrementBombs();
 			bombCountdown(bombX, bombY, playerIndex);
-			// doNothing
-		} else if (amountOfBombs < 1) {
-			;
-		}
+		} 
+//			else if (amountOfBombs < 1) {
+//			;
+//		}
 	}
 
 	/**
@@ -305,7 +328,7 @@ public class Game implements IEventHandler {
 	 * @return true if it is inside the board limits
 	 */
 	private boolean isInbounds(int x, int y) {
-		return x >= 0 && x < sideLength && y >= 0 && y < sideLength;
+		return x >= 0 && x < gameBoard.getSideLength() && y >= 0 && y < gameBoard.getSideLength();
 	}
 
 	/**

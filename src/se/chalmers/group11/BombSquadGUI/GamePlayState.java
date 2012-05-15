@@ -80,8 +80,8 @@ public class GamePlayState extends BasicGameState {
 		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
 
-		sprite1 = new SpriteSheets("anton");
-		sprite2 = new SpriteSheets("mackan");
+//		sprite1 = new SpriteSheets("anton");
+//		sprite2 = new SpriteSheets("mackan");
 		sprite3 = new SpriteSheets("Devil");
 		t = new LoserKeeper(sbg);
 		music = new InitMusic();
