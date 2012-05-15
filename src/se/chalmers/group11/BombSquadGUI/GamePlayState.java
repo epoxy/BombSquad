@@ -158,7 +158,6 @@ public class GamePlayState extends BasicGameState {
 			game.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			sound.startPlayBombSound();
 			game.setBomb(0);
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
@@ -178,7 +177,6 @@ public class GamePlayState extends BasicGameState {
 			game.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_LCONTROL)) {
-			sound.startPlayBombSound();
 			game.setBomb(1);
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {

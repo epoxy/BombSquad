@@ -97,6 +97,7 @@ public class Game implements IEventHandler {
 			int bombX = player[playerIndex].getX();
 			int bombY = player[playerIndex].getY();
 			gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
+			EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 			player[playerIndex].decrementBombs();
 			bombCountdown(bombX, bombY, playerIndex);
 			// doNothing

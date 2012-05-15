@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 /**
  * A class to handle all the sprites
  * 
- * @author BombSquad
+ * @author BombSquad team
  * 
  */
 public class SpriteSheets {
