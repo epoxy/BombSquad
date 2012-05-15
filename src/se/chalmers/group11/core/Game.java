@@ -5,12 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.Event.Tag;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
+import se.chalmers.group11.utils.InitSound;
 
 public class Game implements IEventHandler {
 	private Player player[];
@@ -21,18 +23,21 @@ public class Game implements IEventHandler {
 	private int sideLength = 11;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
+	private InitSound sound;
 
 	/**
 	 * @constructor creates two player start positions and a board
 	 * @param iB
 	 *            the board
+	 * @throws SlickException 
 	 */
-	public Game(IBoard iB) {
+	public Game(IBoard iB) throws SlickException {
 		gameBoard = iB;
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
 		player[1] = new Player(10, 10, 2);
 		enemy = new Enemy();
+		sound = new InitSound();
 		EventBus.INSTANCE.register(this);
 	}
 
@@ -154,6 +159,7 @@ public class Game implements IEventHandler {
 		int playerWhoPutoutTheBomb = playerIndex;
 		gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
 		setFireTileToEmptyTile(bombX, bombY);
+		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
 		// TODO refakrorisera, samla till en loop
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX + i, bombY)) {
