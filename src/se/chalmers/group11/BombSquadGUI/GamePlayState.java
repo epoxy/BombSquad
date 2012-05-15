@@ -73,7 +73,7 @@ public class GamePlayState extends BasicGameState {
 		bombImage = new Image("Images/Bomb.png");
 		grassImage = new Image("Images/grass.jpg");
 		boxImage = new Image("Images/treeBox.jpg");
-		fireUpImage = new Image("Images/extrafire.jpg");
+		fireUpImage = new Image("Images/extrafire.png");
 		blockImage = new Image("Images/rocks.png");
 		bombUpImage = new Image("Images/rocket.png");
 		fireImage = new Image("Images/Fire.png");
@@ -106,6 +106,8 @@ public class GamePlayState extends BasicGameState {
 					boxImage.getScaledCopy(1).draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof ExtraFirePowerTile) {
+					grassImage.getScaledCopy(0.08f)
+					.draw(i * 60, j * 60, 60, 60);
 					fireUpImage.draw(i * 60, j * 60, 60, 60);
 				}
 				if (game.getBoard().getTile(i, j) instanceof BlockTile) {
