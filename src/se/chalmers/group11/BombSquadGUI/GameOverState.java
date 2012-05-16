@@ -39,11 +39,15 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer1 = null;
 	private Image winnerPlayer2 = null;
 	
-	int stateID = 2;
+	private final Integer[] playerWins = new Integer[2];
+	
+	int stateID = 2; //Förkalring
 	
 	public GameOverState(int stateID){
 		this.stateID = stateID;
 		EventBus.INSTANCE.register(this);
+		playerWins[0] = new Integer(0);
+		playerWins[1] = new Integer(0);
 	}
 
 	@Override
@@ -147,7 +151,10 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	}
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag()==Event.Tag.PLAYER_KILLED)
-		loser=(Integer)evt.getValue(); 
+		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
+			loser=(Integer)evt.getValue(); 
+			playerWins[loser-1]+=1;
+			System.out.println("\nAntal förluster p1: " + playerWins[0] + "\nAntal förluster p2: " + playerWins[1] + "\n");
+		}
 	}
 }

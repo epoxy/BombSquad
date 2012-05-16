@@ -25,22 +25,27 @@ public class FireTile implements GameTile {// observable
 		return true;
 		// TODO Auto-generated method stub
 	}
-
+	boolean done = false;
 	@Override
 	public void performOnPlayer(final Player p) {
 		System.out.println("Player: " + (p.getPlayerNumber()) + " sucks");
 
 		ActionListener taskPerformer = new ActionListener() {
+			
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
-						.getPlayerNumber()));
+				
+					EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
+							.getPlayerNumber()));
 			}
 		};
-
-		Timer t = new Timer(300, taskPerformer);
-		t.setRepeats(false);
-		t.start();
+		if(!done){
+			Timer t = new Timer(300, taskPerformer);
+			t.setRepeats(false);
+			t.start();
+		}
+		done=true;
 	}
 	public void performOnEnemy(){
 		EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMY_KILLED, 1));

@@ -4,6 +4,7 @@ package se.chalmers.group11.eventbus;
  * A single event
  * 
  * @author hajo
+ * @author Anton Palmqvist added new constructor
  * 
  */
 public class Event {
@@ -28,6 +29,10 @@ public class Event {
     public Event(Tag tag, Object value){
         this.tag = tag;
         this.value = value;
+    }
+    public Event(Tag tag){
+        this.tag = tag;
+        this.value = null;
     }
     public Tag getTag() {
         return tag;
