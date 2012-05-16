@@ -214,7 +214,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 	public void enter(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
-		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER, 4));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER));
 		game = new Game(GameOptions.getInstance().getBoard());
 		game.getPlayer(0).put(0, 0);
 		game.getPlayer(1).put(10, 10);
@@ -227,8 +227,8 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 	public void leave(GameContainer gc, StateBasedGame sb)
 			throws SlickException {
 		super.enter(gc, sb);
-		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER, 3));
-		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER, 4));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER));
 	}
 
 	@Override

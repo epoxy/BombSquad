@@ -109,6 +109,6 @@ public class SplashScreenState extends BasicGameState {
 		return stateID;
 	}
 	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException{
-		EventBus.INSTANCE.publish(new Event(Event.Tag.MENUMUSIC_STARTER, 4));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MENUMUSIC_STARTER));
 	}
 }

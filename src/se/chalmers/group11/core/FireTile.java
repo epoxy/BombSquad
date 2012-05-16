@@ -43,7 +43,7 @@ public class FireTile implements GameTile {// observable
 		done=true;
 	}
 	public void performOnEnemy(){
-		EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMY_KILLED, 1));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMY_KILLED));
 	}
 
 }
