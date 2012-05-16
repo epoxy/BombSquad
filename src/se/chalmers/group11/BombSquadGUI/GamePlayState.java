@@ -30,7 +30,7 @@ import se.chalmers.group11.utils.SpriteSheets;
 
 public class GamePlayState extends BasicGameState implements IEventHandler{
 
-	private int stateID = 1;
+	private int stateID; //Interface requires a gettable stateID, see getID()
 
 	private Image bombImage = null;
 	private Image grassImage = null;

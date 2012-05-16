@@ -53,7 +53,7 @@ public class ChooseBoardState extends BasicGameState {
 	private Image waterboard = null;
 
 	public ChooseBoardState(int stateID) {
-		this.stateID = stateID;
+		this.stateID = stateID; //Interface requires a gettable stateID, see getID()
 	}
 
 	@Override

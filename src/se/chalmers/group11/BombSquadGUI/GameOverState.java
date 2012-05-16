@@ -39,7 +39,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer2 = null;
 	
 	private final Integer[] playerWins = new Integer[2];	
-	int stateID;// = Main.GAMEOVERSTATE; //Förklaring
+	int stateID; //Interface requires a gettable stateID, see getID()
 	
 	private TrueTypeFont font;
 	

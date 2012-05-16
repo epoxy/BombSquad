@@ -29,7 +29,7 @@ public class SplashScreenState extends BasicGameState {
 	private float startImageScale = 0.5f;
 	private float scaleStep = 0.0001f;
 
-	int stateID = 3;
+	int stateID; //Interface requires a gettable stateID, see getID()
 	private Image startImage = null;
 	private Image exitImage = null;
 	private Image splashImage = null;
