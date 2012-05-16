@@ -43,6 +43,7 @@ public class Main extends StateBasedGame {
 		AppGameContainer app = new AppGameContainer(new Main());
 		app.setTitle("BombSquad");
 		app.setDisplayMode(660, 660, false);
+		app.setShowFPS(false);
 		
 		app.start();
 	}
