@@ -45,6 +45,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer1 = null;
 	private Image winnerPlayer2 = null;
 	private Image resetScore = null;
+	private Image prispall = null;
 	
 	private final Integer[] playerWins = new Integer[2];	
 	
@@ -69,6 +70,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
 		resetScore = new Image("Images/resetScore.png");
+		prispall = new Image("Images/prispall.png");
 		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);	
 		
 	}
@@ -76,19 +78,21 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		if(loser==1){
+			winnerPlayer2.draw(0, 0, (float)2.2);
+		}
+		if(loser==2){
+			winnerPlayer1.draw(0, 0, (float)2.2);
+		}
+		prispall.draw(0,0,1);
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
 		resetScore.draw(resetX, resetY, 1);
 		font.drawString(10, 10, "Player 1's Score: " + playerWins[0]);
 		font.drawString(500, 10, "Player 2's Score: " + playerWins[1]);
-		if(loser==1){
-			winnerPlayer2.draw(180, 40, 1);
-		}
-		if(loser==2){
-			winnerPlayer1.draw(180, 40, 1);
-		}
-		new SpriteSheets(winnerSkin).drawAnimation(60, 60, 60, 60);
+		new SpriteSheets(winnerSkin).drawAnimation(315, 75, 60, 60);
+		new SpriteSheets(loserSkin).drawAnimation(440, 180, 60, 60);
 	}
 
 	@Override
