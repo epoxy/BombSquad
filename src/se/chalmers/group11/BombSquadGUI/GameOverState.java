@@ -19,6 +19,7 @@ import se.chalmers.group11.main.Main;
 
 public class GameOverState extends BasicGameState implements IEventHandler{
 	
+	private int stateID; //Interface requires a gettable stateID, see getID()
 	private int menuX = 0;
 	private int menuY = 300;
 	private int restartX = 200;
@@ -39,7 +40,6 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer2 = null;
 	
 	private final Integer[] playerWins = new Integer[2];	
-	int stateID; //Interface requires a gettable stateID, see getID()
 	
 	private TrueTypeFont font;
 	

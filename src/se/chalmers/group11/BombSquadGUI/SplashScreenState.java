@@ -18,18 +18,17 @@ import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitMusic;
 
 public class SplashScreenState extends BasicGameState {
-
+	
+	private int stateID; //Interface requires a gettable stateID, see getID()
 	private int startX = 440;
 	private int startY = 200;
 	private int exitX = 440;
 	private int exitY = 550;
 
-
 	private float exitImageScale = 1;
 	private float startImageScale = 0.5f;
 	private float scaleStep = 0.0001f;
 
-	int stateID; //Interface requires a gettable stateID, see getID()
 	private Image startImage = null;
 	private Image exitImage = null;
 	private Image splashImage = null;

@@ -23,6 +23,7 @@ import se.chalmers.group11.main.Main;
 
 public class ChooseBoardState extends BasicGameState {
 
+	private int stateID; //Interface requires a gettable stateID, see getID()
 	private int classicBoardX = 50;
 	private int classicBoardY = 100;
 	private int exitX = 50;
@@ -44,7 +45,6 @@ public class ChooseBoardState extends BasicGameState {
 	private float waterboardImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
-	int stateID;
 	private Image classicBoard = null;
 	private Image boardWithoutBlocks = null;
 	private Image boxBoard = null;
@@ -53,7 +53,7 @@ public class ChooseBoardState extends BasicGameState {
 	private Image waterboard = null;
 
 	public ChooseBoardState(int stateID) {
-		this.stateID = stateID; //Interface requires a gettable stateID, see getID()
+		this.stateID = stateID;
 	}
 
 	@Override

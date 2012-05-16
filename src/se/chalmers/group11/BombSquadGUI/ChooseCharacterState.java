@@ -13,7 +13,6 @@ import se.chalmers.group11.main.Main;
 
 public class ChooseCharacterState extends BasicGameState {
 	private int stateID; //Interface requires a gettable stateID, see getID()
-
 	private int nextButtonX = 500;
 	private int nextButtonY = 500;
 	private int thumbsY = 120;
