@@ -5,7 +5,7 @@ public class BoardRandom implements IBoard{
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
- * @constructor generates a board with random placed blocks and boxes 	
+ *Generates a board with random placed blocks and boxes 	
  */
 	public BoardRandom(){
 		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];

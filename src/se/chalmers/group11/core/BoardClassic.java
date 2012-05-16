@@ -29,7 +29,7 @@ public class BoardClassic implements IBoard{
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
- * @constructor generates a board with blocktiles on every other tile
+ *Generates a board with blocktiles on every other tile
  */
 	public BoardClassic() {
 		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];

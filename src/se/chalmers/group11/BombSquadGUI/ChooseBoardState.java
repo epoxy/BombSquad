@@ -52,13 +52,8 @@ public class ChooseBoardState extends BasicGameState {
 	private Image powboard = null;
 	private Image waterboard = null;
 
-	// private static IBoard iB;
-
 	public ChooseBoardState(int stateID) {
 		this.stateID = stateID;
-		// setBoard(boardChooser);
-		// // iB = getBoard();
-		// iB = new Board();
 	}
 
 	@Override
@@ -200,9 +195,4 @@ public class ChooseBoardState extends BasicGameState {
 	public int getID() {
 		return stateID;
 	}
-
-	/*
-	 * public void enter(GameContainer gc, StateBasedGame sb) throws
-	 * SlickException { super.enter(gc, sb); iB = new BoardClassic(); }
-	 */
 }

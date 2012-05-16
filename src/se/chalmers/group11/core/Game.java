@@ -52,7 +52,7 @@ public class Game implements IEventHandler {
 	private InitSound sound;
 
 	/**
-	 * @constructor creates two player start positions and a board
+	 * Creates two player start positions and a board
 	 * @param board
 	 *            the board
 	 * @throws SlickException 
@@ -66,22 +66,6 @@ public class Game implements IEventHandler {
 		sound = new InitSound();
 		EventBus.INSTANCE.register(this);
 	}
-
-	// public static synchronized Game getInstance(IBoard iB) {
-	// if (game == null) {
-	// game = new Game(iB);
-	// }
-	// return game;
-	// }
-
-	/*
-	 * public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
-	 * 
-	 * Player p = player[playerIndex]; if( moveIsPossible(p, deltaX, deltaY)){
-	 * p.move(deltaX, deltaY); if( this.checkSomething( getTile ){ p.kill } }
-	 * 
-	 * }
-	 */
 	/**
 	 * 
 	 * @param deltaX
@@ -194,12 +178,6 @@ public class Game implements IEventHandler {
 				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
 					break;
 				}
-				// TODO still doesn«t work good, if you hit the fire with a
-				// stone the next tile in the same direction should not be
-				// fired
-				// up! but it does now a bad solution is to do the
-				// instanceof
-				// check, we have to find a better solution though
 
 				placeFire(bombX + i, bombY, playerWhoPutoutTheBomb);
 			}
@@ -310,8 +288,6 @@ public class Game implements IEventHandler {
 						System.out.println("emptyTile?");
 					}
 				}
-
-				// fire
 			}
 		};
 		Timer t = new Timer(FIRE_COUNTDOWN, taskPerformer);

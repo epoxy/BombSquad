@@ -4,7 +4,7 @@ public class BoardEmpty implements IBoard{
 	
 	private GameTile gameTiles[][];
 /**
- * @constructor generates a board without any boxes	
+ *Generates a board without any boxes	
  */
 	public BoardEmpty() {
 		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];

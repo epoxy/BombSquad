@@ -63,7 +63,6 @@ public class GamePlayState extends BasicGameState {
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
-		// t = new TimeKeeper(sb);
 	}
 
 	@Override
@@ -80,8 +79,8 @@ public class GamePlayState extends BasicGameState {
 		waterImage = new Image("Images/tile_water.jpg");
 		sound = new InitSound();
 
-//		sprite1 = new SpriteSheets("anton");
-//		sprite2 = new SpriteSheets("mackan");
+		sprite1 = new SpriteSheets("anton");
+		sprite2 = new SpriteSheets("mackan");
 		sprite3 = new SpriteSheets("Devil");
 		t = new LoserKeeper(sbg);
 		music = new InitMusic();
@@ -225,7 +224,7 @@ public class GamePlayState extends BasicGameState {
 		super.enter(gc, sb);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER, 4));
 		game = new Game(GameOptions.getInstance().getBoard());
-		game.getPlayer(0).put(0, 0);// Reset Playerpositions Funkar nu! TODO
+		game.getPlayer(0).put(0, 0);
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());

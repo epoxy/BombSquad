@@ -41,7 +41,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	
 	private final Integer[] playerWins = new Integer[2];
 	
-	int stateID = 2; //Förkalring
+	int stateID = 2; //Förklaring
 	
 	public GameOverState(int stateID){
 		this.stateID = stateID;

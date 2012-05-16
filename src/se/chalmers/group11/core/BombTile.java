@@ -17,20 +17,17 @@ public class BombTile implements GameTile {
 	@Override
 	public boolean canReceiveFire() {
 		return true;
-		// TODO lägg till receivesFire()==true så att eld på bomb leder till
-		// sprängningskedjereaktion
-		// TODO Auto-generated method stub
-
+	
 	}
 
 	@Override
 	public void performOnPlayer(Player p) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void performOnEnemy() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
