@@ -94,8 +94,8 @@ public class Game implements IEventHandler {
 	 */
 	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
 		Player p = player[playerIndex];
-		int nextPosX = p.getX() + deltaX;
-		int nextPosY = p.getY() + deltaY;
+		int nextPosX = p.getPosition().getX() + deltaX;
+		int nextPosY = p.getPosition().getY() + deltaY;
 		if (isInbounds(nextPosX, nextPosY)) {
 
 			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()) {
@@ -103,7 +103,7 @@ public class Game implements IEventHandler {
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
-				gameBoard.setToTile(p.getX(), p.getY(),
+				gameBoard.setToTile(p.getPosition().getX(), p.getPosition().getY(),
 						TileFactory.getEmptyTile());
 			}
 		}
@@ -117,8 +117,8 @@ public class Game implements IEventHandler {
 	public void setBomb(final int playerIndex) {
 		amountOfBombs = player[playerIndex].getAmountOfBombs();
 		if (amountOfBombs > 0) {
-			int bombX = player[playerIndex].getX();
-			int bombY = player[playerIndex].getY();
+			int bombX = player[playerIndex].getPosition().getX();
+			int bombY = player[playerIndex].getPosition().getY();
 			gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
 			EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 			player[playerIndex].decrementBombs();
@@ -361,8 +361,8 @@ public class Game implements IEventHandler {
 	}
 
 	private void tryToMoveEnemy(int i, int j) {
-		if (isInbounds(i + enemy.getX(), j + enemy.getY())) {
-			if (gameBoard.getTile(i + enemy.getX(), j + enemy.getY())
+		if (isInbounds(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())) {
+			if (gameBoard.getTile(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())
 					.canReceivePlayer()) {
 				enemy.move(i, j);
 			}

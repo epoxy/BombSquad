@@ -28,25 +28,34 @@ public class Enemy {
 	
 	/*Varibles containing the instance's position. Also sets 
 	 * the starting position to coordinates x=6 and y=6.*/
-	private int x=6;
-	private int y=6;
+//	private int x;
+//	private int y;
+	private Position p;
 	
-	/**
-	 * Getter for the enemys x-coordinate.
-	 * 
-	 * @return the x-position of the enemy
-	 */
-	public int getX() {
-		return x;
+	public Enemy(){
+		p = new Position(6,6);
 	}
 	
-	/**
-	 * Getter for the enemys y-coordinate.
-	 * 
-	 * @return the y-position of the enemy
-	 */
-	public int getY() {
-		return y;
+//	/**
+//	 * Getter for the enemys x-coordinate.
+//	 * 
+//	 * @return the x-position of the enemy
+//	 */
+//	public int getX() {
+//		return x;
+//	}
+//	
+//	/**
+//	 * Getter for the enemys y-coordinate.
+//	 * 
+//	 * @return the y-position of the enemy
+//	 */
+//	public int getY() {
+//		return y;
+//	}
+	
+	public Position getPosition(){
+		return p;
 	}
 	
 	/**
@@ -56,7 +65,8 @@ public class Enemy {
 	 * @param deltaY the amount of steps the enemy will go y-wise
 	 */
 	public void move(int deltaX, int deltaY) {
-		x+=deltaX;
-		y+=deltaY;
+//		x+=deltaX;
+//		y+=deltaY;
+		p.setPosition(deltaX, deltaY);
 	}
 }

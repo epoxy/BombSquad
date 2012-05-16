@@ -32,8 +32,9 @@ Anton Palmqvist
  */
 public class Player {
 
-	private int x;
-	private int y;
+//	private int x;
+//	private int y;
+	private Position p;
 	private int playerNumber;
 	private int amountOfBombs;
 	private int firePower;
@@ -46,8 +47,9 @@ public class Player {
 	 * @param playerNumber number of the player
 	 */
 	public Player(int x, int y, int playerNumber) {
-		this.x = x;
-		this.y = y;
+//		this.x = x;
+//		this.y = y;
+		p = new Position(x, y);
 		this.playerNumber=playerNumber;
 		/*amount of bombs and fire power are set to 1 by default when player is constructed*/
 		amountOfBombs = 1;
@@ -62,8 +64,9 @@ public class Player {
 	 * @param deltaY players new relative position y-wise
 	 */
 	public void move(int deltaX, int deltaY) {
-		x = x + deltaX;
-		y = y + deltaY;
+//		x = x + deltaX;
+//		y = y + deltaY;
+		p.setPosition(deltaX, deltaY);
 	}
 	
 	/**
@@ -74,24 +77,28 @@ public class Player {
 	 * @param y players new position y-wise
 	 */
 	public void put(int x, int y){
-		this.x=x;
-		this.y=y;
+//		this.x=x;
+//		this.y=y;
+		p.setPosition(x, y);
 	}
 /**
  * Getter of the x-position
  * 
- * @return players x coordinate
- */
-	public int getX() {
-		return x;
-	}
-/**
- * Getter of the y-position
- * 
- * @return players y coordinate
- */
-	public int getY() {
-		return y;
+// * @return players x coordinate
+// */
+//	public int getX() {
+//		return x;
+//	}
+///**
+// * Getter of the y-position
+// * 
+// * @return players y coordinate
+// */
+//	public int getY() {
+//		return y;
+//	}
+	public Position getPosition(){
+		return p;
 	}
 /**
  * 

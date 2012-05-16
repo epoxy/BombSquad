@@ -78,4 +78,8 @@ public class BoardClassic implements IBoard{
 	public int getSideLength() {
 		return SIDELENGTH;
 	}
+//	@Override
+//	public GameTile getTile(Position position) {
+//		return gameTiles[position.getX()][position.getY()];
+//	}
 }
