@@ -28,11 +28,15 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private int restartY = 300;
 	private int exitX = 425;
 	private int exitY = 300;
+	private int resetX = 0;
+	private int resetY = 450;
+	
 	private Integer loser;
 
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
 	private float menuImageScale = 1;
+	private float resetImageScale = 1;
 	private float scaleStep = 0.0001f;
 
 	private Image restartImage = null;
@@ -40,6 +44,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image menuImage = null;
 	private Image winnerPlayer1 = null;
 	private Image winnerPlayer2 = null;
+	private Image resetScore = null;
 	
 	private final Integer[] playerWins = new Integer[2];	
 	
@@ -63,6 +68,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		menuImage = new Image("Images/menubutton.jpg");
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
+		resetScore = new Image("Images/resetScore.png");
 		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);	
 		
 	}
@@ -73,6 +79,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
+		resetScore.draw(resetX, resetY, 1);
 		font.drawString(10, 10, "Player 1's Score: " + playerWins[0]);
 		font.drawString(500, 10, "Player 2's Score: " + playerWins[1]);
 		if(loser==1){
@@ -95,6 +102,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		boolean insideRestartGame = false;
 		boolean insideExitGame = false;
 		boolean insideMenuGame = false;
+		boolean insideResetScore = false;
 		
 		if (mouseX >= restartX && mouseX <= restartX + 150
 				&& mouseY >= restartY
@@ -110,47 +118,61 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 				&& mouseY >= menuY 
 				&& mouseY <= menuY + 150) {
 			insideMenuGame = true;
-		}	
+		} else if (mouseX >= resetX && mouseX <= resetX + 150
+				&& mouseY >= resetY 
+				&& mouseY <= resetY + 150) {
+			insideResetScore = true;
+		}
+		
 		//keeps track of the cursor location
 		if (insideRestartGame) {
-			if (restartImageScale < 1.1f)
+			if (restartImageScale < 1.1f){
 				restartImageScale += scaleStep * delta;
-
+			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				game.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
-
 			if (restartImageScale > 1f) {
 				restartImageScale -= scaleStep * delta;
-
-			}
-			if (insideMenuGame) {
-				if (menuImageScale < 1.1f)
-					menuImageScale += scaleStep * delta;
-
-				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-					game.enterState(Main.SPLASHSCREENSTATE);
-				}
-			} else {
-
-				if (menuImageScale > 1f) {
-					menuImageScale -= scaleStep * delta;
-
-				}
-			
-			if (insideExitGame) {
-				if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
-					container.exit();
-
-				if (exitImageScale < 1.1f)
-					exitImageScale += scaleStep * delta;
-			} else {
-				if (exitImageScale > 1f)
-					exitImageScale -= scaleStep * delta;
-				}
 			}
 		}
+		if (insideMenuGame) {
+			if (menuImageScale < 1.1f){
+				menuImageScale += scaleStep * delta;
+			}
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				game.enterState(Main.SPLASHSCREENSTATE);
+			}
+		} else {
+
+			if (menuImageScale > 1f) {
+					menuImageScale -= scaleStep * delta;
+			}
+		}
+		if (insideExitGame) {
+			if (exitImageScale < 1.1f){
+				exitImageScale += scaleStep * delta;
+			}
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+				container.exit();
+			}
+		} else {
+			if (exitImageScale > 1f)
+				exitImageScale -= scaleStep * delta;
+		}
+		if(insideResetScore){
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+				playerWins[0]=0;
+				playerWins[1]=0;
+			}
+
+			if (resetImageScale < 1.1f)
+				resetImageScale += scaleStep * delta;
+		} else {
+			if (resetImageScale > 1f)
+				resetImageScale -= scaleStep * delta;
+		}			
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			game.enterState(Main.SPLASHSCREENSTATE);
 		}
