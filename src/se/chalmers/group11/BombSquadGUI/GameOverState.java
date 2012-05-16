@@ -10,11 +10,13 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
 
 import se.chalmers.group11.main.Main;
+import se.chalmers.group11.utils.SpriteSheets;
 
 
 public class GameOverState extends BasicGameState implements IEventHandler{
@@ -43,6 +45,9 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	
 	private TrueTypeFont font;
 	
+	private String winnerSkin;
+	private String loserSkin;
+	
 	public GameOverState(int stateID){
 		this.stateID = stateID;
 		EventBus.INSTANCE.register(this);
@@ -58,7 +63,8 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		menuImage = new Image("Images/menubutton.jpg");
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
-		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);				
+		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);	
+		
 	}
 
 	@Override
@@ -75,6 +81,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		if(loser==2){
 			winnerPlayer1.draw(180, 40, 1);
 		}
+		new SpriteSheets(winnerSkin).drawAnimation(60, 60, 60, 60);
 	}
 
 	@Override
@@ -157,6 +164,14 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
 			loser=(Integer)evt.getValue(); 
 			playerWins[loser%2]+=1; //loser%2 equals the arraynumber of the winner
+			if(loser==2){
+				winnerSkin = GameOptions.getInstance().getPlayerOneSkin();
+				loserSkin = GameOptions.getInstance().getPlayerTwoSkin();
+			}
+			if(loser==1){
+				winnerSkin = GameOptions.getInstance().getPlayerTwoSkin();
+				loserSkin = GameOptions.getInstance().getPlayerOneSkin();
+			}
 		}
 	}
 }
