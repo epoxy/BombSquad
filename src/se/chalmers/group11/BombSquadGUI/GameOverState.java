@@ -1,5 +1,6 @@
 package se.chalmers.group11.bombsquadgui;
 
+import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,6 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -40,8 +42,9 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer2 = null;
 	
 	private final Integer[] playerWins = new Integer[2];
-	
 	int stateID = 2; //Förkalring
+	
+	private TrueTypeFont font;
 	
 	public GameOverState(int stateID){
 		this.stateID = stateID;
@@ -58,7 +61,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		menuImage = new Image("Images/menubutton.jpg");
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
-		
+		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);				
 	}
 
 	@Override
@@ -67,11 +70,13 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
+		font.drawString(10, 10, "Player 1's Score: " + playerWins[0]);
+		font.drawString(500, 10, "Player 2's Score: " + playerWins[1]);
 		if(loser==1){
-			winnerPlayer2.draw(20, 20, menuImageScale);
+			winnerPlayer2.draw(180, 40, 1);
 		}
 		if(loser==2){
-			winnerPlayer1.draw(20, 20, menuImageScale);
+			winnerPlayer1.draw(180, 40, 1);
 		}
 	}
 
