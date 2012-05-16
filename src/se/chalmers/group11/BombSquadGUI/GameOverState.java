@@ -69,11 +69,9 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		menuImage.draw(menuX, menuY, menuImageScale);
 		if(loser==1){
 			winnerPlayer2.draw(20, 20, menuImageScale);
-			System.out.println("Spelare 1s bild");
 		}
 		if(loser==2){
 			winnerPlayer1.draw(20, 20, menuImageScale);
-			System.out.println("Spelare 2s bild");
 		}
 	}
 

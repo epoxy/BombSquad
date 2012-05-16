@@ -28,14 +28,9 @@ public class FireTile implements GameTile {// observable
 	boolean done = false;
 	@Override
 	public void performOnPlayer(final Player p) {
-		System.out.println("Player: " + (p.getPlayerNumber()) + " sucks");
-
 		ActionListener taskPerformer = new ActionListener() {
-			
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 					EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
 							.getPlayerNumber()));
 			}
