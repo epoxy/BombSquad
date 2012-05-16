@@ -4,7 +4,9 @@ public class BoardWater implements IBoard {
 
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
-	
+	/**
+	 * Generates a board that with watertiles
+	 */
 	public BoardWater() {
 		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];
 		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];

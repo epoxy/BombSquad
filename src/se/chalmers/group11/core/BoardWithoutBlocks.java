@@ -5,7 +5,7 @@ public class BoardWithoutBlocks implements IBoard {
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 /**
- * @constructor generates a board that is without any blocks
+ *Generates a board that is without any blocks
  */
 	public BoardWithoutBlocks() {
 		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];

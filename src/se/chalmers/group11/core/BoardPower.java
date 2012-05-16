@@ -3,7 +3,9 @@ package se.chalmers.group11.core;
 public class BoardPower implements IBoard {
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
-	
+	/**
+	 * Generates a board with only powerUps
+	 */
 	public BoardPower(){
 		gameTiles = new GameTile[SIDELENGTH][SIDELENGTH];
 		gameTilestmp = new GameTile[SIDELENGTH][SIDELENGTH];

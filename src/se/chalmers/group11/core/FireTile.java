@@ -23,7 +23,7 @@ public class FireTile implements GameTile {// observable
 	@Override
 	public boolean canReceiveFire() {
 		return true;
-		// TODO Auto-generated method stub
+	
 	}
 	boolean done = false;
 	@Override

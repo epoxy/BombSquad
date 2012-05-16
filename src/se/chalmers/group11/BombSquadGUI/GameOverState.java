@@ -41,8 +41,8 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer1 = null;
 	private Image winnerPlayer2 = null;
 	
-	private final Integer[] playerWins = new Integer[2];
-	int stateID = 2; //Förkalring
+	private final Integer[] playerWins = new Integer[2];	
+	int stateID = 2; //Förklaring
 	
 	private TrueTypeFont font;
 	

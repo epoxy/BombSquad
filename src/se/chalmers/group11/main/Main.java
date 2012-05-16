@@ -28,7 +28,6 @@ public class Main extends StateBasedGame {
 		this.addState(new SplashScreenState(SPLASHSCREENSTATE));
 		this.addState(new ChooseCharacterState(CHOOSECHARACTERSTATE));
 		this.enterState(SPLASHSCREENSTATE);
-		// this.enterState(GAMEOVERSTATE);
 	}
 
 	@Override
