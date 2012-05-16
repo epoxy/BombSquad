@@ -49,7 +49,7 @@ public class LoserKeeper implements IEventHandler{
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
 			System.out.println("Got event" + evt.getValue());
-			sb.enterState(Main.GAMEOVERSTATE);
+			sb.enterState(Main.GAMEOVERSTATE); //Transfers to the GameOverState
 		}
 	}
 }

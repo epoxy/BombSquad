@@ -1,24 +1,14 @@
 package se.chalmers.group11.bombsquadgui;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.group11.core.BlockTile;
-import se.chalmers.group11.core.BoardClassic;
 import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.BoxTile;
 import se.chalmers.group11.core.EmptyTile;
@@ -26,7 +16,6 @@ import se.chalmers.group11.core.ExtraBombsTile;
 import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
-import se.chalmers.group11.core.IBoard;
 import se.chalmers.group11.core.ExtraFirePowerTile;
 import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
@@ -39,8 +28,6 @@ import se.chalmers.group11.utils.SpriteSheets;
 
 public class GamePlayState extends BasicGameState {
 
-	private Image bomb = null;
-	private Image player = null;
 	private int stateID = 1;
 
 	private Image bombImage = null;
@@ -52,8 +39,6 @@ public class GamePlayState extends BasicGameState {
 	private Image fireImage = null;
 	private Image waterImage = null;
 
-	private InitSound sound = null;
-
 	private SpriteSheets sprite1;
 	private SpriteSheets sprite2;
 	private SpriteSheets sprite3;
@@ -61,8 +46,9 @@ public class GamePlayState extends BasicGameState {
 	private int enemyDelayer = 1;
 	private StateBasedGame sb;
 
-	private LoserKeeper t;
-	private InitMusic music;
+	private LoserKeeper t = null;
+	private InitMusic music = null;
+	private InitSound sound = null;
 
 	public GamePlayState(int stateID) {
 		this.stateID = stateID;
@@ -148,38 +134,38 @@ public class GamePlayState extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
-			sprite1.AnimationUp();
+			sprite1.animationUp();
 			game.setPlayerPosition(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
-			sprite1.AnimationLeft();
+			sprite1.animationLeft();
 			game.setPlayerPosition(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			sprite1.AnimationDown();
+			sprite1.animationDown();
 			game.setPlayerPosition(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
-			sprite1.AnimationRight();
+			sprite1.animationRight();
 			game.setPlayerPosition(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			game.setBomb(0);
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
-			sprite2.AnimationUp();
+			sprite2.animationUp();
 			game.setPlayerPosition(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
-			sprite2.AnimationLeft();
+			sprite2.animationLeft();
 			game.setPlayerPosition(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
-			sprite2.AnimationDown();
+			sprite2.animationDown();
 			game.setPlayerPosition(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
-			sprite2.AnimationRight();
+			sprite2.animationRight();
 			game.setPlayerPosition(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_LCONTROL)) {

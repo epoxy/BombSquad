@@ -136,19 +136,19 @@ public class SpriteSheets {
 		sprite = down;
 	}
 
-	public void AnimationUp() {
+	public void animationUp() {
 		sprite = up;
 	}
 
-	public void AnimationDown() {
+	public void animationDown() {
 		sprite = down;
 	}
 
-	public void AnimationLeft() {
+	public void animationLeft() {
 		sprite = left;
 	}
 
-	public void AnimationRight() {
+	public void animationRight() {
 		sprite = right;
 	}
 

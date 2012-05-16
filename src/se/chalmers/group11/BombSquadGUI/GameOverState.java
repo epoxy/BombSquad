@@ -1,9 +1,6 @@
 package se.chalmers.group11.bombsquadgui;
 
 import java.awt.Font;
-import java.util.Observable;
-import java.util.Observer;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -146,6 +143,9 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 					exitImageScale -= scaleStep * delta;
 				}
 			}
+		}
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+			game.enterState(Main.SPLASHSCREENSTATE);
 		}
 	}	
 	@Override
