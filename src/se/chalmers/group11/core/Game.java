@@ -327,12 +327,16 @@ public class Game implements IEventHandler {
 		double rand = Math.random() * 4;
 		if (rand >= 0 && rand < 1) {
 			tryToMoveEnemy(1, 0);
+			EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMYSPRITE_RIGHT));
 		} else if (rand >= 1 && rand < 2) {
 			tryToMoveEnemy(0, 1);
+			EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMYSPRITE_DOWN));
 		} else if (rand >= 2 && rand < 3) {
 			tryToMoveEnemy(-1, 0);
+			EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMYSPRITE_LEFT));
 		} else {
 			tryToMoveEnemy(0, -1);
+			EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMYSPRITE_UP));
 		}
 	}
 

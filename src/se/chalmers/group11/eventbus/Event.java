@@ -20,7 +20,11 @@ public class Event {
         EXPLODE_BOMB,
         PLACE_BOMB,
         MORE_FIRE,
-        MORE_BOMBS
+        MORE_BOMBS, 
+        ENEMYSPRITE_DOWN,
+        ENEMYSPRITE_UP,
+        ENEMYSPRITE_LEFT,
+        ENEMYSPRITE_RIGHT
     }
     
     private final Tag tag;

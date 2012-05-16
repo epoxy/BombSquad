@@ -20,13 +20,15 @@ import se.chalmers.group11.core.ExtraFirePowerTile;
 import se.chalmers.group11.core.LoserKeeper;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.eventbus.Event;
+import se.chalmers.group11.eventbus.Event.Tag;
 import se.chalmers.group11.eventbus.EventBus;
+import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitMusic;
 import se.chalmers.group11.utils.InitSound;
 import se.chalmers.group11.utils.SpriteSheets;
 
-public class GamePlayState extends BasicGameState {
+public class GamePlayState extends BasicGameState implements IEventHandler{
 
 	private int stateID = 1;
 
@@ -50,8 +52,9 @@ public class GamePlayState extends BasicGameState {
 	private InitMusic music = null;
 	private InitSound sound = null;
 
-	public GamePlayState(int stateID) {
+	public GamePlayState(int stateID){
 		this.stateID = stateID;
+		EventBus.INSTANCE.register(this);
 	}
 
 	@Override
@@ -226,5 +229,21 @@ public class GamePlayState extends BasicGameState {
 		super.enter(gc, sb);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER, 3));
 		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER, 4));
+	}
+
+	@Override
+	public void onEvent(Event evt) {
+		if(evt.getTag()==Tag.ENEMYSPRITE_DOWN){
+			sprite3.animationDown();
+		}
+		if(evt.getTag()==Tag.ENEMYSPRITE_UP){
+			sprite3.animationUp();
+		}
+		if(evt.getTag()==Tag.ENEMYSPRITE_RIGHT){
+			sprite3.animationRight();
+		}
+		if(evt.getTag()==Tag.ENEMYSPRITE_LEFT){
+			sprite3.animationLeft();
+		}
 	}
 }

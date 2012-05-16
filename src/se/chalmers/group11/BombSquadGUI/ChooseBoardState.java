@@ -44,7 +44,7 @@ public class ChooseBoardState extends BasicGameState {
 	private float waterboardImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
-	int stateID = 0;
+	int stateID;
 	private Image classicBoard = null;
 	private Image boardWithoutBlocks = null;
 	private Image boxBoard = null;
