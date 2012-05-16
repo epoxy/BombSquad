@@ -156,8 +156,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
 			loser=(Integer)evt.getValue(); 
-			playerWins[loser-1]+=1;
-			System.out.println("\nAntal förluster p1: " + playerWins[0] + "\nAntal förluster p2: " + playerWins[1] + "\n");
+			playerWins[loser%2]+=1; //loser%2 equals the arraynumber of the winner
 		}
 	}
 }

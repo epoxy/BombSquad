@@ -31,8 +31,8 @@ public class FireTile implements GameTile {// observable
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
-							.getPlayerNumber()));
+				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
+				.getPlayerNumber()));
 			}
 		};
 		if(!done){
