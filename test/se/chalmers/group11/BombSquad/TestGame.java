@@ -5,10 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.newdawn.slick.SlickException;
 
+import se.chalmers.group11.bombsquadgui.GameOverState;
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
+import se.chalmers.group11.core.Player;
 import se.chalmers.group11.core.TileFactory;
+import se.chalmers.group11.eventbus.Event;
 /**This is an integrationstest because all other classes are trivial.
  * 
  * @author Epoxy
@@ -93,5 +96,17 @@ public class TestGame {
 		game.setBomb(0);
 		game.getPlayer(0).move(1, 0);
 		game.setBomb(0);
+	}
+	@Test
+	public void playerWins() throws SlickException {
+		Game game = new Game(new BoardEmpty());
+		GameOverState gameOver = new GameOverState(0);
+		int testPlayerOneWins1 = gameOver.getPlayerWins(2);
+		Player p = new Player(0, 0, 1);
+		gameOver.onEvent(new Event(Event.Tag.PLAYER_KILLED, p.getPlayerNumber()));
+		int testPlayerOneWins2 = gameOver.getPlayerWins(2);
+		assertTrue(testPlayerOneWins2 - testPlayerOneWins1 == 1);
+		
+
 	}
 }
