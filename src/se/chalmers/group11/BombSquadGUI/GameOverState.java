@@ -47,7 +47,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image resetScore = null;
 	private Image prispall = null;
 	
-	private final Integer[] playerWins = new Integer[2];	
+	private final Integer[] playerWins = new Integer[2];
 	
 	private TrueTypeFont font;
 	
