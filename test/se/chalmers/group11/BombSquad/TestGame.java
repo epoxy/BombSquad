@@ -147,10 +147,12 @@ public class TestGame {
 		//game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
 		game.getEnemy().move(4, 0); //moves enemy 4 steps to the right
 		game.explodeBomb(10, 6, 0); //explodes bomb at enemyposition
+		/*Forces the tile, which now is a FireTile to perform on the enemy, 
+		 * aka kill the enem.y*/
 		game.getBoard().getTile(10, 6).performOnEnemy();
+		//When enemy dies it respawns on its starting position x=6 and y=6
 		assertTrue(game.getEnemy().getX()==6 && game.getEnemy().getY()==6);
 	}
-	
 	@Test
 	public void playerWins() throws SlickException {
 		GameOverState gameOver = new GameOverState(0);
