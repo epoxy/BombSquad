@@ -57,21 +57,29 @@ public class TestGame {
 	public void pickUpExtraFire() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
-		int fP = game.getPlayer(0).getFirePower();
-		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
+		int firePower = game.getPlayer(0).getFirePower();
+		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.setPlayerPosition(1, 0, 0); //Moves player one step to the right
-		assertTrue(game.getPlayer(0).getFirePower()==fP+1);
+		assertTrue(game.getPlayer(0).getFirePower()==firePower+1);
 	}
 	@Test
 	public void explodeBombExtraFire() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).put(0, 0);
-		game.getBoard().setToTile(1, 0, TileFactory.getPowerItemTile());
+		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.setPlayerPosition(1, 0, 0);//Moves player one step to the right
 		game.explodeBomb(4, 4, 0);
 		assertTrue(game.getBoard().getTile(4, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(5, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(6, 4) instanceof FireTile);
 		assertFalse(game.getBoard().getTile(8, 4) instanceof FireTile);
+	}
+	public void pickUpExtraBombs() throws SlickException{
+		Game game = new Game(new BoardEmpty());
+		game.getPlayer(0).put(0, 0);
+		int amountOfBombs = game.getPlayer(0).getAmountOfBombs();
+		game.getBoard().setTmpToTile(0, 0, TileFactory.getExtraBombsTile());
+		game.setPlayerPosition(1, 0, 0);
+		assertTrue(game.getPlayer(0).getAmountOfBombs()==amountOfBombs+1);	
 	}
 }

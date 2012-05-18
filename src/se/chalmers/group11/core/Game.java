@@ -261,7 +261,7 @@ public class Game implements IEventHandler {
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.7) {
 					gameBoard.setToTile(fireX, fireY,
-							TileFactory.getPowerItemTile());
+							TileFactory.getExtraFirePowerTile());
 					gameBoard.setTmpToTile(fireX, fireY,
 							TileFactory.getEmptyTile());
 
@@ -269,7 +269,7 @@ public class Game implements IEventHandler {
 				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.5) {
 					gameBoard.setToTile(fireX, fireY,
-							TileFactory.getExtraBombs());
+							TileFactory.getExtraBombsTile());
 					gameBoard.setTmpToTile(fireX, fireY,
 							TileFactory.getEmptyTile());
 				}

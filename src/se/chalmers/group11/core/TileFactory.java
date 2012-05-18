@@ -48,7 +48,7 @@ public class TileFactory {
 	 * 
 	 * @return a PowerItemTile
 	 */
-	public static GameTile getPowerItemTile() {
+	public static GameTile getExtraFirePowerTile() {
 		return new ExtraFirePowerTile();
 	}
 
@@ -56,7 +56,7 @@ public class TileFactory {
 	 * 
 	 * @return a ExtraBombsTile
 	 */
-	public static GameTile getExtraBombs() {
+	public static GameTile getExtraBombsTile() {
 		return new ExtraBombsTile();
 	}
 
