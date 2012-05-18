@@ -142,6 +142,16 @@ public class TestGame {
 		assertTrue(game.getPlayer(0).getAmountOfBombs()==1); 
 	}
 	@Test
+	public void enemyKilledByFire() throws SlickException{
+		Game game = new Game(new BoardEmpty());
+		//game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
+		game.getEnemy().move(4, 0); //moves enemy 4 steps to the right
+		game.explodeBomb(10, 6, 0); //explodes bomb at enemyposition
+		game.getBoard().getTile(10, 6).performOnEnemy();
+		assertTrue(game.getEnemy().getX()==6 && game.getEnemy().getY()==6);
+	}
+	
+	@Test
 	public void playerWins() throws SlickException {
 		GameOverState gameOver = new GameOverState(0);
 		int testPlayerOneWins1 = gameOver.getPlayerWins(2);
@@ -161,4 +171,5 @@ public class TestGame {
 		int testPlayerOneWins2= gameOver.getPlayerWins(2);
 		assertTrue(testPlayerOneWins2 == 0);
 	}
+	
 }
