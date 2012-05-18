@@ -79,7 +79,7 @@ public class Player {
 	public void put(int x, int y){
 //		this.x=x;
 //		this.y=y;
-		p.setPosition(x, y);
+		p.setAbsolutePosition(x, y);
 	}
 /**
  * Getter of the x-position
