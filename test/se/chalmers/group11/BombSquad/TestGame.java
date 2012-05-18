@@ -16,7 +16,7 @@ import se.chalmers.group11.core.TileFactory;
 import se.chalmers.group11.eventbus.Event;
 /**This is an integrationstest because all other classes are trivial.
  * 
- * @author Epoxy
+ * @author Anton Palmqvist
  *
  */
 public class TestGame {
@@ -103,6 +103,19 @@ public class TestGame {
 		assertTrue(game.getBoard().getTile(3, 0) instanceof EmptyTile);
 	}
 	@Test
+	public void tryToPutTwoBombsOnTheSamePlace() throws SlickException{
+		Game game = new Game(new BoardEmpty());
+		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		game.setPlayerPosition(1, 0, 0); //Picks up an ExtraBombTile
+		assertTrue(game.getPlayer(0).getAmountOfBombs()==2); //Able to put out two bombs
+		game.setBomb(0); //Putting out one bomb
+		assertTrue(game.getPlayer(0).getAmountOfBombs()==1); //One bomb left to put out
+		game.setBomb(0); //Tries to put out a bomb on same position
+		/*The amount of bombs is still one, thereby we know that no second bomb has been 
+		 * put out*/
+		assertTrue(game.getPlayer(0).getAmountOfBombs()==1); 
+	}
+	@Test
 	public void playerWins() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		GameOverState gameOver = new GameOverState(0);
@@ -111,7 +124,5 @@ public class TestGame {
 		gameOver.onEvent(new Event(Event.Tag.PLAYER_KILLED, p.getPlayerNumber()));
 		int testPlayerOneWins2 = gameOver.getPlayerWins(2);
 		assertTrue(testPlayerOneWins2 - testPlayerOneWins1 == 1);
-		
-
 	}
 }
