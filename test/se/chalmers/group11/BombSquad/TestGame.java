@@ -18,13 +18,8 @@ import se.chalmers.group11.eventbus.Event;
 /**
  * This is an integrationstest because all other classes are trivial.
  * 
-<<<<<<< HEAD
  * @author Anton Palmqvist
  *
-=======
- * @author Epoxy
- * 
->>>>>>> 389d922cb2399547508b81d22e92a73df392df7b
  */
 public class TestGame {
 
@@ -145,13 +140,13 @@ public class TestGame {
 	public void enemyKilledByFire() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		//game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
-		game.getEnemy().move(4, 0); //moves enemy 4 steps to the right
+		game.getEnemy().move(4, 1); //moves enemy 4 steps to the right
 		game.explodeBomb(10, 6, 0); //explodes bomb at enemyposition
 		/*Forces the tile, which now is a FireTile to perform on the enemy, 
 		 * aka kill the enem.y*/
 		game.getBoard().getTile(10, 6).performOnEnemy();
 		//When enemy dies it respawns on its starting position x=6 and y=6
-		assertTrue(game.getEnemy().getX()==6 && game.getEnemy().getY()==6);
+		assertTrue(game.getEnemy().getX()==5 && game.getEnemy().getY()==5);
 	}
 	@Test
 	public void playerWins() throws SlickException {

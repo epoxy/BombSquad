@@ -28,8 +28,8 @@ public class Enemy {
 	
 	/*Varibles containing the instance's position. Also sets 
 	 * the starting position to coordinates x=6 and y=6.*/
-	private int x=6;
-	private int y=6;
+	private int x=5;
+	private int y=5;
 	
 	/**
 	 * Getter for the enemys x-coordinate.
