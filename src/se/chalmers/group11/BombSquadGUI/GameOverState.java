@@ -182,6 +182,9 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		return stateID;
 	}
 
+	public Integer getPlayerWins(int i) {
+		return playerWins[i - 1];
+	}
 	@Override
 	public void onEvent(Event evt) {
 		if (evt.getTag() == Event.Tag.PLAYER_KILLED) {
