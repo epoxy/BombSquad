@@ -162,8 +162,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		}
 		if (insideResetScore) {
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				playerWins[0] = 0;
-				playerWins[1] = 0;
+				resetPlayerWins();
 			}
 
 			if (resetImageScale < 1.1f)
@@ -185,6 +184,12 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	public Integer getPlayerWins(int i) {
 		return playerWins[i - 1];
 	}
+
+	public void resetPlayerWins() {
+		playerWins[0] = 0;
+		playerWins[1] = 0;
+	}
+
 	@Override
 	public void onEvent(Event evt) {
 		if (evt.getTag() == Event.Tag.PLAYER_KILLED) {
