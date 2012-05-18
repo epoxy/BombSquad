@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.group11.core.BoardEmpty;
+import se.chalmers.group11.core.BombTile;
+import se.chalmers.group11.core.EmptyTile;
 import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.TileFactory;
@@ -87,11 +89,14 @@ public class TestGame {
 	public void putOutExtraBombs() throws SlickException{
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
-		game.getPlayer(0).move(1, 0);
+		game.setPlayerPosition(1, 0, 0);
 		game.setBomb(0);
-		game.getPlayer(0).move(1, 0);
+		game.setPlayerPosition(1, 0, 0);
 		game.setBomb(0);
-		game.getPlayer(0).move(1, 0);
+		game.setPlayerPosition(1, 0, 0);
 		game.setBomb(0);
+		assertTrue(game.getBoard().getTile(1, 0) instanceof BombTile);
+		assertTrue(game.getBoard().getTile(2, 0) instanceof BombTile);
+		assertTrue(game.getBoard().getTile(3, 0) instanceof EmptyTile);
 	}
 }
