@@ -15,13 +15,13 @@ public class BoardRandom extends Board{
 			for (int j = 0; j < SIDELENGTH; j++) {
 				double rand = Math.random();
 				if (rand > 0.5) {
-					super.setToTile(i, j, TileFactory.getBoxTile());
-					super.setTmpToTile(i, j, TileFactory.getBoxTile());
+					super.setTile(i, j, TileFactory.getBoxTile());
+					super.setTmpTile(i, j, TileFactory.getBoxTile());
 				} else if(0.2 <= rand && rand <= 0.5){
-					super.setToTile(i, j, TileFactory.getEmptyTile());
+					super.setTile(i, j, TileFactory.getEmptyTile());
 				}
 				else{
-					super.setToTile(i, j, TileFactory.getBlockTile());
+					super.setTile(i, j, TileFactory.getBlockTile());
 				}
 			}
 		}

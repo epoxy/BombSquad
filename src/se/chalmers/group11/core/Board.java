@@ -58,10 +58,10 @@ public abstract class Board {
 		/**
 		 * @return the SIDELENGTH of the board
 		 */
-			public void setToTile(int x, int y, GameTile tile) {
+			public void setTile(int x, int y, GameTile tile) {
 				gameTiles[x][y] = tile;		
 			}
-			public void setTmpToTile(int x, int y, GameTile tile) {
+			public void setTmpTile(int x, int y, GameTile tile) {
 				gameTilestmp[x][y] = tile;		
 			}
 			

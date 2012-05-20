@@ -33,53 +33,53 @@ public class Functions {
 		
 		/*The three tiles in the upper left corner are being set to
 		 * EmptyTiles*/
-		iB.setToTile(0, 0, TileFactory.getEmptyTile());
-		iB.setToTile(1, 0, TileFactory.getEmptyTile());
-		iB.setToTile(0, 1, TileFactory.getEmptyTile());
-		/*The three tmpTiles in the upper left corner are also being set to
-		 * EmptyTiles. This is done in case any of the tmpTiles were set to a 
-		 * box before and therefore, if not turned to an EmptyTile, could be 
+		iB.setTile(0, 0, TileFactory.getEmptyTile());
+		iB.setTile(1, 0, TileFactory.getEmptyTile());
+		iB.setTile(0, 1, TileFactory.getEmptyTile());
+		/*The three tmpTiles in the upper left corner are being set to
+		 * null. This is done in case any of the tmpTiles were set to a 
+		 * box before and therefore, if not turned to null, could be 
 		 * turned into at powerup when blown up*/
-		iB.setTmpToTile(0, 0, TileFactory.getEmptyTile());
-		iB.setTmpToTile(1, 0, TileFactory.getEmptyTile());
-		iB.setTmpToTile(0, 1, TileFactory.getEmptyTile());
+		iB.setTmpTile(0, 0, null);
+		iB.setTmpTile(1, 0, null);
+		iB.setTmpTile(0, 1, null);
 		
 		/*A randomisation determines which should be the last EmptyTile 
 		 * in the L-shape.*/
 		double rand = Math.random();
 		if(rand<0.5){//Randomizing the last emptyTile
-			iB.setToTile(2, 0, TileFactory.getEmptyTile());
-			iB.setTmpToTile(2, 0, TileFactory.getEmptyTile());
+			iB.setTile(2, 0, TileFactory.getEmptyTile());
+			iB.setTmpTile(2, 0, null);
 		}
 		else{
-			iB.setToTile(0, 2, TileFactory.getEmptyTile());
-			iB.setTmpToTile(0, 2, TileFactory.getEmptyTile());
+			iB.setTile(0, 2, TileFactory.getEmptyTile());
+			iB.setTmpTile(0, 2, null);
 		}
 		
 		/*The three tiles in the lower right corner are being set to
 		 * EmptyTiles*/
-		iB.setToTile(10, 10, TileFactory.getEmptyTile());
-		iB.setToTile(10, 9, TileFactory.getEmptyTile());
-		iB.setToTile(9, 10, TileFactory.getEmptyTile());
+		iB.setTile(10, 10, TileFactory.getEmptyTile());
+		iB.setTile(10, 9, TileFactory.getEmptyTile());
+		iB.setTile(9, 10, TileFactory.getEmptyTile());
 		
-		/*The three tmpTiles in the lower right corner are also being set to
-		 * EmptyTiles. This is done in case any of the tmpTiles were set to a 
-		 * box before and therefore, if not turned to an EmptyTile, could be 
+		/*The three tmpTiles in the lower right corner are being set to
+		 * null. This is done in case any of the tmpTiles were set to a 
+		 * box before and therefore, if not turned to null, could be 
 		 * turned into at powerup when blown up*/
-		iB.setTmpToTile(10, 10, TileFactory.getEmptyTile());
-		iB.setTmpToTile(10, 9, TileFactory.getEmptyTile());
-		iB.setTmpToTile(9, 10, TileFactory.getEmptyTile());
+		iB.setTmpTile(10, 10, null);
+		iB.setTmpTile(10, 9, null);
+		iB.setTmpTile(9, 10, null);
 		
 		/*A randomisation determines which should be the last EmptyTile 
 		 * in the L-shape.*/
 		rand = Math.random();
 		if(rand<0.5){//Randomizing the last emptyTile
-			iB.setToTile(8, 10, TileFactory.getEmptyTile());
-			iB.setTmpToTile(8, 10, TileFactory.getEmptyTile());
+			iB.setTile(8, 10, TileFactory.getEmptyTile());
+			iB.setTmpTile(8, 10, null);
 		}
 		else{
-			iB.setToTile(10, 8, TileFactory.getEmptyTile());
-			iB.setTmpToTile(10, 8, TileFactory.getEmptyTile());
+			iB.setTile(10, 8, TileFactory.getEmptyTile());
+			iB.setTmpTile(10, 8, null);
 		}
 
 	}

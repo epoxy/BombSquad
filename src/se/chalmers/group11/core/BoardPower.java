@@ -15,9 +15,9 @@ public class BoardPower extends Board {
 			for (int j = 0; j < SIDELENGTH; j++) {
 				double rand = Math.random();
 				if (rand > 0.5) {
-					super.setToTile(i, j, TileFactory.getExtraFirePowerTile());
+					super.setTile(i, j, TileFactory.getExtraFirePowerTile());
 				} else {
-					super.setToTile(i, j, TileFactory.getExtraBombsTile());}
+					super.setTile(i, j, TileFactory.getExtraBombsTile());}
 				
 			}
 		}

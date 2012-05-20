@@ -14,8 +14,8 @@ public class BoardWithoutBlocks extends Board {
 	public void generateBoard() {
 		for (int i = 0; i < SIDELENGTH; i++) {
 			for (int j = 0; j < SIDELENGTH; j++) {
-				super.setToTile(i, j, TileFactory.getBoxTile());
-				super.setTmpToTile(i, j, TileFactory.getBoxTile());
+				super.setTile(i, j, TileFactory.getBoxTile());
+				super.setTmpTile(i, j, TileFactory.getBoxTile());
 			}
 		}
 		Functions.makeRoomForPlayers(this);
