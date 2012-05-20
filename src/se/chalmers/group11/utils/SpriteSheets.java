@@ -26,7 +26,7 @@ public class SpriteSheets {
 		Image[] movementLeft = new Image[2];
 		Image[] movementRight = new Image[2];
 
-		if (s == "BombMan") {
+		if (s == "Wizard") {
 			movementUp[0] = new Image("Images/bombManUP.gif");
 			movementUp[1] = new Image("Images/bombManUP2.gif");
 			movementDown[0] = new Image("Images/bombManDOWN.gif");
@@ -56,7 +56,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/gingerRIGHT.gif");
 			movementRight[1] = new Image("Images/gingerRIGHT2.gif");
 		}
-		if (s == "king") {
+		if (s == "King") {
 			movementUp[0] = new Image("Images/kingUP.gif");
 			movementUp[1] = new Image("Images/kingUP2.gif");
 			movementDown[0] = new Image("Images/kingDOWN.gif");
@@ -66,7 +66,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/kingRIGHT.gif");
 			movementRight[1] = new Image("Images/kingRIGHT2.gif");
 		}
-		if (s == "man") {
+		if (s == "Bluehood") {
 			movementUp[0] = new Image("Images/manUP.gif");
 			movementUp[1] = new Image("Images/manUP2.gif");
 			movementDown[0] = new Image("Images/manDOWN.gif");
@@ -76,7 +76,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/manRIGHT.gif");
 			movementRight[1] = new Image("Images/manRIGHT2.gif");
 		}
-		if (s == "manTwo") {
+		if (s == "Dog") {
 			movementUp[0] = new Image("Images/mantwoUP.gif");
 			movementUp[1] = new Image("Images/mantwoUP2.gif");
 			movementDown[0] = new Image("Images/mantwoDOWN.gif");
