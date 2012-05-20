@@ -119,10 +119,10 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 			}
 		}
 
-		sprite1.drawAnimation(game.getPlayer(0).getPosition().getX() * 60, game.getPlayer(0).getPosition()
+		sprite1.drawAnimation(game.getPlayer(1).getPosition().getX() * 60, game.getPlayer(1).getPosition()
 				.getY() * 60, 60, 60);
 
-		sprite2.drawAnimation(game.getPlayer(1).getPosition().getX() * 60, game.getPlayer(1)
+		sprite2.drawAnimation(game.getPlayer(2).getPosition().getX() * 60, game.getPlayer(2)
 				.getPosition().getY() * 60, 60, 60);
 
 		sprite3.drawAnimation(game.getEnemy().getPosition().getX() * 60, game.getEnemy()
@@ -137,47 +137,47 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
 			sprite1.animationUp();
-			game.movePlayer(0, -1, 0);
+			game.movePlayer(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
 			sprite1.animationLeft();
-			game.movePlayer(-1, 0, 0);
+			game.movePlayer(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			sprite1.animationDown();
-			game.movePlayer(0, 1, 0);
+			game.movePlayer(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
 			sprite1.animationRight();
-			game.movePlayer(1, 0, 0);
+			game.movePlayer(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			game.putBomb(0);
+			game.putBomb(1);
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
 			sprite2.animationUp();
-			game.movePlayer(0, -1, 1);
+			game.movePlayer(0, -1, 2);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
 			sprite2.animationLeft();
-			game.movePlayer(-1, 0, 1);
+			game.movePlayer(-1, 0, 2);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
 			sprite2.animationDown();
-			game.movePlayer(0, 1, 1);
+			game.movePlayer(0, 1, 2);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
 			sprite2.animationRight();
-			game.movePlayer(1, 0, 1);
+			game.movePlayer(1, 0, 2);
 		}
 		if (input.isKeyPressed(Input.KEY_LCONTROL)) {
-			game.putBomb(1);
+			game.putBomb(2);
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
 
-		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
+		for (int j = 1; j <= 2; j++) {// Loopar igenom spelarens placering och
 			// ser om han ska dö på rutan han är
 			game.getBoard()
 					.getTile(game.getPlayer(j).getPosition().getX(),game.getPlayer(j).getPosition().getY())
@@ -188,7 +188,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		game.getBoard().getTile(game.getEnemy().getPosition().getX(), game.getEnemy().getPosition().getY())
 		.performOnEnemy();
 		
-		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
+		for (int j = 1; j <= 2; j++) {// Loops through the players positions and 
 			//checks if it corresponds with position of enemy, If so, kill player
 			if(game.getPlayer(j).getPosition().equals(game.getEnemy().getPosition())) {
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, 
@@ -214,7 +214,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		super.enter(gc, sb);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER));
 		game = new Game(GameOptions.getInstance().getBoard());
-		game.getPlayer(0).put(0, 0);
+		game.getPlayer(2).put(0, 0);
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());

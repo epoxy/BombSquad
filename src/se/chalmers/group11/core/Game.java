@@ -72,12 +72,12 @@ public class Game implements IEventHandler {
 	 *            the x direction the player will take
 	 * @param deltaY
 	 *            the y direction the player will take
-	 * @param playerIndex
+	 * @param playerNumber
 	 *            variable representing the two players
 	 * @setPlayerPosition moves the player
 	 */
-	public void movePlayer(int deltaX, int deltaY, int playerIndex) {
-		Player p = player[playerIndex];
+	public void movePlayer(int deltaX, int deltaY, int playerNumber) {
+		Player p = player[playerNumber-1];
 		int nextPosX = p.getPosition().getX() + deltaX;
 		int nextPosY = p.getPosition().getY() + deltaY;
 		if (isInbounds(nextPosX, nextPosY)) {
@@ -95,33 +95,33 @@ public class Game implements IEventHandler {
 
 	/**
 	 * @setBomb place bombs on the board
-	 * @param playerIndex
+	 * @param playerNumber
 	 *            variable representing the two players
 	 */
-	public void putBomb(final int playerIndex) {
-		amountOfBombs = player[playerIndex].getAmountOfBombs();
+	public void putBomb(final int playerNumber) {
+		amountOfBombs = player[playerNumber-1].getAmountOfBombs();
 		if (amountOfBombs > 0) {
-			int bombX = player[playerIndex].getPosition().getX();
-			int bombY = player[playerIndex].getPosition().getY();
+			int bombX = player[playerNumber-1].getPosition().getX();
+			int bombY = player[playerNumber-1].getPosition().getY();
 			
 			/*Only able to put out bomb if the tile is an EmptyTile*/
 			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
 				gameBoard.setTile(bombX, bombY, TileFactory.getBombTile());
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
-				player[playerIndex].decrementBombs();
-				bombCountdown(bombX, bombY, playerIndex);
+				player[playerNumber-1].decrementBombs();
+				bombCountdown(bombX, bombY, playerNumber);
 			}
 		}
 	}
 
 	/**
 	 * 
-	 * @param playerIndex
+	 * @param playerNumber
 	 *            variable representing the two players
 	 * @return return player
 	 */
-	public Player getPlayer(int playerIndex) {
-		return player[playerIndex];
+	public Player getPlayer(int playerNumber) {
+		return player[playerNumber-1];
 	}
 
 	/**
@@ -130,17 +130,17 @@ public class Game implements IEventHandler {
 	 *            x coordinate for placed bomb
 	 * @param bombY
 	 *            y coordinate for placed bomb
-	 * @param playerIndex
+	 * @param playerNumber
 	 *            variable representing the two players
 	 * @bombCountdown starts bombtimer
 	 */
 	public void bombCountdown(final int bombX, final int bombY,
-			final int playerIndex) {
+			final int playerNumber) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
-					explodeBomb(bombX, bombY, playerIndex);
+					explodeBomb(bombX, bombY, playerNumber);
 					System.out.println("Eld ritas ut");
 					// fire
 				}
@@ -159,13 +159,13 @@ public class Game implements IEventHandler {
 	 *            x coordinate for placed bomb
 	 * @param bombY
 	 *            y coordinate for placed bomb
-	 * @param playerIndex
+	 * @param playerNumber
 	 *            variable representing the two players
 	 * @explodeBomb checks tiles next to the placed bomb and explodes
 	 */
-	public void explodeBomb(int bombX, int bombY, int playerIndex) {
-		int firePower = player[playerIndex].getFirePower();
-		int playerWhoPutoutTheBomb = playerIndex;
+	public void explodeBomb(int bombX, int bombY, int playerNumber) {
+		int firePower = player[playerNumber-1].getFirePower();
+		int playerWhoPutoutTheBomb = playerNumber;
 		gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 		setFireTileToEmptyTile(bombX, bombY);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
@@ -223,7 +223,7 @@ public class Game implements IEventHandler {
 			}
 
 		}
-		player[playerIndex].incrementBombs();
+		player[playerNumber-1].incrementBombs();
 	}
 
 	/**
@@ -234,9 +234,9 @@ public class Game implements IEventHandler {
 	 *            y coordinate of placed bomb
 	 * @placeFire place fire on bomb coordinates
 	 */
-	private void placeFire(int bombX, int bombY, int playerIndex) {
+	private void placeFire(int bombX, int bombY, int playerNumber) {
 		if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
-			explodeBomb(bombX, bombY, playerIndex);
+			explodeBomb(bombX, bombY, playerNumber);
 		}
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());

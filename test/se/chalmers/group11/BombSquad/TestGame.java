@@ -27,7 +27,7 @@ public class TestGame {
 	@Test
 	public void testExplodeBomb() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.explodeBomb(2, 2, 0);// Explodes a bomb at coordinates 2,2
+		game.explodeBomb(2, 2, 1);// Explodes a bomb at coordinates 2,2
 		// Checks that the fire from the bomb is spreading to the five tiles
 		// nearby but not further
 		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile); // The
@@ -47,11 +47,11 @@ public class TestGame {
 	// Use case: Move
 	public void testSetPlayerPosition() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(1).move(-1, 0);// Adjusts player2 so that he can move
+		game.getPlayer(2).move(-1, 0);// Adjusts player1 so that he can move
 										// to the right
-		for (int i = 0; i <= 1; i++) {// Testing both players
+		for (int i = 1; i <= 2; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
-			game.movePlayer(1, 0, i);// Moves player one step to the
+			game.movePlayer(1, 0, i);// Moves players one step to the
 										// right
 			int r = game.getPlayer(i).getPosition().getX();
 			assertTrue(r - s == 1); // Difference between destination and source
@@ -63,10 +63,10 @@ public class TestGame {
 	// Use case: Move
 	public void testSetPlayerPositionToObstacle() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(0).move(0, -1);// Adjusts player1 and player2 to so that
-										// they can not move to the right
-		game.getPlayer(1).put(8, 9);
-		for (int i = 0; i <= 1; i++) {// Testing both players
+		game.getPlayer(1).move(0, -1);// Adjusts player1 and player2 to so that
+									// they can not move to the right
+		game.getPlayer(2).put(8, 9);
+		for (int i = 1; i <= 2; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
 			game.movePlayer(1, 0, i);// Moves player one step to the
 										// right
@@ -79,18 +79,18 @@ public class TestGame {
 	@Test
 	public void pickUpExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		int firePower = game.getPlayer(0).getFirePower();
+		int firePower = game.getPlayer(1).getFirePower();
 		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
-		game.movePlayer(1, 0, 0); // Moves player one step to the right
-		assertTrue(game.getPlayer(0).getFirePower() == firePower + 1);
+		game.movePlayer(1, 0, 1); // Moves player one step to the right
+		assertTrue(game.getPlayer(1).getFirePower() == firePower + 1);
 	}
 
 	@Test
 	public void explodeBombExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
-		game.movePlayer(1, 0, 0);// Moves player one step to the right
-		game.explodeBomb(4, 4, 0); // Explodes a bomb with player 1's firepower
+		game.movePlayer(1, 0, 1);// Moves player one step to the right
+		game.explodeBomb(4, 4, 1); // Explodes a bomb with player 1's firepower
 		// Fire should be put out on bomb position and on the two tiles next to
 		// the position//
 		assertTrue(game.getBoard().getTile(4, 4) instanceof FireTile);
@@ -104,12 +104,12 @@ public class TestGame {
 	@Test
 	public void pickUpExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		int amountOfBombs = game.getPlayer(0).getAmountOfBombs(); // Should be 1
+		int amountOfBombs = game.getPlayer(1).getAmountOfBombs(); // Should be 1
 		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
 		// Player moves on an ExtraBomb-tile and picks it up
-		game.movePlayer(1, 0, 0);
+		game.movePlayer(1, 0, 1);
 		// Checks that player 1´s amount of bombs has increased by 1
-		assertTrue(game.getPlayer(0).getAmountOfBombs() == amountOfBombs + 1);
+		assertTrue(game.getPlayer(1).getAmountOfBombs() == amountOfBombs + 1);
 	}
 
 	@Test
@@ -117,12 +117,12 @@ public class TestGame {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
 		// Player moves on an ExtraBomb-tile and picks it up
-		game.movePlayer(1, 0, 0);
-		game.putBomb(0);// Puts out a bomb
-		game.movePlayer(1, 0, 0);// moves to the right
-		game.putBomb(0);// Puts out a bomb
-		game.movePlayer(1, 0, 0);// moves to the right
-		game.putBomb(0);// Tries to Put out a bomb, but should not be able to
+		game.movePlayer(1, 0, 1);
+		game.putBomb(1);// Puts out a bomb
+		game.movePlayer(1, 0, 1);// moves to the right
+		game.putBomb(1);// Puts out a bomb
+		game.movePlayer(1, 0, 1);// moves to the right
+		game.putBomb(1);// Tries to Put out a bomb, but should not be able to
 		// Checks that the two first tiles has bombs put out on them
 		assertTrue(game.getBoard().getTile(1, 0) instanceof BombTile);
 		assertTrue(game.getBoard().getTile(2, 0) instanceof BombTile);
@@ -134,18 +134,18 @@ public class TestGame {
 	public void tryToPutTwoBombsOnTheSamePlace() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
-		game.movePlayer(1, 0, 0); // Picks up an ExtraBombTile
-		assertTrue(game.getPlayer(0).getAmountOfBombs() == 2); // Able to put
+		game.movePlayer(1, 0, 1); // Picks up an ExtraBombTile
+		assertTrue(game.getPlayer(1).getAmountOfBombs() == 2); // Able to put
 																// out two bombs
-		game.putBomb(0); // Putting out one bomb
-		assertTrue(game.getPlayer(0).getAmountOfBombs() == 1); // One bomb left
+		game.putBomb(1); // Putting out one bomb
+		assertTrue(game.getPlayer(1).getAmountOfBombs() == 1); // One bomb left
 																// to put out
-		game.putBomb(0); // Tries to put out a bomb on same position
+		game.putBomb(1); // Tries to put out a bomb on same position
 		/*
 		 * The amount of bombs is still one, thereby we know that no second bomb
 		 * has been put out
 		 */
-		assertTrue(game.getPlayer(0).getAmountOfBombs() == 1);
+		assertTrue(game.getPlayer(1).getAmountOfBombs() == 1);
 	}
 
 	@Test
@@ -153,7 +153,7 @@ public class TestGame {
 		Game game = new Game(new BoardEmpty());
 		// game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
 		game.getEnemy().move(4, 1); // moves enemy 4 steps to the right
-		game.explodeBomb(10, 6, 0); // explodes bomb at enemyposition
+		game.explodeBomb(10, 6, 1); // explodes bomb at enemyposition
 		/*
 		 * Forces the tile, which now is a FireTile to perform on the enemy, aka
 		 * kill the enem.y
@@ -200,8 +200,8 @@ public class TestGame {
 		// should be FireTiles
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
-		game.movePlayer(1, 0, 0);
-		game.explodeBomb(2, 1, 0);
+		game.movePlayer(1, 0, 1);
+		game.explodeBomb(2, 1, 1);
 		assertTrue(game.getBoard().getTile(2, 1) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(2, 0) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile);
