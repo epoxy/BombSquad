@@ -44,7 +44,7 @@ public class TestGame {
 	}
 
 	@Test
-	//Use case: Move
+	// Use case: Move
 	public void testSetPlayerPosition() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(1).move(-1, 0);// Adjusts player2 so that he can move
@@ -52,15 +52,16 @@ public class TestGame {
 		for (int i = 0; i <= 1; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
 			game.movePlayer(1, 0, i);// Moves player one step to the
-											// right
+										// right
 			int r = game.getPlayer(i).getPosition().getX();
 			assertTrue(r - s == 1); // Difference between destination and source
 									// should be 1 step
 		}
 	}
+
 	@Test
 	// Use case: Move
-	public void testSetPlayerPositionToObstacle() throws SlickException { 
+	public void testSetPlayerPositionToObstacle() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).move(0, -1);// Adjusts player1 and player2 to so that
 										// they can not move to the right
@@ -68,7 +69,7 @@ public class TestGame {
 		for (int i = 0; i <= 1; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
 			game.movePlayer(1, 0, i);// Moves player one step to the
-											// right
+										// right
 			int r = game.getPlayer(i).getPosition().getX();
 			assertTrue(r - s == 0); // Difference between destination and source
 									// should be 1 step
@@ -89,22 +90,25 @@ public class TestGame {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.movePlayer(1, 0, 0);// Moves player one step to the right
-		game.explodeBomb(4, 4, 0); //Explodes a bomb with player 1's firepower
-		//Fire should be put out on bomb position and on the two tiles next to the position//
+		game.explodeBomb(4, 4, 0); // Explodes a bomb with player 1's firepower
+		// Fire should be put out on bomb position and on the two tiles next to
+		// the position//
 		assertTrue(game.getBoard().getTile(4, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(5, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(6, 4) instanceof FireTile);
-		assertFalse(game.getBoard().getTile(7, 4) instanceof FireTile);//Fire ends here
+		assertFalse(game.getBoard().getTile(7, 4) instanceof FireTile);// Fire
+																		// ends
+																		// here
 	}
 
 	@Test
 	public void pickUpExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		int amountOfBombs = game.getPlayer(0).getAmountOfBombs(); //Should be 1
+		int amountOfBombs = game.getPlayer(0).getAmountOfBombs(); // Should be 1
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
-		//Player moves on an ExtraBomb-tile and picks it up
+		// Player moves on an ExtraBomb-tile and picks it up
 		game.movePlayer(1, 0, 0);
-		//Checks that player 1´s amount of bombs has increased by 1
+		// Checks that player 1´s amount of bombs has increased by 1
 		assertTrue(game.getPlayer(0).getAmountOfBombs() == amountOfBombs + 1);
 	}
 
@@ -112,17 +116,17 @@ public class TestGame {
 	public void putOutExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
-		//Player moves on an ExtraBomb-tile and picks it up
+		// Player moves on an ExtraBomb-tile and picks it up
 		game.movePlayer(1, 0, 0);
-		game.putBomb(0);//Puts out a bomb
-		game.movePlayer(1, 0, 0);//moves to the right
-		game.putBomb(0);//Puts out a bomb
-		game.movePlayer(1, 0, 0);//moves to the right
-		game.putBomb(0);//Tries to Put out a bomb, but should not be able to
-		//Checks that the two first tiles has bombs put out on them
+		game.putBomb(0);// Puts out a bomb
+		game.movePlayer(1, 0, 0);// moves to the right
+		game.putBomb(0);// Puts out a bomb
+		game.movePlayer(1, 0, 0);// moves to the right
+		game.putBomb(0);// Tries to Put out a bomb, but should not be able to
+		// Checks that the two first tiles has bombs put out on them
 		assertTrue(game.getBoard().getTile(1, 0) instanceof BombTile);
 		assertTrue(game.getBoard().getTile(2, 0) instanceof BombTile);
-		//Checks that the last position is not a bomb
+		// Checks that the last position is not a bomb
 		assertTrue(game.getBoard().getTile(3, 0) instanceof EmptyTile);
 	}
 
@@ -156,23 +160,27 @@ public class TestGame {
 		 */
 		game.getBoard().getTile(10, 6).performOnEnemy();
 
-		//When enemy dies it respawns on its starting position x=6 and y=6
-		assertTrue(game.getEnemy().getPosition().getX()==5 && game.getEnemy().getPosition().getY()==5);
+		// When enemy dies it respawns on its starting position x=6 and y=6
+		assertTrue(game.getEnemy().getPosition().getX() == 5
+				&& game.getEnemy().getPosition().getY() == 5);
 
 	}
 
 	@Test
 	public void playerWins() throws SlickException {
+		// Test so the counter "playerWins" work correctly
 		GameOverState gameOver = new GameOverState(0);
-		int testPlayerOneWins1 = gameOver.getPlayerWins(2);
 		Player p = new Player(0, 0, 1);
+		int testPlayerOneWins1 = gameOver.getPlayerWins(2);
+		assertTrue(testPlayerOneWins1 == 0);
 		gameOver.onEvent(new Event(Event.Tag.PLAYER_KILLED, p.getPlayerNumber()));
 		int testPlayerOneWins2 = gameOver.getPlayerWins(2);
-		assertTrue(testPlayerOneWins2 - testPlayerOneWins1 == 1);
+		assertTrue(testPlayerOneWins2 == 1);
 	}
 
 	@Test
 	public void resetplayerWins() throws SlickException {
+		// Test so we can reset the counter "PlayerWins"
 		GameOverState gameOver = new GameOverState(0);
 		Player p = new Player(0, 0, 1);
 		gameOver.onEvent(new Event(Event.Tag.PLAYER_KILLED, p.getPlayerNumber()));
@@ -192,8 +200,7 @@ public class TestGame {
 		// should be FireTiles
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
-		game.movePlayer(1, 0, 0);// Moves the player one step to the
-										// right
+		game.movePlayer(1, 0, 0);
 		game.explodeBomb(2, 1, 0);
 		assertTrue(game.getBoard().getTile(2, 1) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(2, 0) instanceof FireTile);
