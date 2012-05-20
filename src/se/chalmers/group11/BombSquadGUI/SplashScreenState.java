@@ -8,18 +8,16 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.BoardClassic;
-import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.Game;
-import se.chalmers.group11.core.IBoard;
+
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitMusic;
 
 public class SplashScreenState extends BasicGameState {
-	
-	private int stateID; //Interface requires a gettable stateID, see getID()
+
+	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int startX = 440;
 	private int startY = 200;
 	private int exitX = 440;
@@ -38,7 +36,7 @@ public class SplashScreenState extends BasicGameState {
 	}
 
 	@Override
-	public void init(GameContainer container, StateBasedGame game)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		startImage = new Image("Images/start.png");
 		exitImage = new Image("Images/exit.jpg");
@@ -46,15 +44,15 @@ public class SplashScreenState extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		startImage.draw(startX, startY, startImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
-		splashImage.draw(0,0,1);
+		splashImage.draw(0, 0, 1);
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sb, int delta)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
 
@@ -78,7 +76,7 @@ public class SplashScreenState extends BasicGameState {
 				startImageScale += scaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				sb.enterState(Main.CHOOSECHARACTERSTATE);
+				sbg.enterState(Main.CHOOSECHARACTERSTATE);
 			}
 		} else {
 
@@ -88,11 +86,11 @@ public class SplashScreenState extends BasicGameState {
 			}
 		}
 		if (insideExitGame) {
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				gc.exit();
 			}
 
-			if (exitImageScale < 1.05f){
+			if (exitImageScale < 1.05f) {
 				exitImageScale += scaleStep * delta;
 			} else {
 				if (exitImageScale > 1.0f)
@@ -103,11 +101,14 @@ public class SplashScreenState extends BasicGameState {
 			gc.exit();
 		}
 	}
+
 	@Override
 	public int getID() {
 		return stateID;
 	}
-	public void enter(GameContainer gc, StateBasedGame sb) throws SlickException{
+
+	public void enter(GameContainer gc, StateBasedGame sb)
+			throws SlickException {
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MENUMUSIC_STARTER));
 	}
 }
