@@ -80,7 +80,7 @@ public class TestGame {
 	public void pickUpExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		int firePower = game.getPlayer(0).getFirePower();
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.movePlayer(1, 0, 0); // Moves player one step to the right
 		assertTrue(game.getPlayer(0).getFirePower() == firePower + 1);
 	}
@@ -88,7 +88,7 @@ public class TestGame {
 	@Test
 	public void explodeBombExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.movePlayer(1, 0, 0);// Moves player one step to the right
 		game.explodeBomb(4, 4, 0); // Explodes a bomb with player 1's firepower
 		// Fire should be put out on bomb position and on the two tiles next to
@@ -105,7 +105,7 @@ public class TestGame {
 	public void pickUpExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		int amountOfBombs = game.getPlayer(0).getAmountOfBombs(); // Should be 1
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
 		// Player moves on an ExtraBomb-tile and picks it up
 		game.movePlayer(1, 0, 0);
 		// Checks that player 1´s amount of bombs has increased by 1
@@ -115,7 +115,7 @@ public class TestGame {
 	@Test
 	public void putOutExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
 		// Player moves on an ExtraBomb-tile and picks it up
 		game.movePlayer(1, 0, 0);
 		game.putBomb(0);// Puts out a bomb
@@ -133,7 +133,7 @@ public class TestGame {
 	@Test
 	public void tryToPutTwoBombsOnTheSamePlace() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraBombsTile());
 		game.movePlayer(1, 0, 0); // Picks up an ExtraBombTile
 		assertTrue(game.getPlayer(0).getAmountOfBombs() == 2); // Able to put
 																// out two bombs
@@ -199,7 +199,7 @@ public class TestGame {
 		// is a emptyTile and not a FireTile, the rest of the tiles nearby
 		// should be FireTiles
 		Game game = new Game(new BoardEmpty());
-		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
+		game.getBoard().setTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.movePlayer(1, 0, 0);
 		game.explodeBomb(2, 1, 0);
 		assertTrue(game.getBoard().getTile(2, 1) instanceof FireTile);

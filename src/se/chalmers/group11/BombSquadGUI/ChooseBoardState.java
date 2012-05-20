@@ -16,7 +16,7 @@ import se.chalmers.group11.core.BoardWater;
 import se.chalmers.group11.core.BoardWithoutBlocks;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
-import se.chalmers.group11.core.IBoard;
+import se.chalmers.group11.core.Board;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;

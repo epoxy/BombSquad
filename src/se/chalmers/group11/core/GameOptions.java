@@ -31,7 +31,7 @@ public class GameOptions {
 		playerTwoSkin = s;
 	}
 
-	public IBoard getBoard() {
+	public Board getBoard() {
 		if (chosenBoard == 1) {
 			return BoardFactory.getBoardClassic();
 		} else if (chosenBoard == 0) {

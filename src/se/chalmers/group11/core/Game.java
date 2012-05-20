@@ -45,7 +45,7 @@ ProjectEleven
 public class Game implements IEventHandler {
 	private Player player[];
 	private Enemy enemy;
-	private IBoard gameBoard;
+	private Board gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
@@ -57,7 +57,7 @@ public class Game implements IEventHandler {
 	 *            the board
 	 * @throws SlickException 
 	 */
-	public Game(IBoard board) throws SlickException {
+	public Game(Board board) throws SlickException {
 		gameBoard = board;
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
@@ -87,7 +87,7 @@ public class Game implements IEventHandler {
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
-				gameBoard.setToTile(p.getPosition().getX(), p.getPosition().getY(),
+				gameBoard.setTile(p.getPosition().getX(), p.getPosition().getY(),
 						TileFactory.getEmptyTile());
 			}
 		}
@@ -106,7 +106,7 @@ public class Game implements IEventHandler {
 			
 			/*Only able to put out bomb if the tile is an EmptyTile*/
 			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
-				gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
+				gameBoard.setTile(bombX, bombY, TileFactory.getBombTile());
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 				player[playerIndex].decrementBombs();
 				bombCountdown(bombX, bombY, playerIndex);
@@ -166,7 +166,7 @@ public class Game implements IEventHandler {
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
 		int playerWhoPutoutTheBomb = playerIndex;
-		gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
+		gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 		setFireTileToEmptyTile(bombX, bombY);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
 		// TODO refakrorisera, samla till en loop
@@ -239,7 +239,7 @@ public class Game implements IEventHandler {
 			explodeBomb(bombX, bombY, playerIndex);
 		}
 		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
-			gameBoard.setToTile(bombX, bombY, TileFactory.getFireTile());
+			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 			setFireTileToEmptyTile(bombX, bombY);
 		}
 	}
@@ -260,31 +260,31 @@ public class Game implements IEventHandler {
 
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.7) {
-					gameBoard.setToTile(fireX, fireY,
+					gameBoard.setTile(fireX, fireY,
 							TileFactory.getExtraFirePowerTile());
-					gameBoard.setTmpToTile(fireX, fireY,
-							TileFactory.getEmptyTile());
+					gameBoard.setTmpTile(fireX, fireY,
+							null);
 
 					System.out.println("powerItemTile");
 				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.5) {
-					gameBoard.setToTile(fireX, fireY,
+					gameBoard.setTile(fireX, fireY,
 							TileFactory.getExtraBombsTile());
-					gameBoard.setTmpToTile(fireX, fireY,
-							TileFactory.getEmptyTile());
+					gameBoard.setTmpTile(fireX, fireY,
+							null);
 				}
 
 				else {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
-						gameBoard.setToTile(fireX, fireY,
+						gameBoard.setTile(fireX, fireY,
 								TileFactory.getWaterTile());
 						System.out.println("watertile");
 					} else {
-						gameBoard.setToTile(fireX, fireY,
+						gameBoard.setTile(fireX, fireY,
 								TileFactory.getEmptyTile());
 						System.out.println("emptyTile?");
 
-						gameBoard.setTmpToTile(fireX, fireY,
+						gameBoard.setTmpTile(fireX, fireY,
 								TileFactory.getEmptyTile());
 						System.out.println("emptyTile?");
 					}
@@ -312,7 +312,7 @@ public class Game implements IEventHandler {
 	 * 
 	 * @return board
 	 */
-	public IBoard getBoard() {
+	public Board getBoard() {
 		return gameBoard;
 	}
 
