@@ -49,7 +49,7 @@ public class Player implements IMovable{
 		this.playerNumber=playerNumber;
 		/*amount of bombs and fire power are set to 1 by default when player is constructed*/
 		amountOfBombs = 1;
-		firePower = 1;
+		firePower = 3;
 	}
 	
 	@Override

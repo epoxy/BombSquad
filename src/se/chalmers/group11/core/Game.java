@@ -50,6 +50,11 @@ public class Game implements IEventHandler {
 	private int amountOfBombs;
 	private StateBasedGame sbg;
 	private InitSound sound;
+	private boolean flag=true;
+	private boolean spreadEast=true;
+	private boolean spreadWest=true;
+	private boolean spreadNorth=true;
+	private boolean spreadSouth=true;
 
 	/**
 	 * Creates two player start positions and a board
@@ -168,64 +173,50 @@ public class Game implements IEventHandler {
 		int playerWhoPutoutTheBomb = playerIndex;
 		gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 		setFireTileToEmptyTile(bombX, bombY);
-		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
+		for(int i=1; i<=firePower; i++){
+			if(spreadEast){
+				spreadFire(bombX+i, bombY, playerIndex);
+				spreadEast = flag;
+			}
+			flag=true;
+			if(spreadSouth){
+				spreadFire(bombX, bombY+i, playerIndex);
+				spreadSouth = flag;
+			}
+			flag=true;
+			if(spreadWest){
+				spreadFire(bombX-i, bombY, playerIndex);
+				spreadWest = flag;
+			}	
+			flag=true;
+			if(spreadNorth){
+				spreadFire(bombX, bombY-i, playerIndex);
+				spreadNorth = flag;
+			}
+			flag=true;
+		}
+		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB));
 		// TODO refakrorisera, samla till en loop
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX + i, bombY)) {
-				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
-
-					placeFire(bombX + i, bombY, playerWhoPutoutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX + i, bombY, playerWhoPutoutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX - i, bombY)) {
-				if (gameBoard.getTile(bombX - i, bombY) instanceof BoxTile) {
-
-					placeFire(bombX - i, bombY, playerWhoPutoutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX - i, bombY) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX - i, bombY, playerWhoPutoutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX, bombY + i)) {
-				if (gameBoard.getTile(bombX, bombY + i) instanceof BoxTile) {
-
-					placeFire(bombX, bombY + i, playerWhoPutoutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX, bombY + i) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX, bombY + i, playerWhoPutoutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX, bombY - i)) {
-				if (gameBoard.getTile(bombX, bombY - i) instanceof BoxTile) {
-
-					placeFire(bombX, bombY - i, playerWhoPutoutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX, bombY - i) instanceof BlockTile) {
-
-					break;
-				}
-				placeFire(bombX, bombY - i, playerWhoPutoutTheBomb);
-			}
-
-		}
 		player[playerIndex].incrementBombs();
+		spreadEast=true;
+		spreadWest=true;
+		spreadNorth=true;
+		spreadSouth=true;
 	}
 
+	private void spreadFire(int bombX, int bombY, int playerWhoPutoutTheBomb) {
+		if (isInbounds(bombX, bombY)) {
+			if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
+				placeFire(bombX, bombY, playerWhoPutoutTheBomb);
+				flag=false;
+			} else if (gameBoard.getTile(bombX, bombY) instanceof BlockTile) {
+				flag=false;
+			}
+			if(flag){
+				placeFire(bombX, bombY, playerWhoPutoutTheBomb);
+			}
+		}
+	}
 	/**
 	 * 
 	 * @param bombX
