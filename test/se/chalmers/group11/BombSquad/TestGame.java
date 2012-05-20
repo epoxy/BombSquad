@@ -150,7 +150,6 @@ public class TestGame {
 	@Test
 	public void enemyKilledByFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		// game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
 		game.getEnemy().move(4, 1); // moves enemy 4 steps to the right
 		game.explodeBomb(10, 6, 1); // explodes bomb at enemyposition
 		/*
