@@ -27,18 +27,18 @@ public class ChooseCharacterState extends BasicGameState {
 	private int p2GingerX = 500;
 	private int p1KingX = 50;
 	private int p2KingX = 360;
-	private int p1manX = 120;
-	private int p2manX = 430;
-	private int p1mantwoX = 190;
-	private int p2mantwoX = 500;
-	private int p1mackanX = 50;
-	private int p2mackanX = 360;
-	private int p1antonX = 120;
-	private int p2antonX = 430;
-	private int p1tomasX = 50;
-	private int p2tomasX = 360;
-	private int p1henrikX = 120;
-	private int p2henrikX = 430;
+	private int p1ManX = 120;
+	private int p2ManX = 430;
+	private int p1MantwoX = 190;
+	private int p2MantwoX = 500;
+	private int p1MackanX = 50;
+	private int p2MackanX = 360;
+	private int p1AntonX = 120;
+	private int p2AntonX = 430;
+	private int p1TomasX = 50;
+	private int p2TomasX = 360;
+	private int p1HenrikX = 120;
+	private int p2HenrikX = 430;
 
 	private float nextButtonScale = 0.5f;
 	private float nextButtonScaleStep = 0.0001f;
@@ -55,14 +55,14 @@ public class ChooseCharacterState extends BasicGameState {
 	private float p1ManTwoScale = 1.5f;
 	private float p2ManTwoScale = 1.5f;
 	private float thumbsScaleStep = 0.0005f;
-	private float p1mackanScale = 1.5f;
-	private float p2mackanScale = 1.5f;
-	private float p1antonScale = 1.5f;
-	private float p2antonScale = 1.5f;
-	private float p1tomasScale = 1.5f;
-	private float p2tomasScale = 1.5f;
-	private float p1henrikScale = 1.5f;
-	private float p2henrikScale = 1.5f;
+	private float p1MackanScale = 1.5f;
+	private float p2MackanScale = 1.5f;
+	private float p1AntonScale = 1.5f;
+	private float p2AntonScale = 1.5f;
+	private float p1TomasScale = 1.5f;
+	private float p2TomasScale = 1.5f;
+	private float p1HenrikScale = 1.5f;
+	private float p2HenrikScale = 1.5f;
 
 	private Image nextButton;
 	private Image playerOneText;
@@ -115,18 +115,18 @@ public class ChooseCharacterState extends BasicGameState {
 		ginger.draw(p2GingerX, thumbsY, p2GingerScale);
 		king.draw(p2KingX, thumbsY2, p2KingScale);
 		king.draw(p1KingX, thumbsY2, p1KingScale);
-		man.draw(p1manX, thumbsY2, p1ManScale);
-		man.draw(p2manX, thumbsY2, p2ManScale);
-		manTwo.draw(p1mantwoX, thumbsY2, p1ManTwoScale);
-		manTwo.draw(p2mantwoX, thumbsY2, p2ManTwoScale);
-		mackan.draw(p1mackanX, thumbsY3, p1mackanScale);
-		mackan.draw(p2mackanX, thumbsY3, p2mackanScale);
-		anton.draw(p1antonX, thumbsY3, p1antonScale);
-		anton.draw(p2antonX, thumbsY3, p2antonScale);
-		tomas.draw(p1tomasX, thumbsY4, p1tomasScale);
-		tomas.draw(p2tomasX, thumbsY4, p2tomasScale);
-		henrik.draw(p1henrikX, thumbsY4, p1henrikScale);
-		henrik.draw(p2henrikX, thumbsY4, p2henrikScale);
+		man.draw(p1ManX, thumbsY2, p1ManScale);
+		man.draw(p2ManX, thumbsY2, p2ManScale);
+		manTwo.draw(p1MantwoX, thumbsY2, p1ManTwoScale);
+		manTwo.draw(p2MantwoX, thumbsY2, p2ManTwoScale);
+		mackan.draw(p1MackanX, thumbsY3, p1MackanScale);
+		mackan.draw(p2MackanX, thumbsY3, p2MackanScale);
+		anton.draw(p1AntonX, thumbsY3, p1AntonScale);
+		anton.draw(p2AntonX, thumbsY3, p2AntonScale);
+		tomas.draw(p1TomasX, thumbsY4, p1TomasScale);
+		tomas.draw(p2TomasX, thumbsY4, p2TomasScale);
+		henrik.draw(p1HenrikX, thumbsY4, p1HenrikScale);
+		henrik.draw(p2HenrikX, thumbsY4, p2HenrikScale);
 
 	}
 
@@ -145,20 +145,20 @@ public class ChooseCharacterState extends BasicGameState {
 		boolean insideP2BombMan = false;
 		boolean insideP1Ginger = false;
 		boolean insideP2Ginger = false;
-		boolean insideP1king = false;
-		boolean insideP2king = false;
-		boolean insideP1man = false;
-		boolean insideP2man = false;
-		boolean insideP1manTwo = false;
-		boolean insideP2manTwo = false;
-		boolean insideP1mackan = false;
-		boolean insideP2mackan = false;
-		boolean insideP1anton = false;
-		boolean insideP2anton = false;
-		boolean insideP1tomas = false;
-		boolean insideP2tomas = false;
-		boolean insideP1henrik = false;
-		boolean insideP2henrik = false;
+		boolean insideP1King = false;
+		boolean insideP2King = false;
+		boolean insideP1Man = false;
+		boolean insideP2Man = false;
+		boolean insideP1ManTwo = false;
+		boolean insideP2ManTwo = false;
+		boolean insideP1Mackan = false;
+		boolean insideP2Mackan = false;
+		boolean insideP1Anton = false;
+		boolean insideP2Anton = false;
+		boolean insideP1Tomas = false;
+		boolean insideP2Tomas = false;
+		boolean insideP1Henrik = false;
+		boolean insideP2Henrik = false;
 
 		if (mouseX >= nextButtonX
 				&& mouseX <= nextButtonX + nextButton.getWidth()
@@ -208,83 +208,83 @@ public class ChooseCharacterState extends BasicGameState {
 				&& mouseX <= p1KingX + king.getWidth() * p1KingScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + king.getHeight() * p1KingScale) {
-			insideP1king = true;
+			insideP1King = true;
 		}
 		if (mouseX >= p2KingX
 				&& mouseX <= p2KingX + king.getWidth() * p2KingScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + king.getHeight() * p2KingScale) {
-			insideP2king = true;
+			insideP2King = true;
 		}
-		if (mouseX >= p1manX && mouseX <= p1manX + man.getWidth() * p1ManScale
+		if (mouseX >= p1ManX && mouseX <= p1ManX + man.getWidth() * p1ManScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + man.getHeight() * p1ManScale) {
-			insideP1man = true;
+			insideP1Man = true;
 		}
-		if (mouseX >= p2manX && mouseX <= p2manX + man.getWidth() * p2ManScale
+		if (mouseX >= p2ManX && mouseX <= p2ManX + man.getWidth() * p2ManScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + man.getHeight() * p2ManScale) {
-			insideP2man = true;
+			insideP2Man = true;
 		}
-		if (mouseX >= p1mantwoX
-				&& mouseX <= p1mantwoX + manTwo.getWidth() * p1ManScale
+		if (mouseX >= p1MantwoX
+				&& mouseX <= p1MantwoX + manTwo.getWidth() * p1ManScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + manTwo.getHeight() * p1ManScale) {
-			insideP1manTwo = true;
+			insideP1ManTwo = true;
 		}
-		if (mouseX >= p2mantwoX
-				&& mouseX <= p2mantwoX + manTwo.getWidth() * p2ManScale
+		if (mouseX >= p2MantwoX
+				&& mouseX <= p2MantwoX + manTwo.getWidth() * p2ManScale
 				&& mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + manTwo.getHeight() * p2ManScale) {
-			insideP2manTwo = true;
+			insideP2ManTwo = true;
 		}
-		if (mouseX >= p1mackanX
-				&& mouseX <= p1mackanX + mackan.getWidth() * p1mackanScale
+		if (mouseX >= p1MackanX
+				&& mouseX <= p1MackanX + mackan.getWidth() * p1MackanScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + mackan.getHeight() * p1mackanScale) {
-			insideP1mackan = true;
+				&& mouseY <= thumbsY3 + mackan.getHeight() * p1MackanScale) {
+			insideP1Mackan = true;
 		}
-		if (mouseX >= p2mackanX
-				&& mouseX <= p2mackanX + mackan.getWidth() * p2mackanScale
+		if (mouseX >= p2MackanX
+				&& mouseX <= p2MackanX + mackan.getWidth() * p2MackanScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + mackan.getHeight() * p2mackanScale) {
-			insideP2mackan = true;
+				&& mouseY <= thumbsY3 + mackan.getHeight() * p2MackanScale) {
+			insideP2Mackan = true;
 		}
-		if (mouseX >= p1antonX
-				&& mouseX <= p1antonX + anton.getWidth() * p1antonScale
+		if (mouseX >= p1AntonX
+				&& mouseX <= p1AntonX + anton.getWidth() * p1AntonScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + anton.getHeight() * p1antonScale) {
-			insideP1anton = true;
+				&& mouseY <= thumbsY3 + anton.getHeight() * p1AntonScale) {
+			insideP1Anton = true;
 		}
-		if (mouseX >= p2antonX
-				&& mouseX <= p2antonX + anton.getWidth() * p2antonScale
+		if (mouseX >= p2AntonX
+				&& mouseX <= p2AntonX + anton.getWidth() * p2AntonScale
 				&& mouseY >= thumbsY3
-				&& mouseY <= thumbsY3 + anton.getHeight() * p2antonScale) {
-			insideP2anton = true;
+				&& mouseY <= thumbsY3 + anton.getHeight() * p2AntonScale) {
+			insideP2Anton = true;
 		}
-		if (mouseX >= p1tomasX
-				&& mouseX <= p1tomasX + tomas.getWidth() * p1tomasScale
+		if (mouseX >= p1TomasX
+				&& mouseX <= p1TomasX + tomas.getWidth() * p1TomasScale
 				&& mouseY >= thumbsY4
-				&& mouseY <= thumbsY4 + tomas.getHeight() * p1tomasScale) {
-			insideP1tomas = true;
+				&& mouseY <= thumbsY4 + tomas.getHeight() * p1TomasScale) {
+			insideP1Tomas = true;
 		}
-		if (mouseX >= p2tomasX
-				&& mouseX <= p2tomasX + tomas.getWidth() * p2tomasScale
+		if (mouseX >= p2TomasX
+				&& mouseX <= p2TomasX + tomas.getWidth() * p2TomasScale
 				&& mouseY >= thumbsY4
-				&& mouseY <= thumbsY4 + tomas.getHeight() * p2tomasScale) {
-			insideP2tomas = true;
+				&& mouseY <= thumbsY4 + tomas.getHeight() * p2TomasScale) {
+			insideP2Tomas = true;
 		}
-		if (mouseX >= p1henrikX
-				&& mouseX <= p1henrikX + henrik.getWidth() * p1henrikScale
+		if (mouseX >= p1HenrikX
+				&& mouseX <= p1HenrikX + henrik.getWidth() * p1HenrikScale
 				&& mouseY >= thumbsY4
-				&& mouseY <= thumbsY4 + henrik.getHeight() * p1henrikScale) {
-			insideP1henrik = true;
+				&& mouseY <= thumbsY4 + henrik.getHeight() * p1HenrikScale) {
+			insideP1Henrik = true;
 		}
-		if (mouseX >= p2henrikX
-				&& mouseX <= p2henrikX + henrik.getWidth() * p1henrikScale
+		if (mouseX >= p2HenrikX
+				&& mouseX <= p2HenrikX + henrik.getWidth() * p2HenrikScale
 				&& mouseY >= thumbsY4
-				&& mouseY <= thumbsY4 + henrik.getHeight() * p1henrikScale) {
-			insideP2henrik = true;
+				&& mouseY <= thumbsY4 + henrik.getHeight() * p2HenrikScale) {
+			insideP2Henrik = true;
 		}
 		if (insideNextButton) {
 			if (nextButtonScale < 0.55f)
@@ -374,7 +374,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p2GingerScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1king) {
+		if (insideP1King) {
 			if (p1KingScale < 1.65f)
 				p1KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -385,7 +385,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p1KingScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2king) {
+		if (insideP2King) {
 			if (p2KingScale < 1.65f)
 				p2KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -396,7 +396,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p2KingScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1man) {
+		if (insideP1Man) {
 			if (p1ManScale < 1.65f)
 				p1ManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -407,7 +407,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p1ManScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2man) {
+		if (insideP2Man) {
 			if (p2ManScale < 1.65f)
 				p2ManScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -418,7 +418,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p2ManScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1manTwo) {
+		if (insideP1ManTwo) {
 			if (p1ManTwoScale < 1.65f)
 				p1ManTwoScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -429,7 +429,7 @@ public class ChooseCharacterState extends BasicGameState {
 				p1ManTwoScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2manTwo) {
+		if (insideP2ManTwo) {
 			if (p2ManTwoScale < 1.65f)
 				p2ManTwoScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -440,92 +440,92 @@ public class ChooseCharacterState extends BasicGameState {
 				p2ManTwoScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1mackan) {
-			if (p1mackanScale < 1.65f)
-				p1mackanScale += thumbsScaleStep * delta;
+		if (insideP1Mackan) {
+			if (p1MackanScale < 1.65f)
+				p1MackanScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerOneSkin("mackan");
 			}
 		} else {
-			if (p1mackanScale > 1.5f) {
-				p1mackanScale -= thumbsScaleStep * delta;
+			if (p1MackanScale > 1.5f) {
+				p1MackanScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2mackan) {
-			if (p2mackanScale < 1.65f)
-				p2mackanScale += thumbsScaleStep * delta;
+		if (insideP2Mackan) {
+			if (p2MackanScale < 1.65f)
+				p2MackanScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerTwoSkin("mackan");
 			}
 		} else {
-			if (p2mackanScale > 1.5f) {
-				p2mackanScale -= thumbsScaleStep * delta;
+			if (p2MackanScale > 1.5f) {
+				p2MackanScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1anton) {
-			if (p1antonScale < 1.65f)
-				p1antonScale += thumbsScaleStep * delta;
+		if (insideP1Anton) {
+			if (p1AntonScale < 1.65f)
+				p1AntonScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerOneSkin("anton");
 			}
 		} else {
-			if (p1antonScale > 1.5f) {
-				p1antonScale -= thumbsScaleStep * delta;
+			if (p1AntonScale > 1.5f) {
+				p1AntonScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2anton) {
-			if (p2antonScale < 1.65f)
-				p2antonScale += thumbsScaleStep * delta;
+		if (insideP2Anton) {
+			if (p2AntonScale < 1.65f)
+				p2AntonScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerTwoSkin("anton");
 			}
 		} else {
-			if (p2antonScale > 1.5f) {
-				p2antonScale -= thumbsScaleStep * delta;
+			if (p2AntonScale > 1.5f) {
+				p2AntonScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1tomas) {
-			if (p1tomasScale < 1.65f)
-				p1tomasScale += thumbsScaleStep * delta;
+		if (insideP1Tomas) {
+			if (p1TomasScale < 1.65f)
+				p1TomasScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerOneSkin("tomas");
 			}
 		} else {
-			if (p1tomasScale > 1.5f) {
-				p1tomasScale -= thumbsScaleStep * delta;
+			if (p1TomasScale > 1.5f) {
+				p1TomasScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2tomas) {
-			if (p2tomasScale < 1.65f)
-				p2tomasScale += thumbsScaleStep * delta;
+		if (insideP2Tomas) {
+			if (p2TomasScale < 1.65f)
+				p2TomasScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerTwoSkin("tomas");
 			}
 		} else {
-			if (p2tomasScale > 1.5f) {
-				p2tomasScale -= thumbsScaleStep * delta;
+			if (p2TomasScale > 1.5f) {
+				p2TomasScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1henrik) {
-			if (p1henrikScale < 1.65f)
-				p1henrikScale += thumbsScaleStep * delta;
+		if (insideP1Henrik) {
+			if (p1HenrikScale < 1.65f)
+				p1HenrikScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerOneSkin("henrik");
 			}
 		} else {
-			if (p1henrikScale > 1.5f) {
-				p1henrikScale -= thumbsScaleStep * delta;
+			if (p1HenrikScale > 1.5f) {
+				p1HenrikScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2henrik) {
-			if (p2henrikScale < 1.65f)
-				p2henrikScale += thumbsScaleStep * delta;
+		if (insideP2Henrik) {
+			if (p2HenrikScale < 1.65f)
+				p2HenrikScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setPlayerTwoSkin("henrik");
 			}
 		} else {
-			if (p2henrikScale > 1.5f) {
-				p2henrikScale -= thumbsScaleStep * delta;
+			if (p2HenrikScale > 1.5f) {
+				p2HenrikScale -= thumbsScaleStep * delta;
 			}
 		}
 	}
