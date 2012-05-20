@@ -229,7 +229,6 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER));
 		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER));
 	}
-
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Tag.ENEMYSPRITE_DOWN){

@@ -18,10 +18,9 @@ import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.SpriteSheets;
 
+public class GameOverState extends BasicGameState implements IEventHandler {
 
-public class GameOverState extends BasicGameState implements IEventHandler{
-	
-	private int stateID; //Interface requires a gettable stateID, see getID()
+	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int menuX = 0;
 	private int menuY = 300;
 	private int restartX = 200;
@@ -30,7 +29,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private int exitY = 300;
 	private int resetX = 0;
 	private int resetY = 450;
-	
+
 	private Integer loser;
 
 	private float exitImageScale = 1;
@@ -46,15 +45,15 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 	private Image winnerPlayer2 = null;
 	private Image resetScore = null;
 	private Image prispall = null;
-	
-	private final Integer[] playerWins = new Integer[2];	
-	
+
+	private final Integer[] playerWins = new Integer[2];
+
 	private TrueTypeFont font;
-	
+
 	private String winnerSkin;
 	private String loserSkin;
-	
-	public GameOverState(int stateID){
+
+	public GameOverState(int stateID) {
 		this.stateID = stateID;
 		EventBus.INSTANCE.register(this);
 		playerWins[0] = new Integer(0);
@@ -71,20 +70,20 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		winnerPlayer2 = new Image("Images/Two.png");
 		resetScore = new Image("Images/resetScore.png");
 		prispall = new Image("Images/prispall.png");
-		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);	
-		
+		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);
+
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		if(loser==1){
-			winnerPlayer2.draw(0, 0, (float)2.2);
+		if (loser == 1) {
+			winnerPlayer2.draw(0, 0, (float) 2.2);
 		}
-		if(loser==2){
-			winnerPlayer1.draw(0, 0, (float)2.2);
+		if (loser == 2) {
+			winnerPlayer1.draw(0, 0, (float) 2.2);
 		}
-		prispall.draw(0,0,1);
+		prispall.draw(0, 0, 1);
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
@@ -107,30 +106,26 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		boolean insideExitGame = false;
 		boolean insideMenuGame = false;
 		boolean insideResetScore = false;
-		
+
 		if (mouseX >= restartX && mouseX <= restartX + 150
-				&& mouseY >= restartY
-				&& mouseY <= restartY + 150) {
+				&& mouseY >= restartY && mouseY <= restartY + 150) {
 			insideRestartGame = true;
 
-		} else if (mouseX >= exitX && mouseX <= exitX + 150
-				&& mouseY >= exitY 
+		} else if (mouseX >= exitX && mouseX <= exitX + 150 && mouseY >= exitY
 				&& mouseY <= exitY + 150) {
 			insideExitGame = true;
-			
-		} else if (mouseX >= menuX && mouseX <= menuX + 150
-				&& mouseY >= menuY 
+
+		} else if (mouseX >= menuX && mouseX <= menuX + 150 && mouseY >= menuY
 				&& mouseY <= menuY + 150) {
 			insideMenuGame = true;
 		} else if (mouseX >= resetX && mouseX <= resetX + 150
-				&& mouseY >= resetY 
-				&& mouseY <= resetY + 150) {
+				&& mouseY >= resetY && mouseY <= resetY + 150) {
 			insideResetScore = true;
 		}
-		
-		//keeps track of the cursor location
+
+		// keeps track of the cursor location
 		if (insideRestartGame) {
-			if (restartImageScale < 1.1f){
+			if (restartImageScale < 1.1f) {
 				restartImageScale += scaleStep * delta;
 			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -142,7 +137,7 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 			}
 		}
 		if (insideMenuGame) {
-			if (menuImageScale < 1.1f){
+			if (menuImageScale < 1.1f) {
 				menuImageScale += scaleStep * delta;
 			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
@@ -151,24 +146,23 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		} else {
 
 			if (menuImageScale > 1f) {
-					menuImageScale -= scaleStep * delta;
+				menuImageScale -= scaleStep * delta;
 			}
 		}
 		if (insideExitGame) {
-			if (exitImageScale < 1.1f){
+			if (exitImageScale < 1.1f) {
 				exitImageScale += scaleStep * delta;
 			}
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				container.exit();
 			}
 		} else {
 			if (exitImageScale > 1f)
 				exitImageScale -= scaleStep * delta;
 		}
-		if(insideResetScore){
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-				playerWins[0]=0;
-				playerWins[1]=0;
+		if (insideResetScore) {
+			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+				resetPlayerWins();
 			}
 
 			if (resetImageScale < 1.1f)
@@ -176,25 +170,37 @@ public class GameOverState extends BasicGameState implements IEventHandler{
 		} else {
 			if (resetImageScale > 1f)
 				resetImageScale -= scaleStep * delta;
-		}			
+		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			game.enterState(Main.SPLASHSCREENSTATE);
 		}
-	}	
+	}
+
 	@Override
 	public int getID() {
 		return stateID;
 	}
+
+	public Integer getPlayerWins(int i) {
+		return playerWins[i - 1];
+	}
+
+	public void resetPlayerWins() {
+		playerWins[0] = 0;
+		playerWins[1] = 0;
+	}
+
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
-			loser=(Integer)evt.getValue(); 
-			playerWins[loser%2]+=1; //loser%2 equals the arraynumber of the winner
-			if(loser==2){
+		if (evt.getTag() == Event.Tag.PLAYER_KILLED) {
+			loser = (Integer) evt.getValue();
+			playerWins[loser % 2] += 1; // loser%2 equals the arraynumber of the
+										// winner
+			if (loser == 2) {
 				winnerSkin = GameOptions.getInstance().getPlayerOneSkin();
 				loserSkin = GameOptions.getInstance().getPlayerTwoSkin();
 			}
-			if(loser==1){
+			if (loser == 1) {
 				winnerSkin = GameOptions.getInstance().getPlayerTwoSkin();
 				loserSkin = GameOptions.getInstance().getPlayerOneSkin();
 			}

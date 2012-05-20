@@ -103,14 +103,15 @@ public class Game implements IEventHandler {
 		if (amountOfBombs > 0) {
 			int bombX = player[playerIndex].getX();
 			int bombY = player[playerIndex].getY();
-			gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
-			EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
-			player[playerIndex].decrementBombs();
-			bombCountdown(bombX, bombY, playerIndex);
-		} 
-//			else if (amountOfBombs < 1) {
-//			;
-//		}
+			
+			/*Only able to put out bomb if the tile is an EmptyTile*/
+			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
+				gameBoard.setToTile(bombX, bombY, TileFactory.getBombTile());
+				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
+				player[playerIndex].decrementBombs();
+				bombCountdown(bombX, bombY, playerIndex);
+			}
+		}
 	}
 
 	/**
@@ -260,7 +261,7 @@ public class Game implements IEventHandler {
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.7) {
 					gameBoard.setToTile(fireX, fireY,
-							TileFactory.getPowerItemTile());
+							TileFactory.getExtraFirePowerTile());
 					gameBoard.setTmpToTile(fireX, fireY,
 							TileFactory.getEmptyTile());
 
@@ -268,7 +269,7 @@ public class Game implements IEventHandler {
 				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.5) {
 					gameBoard.setToTile(fireX, fireY,
-							TileFactory.getExtraBombs());
+							TileFactory.getExtraBombsTile());
 					gameBoard.setTmpToTile(fireX, fireY,
 							TileFactory.getEmptyTile());
 				}

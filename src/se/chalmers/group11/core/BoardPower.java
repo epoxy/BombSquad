@@ -13,9 +13,9 @@ public class BoardPower implements IBoard {
 			for (int j = 0; j < gameTiles[i].length; j++) {
 				double rand = Math.random();
 				if (rand > 0.5) {
-					gameTiles[i][j] = TileFactory.getPowerItemTile();
+					gameTiles[i][j] = TileFactory.getExtraFirePowerTile();
 				} else {
-					gameTiles[i][j] = TileFactory.getExtraBombs();
+					gameTiles[i][j] = TileFactory.getExtraBombsTile();
 				}
 				
 			}
