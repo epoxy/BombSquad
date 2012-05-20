@@ -76,7 +76,7 @@ public class Game implements IEventHandler {
 	 *            variable representing the two players
 	 * @setPlayerPosition moves the player
 	 */
-	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
+	public void movePlayer(int deltaX, int deltaY, int playerIndex) {
 		Player p = player[playerIndex];
 		int nextPosX = p.getPosition().getX() + deltaX;
 		int nextPosY = p.getPosition().getY() + deltaY;
@@ -98,7 +98,7 @@ public class Game implements IEventHandler {
 	 * @param playerIndex
 	 *            variable representing the two players
 	 */
-	public void setBomb(final int playerIndex) {
+	public void putBomb(final int playerIndex) {
 		amountOfBombs = player[playerIndex].getAmountOfBombs();
 		if (amountOfBombs > 0) {
 			int bombX = player[playerIndex].getPosition().getX();

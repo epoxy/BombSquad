@@ -137,41 +137,41 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 
 		if (input.isKeyPressed(Input.KEY_UP)) {
 			sprite1.animationUp();
-			game.setPlayerPosition(0, -1, 0);
+			game.movePlayer(0, -1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_LEFT)) {
 			sprite1.animationLeft();
-			game.setPlayerPosition(-1, 0, 0);
+			game.movePlayer(-1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			sprite1.animationDown();
-			game.setPlayerPosition(0, 1, 0);
+			game.movePlayer(0, 1, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_RIGHT)) {
 			sprite1.animationRight();
-			game.setPlayerPosition(1, 0, 0);
+			game.movePlayer(1, 0, 0);
 		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			game.setBomb(0);
+			game.putBomb(0);
 		}
 		if (input.isKeyPressed(Input.KEY_W)) {
 			sprite2.animationUp();
-			game.setPlayerPosition(0, -1, 1);
+			game.movePlayer(0, -1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_A)) {
 			sprite2.animationLeft();
-			game.setPlayerPosition(-1, 0, 1);
+			game.movePlayer(-1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_S)) {
 			sprite2.animationDown();
-			game.setPlayerPosition(0, 1, 1);
+			game.movePlayer(0, 1, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_D)) {
 			sprite2.animationRight();
-			game.setPlayerPosition(1, 0, 1);
+			game.movePlayer(1, 0, 1);
 		}
 		if (input.isKeyPressed(Input.KEY_LCONTROL)) {
-			game.setBomb(1);
+			game.putBomb(1);
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			sbg.enterState(Main.SPLASHSCREENSTATE);
