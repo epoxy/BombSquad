@@ -26,6 +26,7 @@ public class BoardWater extends Board {
 		for (int i = 1; i < SIDELENGTH - 1; i += 2) {
 			for (int j = 1; j < SIDELENGTH - 1; j += 2) {
 				super.setToTile(i, j, TileFactory.getWaterTile());
+				super.setTmpToTile(i, j, TileFactory.getWaterTile());
 			}
 		}
 		Functions.makeRoomForPlayers(this);
