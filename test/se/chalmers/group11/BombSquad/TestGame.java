@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.group11.bombsquadgui.GameOverState;
+import se.chalmers.group11.core.BlockTile;
 import se.chalmers.group11.core.BoardEmpty;
 import se.chalmers.group11.core.BombTile;
 import se.chalmers.group11.core.EmptyTile;
@@ -19,7 +20,7 @@ import se.chalmers.group11.eventbus.Event;
  * This is an integrationstest because all other classes are trivial.
  * 
  * @author Anton Palmqvist
- *
+ * 
  */
 public class TestGame {
 
@@ -124,30 +125,38 @@ public class TestGame {
 	}
 
 	@Test
-	public void tryToPutTwoBombsOnTheSamePlace() throws SlickException{
+	public void tryToPutTwoBombsOnTheSamePlace() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
-		game.setPlayerPosition(1, 0, 0); //Picks up an ExtraBombTile
-		assertTrue(game.getPlayer(0).getAmountOfBombs()==2); //Able to put out two bombs
-		game.setBomb(0); //Putting out one bomb
-		assertTrue(game.getPlayer(0).getAmountOfBombs()==1); //One bomb left to put out
-		game.setBomb(0); //Tries to put out a bomb on same position
-		/*The amount of bombs is still one, thereby we know that no second bomb has been 
-		 * put out*/
-		assertTrue(game.getPlayer(0).getAmountOfBombs()==1); 
+		game.setPlayerPosition(1, 0, 0); // Picks up an ExtraBombTile
+		assertTrue(game.getPlayer(0).getAmountOfBombs() == 2); // Able to put
+																// out two bombs
+		game.setBomb(0); // Putting out one bomb
+		assertTrue(game.getPlayer(0).getAmountOfBombs() == 1); // One bomb left
+																// to put out
+		game.setBomb(0); // Tries to put out a bomb on same position
+		/*
+		 * The amount of bombs is still one, thereby we know that no second bomb
+		 * has been put out
+		 */
+		assertTrue(game.getPlayer(0).getAmountOfBombs() == 1);
 	}
+
 	@Test
-	public void enemyKilledByFire() throws SlickException{
+	public void enemyKilledByFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		//game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
-		game.getEnemy().move(4, 1); //moves enemy 4 steps to the right
-		game.explodeBomb(10, 6, 0); //explodes bomb at enemyposition
-		/*Forces the tile, which now is a FireTile to perform on the enemy, 
-		 * aka kill the enem.y*/
+		// game.explodeBomb(9, 6, 0); //explodes bomb at enemyposition
+		game.getEnemy().move(4, 1); // moves enemy 4 steps to the right
+		game.explodeBomb(10, 6, 0); // explodes bomb at enemyposition
+		/*
+		 * Forces the tile, which now is a FireTile to perform on the enemy, aka
+		 * kill the enem.y
+		 */
 		game.getBoard().getTile(10, 6).performOnEnemy();
-		//When enemy dies it respawns on its starting position x=6 and y=6
-		assertTrue(game.getEnemy().getX()==5 && game.getEnemy().getY()==5);
+		// When enemy dies it respawns on its starting position x=6 and y=6
+		assertTrue(game.getEnemy().getX() == 5 && game.getEnemy().getY() == 5);
 	}
+
 	@Test
 	public void playerWins() throws SlickException {
 		GameOverState gameOver = new GameOverState(0);
@@ -157,6 +166,7 @@ public class TestGame {
 		int testPlayerOneWins2 = gameOver.getPlayerWins(2);
 		assertTrue(testPlayerOneWins2 - testPlayerOneWins1 == 1);
 	}
+
 	@Test
 	public void resetplayerWins() throws SlickException {
 		GameOverState gameOver = new GameOverState(0);
@@ -165,8 +175,30 @@ public class TestGame {
 		int testPlayerOneWins = gameOver.getPlayerWins(2);
 		assertTrue(testPlayerOneWins == 1);
 		gameOver.resetPlayerWins();
-		int testPlayerOneWins2= gameOver.getPlayerWins(2);
+		int testPlayerOneWins2 = gameOver.getPlayerWins(2);
 		assertTrue(testPlayerOneWins2 == 0);
 	}
-	
+
+	@Test
+	public void explodeBombTowardsBlockTile() throws SlickException {
+		// Test for the explodeBomb method in class game. A bomb with two
+		// powerfires explodes beside a blocktile, Checks so the BlockTile
+		// doesn«t change to a FireTile and that the tile behind the block still
+		// is a emptyTile and not a FireTile, the rest of the tiles nearby
+		// should be FireTiles
+		Game game = new Game(new BoardEmpty());
+		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
+		game.setPlayerPosition(1, 0, 0);// Moves the player one step to the
+										// right
+		game.explodeBomb(2, 1, 0);
+		assertTrue(game.getBoard().getTile(2, 1) instanceof FireTile);
+		assertTrue(game.getBoard().getTile(2, 0) instanceof FireTile);
+		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile);
+		assertTrue(game.getBoard().getTile(2, 3) instanceof FireTile);
+		assertTrue(game.getBoard().getTile(1, 1) instanceof BlockTile);
+		assertTrue(game.getBoard().getTile(0, 1) instanceof EmptyTile);
+		assertTrue(game.getBoard().getTile(3, 1) instanceof BlockTile);
+		assertTrue(game.getBoard().getTile(4, 1) instanceof EmptyTile);
+
+	}
 }
