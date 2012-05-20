@@ -33,23 +33,23 @@ Anton Palmqvist
  */
 
 public class LoserKeeper implements IEventHandler{
-	private StateBasedGame sb;
+	private StateBasedGame sbg;
 	
 	/**
 	 * Constructor for creating a new LoserKeeper.
 	 * 
-	 * @param sb the current statebasedgame
+	 * @param sbg the current statebasedgame
 	 */
-	public LoserKeeper(StateBasedGame sb){
+	public LoserKeeper(StateBasedGame sbg){
 		EventBus.INSTANCE.register(this);
-		this.sb=sb;
+		this.sbg=sbg;
 	}
 
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
 			System.out.println("Got event" + evt.getValue());
-			sb.enterState(Main.GAMEOVERSTATE); //Transfers to the GameOverState
+			sbg.enterState(Main.GAMEOVERSTATE); //Transfers to the GameOverState
 		}
 	}
 }

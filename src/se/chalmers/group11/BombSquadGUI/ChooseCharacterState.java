@@ -21,16 +21,16 @@ public class ChooseCharacterState extends BasicGameState {
 	private int thumbsY4 = 400;
 	private int p1DevilX = 50;
 	private int p2DevilX = 360;
-	private int p1BombManX = 120;
-	private int p2BombManX = 430;
+	private int p1WizardX = 120;
+	private int p2WizardX = 430;
 	private int p1GingerX = 190;
 	private int p2GingerX = 500;
 	private int p1KingX = 50;
 	private int p2KingX = 360;
-	private int p1ManX = 120;
-	private int p2ManX = 430;
-	private int p1MantwoX = 190;
-	private int p2MantwoX = 500;
+	private int p1BluehoodX = 120;
+	private int p2BluehoodX = 430;
+	private int p1DogX = 190;
+	private int p2DogX = 500;
 	private int p1MackanX = 50;
 	private int p2MackanX = 360;
 	private int p1AntonX = 120;
@@ -44,16 +44,16 @@ public class ChooseCharacterState extends BasicGameState {
 	private float nextButtonScaleStep = 0.0001f;
 	private float p1DevilScale = 1.5f;
 	private float p2DevilScale = 1.5f;
-	private float p1BombManScale = 1.5f;
-	private float p2BombManScale = 1.5f;
+	private float p1WizardScale = 1.5f;
+	private float p2WizardScale = 1.5f;
 	private float p1GingerScale = 1.5f;
 	private float p2GingerScale = 1.5f;
 	private float p1KingScale = 1.5f;
 	private float p2KingScale = 1.5f;
-	private float p1ManScale = 1.5f;
-	private float p2ManScale = 1.5f;
-	private float p1ManTwoScale = 1.5f;
-	private float p2ManTwoScale = 1.5f;
+	private float p1BluehoodScale = 1.5f;
+	private float p2BluehoodScale = 1.5f;
+	private float p1DogScale = 1.5f;
+	private float p2DogScale = 1.5f;
 	private float thumbsScaleStep = 0.0005f;
 	private float p1MackanScale = 1.5f;
 	private float p2MackanScale = 1.5f;
@@ -68,11 +68,11 @@ public class ChooseCharacterState extends BasicGameState {
 	private Image playerOneText;
 	private Image playerTwoText;
 	private Image devil;
-	private Image bombMan;
+	private Image wizard;
 	private Image ginger;
 	private Image king;
-	private Image man;
-	private Image manTwo;
+	private Image bluehood;
+	private Image dog;
 	private Image mackan;
 	private Image anton;
 	private Image tomas;
@@ -84,17 +84,17 @@ public class ChooseCharacterState extends BasicGameState {
 	}
 
 	@Override
-	public void init(GameContainer container, StateBasedGame game)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		nextButton = new Image("Images/PlayerIcon.png");
 		playerOneText = new Image("Images/playerOneText.png");
 		playerTwoText = new Image("Images/playerTwoText.png");
 		devil = new Image("Images/devilDOWN.gif");
-		bombMan = new Image("Images/bombManDOWN.gif");
+		wizard = new Image("Images/bombManDOWN.gif");
 		ginger = new Image("Images/gingerDOWN.gif");
 		king = new Image("Images/kingDOWN.gif");
-		man = new Image("Images/manDOWN.gif");
-		manTwo = new Image("Images/mantwoDOWN.gif");
+		bluehood = new Image("Images/manDOWN.gif");
+		dog = new Image("Images/mantwoDOWN.gif");
 		mackan = new Image("Images/mackanDOWN.png");
 		anton = new Image("Images/antonDOWN.png");
 		tomas = new Image("Images/tomasDOWN.png");
@@ -102,23 +102,23 @@ public class ChooseCharacterState extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		nextButton.draw(nextButtonX, nextButtonY, nextButtonScale);
 		playerOneText.draw(50, 40);
 		playerTwoText.draw(360, 40);
 		devil.draw(p1DevilX, thumbsY, p1DevilScale);
-		bombMan.draw(p1BombManX, thumbsY, p1BombManScale);
+		wizard.draw(p1WizardX, thumbsY, p1WizardScale);
 		ginger.draw(p1GingerX, thumbsY, p1GingerScale);
 		devil.draw(p2DevilX, thumbsY, p2DevilScale);
-		bombMan.draw(p2BombManX, thumbsY, p2BombManScale);
+		wizard.draw(p2WizardX, thumbsY, p2WizardScale);
 		ginger.draw(p2GingerX, thumbsY, p2GingerScale);
 		king.draw(p2KingX, thumbsY2, p2KingScale);
 		king.draw(p1KingX, thumbsY2, p1KingScale);
-		man.draw(p1ManX, thumbsY2, p1ManScale);
-		man.draw(p2ManX, thumbsY2, p2ManScale);
-		manTwo.draw(p1MantwoX, thumbsY2, p1ManTwoScale);
-		manTwo.draw(p2MantwoX, thumbsY2, p2ManTwoScale);
+		bluehood.draw(p1BluehoodX, thumbsY2, p1BluehoodScale);
+		bluehood.draw(p2BluehoodX, thumbsY2, p2BluehoodScale);
+		dog.draw(p1DogX, thumbsY2, p1DogScale);
+		dog.draw(p2DogX, thumbsY2, p2DogScale);
 		mackan.draw(p1MackanX, thumbsY3, p1MackanScale);
 		mackan.draw(p2MackanX, thumbsY3, p2MackanScale);
 		anton.draw(p1AntonX, thumbsY3, p1AntonScale);
@@ -131,7 +131,7 @@ public class ChooseCharacterState extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sb, int delta)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
 
@@ -141,16 +141,16 @@ public class ChooseCharacterState extends BasicGameState {
 		boolean insideNextButton = false;
 		boolean insideP1Devil = false;
 		boolean insideP2Devil = false;
-		boolean insideP1BombMan = false;
-		boolean insideP2BombMan = false;
+		boolean insideP1Wizard = false;
+		boolean insideP2Wizard = false;
 		boolean insideP1Ginger = false;
 		boolean insideP2Ginger = false;
 		boolean insideP1King = false;
 		boolean insideP2King = false;
-		boolean insideP1Man = false;
-		boolean insideP2Man = false;
-		boolean insideP1ManTwo = false;
-		boolean insideP2ManTwo = false;
+		boolean insideP1Bluehood = false;
+		boolean insideP2Bluehood = false;
+		boolean insideP1Dog = false;
+		boolean insideP2Dog = false;
 		boolean insideP1Mackan = false;
 		boolean insideP2Mackan = false;
 		boolean insideP1Anton = false;
@@ -180,17 +180,17 @@ public class ChooseCharacterState extends BasicGameState {
 				&& mouseY <= thumbsY + devil.getHeight() * p2DevilScale) {
 			insideP2Devil = true;
 		}
-		if (mouseX >= p1BombManX
-				&& mouseX <= p1BombManX + bombMan.getWidth() * p1BombManScale
+		if (mouseX >= p1WizardX
+				&& mouseX <= p1WizardX + wizard.getWidth() * p1WizardScale
 				&& mouseY >= thumbsY
-				&& mouseY <= thumbsY + bombMan.getHeight() * p1BombManScale) {
-			insideP1BombMan = true;
+				&& mouseY <= thumbsY + wizard.getHeight() * p1WizardScale) {
+			insideP1Wizard = true;
 		}
-		if (mouseX >= p2BombManX
-				&& mouseX <= p2BombManX + bombMan.getWidth() * p2BombManScale
+		if (mouseX >= p2WizardX
+				&& mouseX <= p2WizardX + wizard.getWidth() * p2WizardScale
 				&& mouseY >= thumbsY
-				&& mouseY <= thumbsY + bombMan.getHeight() * p2BombManScale) {
-			insideP2BombMan = true;
+				&& mouseY <= thumbsY + wizard.getHeight() * p2WizardScale) {
+			insideP2Wizard = true;
 		}
 		if (mouseX >= p1GingerX
 				&& mouseX <= p1GingerX + ginger.getWidth() * p1GingerScale
@@ -216,27 +216,27 @@ public class ChooseCharacterState extends BasicGameState {
 				&& mouseY <= thumbsY2 + king.getHeight() * p2KingScale) {
 			insideP2King = true;
 		}
-		if (mouseX >= p1ManX && mouseX <= p1ManX + man.getWidth() * p1ManScale
+		if (mouseX >= p1BluehoodX && mouseX <= p1BluehoodX + bluehood.getWidth() * p1BluehoodScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + man.getHeight() * p1ManScale) {
-			insideP1Man = true;
+				&& mouseY <= thumbsY2 + bluehood.getHeight() * p1BluehoodScale) {
+			insideP1Bluehood = true;
 		}
-		if (mouseX >= p2ManX && mouseX <= p2ManX + man.getWidth() * p2ManScale
+		if (mouseX >= p2BluehoodX && mouseX <= p2BluehoodX + bluehood.getWidth() * p2BluehoodScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + man.getHeight() * p2ManScale) {
-			insideP2Man = true;
+				&& mouseY <= thumbsY2 + bluehood.getHeight() * p2BluehoodScale) {
+			insideP2Bluehood = true;
 		}
-		if (mouseX >= p1MantwoX
-				&& mouseX <= p1MantwoX + manTwo.getWidth() * p1ManScale
+		if (mouseX >= p1DogX
+				&& mouseX <= p1DogX + dog.getWidth() * p1BluehoodScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + manTwo.getHeight() * p1ManScale) {
-			insideP1ManTwo = true;
+				&& mouseY <= thumbsY2 + dog.getHeight() * p1BluehoodScale) {
+			insideP1Dog = true;
 		}
-		if (mouseX >= p2MantwoX
-				&& mouseX <= p2MantwoX + manTwo.getWidth() * p2ManScale
+		if (mouseX >= p2DogX
+				&& mouseX <= p2DogX + dog.getWidth() * p2BluehoodScale
 				&& mouseY >= thumbsY2
-				&& mouseY <= thumbsY2 + manTwo.getHeight() * p2ManScale) {
-			insideP2ManTwo = true;
+				&& mouseY <= thumbsY2 + dog.getHeight() * p2BluehoodScale) {
+			insideP2Dog = true;
 		}
 		if (mouseX >= p1MackanX
 				&& mouseX <= p1MackanX + mackan.getWidth() * p1MackanScale
@@ -291,7 +291,7 @@ public class ChooseCharacterState extends BasicGameState {
 				nextButtonScale += nextButtonScaleStep * delta;
 
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				sb.enterState(Main.CHOOSEBOARDSTATE);
+				sbg.enterState(Main.CHOOSEBOARDSTATE);
 			}
 		} else {
 
@@ -301,7 +301,7 @@ public class ChooseCharacterState extends BasicGameState {
 			}
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			sb.enterState(Main.SPLASHSCREENSTATE);
+			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
 		if (insideP1Devil) {
 			if (p1DevilScale < 1.65f)
@@ -314,17 +314,17 @@ public class ChooseCharacterState extends BasicGameState {
 				p1DevilScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1BombMan) {
-			if (p1BombManScale < 1.65f)
-				p1BombManScale += thumbsScaleStep * delta;
+		if (insideP1Wizard) {
+			if (p1WizardScale < 1.65f)
+				p1WizardScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("BombMan");
+				GameOptions.getInstance().setPlayerOneSkin("Wizard");
 
 			}
 		} else {
 
-			if (p1BombManScale > 1.5f) {
-				p1BombManScale -= thumbsScaleStep * delta;
+			if (p1WizardScale > 1.5f) {
+				p1WizardScale -= thumbsScaleStep * delta;
 			}
 		}
 		if (insideP1Ginger) {
@@ -350,16 +350,16 @@ public class ChooseCharacterState extends BasicGameState {
 				p2DevilScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2BombMan) {
-			if (p2BombManScale < 1.65f)
-				p2BombManScale += thumbsScaleStep * delta;
+		if (insideP2Wizard) {
+			if (p2WizardScale < 1.65f)
+				p2WizardScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("BombMan");
+				GameOptions.getInstance().setPlayerTwoSkin("Wizard");
 			}
 		} else {
 
-			if (p2BombManScale > 1.5f) {
-				p2BombManScale -= thumbsScaleStep * delta;
+			if (p2WizardScale > 1.5f) {
+				p2WizardScale -= thumbsScaleStep * delta;
 			}
 		}
 		if (insideP2Ginger) {
@@ -378,7 +378,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1KingScale < 1.65f)
 				p1KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("king");
+				GameOptions.getInstance().setPlayerOneSkin("King");
 			}
 		} else {
 			if (p1KingScale > 1.5f) {
@@ -389,55 +389,55 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2KingScale < 1.65f)
 				p2KingScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("king");
+				GameOptions.getInstance().setPlayerTwoSkin("King");
 			}
 		} else {
 			if (p2KingScale > 1.5f) {
 				p2KingScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1Man) {
-			if (p1ManScale < 1.65f)
-				p1ManScale += thumbsScaleStep * delta;
+		if (insideP1Bluehood) {
+			if (p1BluehoodScale < 1.65f)
+				p1BluehoodScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("man");
+				GameOptions.getInstance().setPlayerOneSkin("Bluehood");
 			}
 		} else {
-			if (p1ManScale > 1.5f) {
-				p1ManScale -= thumbsScaleStep * delta;
+			if (p1BluehoodScale > 1.5f) {
+				p1BluehoodScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2Man) {
-			if (p2ManScale < 1.65f)
-				p2ManScale += thumbsScaleStep * delta;
+		if (insideP2Bluehood) {
+			if (p2BluehoodScale < 1.65f)
+				p2BluehoodScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("man");
+				GameOptions.getInstance().setPlayerTwoSkin("Bluehood");
 			}
 		} else {
-			if (p2ManScale > 1.5f) {
-				p2ManScale -= thumbsScaleStep * delta;
+			if (p2BluehoodScale > 1.5f) {
+				p2BluehoodScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP1ManTwo) {
-			if (p1ManTwoScale < 1.65f)
-				p1ManTwoScale += thumbsScaleStep * delta;
+		if (insideP1Dog) {
+			if (p1DogScale < 1.65f)
+				p1DogScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("manTwo");
+				GameOptions.getInstance().setPlayerOneSkin("Dog");
 			}
 		} else {
-			if (p1ManTwoScale > 1.5f) {
-				p1ManTwoScale -= thumbsScaleStep * delta;
+			if (p1DogScale > 1.5f) {
+				p1DogScale -= thumbsScaleStep * delta;
 			}
 		}
-		if (insideP2ManTwo) {
-			if (p2ManTwoScale < 1.65f)
-				p2ManTwoScale += thumbsScaleStep * delta;
+		if (insideP2Dog) {
+			if (p2DogScale < 1.65f)
+				p2DogScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("manTwo");
+				GameOptions.getInstance().setPlayerTwoSkin("Dog");
 			}
 		} else {
-			if (p2ManTwoScale > 1.5f) {
-				p2ManTwoScale -= thumbsScaleStep * delta;
+			if (p2DogScale > 1.5f) {
+				p2DogScale -= thumbsScaleStep * delta;
 			}
 		}
 		if (insideP1Mackan) {

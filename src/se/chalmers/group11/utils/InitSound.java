@@ -14,8 +14,8 @@ public class InitSound implements IEventHandler{
 	Sound explodeBomb = null;
 	Sound playerScream = null;
 	Sound enemyScream = null;
-	Sound morefire = null;
-	Sound morebombs = null;
+	Sound moreFire = null;
+	Sound moreBombs = null;
 	
 	public InitSound() throws SlickException {
 
@@ -23,8 +23,8 @@ public class InitSound implements IEventHandler{
 		explodeBomb = new Sound("Music/bomb.ogg");
 		playerScream = new Sound("Music/playerScream.ogg");
 		enemyScream = new Sound("Music/enemyScream.ogg");
-		morefire = new Sound("Music/ohyeah.wav");
-		morebombs = new Sound("Music/ohyeah.wav");
+		moreFire = new Sound("Music/ohyeah.wav");
+		moreBombs = new Sound("Music/ohyeah.wav");
 		EventBus.INSTANCE.register(this);
 	}
 
@@ -43,10 +43,10 @@ public class InitSound implements IEventHandler{
 			placeBomb.play();
 		}
 		if(evt.getTag()==Event.Tag.MORE_FIRE){
-			morefire.play();
+			moreFire.play();
 		}
 		if(evt.getTag()==Event.Tag.MORE_BOMBS){
-			morebombs.play();
+			moreBombs.play();
 		}
 	}
 }

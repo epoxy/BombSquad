@@ -44,8 +44,8 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 	private SpriteSheets sprite2;
 	private SpriteSheets sprite3;
 	private Game game;
-	private int enemyDelayer = 1;
-	private StateBasedGame sb;
+	private int enemyDelay = 1;
+	private StateBasedGame sbg;
 
 	private LoserKeeper t = null;
 	private InitMusic music = null;
@@ -196,10 +196,10 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 			}
 		}
 		
-		enemyDelayer++;
-		if (enemyDelayer % 50 == 1) {
+		enemyDelay++;
+		if (enemyDelay % 50 == 1) {
 			game.moveEnemyRandomly();
-			enemyDelayer = 1;
+			enemyDelay = 1;
 		}
 	}
 
@@ -209,21 +209,21 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 	}
 
 	@Override
-	public void enter(GameContainer gc, StateBasedGame sb)
+	public void enter(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		super.enter(gc, sb);
+		super.enter(gc, sbg);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STARTER));
 		game = new Game(GameOptions.getInstance().getBoard());
-		game.getPlayer(0).put(0, 0);
-		game.getPlayer(1).put(10, 10);
+		game.getPlayer(0).put(10, 10);
+		game.getPlayer(1).put(0, 0);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
 	}
 
 	@Override
-	public void leave(GameContainer gc, StateBasedGame sb)
+	public void leave(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		super.enter(gc, sb);
+		super.enter(gc, sbg);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.MUSIC_STOPPER));
 		EventBus.INSTANCE.publish(new Event(Event.Tag.WINNINGMUSIC_STARTER));
 	}

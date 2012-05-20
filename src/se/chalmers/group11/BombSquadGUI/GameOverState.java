@@ -44,7 +44,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	private Image winnerPlayer1 = null;
 	private Image winnerPlayer2 = null;
 	private Image resetScore = null;
-	private Image prispall = null;
+	private Image podium = null;
 
 	private final Integer[] playerWins = new Integer[2];
 
@@ -69,13 +69,13 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
 		resetScore = new Image("Images/resetScore.png");
-		prispall = new Image("Images/prispall.png");
+		podium = new Image("Images/prispall.png");
 		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);
 
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		if (loser == 1) {
 			winnerPlayer2.draw(0, 0, (float) 2.2);
@@ -83,7 +83,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		if (loser == 2) {
 			winnerPlayer1.draw(0, 0, (float) 2.2);
 		}
-		prispall.draw(0, 0, 1);
+		podium.draw(0, 0, 1);
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
@@ -95,9 +95,9 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		Input input = container.getInput();
+		Input input = gc.getInput();
 
 		int mouseX = input.getMouseX();
 		int mouseY = input.getMouseY();
@@ -129,7 +129,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 				restartImageScale += scaleStep * delta;
 			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				game.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
 			if (restartImageScale > 1f) {
@@ -141,7 +141,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 				menuImageScale += scaleStep * delta;
 			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				game.enterState(Main.SPLASHSCREENSTATE);
+				sbg.enterState(Main.SPLASHSCREENSTATE);
 			}
 		} else {
 
@@ -154,7 +154,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 				exitImageScale += scaleStep * delta;
 			}
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				container.exit();
+				gc.exit();
 			}
 		} else {
 			if (exitImageScale > 1f)
@@ -172,7 +172,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 				resetImageScale -= scaleStep * delta;
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			game.enterState(Main.SPLASHSCREENSTATE);
+			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
 	}
 

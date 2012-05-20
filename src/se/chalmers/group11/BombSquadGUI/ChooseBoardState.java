@@ -26,31 +26,31 @@ public class ChooseBoardState extends BasicGameState {
 	private int stateID; //Interface requires a gettable stateID, see getID()
 	private int classicBoardX = 50;
 	private int classicBoardY = 100;
-	private int exitX = 50;
-	private int exitY = 400;
+	private int emptyBoardX = 50;
+	private int emptyBoardY = 400;
 	private int boxBoardStartX = 250;
 	private int boxBoardStartY = 100;
-	private int board2X = 250;
-	private int board2Y = 400;
-	private int powboardX = 450;
-	private int powboardY = 100;
-	private int waterboardX = 450;
-	private int waterboardY = 400;
+	private int randomBoardX = 250;
+	private int randomBoardY = 400;
+	private int powerBoardX = 450;
+	private int powerBoardY = 100;
+	private int waterBoardX = 450;
+	private int waterBoardY = 400;
 
-	private float boardWithoutBlocksImageScale = 0.2f;
+	private float emptyBoardImageScale = 0.2f;
 	private float classicBoardImageScale = 0.2f;
-	private float boardWithBoxes = 0.2f;
-	private float randomboard2ImageScale = 0.2f;
-	private float powboardImageScale = 0.2f;
-	private float waterboardImageScale = 0.2f;
+	private float boxBoardImageScale = 0.2f;
+	private float randomBoardImageScale = 0.2f;
+	private float powerBoardImageScale = 0.2f;
+	private float waterBoardImageScale = 0.2f;
 	private float scaleStep = 0.0001f;
 
 	private Image classicBoard = null;
-	private Image boardWithoutBlocks = null;
+	private Image emptyBoard = null;
 	private Image boxBoard = null;
-	private Image randomboard2 = null;
-	private Image powboard = null;
-	private Image waterboard = null;
+	private Image randomBoard = null;
+	private Image powerBoard = null;
+	private Image waterBoard = null;
 
 	public ChooseBoardState(int stateID) {
 		this.stateID = stateID;
@@ -60,26 +60,26 @@ public class ChooseBoardState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		classicBoard = new Image("Images/randomBoard.png");
-		boardWithoutBlocks = new Image("Images/boardWithoutBlocks.png");
+		emptyBoard = new Image("Images/boardWithoutBlocks.png");
 		boxBoard = new Image("Images/boxBoard.png");
-		randomboard2 = new Image("Images/randomBoard2.png");
-		powboard = new Image("Images/powboard.png");
-		waterboard = new Image("Images/waterboard.png");
+		randomBoard = new Image("Images/randomBoard2.png");
+		powerBoard = new Image("Images/powboard.png");
+		waterBoard = new Image("Images/waterboard.png");
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		classicBoard.draw(classicBoardX, classicBoardY, classicBoardImageScale);
-		boardWithoutBlocks.draw(exitX, exitY, boardWithoutBlocksImageScale);
-		boxBoard.draw(boxBoardStartX, boxBoardStartY, boardWithBoxes);
-		randomboard2.draw(board2X, board2Y, randomboard2ImageScale);
-		powboard.draw(powboardX, powboardY, powboardImageScale);
-		waterboard.draw(waterboardX, waterboardY, waterboardImageScale);
+		emptyBoard.draw(emptyBoardX, emptyBoardY, emptyBoardImageScale);
+		boxBoard.draw(boxBoardStartX, boxBoardStartY, boxBoardImageScale);
+		randomBoard.draw(randomBoardX, randomBoardY, randomBoardImageScale);
+		powerBoard.draw(powerBoardX, powerBoardY, powerBoardImageScale);
+		waterBoard.draw(waterBoardX, waterBoardY, waterBoardImageScale);
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sb, int delta)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
 
@@ -87,31 +87,31 @@ public class ChooseBoardState extends BasicGameState {
 		int mouseY = input.getMouseY();
 
 		boolean insideClassicBoard = false;
-		boolean insideExitGame = false;
+		boolean insideEmptyBoard = false;
 		boolean insideBoxBoard = false;
 		boolean insideRandomBoard = false;
-		boolean insidePowBoard = false;
+		boolean insidePowerBoard = false;
 		boolean insideWaterBoard = false;
 
 		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150
 				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
 
-		} else if (mouseX >= exitX && mouseX <= exitX + 150 && mouseY >= exitY
-				&& mouseY <= exitY + 150) {
-			insideExitGame = true;
+		} else if (mouseX >= emptyBoardX && mouseX <= emptyBoardX + 150 && mouseY >= emptyBoardY
+				&& mouseY <= emptyBoardY + 150) {
+			insideEmptyBoard = true;
 
 		} else if (mouseX >= boxBoardStartX && mouseX <= boxBoardStartX + 150
 				&& mouseY >= boxBoardStartY && mouseY <= boxBoardStartY + 150) {
 			insideBoxBoard = true;
-		} else if (mouseX >= board2X && mouseX <= board2X + 150
-				&& mouseY >= board2Y && mouseY <= board2Y + 150) {
+		} else if (mouseX >= randomBoardX && mouseX <= randomBoardX + 150
+				&& mouseY >= randomBoardY && mouseY <= randomBoardY + 150) {
 			insideRandomBoard = true;
-		} else if (mouseX >= powboardX && mouseX <= powboardX + 150
-				&& mouseY >= powboardY && mouseY <= powboardY + 150) {
-			insidePowBoard = true;
-		} else if (mouseX >= waterboardX && mouseX <= waterboardX + 150
-				&& mouseY >= waterboardY && mouseY <= waterboardY + 150) {
+		} else if (mouseX >= powerBoardX && mouseX <= powerBoardX + 150
+				&& mouseY >= powerBoardY && mouseY <= powerBoardY + 150) {
+			insidePowerBoard = true;
+		} else if (mouseX >= waterBoardX && mouseX <= waterBoardX + 150
+				&& mouseY >= waterBoardY && mouseY <= waterBoardY + 150) {
 			insideWaterBoard = true;
 		}
 
@@ -121,7 +121,7 @@ public class ChooseBoardState extends BasicGameState {
 
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(1);
-				sb.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
 		} else {
 
@@ -129,65 +129,65 @@ public class ChooseBoardState extends BasicGameState {
 				classicBoardImageScale -= scaleStep * delta;
 
 			}
-			if (insideExitGame) {
+			if (insideEmptyBoard) {
 				if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 					GameOptions.getInstance().setBoard(0);
-					sb.enterState(Main.GAMEPLAYSTATE);
+					sbg.enterState(Main.GAMEPLAYSTATE);
 				}
 
-				if (boardWithoutBlocksImageScale < 0.25f)
-					boardWithoutBlocksImageScale += scaleStep * delta;
+				if (emptyBoardImageScale < 0.25f)
+					emptyBoardImageScale += scaleStep * delta;
 			} else {
-				if (boardWithoutBlocksImageScale > 0.2f)
-					boardWithoutBlocksImageScale -= scaleStep * delta;
+				if (emptyBoardImageScale > 0.2f)
+					emptyBoardImageScale -= scaleStep * delta;
 			}
 		}
 		if (insideRandomBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(4);
-				sb.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
-			if (randomboard2ImageScale < 0.25f)
-				randomboard2ImageScale += scaleStep * delta;
+			if (randomBoardImageScale < 0.25f)
+				randomBoardImageScale += scaleStep * delta;
 		} else {
-			if (randomboard2ImageScale > 0.2f)
-				randomboard2ImageScale -= scaleStep * delta;
+			if (randomBoardImageScale > 0.2f)
+				randomBoardImageScale -= scaleStep * delta;
 		}
 		if (insideBoxBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(3);
-				sb.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
-			if (boardWithBoxes < 0.25f)
-				boardWithBoxes += scaleStep * delta;
+			if (boxBoardImageScale < 0.25f)
+				boxBoardImageScale += scaleStep * delta;
 		} else {
-			if (boardWithBoxes > 0.2f)
-				boardWithBoxes -= scaleStep * delta;
+			if (boxBoardImageScale > 0.2f)
+				boxBoardImageScale -= scaleStep * delta;
 		}
-		if (insidePowBoard) {
+		if (insidePowerBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(5);
-				sb.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
-			if (powboardImageScale < 0.25f)
-				powboardImageScale += scaleStep * delta;
+			if (powerBoardImageScale < 0.25f)
+				powerBoardImageScale += scaleStep * delta;
 		} else {
-			if (powboardImageScale > 0.2f)
-				powboardImageScale -= scaleStep * delta;
+			if (powerBoardImageScale > 0.2f)
+				powerBoardImageScale -= scaleStep * delta;
 		}
 		if (insideWaterBoard) {
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				GameOptions.getInstance().setBoard(6);
-				sb.enterState(Main.GAMEPLAYSTATE);
+				sbg.enterState(Main.GAMEPLAYSTATE);
 			}
-			if (waterboardImageScale < 0.25f)
-				waterboardImageScale += scaleStep * delta;
+			if (waterBoardImageScale < 0.25f)
+				waterBoardImageScale += scaleStep * delta;
 		} else {
-			if (waterboardImageScale > 0.2f)
-				waterboardImageScale -= scaleStep * delta;
+			if (waterBoardImageScale > 0.2f)
+				waterBoardImageScale -= scaleStep * delta;
 		}
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			sb.enterState(Main.CHOOSECHARACTERSTATE);
+			sbg.enterState(Main.CHOOSECHARACTERSTATE);
 		}
 	}
 

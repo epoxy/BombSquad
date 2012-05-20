@@ -4,7 +4,7 @@ public class GameOptions {
 
 	private static GameOptions gameOptions;
 	private String playerOneSkin = "Devil";
-	private String playerTwoSkin = "BombMan";
+	private String playerTwoSkin = "Wizard";
 
 	private int chosenBoard = 1;
 

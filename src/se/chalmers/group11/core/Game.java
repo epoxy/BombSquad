@@ -53,12 +53,12 @@ public class Game implements IEventHandler {
 
 	/**
 	 * Creates two player start positions and a board
-	 * @param board
+	 * @param b
 	 *            the board
 	 * @throws SlickException 
 	 */
-	public Game(Board board) throws SlickException {
-		gameBoard = board;
+	public Game(Board b) throws SlickException {
+		gameBoard = b;
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
 		player[1] = new Player(10, 10, 2);
@@ -165,7 +165,7 @@ public class Game implements IEventHandler {
 	 */
 	public void explodeBomb(int bombX, int bombY, int playerIndex) {
 		int firePower = player[playerIndex].getFirePower();
-		int playerWhoPutoutTheBomb = playerIndex;
+		int playerWhoPutOutTheBomb = playerIndex;
 		gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 		setFireTileToEmptyTile(bombX, bombY);
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
@@ -174,52 +174,52 @@ public class Game implements IEventHandler {
 			if (isInbounds(bombX + i, bombY)) {
 				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
 
-					placeFire(bombX + i, bombY, playerWhoPutoutTheBomb);
+					placeFire(bombX + i, bombY, playerWhoPutOutTheBomb);
 					break;
 				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
 					break;
 				}
 
-				placeFire(bombX + i, bombY, playerWhoPutoutTheBomb);
+				placeFire(bombX + i, bombY, playerWhoPutOutTheBomb);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX - i, bombY)) {
 				if (gameBoard.getTile(bombX - i, bombY) instanceof BoxTile) {
 
-					placeFire(bombX - i, bombY, playerWhoPutoutTheBomb);
+					placeFire(bombX - i, bombY, playerWhoPutOutTheBomb);
 					break;
 				} else if (gameBoard.getTile(bombX - i, bombY) instanceof BlockTile) {
 					break;
 				}
 
-				placeFire(bombX - i, bombY, playerWhoPutoutTheBomb);
+				placeFire(bombX - i, bombY, playerWhoPutOutTheBomb);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY + i)) {
 				if (gameBoard.getTile(bombX, bombY + i) instanceof BoxTile) {
 
-					placeFire(bombX, bombY + i, playerWhoPutoutTheBomb);
+					placeFire(bombX, bombY + i, playerWhoPutOutTheBomb);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY + i) instanceof BlockTile) {
 					break;
 				}
 
-				placeFire(bombX, bombY + i, playerWhoPutoutTheBomb);
+				placeFire(bombX, bombY + i, playerWhoPutOutTheBomb);
 			}
 		}
 		for (int i = 1; i <= firePower; i++) {
 			if (isInbounds(bombX, bombY - i)) {
 				if (gameBoard.getTile(bombX, bombY - i) instanceof BoxTile) {
 
-					placeFire(bombX, bombY - i, playerWhoPutoutTheBomb);
+					placeFire(bombX, bombY - i, playerWhoPutOutTheBomb);
 					break;
 				} else if (gameBoard.getTile(bombX, bombY - i) instanceof BlockTile) {
 
 					break;
 				}
-				placeFire(bombX, bombY - i, playerWhoPutoutTheBomb);
+				placeFire(bombX, bombY - i, playerWhoPutOutTheBomb);
 			}
 
 		}

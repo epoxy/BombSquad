@@ -31,12 +31,12 @@ public class Main extends StateBasedGame {
 	}
 
 	@Override
-	public void initStatesList(GameContainer container) throws SlickException {
-		this.getState(GAMEPLAYSTATE).init(container, this);
-		this.getState(CHOOSEBOARDSTATE).init(container, this);
-		this.getState(GAMEOVERSTATE).init(container, this);
-		this.getState(SPLASHSCREENSTATE).init(container, this);
-		this.getState(CHOOSECHARACTERSTATE).init(container, this);
+	public void initStatesList(GameContainer gc) throws SlickException {
+		this.getState(GAMEPLAYSTATE).init(gc, this);
+		this.getState(CHOOSEBOARDSTATE).init(gc, this);
+		this.getState(GAMEOVERSTATE).init(gc, this);
+		this.getState(SPLASHSCREENSTATE).init(gc, this);
+		this.getState(CHOOSECHARACTERSTATE).init(gc, this);
 	}
 
 	public static void main(String[] args) throws SlickException {
