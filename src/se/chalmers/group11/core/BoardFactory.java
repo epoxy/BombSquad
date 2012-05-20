@@ -10,7 +10,7 @@ public class BoardFactory {
 	 * 
 	 * @return BoardClassic
 	 */
-	public static IBoard getBoardClassic() {
+	public static Board getBoardClassic() {
 		return new BoardClassic();
 	}
 
@@ -18,7 +18,7 @@ public class BoardFactory {
 	 * 
 	 * @return BoardEmpty
 	 */
-	public static IBoard getBoardEmpty() {
+	public static Board getBoardEmpty() {
 		return new BoardEmpty();
 	}
 
@@ -26,7 +26,7 @@ public class BoardFactory {
 	 * 
 	 * @return BoardRandom
 	 */
-	public static IBoard getBoardRandom() {
+	public static Board getBoardRandom() {
 		return new BoardRandom();
 	}
 
@@ -35,7 +35,7 @@ public class BoardFactory {
 	 * @return BoardPower
 	 */
 
-	public static IBoard getBoardPower() {
+	public static Board getBoardPower() {
 		return new BoardPower();
 	}
 
@@ -43,7 +43,7 @@ public class BoardFactory {
 	 * 
 	 * @return BoardWater
 	 */
-	public static IBoard getBoardWater() {
+	public static Board getBoardWater() {
 		return new BoardWater();
 	}
 
@@ -51,7 +51,7 @@ public class BoardFactory {
 	 * 
 	 * @return BoardWithoutBlocks
 	 */
-	public static IBoard getBoardWithoutBlocks() {
+	public static Board getBoardWithoutBlocks() {
 		return new BoardWithoutBlocks();
 	}
 }

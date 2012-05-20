@@ -29,7 +29,7 @@ public class Functions {
 	 * Makes sure that the players aren't locked in at the beginning.
 	 * @param iB the board
 	 */
-	public static void makeRoomForPlayers(IBoard iB){
+	public static void makeRoomForPlayers(Board iB){
 		
 		/*The three tiles in the upper left corner are being set to
 		 * EmptyTiles*/

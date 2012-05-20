@@ -45,7 +45,7 @@ ProjectEleven
 public class Game implements IEventHandler {
 	private Player player[];
 	private Enemy enemy;
-	private IBoard gameBoard;
+	private Board gameBoard;
 	private final int FIRE_COUNTDOWN = 1000;
 	private int amountOfBombs;
 	private StateBasedGame sbg;
@@ -57,7 +57,7 @@ public class Game implements IEventHandler {
 	 *            the board
 	 * @throws SlickException 
 	 */
-	public Game(IBoard board) throws SlickException {
+	public Game(Board board) throws SlickException {
 		gameBoard = board;
 		player = new Player[2];
 		player[0] = new Player(0, 0, 1);
@@ -312,7 +312,7 @@ public class Game implements IEventHandler {
 	 * 
 	 * @return board
 	 */
-	public IBoard getBoard() {
+	public Board getBoard() {
 		return gameBoard;
 	}
 
