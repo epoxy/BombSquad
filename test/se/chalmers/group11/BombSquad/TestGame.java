@@ -77,7 +77,6 @@ public class TestGame {
 	@Test
 	public void pickUpExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(0).put(0, 0);
 		int firePower = game.getPlayer(0).getFirePower();
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.setPlayerPosition(1, 0, 0); // Moves player one step to the right
@@ -87,23 +86,24 @@ public class TestGame {
 	@Test
 	public void explodeBombExtraFire() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(0).put(0, 0);
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraFirePowerTile());
 		game.setPlayerPosition(1, 0, 0);// Moves player one step to the right
-		game.explodeBomb(4, 4, 0);
+		game.explodeBomb(4, 4, 0); //Explodes a bomb with player 1's firepower
+		//Fire should be put out on bomb position and on the two tiles next to the position//
 		assertTrue(game.getBoard().getTile(4, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(5, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(6, 4) instanceof FireTile);
-		assertFalse(game.getBoard().getTile(8, 4) instanceof FireTile);
+		assertFalse(game.getBoard().getTile(7, 4) instanceof FireTile);//Fire ends here
 	}
 
 	@Test
 	public void pickUpExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(0).put(0, 0);
-		int amountOfBombs = game.getPlayer(0).getAmountOfBombs();
+		int amountOfBombs = game.getPlayer(0).getAmountOfBombs(); //Should be 1
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		//Player moves on an ExtraBomb-tile and picks it up
 		game.setPlayerPosition(1, 0, 0);
+		//Checks that player 1´s amount of bombs has increased by 1
 		assertTrue(game.getPlayer(0).getAmountOfBombs() == amountOfBombs + 1);
 	}
 
@@ -111,8 +111,9 @@ public class TestGame {
 	public void putOutExtraBombs() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getBoard().setToTile(1, 0, TileFactory.getExtraBombsTile());
+		//Player moves on an ExtraBomb-tile and picks it up
 		game.setPlayerPosition(1, 0, 0);
-		game.setBomb(0);
+		game.setBomb(0);//puts out a bomb
 		game.setPlayerPosition(1, 0, 0);
 		game.setBomb(0);
 		game.setPlayerPosition(1, 0, 0);
