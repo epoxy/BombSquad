@@ -24,39 +24,30 @@ of the enemy and can move it to new positions.
         
 Anton Palmqvist
  */	
-public class Enemy {
+public class Enemy implements IMovable{
 	
-	/*Varibles containing the instance's position. Also sets 
-	 * the starting position to coordinates x=6 and y=6.*/
-	private int x=5;
-	private int y=5;
+	private Position p;
 	
 	/**
-	 * Getter for the enemys x-coordinate.
+	 * Constructor for making an enemy.
 	 * 
-	 * @return the x-position of the enemy
+	 * @param x startingposition x-wise
+	 * @param y startingposition y-wise
 	 */
-	public int getX() {
-		return x;
+	public Enemy(){
+		p = new Position(5,5); //Sets the startingposition to x=5 and y=5
 	}
-	
-	/**
-	 * Getter for the enemys y-coordinate.
-	 * 
-	 * @return the y-position of the enemy
-	 */
-	public int getY() {
-		return y;
-	}
-	
-	/**
-	 * Moves the enemy to the new position according to the parameters.
-	 * 
-	 * @param deltaX the amount of steps the enemy will go x-wise
-	 * @param deltaY the amount of steps the enemy will go y-wise
-	 */
+	@Override
 	public void move(int deltaX, int deltaY) {
-		x+=deltaX;
-		y+=deltaY;
+		p.move(deltaX, deltaY);
+	}
+
+	@Override
+	public void put(int x, int y) {
+		p.setPosition(x, y);
+	}
+	@Override
+	public Position getPosition(){
+		return p;
 	}
 }

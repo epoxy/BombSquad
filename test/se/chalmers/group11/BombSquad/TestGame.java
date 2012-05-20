@@ -44,33 +44,32 @@ public class TestGame {
 	}
 
 	@Test
-	public void testSetPlayerPosition() throws SlickException { // Use case:
-																// move
+	//Use case: Move
+	public void testSetPlayerPosition() throws SlickException {
 		Game game = new Game(new BoardEmpty());
-		game.getPlayer(1).move(-1, 0);// Adjusts player2 to so that he can move
+		game.getPlayer(1).move(-1, 0);// Adjusts player2 so that he can move
 										// to the right
 		for (int i = 0; i <= 1; i++) {// Testing both players
-			int s = game.getPlayer(i).getX();
+			int s = game.getPlayer(i).getPosition().getX();
 			game.setPlayerPosition(1, 0, i);// Moves player one step to the
 											// right
-			int r = game.getPlayer(i).getX();
+			int r = game.getPlayer(i).getPosition().getX();
 			assertTrue(r - s == 1); // Difference between destination and source
 									// should be 1 step
 		}
 	}
-
-	public void testSetPlayerPositionToObstacle() throws SlickException { // Use
-																			// case:
-																			// move
+	@Test
+	// Use case: Move
+	public void testSetPlayerPositionToObstacle() throws SlickException { 
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(0).move(0, -1);// Adjusts player1 and player2 to so that
 										// they can not move to the right
 		game.getPlayer(1).put(8, 9);
 		for (int i = 0; i <= 1; i++) {// Testing both players
-			int s = game.getPlayer(i).getX();
+			int s = game.getPlayer(i).getPosition().getX();
 			game.setPlayerPosition(1, 0, i);// Moves player one step to the
 											// right
-			int r = game.getPlayer(i).getX();
+			int r = game.getPlayer(i).getPosition().getX();
 			assertTrue(r - s == 0); // Difference between destination and source
 									// should be 1 step
 		}
@@ -153,8 +152,10 @@ public class TestGame {
 		 * kill the enem.y
 		 */
 		game.getBoard().getTile(10, 6).performOnEnemy();
-		// When enemy dies it respawns on its starting position x=6 and y=6
-		assertTrue(game.getEnemy().getX() == 5 && game.getEnemy().getY() == 5);
+
+		//When enemy dies it respawns on its starting position x=6 and y=6
+		assertTrue(game.getEnemy().getPosition().getX()==5 && game.getEnemy().getPosition().getY()==5);
+
 	}
 
 	@Test

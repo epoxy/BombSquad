@@ -72,7 +72,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 
 		sprite1 = new SpriteSheets("anton");
 		sprite2 = new SpriteSheets("mackan");
-		sprite3 = new SpriteSheets("Devil");
+		sprite3 = new SpriteSheets("mackan");
 		t = new LoserKeeper(sbg);
 		music = new InitMusic();
 	}
@@ -119,14 +119,14 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 			}
 		}
 
-		sprite1.drawAnimation(game.getPlayer(0).getX() * 60, game.getPlayer(0)
+		sprite1.drawAnimation(game.getPlayer(0).getPosition().getX() * 60, game.getPlayer(0).getPosition()
 				.getY() * 60, 60, 60);
 
-		sprite2.drawAnimation(game.getPlayer(1).getX() * 60, game.getPlayer(1)
-				.getY() * 60, 60, 60);
+		sprite2.drawAnimation(game.getPlayer(1).getPosition().getX() * 60, game.getPlayer(1)
+				.getPosition().getY() * 60, 60, 60);
 
-		sprite3.drawAnimation(game.getEnemy().getX() * 60, game.getEnemy()
-				.getY() * 60, 60, 60);
+		sprite3.drawAnimation(game.getEnemy().getPosition().getX() * 60, game.getEnemy()
+				.getPosition().getY() * 60, 60, 60);
 
 	}
 
@@ -180,18 +180,17 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		for (int j = 0; j < 2; j++) {// Loopar igenom spelarens placering och
 			// ser om han ska dö på rutan han är
 			game.getBoard()
-					.getTile(game.getPlayer(j).getX(), game.getPlayer(j).getY())
+					.getTile(game.getPlayer(j).getPosition().getX(),game.getPlayer(j).getPosition().getY())
 					.performOnPlayer(game.getPlayer(j));
 		}
 		
 		//Checks the enemyposition and kills the enemy if there is fire there
-		game.getBoard().getTile(game.getEnemy().getX(), game.getEnemy().getY())
+		game.getBoard().getTile(game.getEnemy().getPosition().getX(), game.getEnemy().getPosition().getY())
 		.performOnEnemy();
 		
 		for (int j = 0; j < 2; j++) {// Loops through the players positions and 
 			//checks if it corresponds with position of enemy, If so, kill player
-			if(game.getPlayer(j).getX()==game.getEnemy().getX() && 
-			game.getPlayer(j).getY()==game.getEnemy().getY()){
+			if(game.getPlayer(j).getPosition().equals(game.getEnemy().getPosition())) {
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, 
 						game.getPlayer(j).getPlayerNumber()));
 			}
@@ -219,7 +218,6 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
-		// this.sb=sb;
 	}
 
 	@Override
