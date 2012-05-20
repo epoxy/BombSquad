@@ -30,10 +30,9 @@ The player also knows if it is player 1 or player 2.
         
 Anton Palmqvist
  */
-public class Player {
+public class Player implements IMovable{
 
-	private int x;
-	private int y;
+	private Position p;
 	private int playerNumber;
 	private int amountOfBombs;
 	private int firePower;
@@ -46,52 +45,26 @@ public class Player {
 	 * @param playerNumber number of the player
 	 */
 	public Player(int x, int y, int playerNumber) {
-		this.x = x;
-		this.y = y;
+		p = new Position(x, y);
 		this.playerNumber=playerNumber;
 		/*amount of bombs and fire power are set to 1 by default when player is constructed*/
 		amountOfBombs = 1;
 		firePower = 1;
 	}
 	
-	/**
-	 * Method for moving player to a relative position. Is determined by the amount of steps 
-	 * x- and y-wise.
-	 * 
-	 * @param deltaX players new relative position x-wise
-	 * @param deltaY players new relative position y-wise
-	 */
+	@Override
 	public void move(int deltaX, int deltaY) {
-		x = x + deltaX;
-		y = y + deltaY;
+		p.move(deltaX, deltaY);
 	}
 	
-	/**
-	 * Method for putting a player on an absolute position. Mostly used in 
-	 * testing to make movement efficient.
-	 * 
-	 * @param x players new position x-wise
-	 * @param y players new position y-wise
-	 */
+	@Override
 	public void put(int x, int y){
-		this.x=x;
-		this.y=y;
+		p.setPosition(x, y);
 	}
-/**
- * Getter of the x-position
- * 
- * @return players x coordinate
- */
-	public int getX() {
-		return x;
-	}
-/**
- * Getter of the y-position
- * 
- * @return players y coordinate
- */
-	public int getY() {
-		return y;
+
+	@Override
+	public Position getPosition(){
+		return p;
 	}
 /**
  * 

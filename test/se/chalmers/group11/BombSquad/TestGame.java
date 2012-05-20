@@ -46,6 +46,7 @@ public class TestGame {
 	public void testSetPlayerPosition() throws SlickException { // Use case:
 																// move
 		Game game = new Game(new BoardEmpty());
+<<<<<<< HEAD
 		game.getPlayer(1).move(-1, 0);// Adjusts player2 to so that he can move
 										// to the right
 		for (int i = 0; i <= 1; i++) {// Testing both players
@@ -55,6 +56,14 @@ public class TestGame {
 			int r = game.getPlayer(i).getX();
 			assertTrue(r - s == 1); // Difference between destination and source
 									// should be 1 step
+=======
+		game.getPlayer(1).move(-1, 0);//Adjusts player2 to so that he can move to the right
+		for(int i=0; i<=1; i++){//Testing both players
+			int s = game.getPlayer(i).getPosition().getX();
+			game.setPlayerPosition(1, 0, i);//Moves player one step to the right
+			int r = game.getPlayer(i).getPosition().getX();
+			assertTrue(r-s == 1); // Difference between destination and source should be 1 step
+>>>>>>> position
 		}
 	}
 
@@ -65,6 +74,7 @@ public class TestGame {
 		game.getPlayer(0).move(0, -1);// Adjusts player1 and player2 to so that
 										// they can not move to the right
 		game.getPlayer(1).put(8, 9);
+<<<<<<< HEAD
 		for (int i = 0; i <= 1; i++) {// Testing both players
 			int s = game.getPlayer(i).getX();
 			game.setPlayerPosition(1, 0, i);// Moves player one step to the
@@ -72,6 +82,13 @@ public class TestGame {
 			int r = game.getPlayer(i).getX();
 			assertTrue(r - s == 0); // Difference between destination and source
 									// should be 1 step
+=======
+		for(int i=0; i<=1; i++){//Testing both players
+			int s = game.getPlayer(i).getPosition().getX();
+			game.setPlayerPosition(1, 0, i);//Moves player one step to the right
+			int r = game.getPlayer(i).getPosition().getX();
+			assertTrue(r-s == 0); // Difference between destination and source should be 1 step
+>>>>>>> position
 		}
 	}
 
