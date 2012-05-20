@@ -218,7 +218,6 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		game.getPlayer(1).put(10, 10);
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
-		// this.sb=sb;
 	}
 
 	@Override

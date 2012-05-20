@@ -353,7 +353,7 @@ public class Game implements IEventHandler {
 	@Override
 	public void onEvent(Event evt) {
 		if (evt.getTag() == Tag.ENEMY_KILLED) {
-			enemy = new Enemy();
+			enemy.put(5, 5);
 		}
 
 	}
