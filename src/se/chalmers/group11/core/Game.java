@@ -76,10 +76,10 @@ public class Game implements IEventHandler {
 	 *            variable representing the two players
 	 * @setPlayerPosition moves the player
 	 */
-	public void setPlayerPosition(int deltaX, int deltaY, int playerIndex) {
+	public void movePlayer(int deltaX, int deltaY, int playerIndex) {
 		Player p = player[playerIndex];
-		int nextPosX = p.getX() + deltaX;
-		int nextPosY = p.getY() + deltaY;
+		int nextPosX = p.getPosition().getX() + deltaX;
+		int nextPosY = p.getPosition().getY() + deltaY;
 		if (isInbounds(nextPosX, nextPosY)) {
 
 			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()) {
@@ -87,7 +87,7 @@ public class Game implements IEventHandler {
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
-				gameBoard.setToTile(p.getX(), p.getY(),
+				gameBoard.setToTile(p.getPosition().getX(), p.getPosition().getY(),
 						TileFactory.getEmptyTile());
 			}
 		}
@@ -98,11 +98,11 @@ public class Game implements IEventHandler {
 	 * @param playerIndex
 	 *            variable representing the two players
 	 */
-	public void setBomb(final int playerIndex) {
+	public void putBomb(final int playerIndex) {
 		amountOfBombs = player[playerIndex].getAmountOfBombs();
 		if (amountOfBombs > 0) {
-			int bombX = player[playerIndex].getX();
-			int bombY = player[playerIndex].getY();
+			int bombX = player[playerIndex].getPosition().getX();
+			int bombY = player[playerIndex].getPosition().getY();
 			
 			/*Only able to put out bomb if the tile is an EmptyTile*/
 			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
@@ -342,8 +342,8 @@ public class Game implements IEventHandler {
 	}
 
 	private void tryToMoveEnemy(int i, int j) {
-		if (isInbounds(i + enemy.getX(), j + enemy.getY())) {
-			if (gameBoard.getTile(i + enemy.getX(), j + enemy.getY())
+		if (isInbounds(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())) {
+			if (gameBoard.getTile(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())
 					.canReceivePlayer()) {
 				enemy.move(i, j);
 			}
@@ -353,7 +353,7 @@ public class Game implements IEventHandler {
 	@Override
 	public void onEvent(Event evt) {
 		if (evt.getTag() == Tag.ENEMY_KILLED) {
-			enemy = new Enemy();
+			enemy.put(5, 5);
 		}
 
 	}
