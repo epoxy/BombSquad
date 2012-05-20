@@ -65,7 +65,6 @@ public class TestGame {
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(1).move(0, -1);// Adjusts player1 and player2 to so that
 									// they can not move to the right
-		game.getPlayer(2).put(8, 9);
 		for (int i = 1; i <= 2; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
 			game.movePlayer(1, 0, i);// Moves player one step to the
