@@ -1,0 +1,4 @@
+To se the .mailmap viewing the number of commits of the authors and their corresponding gitnames and emails, type:
+git shortlog -nse
+The list will view:
+Number of commits  FirstName LastName, Gitname: "gitname" <email>
