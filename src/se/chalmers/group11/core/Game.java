@@ -117,7 +117,7 @@ public class Game implements IEventHandler {
 	/**
 	 * 
 	 * @param playerNumber
-	 *            variable representing the two players
+	 *            variable representing one of the two players
 	 * @return return player
 	 */
 	public Player getPlayer(int playerNumber) {
