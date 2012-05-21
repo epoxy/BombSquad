@@ -22,7 +22,7 @@ public class ExtraBombsTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p) {
-		EventBus.INSTANCE.publish(new Event(Event.Tag.MORE_BOMBS, 0));
+		EventBus.INSTANCE.publish(new Event(Event.Tag.MORE_BOMBS));
 		p.incrementBombs();
 	}
 
