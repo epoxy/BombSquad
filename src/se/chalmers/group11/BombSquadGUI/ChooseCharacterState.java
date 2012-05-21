@@ -14,7 +14,7 @@ import se.chalmers.group11.main.Main;
 public class ChooseCharacterState extends BasicGameState {
 	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int nextButtonX = 500;
-	private int nextButtonY = 500;
+	private int nextButtonY = 550;
 	private int thumbsY = 120;
 	private int thumbsY2 = 200;
 	private int thumbsY3 = 280;
@@ -86,7 +86,7 @@ public class ChooseCharacterState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		nextButton = new Image("Images/PlayerIcon.png");
+		nextButton = new Image("Images/nextButton.jpg");
 		playerOneText = new Image("Images/playerOneText.png");
 		playerTwoText = new Image("Images/playerTwoText.png");
 		devil = new Image("Images/devilDOWN.gif");
