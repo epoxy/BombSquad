@@ -444,7 +444,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1MackanScale < 1.65f)
 				p1MackanScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("mackan");
+				GameOptions.getInstance().setPlayerOneSkin("Mackan");
 			}
 		} else {
 			if (p1MackanScale > 1.5f) {
@@ -455,7 +455,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2MackanScale < 1.65f)
 				p2MackanScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("mackan");
+				GameOptions.getInstance().setPlayerTwoSkin("Mackan");
 			}
 		} else {
 			if (p2MackanScale > 1.5f) {
@@ -466,7 +466,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1AntonScale < 1.65f)
 				p1AntonScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("anton");
+				GameOptions.getInstance().setPlayerOneSkin("Anton");
 			}
 		} else {
 			if (p1AntonScale > 1.5f) {
@@ -477,7 +477,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2AntonScale < 1.65f)
 				p2AntonScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("anton");
+				GameOptions.getInstance().setPlayerTwoSkin("Anton");
 			}
 		} else {
 			if (p2AntonScale > 1.5f) {
@@ -488,7 +488,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1TomasScale < 1.65f)
 				p1TomasScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("tomas");
+				GameOptions.getInstance().setPlayerOneSkin("Tomas");
 			}
 		} else {
 			if (p1TomasScale > 1.5f) {
@@ -499,7 +499,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2TomasScale < 1.65f)
 				p2TomasScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("tomas");
+				GameOptions.getInstance().setPlayerTwoSkin("Tomas");
 			}
 		} else {
 			if (p2TomasScale > 1.5f) {
@@ -510,7 +510,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p1HenrikScale < 1.65f)
 				p1HenrikScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerOneSkin("henrik");
+				GameOptions.getInstance().setPlayerOneSkin("Henrik");
 			}
 		} else {
 			if (p1HenrikScale > 1.5f) {
@@ -521,7 +521,7 @@ public class ChooseCharacterState extends BasicGameState {
 			if (p2HenrikScale < 1.65f)
 				p2HenrikScale += thumbsScaleStep * delta;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				GameOptions.getInstance().setPlayerTwoSkin("henrik");
+				GameOptions.getInstance().setPlayerTwoSkin("Henrik");
 			}
 		} else {
 			if (p2HenrikScale > 1.5f) {
