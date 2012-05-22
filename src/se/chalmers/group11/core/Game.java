@@ -175,7 +175,6 @@ public class Game implements IEventHandler {
 		placeFire(bombX, bombY, Direction.DOWN, firePower);
 
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB));
-		// TODO refakrorisera, samla till en loop
 		player[playerNumber-1].incrementBombs();
 
 	}
@@ -197,60 +196,16 @@ public class Game implements IEventHandler {
 
 			case LEFT:
 				bombX--;
-				if (isInbounds(bombX, bombY)) {
-				if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-					}
-					else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-						placeFire(bombX, bombY, dir, firePower-1);
-					}
 					break;
-				}
 			case RIGHT:
 				bombX++;
-				if (isInbounds(bombX, bombY)) {
-					if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-					}
-					else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-						placeFire(bombX, bombY, dir, firePower-1);
-					}
 					break;
-				}
 			case UP:
 				bombY--;
-				if (isInbounds(bombX, bombY)) {
-					if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-					}
-					else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-						placeFire(bombX, bombY, dir, firePower-1);
-					}
 					break;
-				}
 			case DOWN:
 				bombY++;
-				if (isInbounds(bombX, bombY)) {
-					if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-					}
-					else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
-						gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-						setFireTileToEmptyTile(bombX, bombY);
-						placeFire(bombX, bombY, dir, firePower-1);
-					}
 					break;
-				}
 			case CENTER:	
 				if (isInbounds(bombX, bombY)){
 					gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
@@ -258,10 +213,22 @@ public class Game implements IEventHandler {
 					break;
 				}
 			}
+			if (isInbounds(bombX, bombY)) {
+				setFireTile(bombX, bombY, dir, firePower);
+			}
 		}
-
-
-
+	}
+	
+	private void setFireTile (int bombX, int bombY, Direction dir, int firePower){
+		if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
+			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+			setFireTileToEmptyTile(bombX, bombY);
+		}
+		else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
+			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+			setFireTileToEmptyTile(bombX, bombY);
+			placeFire(bombX, bombY, dir, firePower-1);
+		}
 	}
 
 	/**
