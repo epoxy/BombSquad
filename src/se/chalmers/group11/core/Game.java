@@ -273,6 +273,9 @@ public class Game implements IEventHandler {
 					gameBoard.setTmpTile(fireX, fireY,
 							null);
 				}
+				else if(gameBoard.getTileTmp(fireX, fireY) instanceof FireTile){
+					setFireTileToEmptyTile(fireX, fireY);
+				}
 
 				else {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
