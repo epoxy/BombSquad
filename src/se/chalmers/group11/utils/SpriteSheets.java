@@ -86,7 +86,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/mantwoRIGHT.gif");
 			movementRight[1] = new Image("Images/mantwoRIGHT2.gif");
 		}
-		if (s == "mackan") {
+		if (s == "Mackan") {
 			movementUp[0] = new Image("Images/mackanUP.png");
 			movementUp[1] = new Image("Images/mackanUP2.png");
 			movementDown[0] = new Image("Images/mackanDOWN.png");
