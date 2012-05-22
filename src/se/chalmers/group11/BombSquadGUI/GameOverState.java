@@ -64,7 +64,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		restartImage = new Image("Images/reset.jpg");
-		exitImage = new Image("Images/exit.jpg");
+		exitImage = new Image("Images/exit.png");
 		menuImage = new Image("Images/menubutton.jpg");
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
