@@ -2,3 +2,37 @@ To se the .mailmap viewing the number of commits of the authors and their corres
 git shortlog -nse
 The list will view:
 Number of commits  FirstName LastName, Gitname: "gitname" <email>
+
+
+How to install Slick2D for eclipse in simple steps.
+
+First of all, download Slick2D library from http://slick.cokeandcode.com/.
+
+Open Eclipse and choose your project folder. In the projects directory you create a new folder named "lib".
+
+1.Right-click the lib folder, press import, 
+and choose the following .jar-files from the SLICK_HOME folder:
+
+*LWJGL.jar
+*slick.jar
+*jogg-0.0.7.jar
+*jorbis-0.0.15.jar
+
+2.Add these files in the Build Path by right-clicking the Javaproject folder, choose "Build Path",
+then "Configure Build Path..." and finally "Add Jars".
+They will now be found in an Referenced libraries folder as well.
+
+3.Now to make it work on several platforms. 
+Right-click the lib folder and choose to import archive file, navigate to SLICK_HOME folder and add each jar-file for the platforms (Windows,Mac and Linux).
+NOTE! If you run a 64-bit OS you will need to download some extra files and do the same thing as above. 
+
+4. Once you have imported all of the native libraries into your lib folder, you can associate this folder with lwjgl.jar.
+If you are in the Java Perspective, then this jar will be located in the "Referenced Libraries" section.
+Bring up the properties dialog for lwjgl.jar by right-clicking on it.
+In the "Native library" page, select "Workspace..." and choose your project's lib folder.
+
+5.If you want Javadoc added.To do this, navigate to your slick.jar in Referenced Libraries and edit its properties through the context menu.
+One of the tabs allows you to specify the Javadoc Location. From here, point to the javadoc folder in SLICK_HOME. 
+The Validate button will confirm that you have chosen the right location.
+
+If you've done everything correct you can start play!
