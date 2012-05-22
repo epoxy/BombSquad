@@ -142,10 +142,8 @@ public class Game implements IEventHandler {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//BombTile bombTile = (BombTile) gameBoard.getTile(bombX, bombY);
-				//bombTile.setplayerWhoDetonated(playerNumber);
-				explodeBomb(bombX, bombY, playerNumber);
 
+				explodeBomb(bombX, bombY, playerNumber);
 			}
 		};
 
@@ -188,8 +186,7 @@ public class Game implements IEventHandler {
 	 * @placeFire place fire on bomb coordinates
 	 */
 	private void placeFire(int bombX, int bombY, Direction dir, int firePower) {
-		GameTile gameTile = gameBoard.getTile(bombX, bombY);
-
+	
 		if (firePower>0){
 
 			switch (dir) {
@@ -245,40 +242,29 @@ public class Game implements IEventHandler {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile){
-					if( Math.random() > 0.7) {
-						gameBoard.setTile(fireX, fireY,
-								TileFactory.getExtraFirePowerTile());
-						System.out.println("extra fire");
-						gameBoard.setTmpTile(fireX, fireY,
-								null);
-					} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
-							&& Math.random() > 0.5) {
-						gameBoard.setTile(fireX, fireY,
-								TileFactory.getExtraBombsTile());
-						System.out.println("extra bombs");
-						gameBoard.setTmpTile(fireX, fireY,
-								null);
 
-					}
-					else 
-						gameBoard.setTile(fireX, fireY,
-								TileFactory.getEmptyTile());
-					System.out.println("emptyTile");
+				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
+						&& Math.random() > 0.7) {
+					gameBoard.setTile(fireX, fireY,
+							TileFactory.getExtraFirePowerTile());
+					gameBoard.setTmpTile(fireX, fireY,
+							null);
+
+				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
+						&& Math.random() > 0.5) {
+					gameBoard.setTile(fireX, fireY,
+							TileFactory.getExtraBombsTile());
+					gameBoard.setTmpTile(fireX, fireY,
+							null);
+
 				}
 
 				else {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
 						gameBoard.setTile(fireX, fireY,
-								TileFactory.getWaterTile());
-						System.out.println("watertile");
+								TileFactory.getWaterTile());						
 					}
-					else if (gameBoard.getTileTmp(fireX, fireY) instanceof BombTile) {
-						gameBoard.setTile(fireX, fireY,
-								TileFactory.getEmptyTile());
-						gameBoard.setTmpTile(fireX, fireY, TileFactory.getEmptyTile());
-						System.out.println("emptytile efter bomb");
-					}
+					
 					else {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getEmptyTile());
@@ -287,8 +273,11 @@ public class Game implements IEventHandler {
 						gameBoard.setTmpTile(fireX, fireY,
 								TileFactory.getEmptyTile());
 						System.out.println("emptyTileTmp");
+
 					}
-				}
+	
+					}
+				
 			}
 		};
 		Timer t = new Timer(FIRE_COUNTDOWN, taskPerformer);
