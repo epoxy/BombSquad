@@ -96,7 +96,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/mackanRIGHT.png");
 			movementRight[1] = new Image("Images/mackanRIGHT2.png");
 		}
-		if (s == "anton") {
+		if (s == "Anton") {
 			movementUp[0] = new Image("Images/antonUP.png");
 			movementUp[1] = new Image("Images/antonUP2.png");
 			movementDown[0] = new Image("Images/antonDOWN.png");
@@ -106,7 +106,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/antonRIGHT.png");
 			movementRight[1] = new Image("Images/antonRIGHT2.png");
 		}
-		if (s == "tomas") {
+		if (s == "Tomas") {
 			movementUp[0] = new Image("Images/tomasUP.png");
 			movementUp[1] = new Image("Images/tomasUP2.png");
 			movementDown[0] = new Image("Images/tomasDOWN.png");
@@ -116,7 +116,7 @@ public class SpriteSheets {
 			movementRight[0] = new Image("Images/tomasRIGHT.png");
 			movementRight[1] = new Image("Images/tomasRIGHT2.png");
 		}
-		if (s == "henrik") {
+		if (s == "Henrik") {
 			movementUp[0] = new Image("Images/henkeUP.png");
 			movementUp[1] = new Image("Images/henkeUP2.png");
 			movementDown[0] = new Image("Images/henkeDOWN.png");
