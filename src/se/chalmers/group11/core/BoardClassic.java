@@ -19,7 +19,7 @@ between each other. The other tiles are randomized and can either contain a box 
         
 1.0 18 May 2012
  * @author Anton Palmqvist
- * @author HenrikAndersson made compatible with abstract class Board
+ * @author HenrikAndersson made compatible with abstract class Board and extracted the generation of the tiles into a method
  */
 public class BoardClassic extends Board{
 	

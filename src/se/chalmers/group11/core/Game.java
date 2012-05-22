@@ -26,7 +26,7 @@ import se.chalmers.group11.utils.InitSound;
 
 /**
  *  
-        
+
 Class containing all logical operations of the game. 
 Handels the current board, the players and the enemy.
 The logical operations are movement of the players and enemy, 
@@ -35,10 +35,10 @@ logic of their spreading fire and the elimination of obstacles,
 players and enemy when hit by fire.
  *
  * @version      
-        
+
 1.0 15 May 2012
  * @author          
-        
+
 ProjectEleven
  */	
 
@@ -50,6 +50,7 @@ public class Game implements IEventHandler {
 	private int amountOfBombs;
 	private StateBasedGame sbg;
 	private InitSound sound;
+	private enum  Direction {UP,DOWN,LEFT,RIGHT,CENTER};
 
 	/**
 	 * Creates two player start positions and a board
@@ -103,10 +104,12 @@ public class Game implements IEventHandler {
 		if (amountOfBombs > 0) {
 			int bombX = player[playerNumber-1].getPosition().getX();
 			int bombY = player[playerNumber-1].getPosition().getY();
-			
+
 			/*Only able to put out bomb if the tile is an EmptyTile*/
 			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
 				gameBoard.setTile(bombX, bombY, TileFactory.getBombTile());
+				gameBoard.setTmpTile(bombX, bombY, TileFactory.getBombTile());
+	
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 				player[playerNumber-1].decrementBombs();
 				bombCountdown(bombX, bombY, playerNumber);
@@ -131,17 +134,16 @@ public class Game implements IEventHandler {
 	 * @param bombY
 	 *            y coordinate for placed bomb
 	 * @param playerNumber
-	 *            variable representing the two players
-	 * @bombCountdown starts bombtimer
+	 *            variable representing the player who placed the bomb
+	 * @bombCountdown starts bomb timer
 	 */
 	public void bombCountdown(final int bombX, final int bombY,
 			final int playerNumber) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
-					explodeBomb(bombX, bombY, playerNumber);
-				}
+
+				explodeBomb(bombX, bombY, playerNumber);
 			}
 		};
 
@@ -162,66 +164,17 @@ public class Game implements IEventHandler {
 	 * @explodeBomb checks tiles next to the placed bomb and explodes
 	 */
 	public void explodeBomb(int bombX, int bombY, int playerNumber) {
+
 		int firePower = player[playerNumber-1].getFirePower();
-		int playerWhoPutOutTheBomb = playerNumber;
-		gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-		setFireTileToEmptyTile(bombX, bombY);
-		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB, 4));
-		// TODO refakrorisera, samla till en loop
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX + i, bombY)) {
-				if (gameBoard.getTile(bombX + i, bombY) instanceof BoxTile) {
+		placeFire(bombX, bombY, Direction.CENTER, firePower);
+		placeFire(bombX, bombY, Direction.LEFT, firePower);
+		placeFire(bombX, bombY, Direction.RIGHT, firePower);
+		placeFire(bombX, bombY, Direction.UP, firePower);
+		placeFire(bombX, bombY, Direction.DOWN, firePower);
 
-					placeFire(bombX + i, bombY, playerWhoPutOutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX + i, bombY) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX + i, bombY, playerWhoPutOutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX - i, bombY)) {
-				if (gameBoard.getTile(bombX - i, bombY) instanceof BoxTile) {
-
-					placeFire(bombX - i, bombY, playerWhoPutOutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX - i, bombY) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX - i, bombY, playerWhoPutOutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX, bombY + i)) {
-				if (gameBoard.getTile(bombX, bombY + i) instanceof BoxTile) {
-
-					placeFire(bombX, bombY + i, playerWhoPutOutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX, bombY + i) instanceof BlockTile) {
-					break;
-				}
-
-				placeFire(bombX, bombY + i, playerWhoPutOutTheBomb);
-			}
-		}
-		for (int i = 1; i <= firePower; i++) {
-			if (isInbounds(bombX, bombY - i)) {
-				if (gameBoard.getTile(bombX, bombY - i) instanceof BoxTile) {
-
-					placeFire(bombX, bombY - i, playerWhoPutOutTheBomb);
-					break;
-				} else if (gameBoard.getTile(bombX, bombY - i) instanceof BlockTile) {
-
-					break;
-				}
-				placeFire(bombX, bombY - i, playerWhoPutOutTheBomb);
-			}
-
-		}
+		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB));
 		player[playerNumber-1].incrementBombs();
+
 	}
 
 	/**
@@ -232,13 +185,46 @@ public class Game implements IEventHandler {
 	 *            y coordinate of placed bomb
 	 * @placeFire place fire on bomb coordinates
 	 */
-	private void placeFire(int bombX, int bombY, int playerNumber) {
-		if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
-			explodeBomb(bombX, bombY, playerNumber);
+	private void placeFire(int bombX, int bombY, Direction dir, int firePower) {
+	
+		if (firePower>0){
+
+			switch (dir) {
+
+			case LEFT:
+				bombX--;
+					break;
+			case RIGHT:
+				bombX++;
+					break;
+			case UP:
+				bombY--;
+					break;
+			case DOWN:
+				bombY++;
+					break;
+			case CENTER:	
+				if (isInbounds(bombX, bombY)){
+					gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+					setFireTileToEmptyTile(bombX, bombY);
+					break;
+				}
+			}
+			if (isInbounds(bombX, bombY)) {
+				setFireTile(bombX, bombY, dir, firePower);
+			}
 		}
-		if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
+	}
+	
+	private void setFireTile (int bombX, int bombY, Direction dir, int firePower){
+		if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 			setFireTileToEmptyTile(bombX, bombY);
+		}
+		else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
+			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+			setFireTileToEmptyTile(bombX, bombY);
+			placeFire(bombX, bombY, dir, firePower-1);
 		}
 	}
 
@@ -256,6 +242,7 @@ public class Game implements IEventHandler {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
+
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.7) {
 					gameBoard.setTile(fireX, fireY,
@@ -269,27 +256,34 @@ public class Game implements IEventHandler {
 							TileFactory.getExtraBombsTile());
 					gameBoard.setTmpTile(fireX, fireY,
 							null);
+
 				}
 
 				else {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
 						gameBoard.setTile(fireX, fireY,
-								TileFactory.getWaterTile());
-					} else {
+								TileFactory.getWaterTile());						
+					}
+					
+					else {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getEmptyTile());
+						System.out.println("emptyTile");
 
 						gameBoard.setTmpTile(fireX, fireY,
 								TileFactory.getEmptyTile());
+						System.out.println("emptyTileTmp");
+
 					}
-				}
+	
+					}
+				
 			}
 		};
 		Timer t = new Timer(FIRE_COUNTDOWN, taskPerformer);
 		t.setRepeats(false);
 		t.start();
 	}
-
 	/**
 	 * 
 	 * @param x

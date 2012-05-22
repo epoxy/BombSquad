@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class BombTile implements GameTile {
 	public BombTile() {
 	}
+	private int playerWhoDetonated;
 
 	@Override
 	public boolean canReceivePlayer() {
@@ -16,8 +17,8 @@ public class BombTile implements GameTile {
 
 	@Override
 	public boolean canReceiveFire() {
-		return true;
-	
+		return false;
+
 	}
 
 	@Override
@@ -27,8 +28,16 @@ public class BombTile implements GameTile {
 
 	@Override
 	public void performOnEnemy() {
-	
-		
+
+
+	}
+
+	public int getplayerWhoDetonated() {
+		return playerWhoDetonated;
+	}
+
+	public void setplayerWhoDetonated(int player) {
+		playerWhoDetonated = player;
 	}
 
 }
