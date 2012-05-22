@@ -141,8 +141,6 @@ public class Game implements IEventHandler {
 			public void actionPerformed(ActionEvent arg0) {
 				if (gameBoard.getTile(bombX, bombY) instanceof BombTile) {
 					explodeBomb(bombX, bombY, playerNumber);
-					System.out.println("Eld ritas ut");
-					// fire
 				}
 			}
 		};
@@ -265,7 +263,6 @@ public class Game implements IEventHandler {
 					gameBoard.setTmpTile(fireX, fireY,
 							null);
 
-					System.out.println("powerItemTile");
 				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.5) {
 					gameBoard.setTile(fireX, fireY,
@@ -278,15 +275,12 @@ public class Game implements IEventHandler {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getWaterTile());
-						System.out.println("watertile");
 					} else {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getEmptyTile());
-						System.out.println("emptyTile?");
 
 						gameBoard.setTmpTile(fireX, fireY,
 								TileFactory.getEmptyTile());
-						System.out.println("emptyTile?");
 					}
 				}
 			}
