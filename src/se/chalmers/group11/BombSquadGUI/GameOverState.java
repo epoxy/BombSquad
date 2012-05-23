@@ -21,14 +21,14 @@ import se.chalmers.group11.utils.SpriteSheets;
 public class GameOverState extends BasicGameState implements IEventHandler {
 
 	private int stateID; // Interface requires a gettable stateID, see getID()
-	private int menuX = 0;
-	private int menuY = 325;
-	private int restartX = 200;
-	private int restartY = 325;
-	private int exitX = 425;
-	private int exitY = 325;
-	private int resetX = 0;
-	private int resetY = 500;
+	private int menuX = 320;
+	private int menuY = 490;
+	private int restartX = 485;
+	private int restartY = 490;
+	private int exitX = 0;
+	private int exitY = 550;
+	private int resetX = 155;
+	private int resetY = 490;
 
 	private Integer loser;
 
@@ -63,13 +63,13 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		restartImage = new Image("Images/reset.jpg");
+		restartImage = new Image("Images/playAgain.png");
 		exitImage = new Image("Images/exit.png");
-		menuImage = new Image("Images/menubutton.jpg");
+		menuImage = new Image("Images/menuButton.png");
 		winnerPlayer1 = new Image("Images/One.png");
 		winnerPlayer2 = new Image("Images/Two.png");
 		resetScore = new Image("Images/resetScore.png");
-		podium = new Image("Images/prispall.png");
+		podium = new Image("Images/podium.png");
 		font = new TrueTypeFont(new Font("Arial", Font.BOLD, 16), true);
 
 	}
@@ -78,20 +78,20 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		if (loser == 1) {
-			winnerPlayer2.draw(0, 0, (float) 2.2);
+			winnerPlayer2.draw(0, 0, 1);
 		}
 		if (loser == 2) {
-			winnerPlayer1.draw(0, 0, (float) 2.2);
+			winnerPlayer1.draw(0, 0, 1);
 		}
-		podium.draw(0, 0, 0.9f);
+		podium.draw(0, 200, 1);
 		restartImage.draw(restartX, restartY, restartImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 		menuImage.draw(menuX, menuY, menuImageScale);
-		resetScore.draw(resetX, resetY, 1);
+		resetScore.draw(resetX, resetY, resetImageScale);
 		font.drawString(10, 10, "Player 1's Score: " + playerWins[0]);
 		font.drawString(500, 10, "Player 2's Score: " + playerWins[1]);
-		new SpriteSheets(winnerSkin).drawAnimation(290, 60, 60, 60);
-		new SpriteSheets(loserSkin).drawAnimation(405, 155, 60, 60);
+		new SpriteSheets(winnerSkin).drawAnimation(295, 180, 90, 90);
+		new SpriteSheets(loserSkin).drawAnimation(440, 335, 60, 60);
 	}
 
 	@Override

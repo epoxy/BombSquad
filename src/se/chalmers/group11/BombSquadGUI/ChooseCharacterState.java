@@ -15,10 +15,10 @@ public class ChooseCharacterState extends BasicGameState {
 	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int nextButtonX = 550;
 	private int nextButtonY = 550;
-	private int thumbsY = 120;
-	private int thumbsY2 = 200;
-	private int thumbsY3 = 280;
-	private int thumbsY4 = 400;
+	private int thumbsY = 180;
+	private int thumbsY2 = 260;
+	private int thumbsY3 = 340;
+	private int thumbsY4 = 460;
 	private int p1DevilX = 50;
 	private int p2DevilX = 360;
 	private int p1WizardX = 120;
@@ -64,6 +64,7 @@ public class ChooseCharacterState extends BasicGameState {
 	private float p1HenrikScale = 1.5f;
 	private float p2HenrikScale = 1.5f;
 
+	private Image chooseHero;
 	private Image nextButton;
 	private Image playerOneText;
 	private Image playerTwoText;
@@ -89,6 +90,7 @@ public class ChooseCharacterState extends BasicGameState {
 		nextButton = new Image("Images/arrowbutton.png");
 		playerOneText = new Image("Images/playerOneText.png");
 		playerTwoText = new Image("Images/playerTwoText.png");
+		chooseHero = new Image("Images/chooseHeros.png");
 		devil = new Image("Images/devilDOWN.gif");
 		wizard = new Image("Images/bombManDOWN.gif");
 		ginger = new Image("Images/gingerDOWN.gif");
@@ -105,8 +107,9 @@ public class ChooseCharacterState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		nextButton.draw(nextButtonX, nextButtonY, nextButtonScale);
-		playerOneText.draw(50, 40);
-		playerTwoText.draw(360, 40);
+		chooseHero.draw(0, 0);
+		playerOneText.draw(50, 120);
+		playerTwoText.draw(360, 120);
 		devil.draw(p1DevilX, thumbsY, p1DevilScale);
 		wizard.draw(p1WizardX, thumbsY, p1WizardScale);
 		ginger.draw(p1GingerX, thumbsY, p1GingerScale);
