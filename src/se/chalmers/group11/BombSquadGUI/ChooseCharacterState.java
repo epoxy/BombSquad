@@ -99,7 +99,7 @@ public class ChooseCharacterState extends BasicGameState {
 		nextButton = new Image("Images/arrowbutton.png");
 		playerOneText = new Image("Images/playerOneText.png");
 		playerTwoText = new Image("Images/playerTwoText.png");
-		chooseHero = new Image("Images/chooseHeros.png");
+		chooseHero = new Image("Images/chooseHeroes.png");
 		devil = new Image("Images/devilDOWN.gif");
 		wizard = new Image("Images/bombManDOWN.gif");
 		ginger = new Image("Images/gingerDOWN.gif");
