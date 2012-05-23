@@ -10,8 +10,14 @@ import se.chalmers.group11.bombsquadgui.ChooseCharacterState;
 import se.chalmers.group11.bombsquadgui.GameOverState;
 import se.chalmers.group11.bombsquadgui.GamePlayState;
 import se.chalmers.group11.bombsquadgui.SplashScreenState;
-import se.chalmers.group11.utils.InitMusic;
 
+/**
+ * A class that handles all the states, It adds all the states when the
+ * applications starts so it makes it possible to change states while the
+ * application is running. Also it«s our Main class, so the application starts
+ * from here.
+ * 
+ */
 public class Main extends StateBasedGame {
 
 	public static final int CHOOSEBOARDSTATE = 0;
@@ -44,7 +50,7 @@ public class Main extends StateBasedGame {
 		app.setTitle("BombSquad");
 		app.setDisplayMode(660, 660, false);
 		app.setShowFPS(false);
-		
+
 		app.start();
 	}
 

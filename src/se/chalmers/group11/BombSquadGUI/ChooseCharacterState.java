@@ -11,6 +11,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.main.Main;
 
+/**
+ * A menu state that represent the GUI for the chooseCharacterState, there
+ * it«s possible to choose between different sprites
+ * 
+ * 
+ */
 public class ChooseCharacterState extends BasicGameState {
 	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int nextButtonX = 550;
@@ -219,13 +225,15 @@ public class ChooseCharacterState extends BasicGameState {
 				&& mouseY <= thumbsY2 + king.getHeight() * p2KingScale) {
 			insideP2King = true;
 		}
-		if (mouseX >= p1BluehoodX && mouseX <= p1BluehoodX + bluehood.getWidth() * p1BluehoodScale
-				&& mouseY >= thumbsY2
+		if (mouseX >= p1BluehoodX
+				&& mouseX <= p1BluehoodX + bluehood.getWidth()
+						* p1BluehoodScale && mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + bluehood.getHeight() * p1BluehoodScale) {
 			insideP1Bluehood = true;
 		}
-		if (mouseX >= p2BluehoodX && mouseX <= p2BluehoodX + bluehood.getWidth() * p2BluehoodScale
-				&& mouseY >= thumbsY2
+		if (mouseX >= p2BluehoodX
+				&& mouseX <= p2BluehoodX + bluehood.getWidth()
+						* p2BluehoodScale && mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + bluehood.getHeight() * p2BluehoodScale) {
 			insideP2Bluehood = true;
 		}

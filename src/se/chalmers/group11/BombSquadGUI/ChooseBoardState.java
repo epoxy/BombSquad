@@ -7,23 +7,18 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-import se.chalmers.group11.core.BoardClassic;
-import se.chalmers.group11.core.BoardEmpty;
-import se.chalmers.group11.core.BoardPower;
-import se.chalmers.group11.core.BoardRandom;
-import se.chalmers.group11.core.BoardWater;
-import se.chalmers.group11.core.BoardWithoutBlocks;
-import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
-import se.chalmers.group11.core.Board;
-import se.chalmers.group11.eventbus.Event;
-import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 
+/**
+ * A menu state that represent the GUI for chooseBoard state, there it«s
+ * possible to choose between different boards
+ * 
+ * 
+ */
 public class ChooseBoardState extends BasicGameState {
 
-	private int stateID; //Interface requires a gettable stateID, see getID()
+	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int classicBoardX = 50;
 	private int classicBoardY = 130;
 	private int emptyBoardX = 50;
@@ -100,8 +95,8 @@ public class ChooseBoardState extends BasicGameState {
 				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
 
-		} else if (mouseX >= emptyBoardX && mouseX <= emptyBoardX + 150 && mouseY >= emptyBoardY
-				&& mouseY <= emptyBoardY + 150) {
+		} else if (mouseX >= emptyBoardX && mouseX <= emptyBoardX + 150
+				&& mouseY >= emptyBoardY && mouseY <= emptyBoardY + 150) {
 			insideEmptyBoard = true;
 
 		} else if (mouseX >= boxBoardStartX && mouseX <= boxBoardStartX + 150

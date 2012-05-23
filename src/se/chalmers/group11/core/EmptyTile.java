@@ -1,7 +1,5 @@
 package se.chalmers.group11.core;
 
-import org.newdawn.slick.state.StateBasedGame;
-
 /**
  * A class representing an EmptyTile
  */
@@ -30,7 +28,7 @@ public class EmptyTile implements GameTile {
 	@Override
 	public void performOnEnemy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
