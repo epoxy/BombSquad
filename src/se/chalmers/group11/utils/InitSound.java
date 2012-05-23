@@ -8,7 +8,11 @@ import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.Event.Tag;
 import se.chalmers.group11.eventbus.IEventHandler;
 
-public class InitSound implements IEventHandler{
+/**
+ * A class to handle all the sounds, short music clips.
+ * 
+ */
+public class InitSound implements IEventHandler {
 
 	Sound placeBomb = null;
 	Sound explodeBomb = null;
@@ -16,7 +20,7 @@ public class InitSound implements IEventHandler{
 	Sound enemyScream = null;
 	Sound moreFire = null;
 	Sound moreBombs = null;
-	
+
 	public InitSound() throws SlickException {
 
 		placeBomb = new Sound("Music/fuse.ogg");
@@ -30,22 +34,22 @@ public class InitSound implements IEventHandler{
 
 	@Override
 	public void onEvent(Event evt) {
-		if(evt.getTag()==Event.Tag.EXPLODE_BOMB){
+		if (evt.getTag() == Event.Tag.EXPLODE_BOMB) {
 			explodeBomb.play();
 		}
-		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
+		if (evt.getTag() == Event.Tag.PLAYER_KILLED) {
 			playerScream.play();
 		}
-		if(evt.getTag()==Event.Tag.ENEMY_KILLED){
+		if (evt.getTag() == Event.Tag.ENEMY_KILLED) {
 			enemyScream.play();
 		}
-		if(evt.getTag()==Event.Tag.PLACE_BOMB){
+		if (evt.getTag() == Event.Tag.PLACE_BOMB) {
 			placeBomb.play();
 		}
-		if(evt.getTag()==Event.Tag.MORE_FIRE){
+		if (evt.getTag() == Event.Tag.MORE_FIRE) {
 			moreFire.play();
 		}
-		if(evt.getTag()==Event.Tag.MORE_BOMBS){
+		if (evt.getTag() == Event.Tag.MORE_BOMBS) {
 			moreBombs.play();
 		}
 	}
