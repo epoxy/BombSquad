@@ -19,7 +19,10 @@ import se.chalmers.group11.eventbus.Event;
 /**
  * This is an integrationstest because all other classes are trivial.
  * 
+ * @version 1.0 23 may 2012
+ * 
  * @author Anton Palmqvist
+ * @author Tomas Selldén implemented more tests
  * 
  */
 public class TestGame {
@@ -64,7 +67,7 @@ public class TestGame {
 	public void testSetPlayerPositionToObstacle() throws SlickException {
 		Game game = new Game(new BoardEmpty());
 		game.getPlayer(1).move(0, -1);// Adjusts player1 and player2 to so that
-									// they can not move to the right
+										// they can not move to the right
 		for (int i = 1; i <= 2; i++) {// Testing both players
 			int s = game.getPlayer(i).getPosition().getX();
 			game.movePlayer(1, 0, i);// Moves player one step to the

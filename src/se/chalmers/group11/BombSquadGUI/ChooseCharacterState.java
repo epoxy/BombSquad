@@ -12,9 +12,12 @@ import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.main.Main;
 
 /**
- * A menu state that represent the GUI for the chooseCharacterState, there
- * it«s possible to choose between different sprites
+ * A menu state that represent the GUI for the chooseCharacterState, there it«s
+ * possible to choose between different sprites
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  * 
  */
 public class ChooseCharacterState extends BasicGameState {

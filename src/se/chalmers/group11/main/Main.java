@@ -17,6 +17,10 @@ import se.chalmers.group11.bombsquadgui.SplashScreenState;
  * application is running. Also it«s our Main class, so the application starts
  * from here.
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
+ * 
  */
 public class Main extends StateBasedGame {
 

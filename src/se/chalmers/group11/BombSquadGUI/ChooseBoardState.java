@@ -14,6 +14,9 @@ import se.chalmers.group11.main.Main;
  * A menu state that represent the GUI for chooseBoard state, there it«s
  * possible to choose between different boards
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  * 
  */
 public class ChooseBoardState extends BasicGameState {
