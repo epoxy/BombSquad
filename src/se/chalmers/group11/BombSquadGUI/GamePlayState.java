@@ -17,7 +17,7 @@ import se.chalmers.group11.core.FireTile;
 import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.core.ExtraFirePowerTile;
-import se.chalmers.group11.core.LoserKeeper;
+import se.chalmers.group11.core.GameOverHandler;
 import se.chalmers.group11.core.WaterTile;
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.Event.Tag;
@@ -47,7 +47,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 	private int enemyDelay = 1;
 	private StateBasedGame sbg;
 
-	private LoserKeeper t = null;
+	private GameOverHandler t = null;
 	private InitMusic music = null;
 	private InitSound sound = null;
 
@@ -73,7 +73,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler{
 		sprite1 = new SpriteSheets("Anton");
 		sprite2 = new SpriteSheets("Anton");
 		sprite3 = new SpriteSheets("Devil");
-		t = new LoserKeeper(sbg);
+		t = new GameOverHandler(sbg);
 		music = new InitMusic();
 	}
 
