@@ -13,6 +13,7 @@ import se.chalmers.group11.eventbus.EventBus;
 public class FireTile implements GameTile {// observable
 
 	public FireTile() {
+		;
 	}
 
 	@Override
@@ -23,7 +24,6 @@ public class FireTile implements GameTile {// observable
 	@Override
 	public boolean canReceiveFire() {
 		return true;
-
 	}
 
 	@Override

@@ -25,22 +25,20 @@ import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.utils.InitSound;
 
 /**
- *  
-
-Class containing all logical operations of the game. 
-Handels the current board, the players and the enemy.
-The logical operations are movement of the players and enemy, 
-the putting out of bombs, the explosion of the bombs and the 
-logic of their spreading fire and the elimination of obstacles, 
-players and enemy when hit by fire.
- *
- * @version      
-
-1.0 15 May 2012
- * @author          
-
-ProjectEleven
- */	
+ * 
+ Class containing all logical operations of the game. Handels the current
+ * board, the players and the enemy. The logical operations are movement of the
+ * players and enemy, the putting out of bombs, the explosion of the bombs and
+ * the logic of their spreading fire and the elimination of obstacles, players
+ * and enemy when hit by fire.
+ * 
+ * @version
+ * 
+ *          1.0 15 May 2012
+ * @author
+ * 
+ *         ProjectEleven
+ */
 
 public class Game implements IEventHandler {
 	private Player player[];
@@ -50,13 +48,17 @@ public class Game implements IEventHandler {
 	private int amountOfBombs;
 	private StateBasedGame sbg;
 	private InitSound sound;
-	private enum  Direction {UP,DOWN,LEFT,RIGHT,CENTER};
+
+	private enum Direction {
+		UP, DOWN, LEFT, RIGHT, CENTER
+	};
 
 	/**
 	 * Creates two players, start positions and a board
+	 * 
 	 * @param b
 	 *            the board
-	 * @throws SlickException 
+	 * @throws SlickException
 	 */
 	public Game(Board b) throws SlickException {
 		gameBoard = b;
@@ -67,6 +69,7 @@ public class Game implements IEventHandler {
 		sound = new InitSound();
 		EventBus.INSTANCE.register(this);
 	}
+
 	/**
 	 * 
 	 * @param deltaX
@@ -78,7 +81,7 @@ public class Game implements IEventHandler {
 	 * @setPlayerPosition moves the player
 	 */
 	public void movePlayer(int deltaX, int deltaY, int playerNumber) {
-		Player p = player[playerNumber-1];
+		Player p = player[playerNumber - 1];
 		int nextPosX = p.getPosition().getX() + deltaX;
 		int nextPosY = p.getPosition().getY() + deltaY;
 		if (isInbounds(nextPosX, nextPosY)) {
@@ -88,8 +91,8 @@ public class Game implements IEventHandler {
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
 
 				// Ny metod
-				gameBoard.setTile(p.getPosition().getX(), p.getPosition().getY(),
-						TileFactory.getEmptyTile());
+				gameBoard.setTile(p.getPosition().getX(), p.getPosition()
+						.getY(), TileFactory.getEmptyTile());
 			}
 		}
 	}
@@ -100,31 +103,33 @@ public class Game implements IEventHandler {
 	 *            variable representing the two players
 	 */
 	public void putBomb(final int playerNumber) {
-		amountOfBombs = player[playerNumber-1].getAmountOfBombs();
+		amountOfBombs = player[playerNumber - 1].getAmountOfBombs();
 		if (amountOfBombs > 0) {
-			int bombX = player[playerNumber-1].getPosition().getX();
-			int bombY = player[playerNumber-1].getPosition().getY();
+			int bombX = player[playerNumber - 1].getPosition().getX();
+			int bombY = player[playerNumber - 1].getPosition().getY();
 
-			/*Only able to put out bomb if the tile is an EmptyTile*/
-			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
+			/* Only able to put out bomb if the tile is an EmptyTile */
+			if (gameBoard.getTile(bombX, bombY) instanceof EmptyTile) {
 				gameBoard.setTile(bombX, bombY, TileFactory.getBombTile());
 				gameBoard.setTmpTile(bombX, bombY, TileFactory.getBombTile());
 
-				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
-				player[playerNumber-1].decrementBombs();
+				EventBus.INSTANCE
+						.publish(new Event(Event.Tag.PLACE_BOMB, sound));
+				player[playerNumber - 1].decrementBombs();
 				bombCountdown(bombX, bombY, playerNumber);
 			}
 		}
 	}
 
 	/**
+	 * playerNumber one represents playerIndex zero
 	 * 
 	 * @param playerNumber
 	 *            variable representing one of the two players
 	 * @return return player
 	 */
 	public Player getPlayer(int playerNumber) {
-		return player[playerNumber-1];
+		return player[playerNumber - 1];
 	}
 
 	/**
@@ -155,18 +160,20 @@ public class Game implements IEventHandler {
 
 	/**
 	 * Starts the explosion process of the bomb.
+	 * 
 	 * @param bombX
 	 *            x coordinate for placed bomb
 	 * @param bombY
 	 *            y coordinate for placed bomb
 	 * @param playerNumber
 	 *            variable representing the two players
-	 * @author TomasSelldén 
-	 * @author HenrikAndersson made the method call to placeFire work recursively to get rid of multiple loops.
+	 * @author TomasSelldén
+	 * @author HenrikAndersson made the method call to placeFire work
+	 *         recursively to get rid of multiple loops.
 	 */
 	public void explodeBomb(int bombX, int bombY, int playerNumber) {
 
-		int firePower = player[playerNumber-1].getFirePower();
+		int firePower = player[playerNumber - 1].getFirePower();
 		explodeDirection(bombX, bombY, Direction.CENTER, firePower);
 		explodeDirection(bombX, bombY, Direction.LEFT, firePower);
 		explodeDirection(bombX, bombY, Direction.RIGHT, firePower);
@@ -174,24 +181,29 @@ public class Game implements IEventHandler {
 		explodeDirection(bombX, bombY, Direction.DOWN, firePower);
 
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB));
-		player[playerNumber-1].incrementBombs();
+		player[playerNumber - 1].incrementBombs();
 
 	}
 
 	/**
-	 * Handles weather or not to go on with the explosion process in the set direction.
+	 * Handles weather or not to go on with the explosion process in the set
+	 * direction.
+	 * 
 	 * @param bombX
 	 *            x coordinate of placed bomb
 	 * @param bombY
 	 *            y coordinate of placed bomb
-	 * @param dir 
-	 * 			  the direction in which the fire is to be placed
+	 * @param dir
+	 *            the direction in which the fire is to be placed
 	 * @param firePower
 	 *            the fire power that is left of the bomb
-	 * @author HenrikAndersson made major changes, replaced multiple loops with one recursive switch/case statment, extraced the placement of the fireTiles to a separate method 
+	 * @author HenrikAndersson made major changes, replaced multiple loops with
+	 *         one recursive switch/case statment, extraced the placement of the
+	 *         fireTiles to a separate method
 	 */
-	private void explodeDirection(int bombX, int bombY, Direction dir, int firePower) {
-		if (firePower>0){
+	private void explodeDirection(int bombX, int bombY, Direction dir,
+			int firePower) {
+		if (firePower > 0) {
 			switch (dir) {
 			case LEFT:
 				bombX--;
@@ -205,44 +217,49 @@ public class Game implements IEventHandler {
 			case DOWN:
 				bombY++;
 				break;
-			case CENTER:	
-					gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-					stopFire(bombX, bombY);
-					break;
-				
+			case CENTER:
+				gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+				stopFire(bombX, bombY);
+				break;
+
 			}
 			if (isInbounds(bombX, bombY)) {
 				setFireTile(bombX, bombY, dir, firePower);
 			}
 		}
 	}
+
 	/**
-	 * Sets the tile on the position to fireTile if the position can receive a fireTile.
+	 * Sets the tile on the position to fireTile if the position can receive a
+	 * fireTile.
+	 * 
 	 * @param bombX
 	 *            x coordinate of placed bomb
 	 * @param bombY
 	 *            y coordinate of placed bomb
-	 * @param dir 
-	 * 			  the direction in which the fire is to be placed
+	 * @param dir
+	 *            the direction in which the fire is to be placed
 	 * @param firePower
 	 *            the fire power of the player who placed the bomb
 	 * @author TomasSelldén
-	 * @author HenrikAndersson extracted the implementation into a separate method and made it work with recursion
+	 * @author HenrikAndersson extracted the implementation into a separate
+	 *         method and made it work with recursion
 	 */
-	private void setFireTile (int bombX, int bombY, Direction dir, int firePower){
+	private void setFireTile(int bombX, int bombY, Direction dir, int firePower) {
 		if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 			stopFire(bombX, bombY);
-		}
-		else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
+		} else if (gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
 			stopFire(bombX, bombY);
-			explodeDirection(bombX, bombY, dir, firePower-1);
+			explodeDirection(bombX, bombY, dir, firePower - 1);
 		}
 	}
 
 	/**
-	 * After a timer delay stops the fire and changes the tile back to either powerItemTiles or the tile it was before the fire.
+	 * After a timer delay stops the fire and changes the tile back to either
+	 * powerItemTiles or the tile it was before the fire.
+	 * 
 	 * @param fireX
 	 *            x coordinate of placed bomb
 	 * @param fireY
@@ -253,27 +270,24 @@ public class Game implements IEventHandler {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-
 				if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.7) {
 					gameBoard.setTile(fireX, fireY,
 							TileFactory.getExtraFirePowerTile());
-					gameBoard.setTmpTile(fireX, fireY,
-							null);
+					gameBoard.setTmpTile(fireX, fireY, null);
 
 				} else if (gameBoard.getTileTmp(fireX, fireY) instanceof BoxTile
 						&& Math.random() > 0.5) {
 					gameBoard.setTile(fireX, fireY,
 							TileFactory.getExtraBombsTile());
-					gameBoard.setTmpTile(fireX, fireY,
-							null);
+					gameBoard.setTmpTile(fireX, fireY, null);
 
 				}
 
 				else {
 					if (gameBoard.getTileTmp(fireX, fireY) instanceof WaterTile) {
 						gameBoard.setTile(fireX, fireY,
-								TileFactory.getWaterTile());						
+								TileFactory.getWaterTile());
 					}
 
 					else {
@@ -295,6 +309,7 @@ public class Game implements IEventHandler {
 		t.setRepeats(false);
 		t.start();
 	}
+
 	/**
 	 * 
 	 * @param x
@@ -304,7 +319,8 @@ public class Game implements IEventHandler {
 	 * @return true if it is inside the board limits
 	 */
 	private boolean isInbounds(int x, int y) {
-		return x >= 0 && x < gameBoard.getSideLength() && y >= 0 && y < gameBoard.getSideLength();
+		return x >= 0 && x < gameBoard.getSideLength() && y >= 0
+				&& y < gameBoard.getSideLength();
 	}
 
 	/**
@@ -341,9 +357,10 @@ public class Game implements IEventHandler {
 	}
 
 	private void tryToMoveEnemy(int i, int j) {
-		if (isInbounds(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())) {
-			if (gameBoard.getTile(i + enemy.getPosition().getX(), j + enemy.getPosition().getY())
-					.canReceivePlayer()) {
+		if (isInbounds(i + enemy.getPosition().getX(), j
+				+ enemy.getPosition().getY())) {
+			if (gameBoard.getTile(i + enemy.getPosition().getX(),
+					j + enemy.getPosition().getY()).canReceivePlayer()) {
 				enemy.move(i, j);
 			}
 		}

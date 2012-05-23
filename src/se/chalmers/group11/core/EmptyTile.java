@@ -13,22 +13,16 @@ public class EmptyTile implements GameTile {
 	@Override
 	public boolean canReceiveFire() {
 		return true;
-
 	}
 
 	@Override
 	public void performOnPlayer(Player p) {
-
-	}
-
-	public String toString() {
-		return "EmptyTile";
+		;
 	}
 
 	@Override
 	public void performOnEnemy() {
-		// TODO Auto-generated method stub
-
+		;
 	}
 
 }

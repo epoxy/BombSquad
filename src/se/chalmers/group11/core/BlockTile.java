@@ -21,13 +21,12 @@ public class BlockTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p) {
-
+		;
 	}
 
 	@Override
 	public void performOnEnemy() {
-		// TODO Auto-generated method stub
-
+		;
 	}
 
 }

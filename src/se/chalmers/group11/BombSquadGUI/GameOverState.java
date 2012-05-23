@@ -187,8 +187,15 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		return stateID;
 	}
 
-	public Integer getPlayerWins(int i) {
-		return playerWins[i - 1];
+	/**
+	 * playerNumber one represents playerIndex zero
+	 * 
+	 * @param playerNumber
+	 *            variable representing one of the two players
+	 * @return playerWins number of wins a player has
+	 */
+	public Integer getPlayerWins(int playerNumber) {
+		return playerWins[playerNumber - 1];
 	}
 
 	public void resetPlayerWins() {

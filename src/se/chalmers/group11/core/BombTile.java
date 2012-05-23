@@ -4,7 +4,9 @@ package se.chalmers.group11.core;
  * A class representing a BombTile
  */
 public class BombTile implements GameTile {
+
 	public BombTile() {
+		;
 	}
 
 	private int playerWhoDetonated;

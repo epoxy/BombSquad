@@ -2,13 +2,12 @@ package se.chalmers.group11.core;
 
 public class BoardWithoutBlocks extends Board {
 
-/**
- *Generates a board that is without any blocks
- */
+	/**
+	 * Generates a board without any blocks
+	 */
 	public BoardWithoutBlocks() {
 		super();
 	}
-	
 
 	@Override
 	public void generateBoard() {
@@ -19,7 +18,7 @@ public class BoardWithoutBlocks extends Board {
 			}
 		}
 		Functions.makeRoomForPlayers(this);
-		
+
 	}
 
 }

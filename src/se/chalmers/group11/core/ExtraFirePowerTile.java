@@ -9,6 +9,7 @@ import se.chalmers.group11.utils.InitSound;
  * A class representing a ExtraFirePowerTile
  */
 public class ExtraFirePowerTile implements GameTile {
+
 	@Override
 	public boolean canReceivePlayer() {
 		return true;
@@ -27,8 +28,7 @@ public class ExtraFirePowerTile implements GameTile {
 
 	@Override
 	public void performOnEnemy() {
-		// TODO Auto-generated method stub
-
+		;
 	}
 
 }
