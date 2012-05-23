@@ -3,7 +3,7 @@ package se.chalmers.group11.core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import org.newdawn.slick.state.StateBasedGame;
+
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 
@@ -23,14 +23,16 @@ public class FireTile implements GameTile {// observable
 	@Override
 	public boolean canReceiveFire() {
 		return true;
-	
+
 	}
- 	@Override
+
+	@Override
 	public void performOnPlayer(final Player p) {
 		EventBus.INSTANCE.publish(new Event(Event.Tag.PLAYER_KILLED, p
 				.getPlayerNumber()));
 	}
-	public void performOnEnemy(){
+
+	public void performOnEnemy() {
 		EventBus.INSTANCE.publish(new Event(Event.Tag.ENEMY_KILLED));
 	}
 }
