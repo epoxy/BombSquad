@@ -3,11 +3,15 @@ package se.chalmers.group11.core;
 public class BoardWater extends Board {
 
 	/**
+<<<<<<< HEAD
 	 * Generates a board that with watertiles
 	 * 
 	 * @version 1.0 23 may 2012
 	 * 
 	 * @author Marcus Thyrén
+=======
+	 * Generates a board with waterTiles instead of blockTiles
+>>>>>>> 5a65407471a921e6cd3f459cb2940d653d4685aa
 	 */
 	public BoardWater() {
 		super();
@@ -22,7 +26,7 @@ public class BoardWater extends Board {
 					super.setTile(i, j, TileFactory.getBoxTile());
 					super.setTmpTile(i, j, TileFactory.getBoxTile());
 				} else {
-					super.setTile(i, j, TileFactory.getEmptyTile());											
+					super.setTile(i, j, TileFactory.getEmptyTile());
 				}
 			}
 		}

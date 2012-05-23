@@ -8,7 +8,9 @@ package se.chalmers.group11.core;
  * @author ProjectEleven
  */
 public class BombTile implements GameTile {
+
 	public BombTile() {
+		;
 	}
 
 	private int playerWhoDetonated;

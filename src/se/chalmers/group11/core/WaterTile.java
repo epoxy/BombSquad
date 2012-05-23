@@ -10,7 +10,7 @@ package se.chalmers.group11.core;
 public class WaterTile implements GameTile {
 
 	public WaterTile() {
-
+		;
 	}
 
 	@Override
@@ -25,12 +25,12 @@ public class WaterTile implements GameTile {
 
 	@Override
 	public void performOnPlayer(Player p) {
-
+		;
 	}
 
 	@Override
 	public void performOnEnemy() {
-		// TODO Auto-generated method stub
+		;
 
 	}
 
