@@ -18,6 +18,12 @@ import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.SpriteSheets;
 
+/**
+ * A menu state that represent the GUI for gameOver state, from here you can
+ * choose between exit game, restart match or go back to the main menu state
+ * 
+ * 
+ */
 public class GameOverState extends BasicGameState implements IEventHandler {
 
 	private int stateID; // Interface requires a gettable stateID, see getID()

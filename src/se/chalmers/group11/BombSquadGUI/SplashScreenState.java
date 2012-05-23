@@ -8,13 +8,19 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.group11.core.Game;
+//import se.chalmers.group11.core.Game;
 
 import se.chalmers.group11.eventbus.Event;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 import se.chalmers.group11.utils.InitMusic;
 
+/**
+ * A state that represent the GUI for our main menu, from here you can start the
+ * game or exit the game
+ * 
+ * 
+ */
 public class SplashScreenState extends BasicGameState {
 
 	private int stateID; // Interface requires a gettable stateID, see getID()
@@ -25,7 +31,8 @@ public class SplashScreenState extends BasicGameState {
 
 	private float exitImageScale = 1;
 	private float startImageScale = 1;
-	private float scaleStep = 0.0001f; //How fast the scale will increase or decrease
+	private float scaleStep = 0.0001f; // How fast the scale will increase or
+										// decrease
 
 	private Image startImage = null;
 	private Image exitImage = null;
@@ -46,7 +53,8 @@ public class SplashScreenState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		splashImage.draw(0, 0, 1); //constant placement and scale, no need for variables
+		splashImage.draw(0, 0, 1); // constant placement and scale, no need for
+									// variables
 		startImage.draw(startX, startY, startImageScale);
 		exitImage.draw(exitX, exitY, exitImageScale);
 	}
@@ -62,19 +70,19 @@ public class SplashScreenState extends BasicGameState {
 		boolean insideStartGame = false;
 		boolean insideExitGame = false;
 
-		//Checks if the mousepointer is at the startbutton
+		// Checks if the mousepointer is at the startbutton
 		if (mouseX >= startX && mouseX <= startX + startImage.getWidth()
 				&& mouseY >= startY
 				&& mouseY <= startY + startImage.getHeight()) {
 			insideStartGame = true;
 
-		//Checks if the mousepointer is at the exitbutton
+			// Checks if the mousepointer is at the exitbutton
 		} else if (mouseX >= exitX && mouseX <= exitX + exitImage.getWidth()
 				&& mouseY >= exitY && mouseY <= exitY + exitImage.getHeight()) {
 			insideExitGame = true;
 		}
-		
-		//Increase imagesize if mousepointer is at startImagepicture
+
+		// Increase imagesize if mousepointer is at startImagepicture
 		if (insideStartGame) {
 			if (startImageScale < 1.05f)
 				startImageScale += scaleStep * delta;
@@ -82,8 +90,8 @@ public class SplashScreenState extends BasicGameState {
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				sbg.enterState(Main.CHOOSECHARACTERSTATE);
 			}
-			
-		//Decrease imagesize if mousepointer is not at startImagepicture
+
+			// Decrease imagesize if mousepointer is not at startImagepicture
 		} else {
 			if (startImageScale > 1) {
 				startImageScale -= scaleStep * delta;
@@ -96,9 +104,8 @@ public class SplashScreenState extends BasicGameState {
 			if (exitImageScale < 1.05f) {
 				exitImageScale += scaleStep * delta;
 			}
-		}
-		else{
-			if (exitImageScale > 1.0f){
+		} else {
+			if (exitImageScale > 1.0f) {
 				exitImageScale -= scaleStep * delta;
 			}
 			if (input.isKeyPressed(Input.KEY_ESCAPE)) {
@@ -106,8 +113,6 @@ public class SplashScreenState extends BasicGameState {
 			}
 		}
 	}
-		
-
 
 	@Override
 	public int getID() {
