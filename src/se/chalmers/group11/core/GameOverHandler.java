@@ -32,7 +32,7 @@ showing the results of who won the game.
 Anton Palmqvist
  */
 
-public class LoserKeeper implements IEventHandler{
+public class GameOverHandler implements IEventHandler{
 	private StateBasedGame sbg;
 	
 	/**
@@ -40,7 +40,7 @@ public class LoserKeeper implements IEventHandler{
 	 * 
 	 * @param sbg the current statebasedgame
 	 */
-	public LoserKeeper(StateBasedGame sbg){
+	public GameOverHandler(StateBasedGame sbg){
 		EventBus.INSTANCE.register(this);
 		this.sbg=sbg;
 	}
@@ -48,7 +48,6 @@ public class LoserKeeper implements IEventHandler{
 	@Override
 	public void onEvent(Event evt) {
 		if(evt.getTag()==Event.Tag.PLAYER_KILLED){
-			System.out.println("Got event" + evt.getValue());
 			sbg.enterState(Main.GAMEOVERSTATE); //Transfers to the GameOverState
 		}
 	}

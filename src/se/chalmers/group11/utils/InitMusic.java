@@ -8,6 +8,12 @@ import se.chalmers.group11.eventbus.Event.Tag;
 import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.eventbus.IEventHandler;
 
+/**
+ * A class to handle all the music
+ * 
+ * @author
+ * 
+ */
 public class InitMusic implements IEventHandler {
 
 	private Music backgroundMusic;
@@ -32,14 +38,14 @@ public class InitMusic implements IEventHandler {
 		if (evt.getTag() == Event.Tag.MUSIC_STOPPER) {
 			backgroundMusic.stop();
 		}
-		if (evt.getTag() == Event.Tag.MENUMUSIC_STARTER){
+		if (evt.getTag() == Event.Tag.MENUMUSIC_STARTER) {
 			menuMusic.play();
 			menuMusic.loop();
 		}
-		if (evt.getTag() == Event.Tag.MENUMUSIC_STOPPER){
+		if (evt.getTag() == Event.Tag.MENUMUSIC_STOPPER) {
 			menuMusic.stop();
 		}
-		if (evt.getTag() == Event.Tag.WINNINGMUSIC_STARTER){
+		if (evt.getTag() == Event.Tag.WINNINGMUSIC_STARTER) {
 			winningMusic.play();
 		}
 	}

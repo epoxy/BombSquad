@@ -7,33 +7,28 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-import se.chalmers.group11.core.BoardClassic;
-import se.chalmers.group11.core.BoardEmpty;
-import se.chalmers.group11.core.BoardPower;
-import se.chalmers.group11.core.BoardRandom;
-import se.chalmers.group11.core.BoardWater;
-import se.chalmers.group11.core.BoardWithoutBlocks;
-import se.chalmers.group11.core.Game;
 import se.chalmers.group11.core.GameOptions;
-import se.chalmers.group11.core.Board;
-import se.chalmers.group11.eventbus.Event;
-import se.chalmers.group11.eventbus.EventBus;
 import se.chalmers.group11.main.Main;
 
+/**
+ * A menu state that represent the GUI for chooseBoard state, there it«s
+ * possible to choose between different boards
+ * 
+ * 
+ */
 public class ChooseBoardState extends BasicGameState {
 
-	private int stateID; //Interface requires a gettable stateID, see getID()
+	private int stateID; // Interface requires a gettable stateID, see getID()
 	private int classicBoardX = 50;
-	private int classicBoardY = 100;
+	private int classicBoardY = 130;
 	private int emptyBoardX = 50;
 	private int emptyBoardY = 400;
 	private int boxBoardStartX = 250;
-	private int boxBoardStartY = 100;
+	private int boxBoardStartY = 130;
 	private int randomBoardX = 250;
 	private int randomBoardY = 400;
 	private int powerBoardX = 450;
-	private int powerBoardY = 100;
+	private int powerBoardY = 130;
 	private int waterBoardX = 450;
 	private int waterBoardY = 400;
 
@@ -51,6 +46,7 @@ public class ChooseBoardState extends BasicGameState {
 	private Image randomBoard = null;
 	private Image powerBoard = null;
 	private Image waterBoard = null;
+	private Image chooseBoard = null;
 
 	public ChooseBoardState(int stateID) {
 		this.stateID = stateID;
@@ -65,11 +61,13 @@ public class ChooseBoardState extends BasicGameState {
 		randomBoard = new Image("Images/randomBoard2.png");
 		powerBoard = new Image("Images/powboard.png");
 		waterBoard = new Image("Images/waterboard.png");
+		chooseBoard = new Image("Images/chooseBoard.png");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		chooseBoard.draw(0, 0, 1);
 		classicBoard.draw(classicBoardX, classicBoardY, classicBoardImageScale);
 		emptyBoard.draw(emptyBoardX, emptyBoardY, emptyBoardImageScale);
 		boxBoard.draw(boxBoardStartX, boxBoardStartY, boxBoardImageScale);
@@ -97,8 +95,8 @@ public class ChooseBoardState extends BasicGameState {
 				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
 
-		} else if (mouseX >= emptyBoardX && mouseX <= emptyBoardX + 150 && mouseY >= emptyBoardY
-				&& mouseY <= emptyBoardY + 150) {
+		} else if (mouseX >= emptyBoardX && mouseX <= emptyBoardX + 150
+				&& mouseY >= emptyBoardY && mouseY <= emptyBoardY + 150) {
 			insideEmptyBoard = true;
 
 		} else if (mouseX >= boxBoardStartX && mouseX <= boxBoardStartX + 150

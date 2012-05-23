@@ -1,13 +1,12 @@
 package se.chalmers.group11.core;
 
-import org.newdawn.slick.state.StateBasedGame;
-
 /**
  * A class representing a BombTile
  */
 public class BombTile implements GameTile {
 	public BombTile() {
 	}
+
 	private int playerWhoDetonated;
 
 	@Override
@@ -28,7 +27,6 @@ public class BombTile implements GameTile {
 
 	@Override
 	public void performOnEnemy() {
-
 
 	}
 

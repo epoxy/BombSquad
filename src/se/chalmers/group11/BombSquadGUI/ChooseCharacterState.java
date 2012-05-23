@@ -11,14 +11,20 @@ import org.newdawn.slick.state.StateBasedGame;
 import se.chalmers.group11.core.GameOptions;
 import se.chalmers.group11.main.Main;
 
+/**
+ * A menu state that represent the GUI for the chooseCharacterState, there
+ * it«s possible to choose between different sprites
+ * 
+ * 
+ */
 public class ChooseCharacterState extends BasicGameState {
 	private int stateID; // Interface requires a gettable stateID, see getID()
-	private int nextButtonX = 500;
+	private int nextButtonX = 550;
 	private int nextButtonY = 550;
-	private int thumbsY = 120;
-	private int thumbsY2 = 200;
-	private int thumbsY3 = 280;
-	private int thumbsY4 = 400;
+	private int thumbsY = 180;
+	private int thumbsY2 = 260;
+	private int thumbsY3 = 340;
+	private int thumbsY4 = 460;
 	private int p1DevilX = 50;
 	private int p2DevilX = 360;
 	private int p1WizardX = 120;
@@ -64,6 +70,7 @@ public class ChooseCharacterState extends BasicGameState {
 	private float p1HenrikScale = 1.5f;
 	private float p2HenrikScale = 1.5f;
 
+	private Image chooseHero;
 	private Image nextButton;
 	private Image playerOneText;
 	private Image playerTwoText;
@@ -86,9 +93,10 @@ public class ChooseCharacterState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		nextButton = new Image("Images/nextButton.jpg");
+		nextButton = new Image("Images/arrowbutton.png");
 		playerOneText = new Image("Images/playerOneText.png");
 		playerTwoText = new Image("Images/playerTwoText.png");
+		chooseHero = new Image("Images/chooseHeros.png");
 		devil = new Image("Images/devilDOWN.gif");
 		wizard = new Image("Images/bombManDOWN.gif");
 		ginger = new Image("Images/gingerDOWN.gif");
@@ -105,8 +113,9 @@ public class ChooseCharacterState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		nextButton.draw(nextButtonX, nextButtonY, nextButtonScale);
-		playerOneText.draw(50, 40);
-		playerTwoText.draw(360, 40);
+		chooseHero.draw(0, 0);
+		playerOneText.draw(50, 120);
+		playerTwoText.draw(360, 120);
 		devil.draw(p1DevilX, thumbsY, p1DevilScale);
 		wizard.draw(p1WizardX, thumbsY, p1WizardScale);
 		ginger.draw(p1GingerX, thumbsY, p1GingerScale);
@@ -216,13 +225,15 @@ public class ChooseCharacterState extends BasicGameState {
 				&& mouseY <= thumbsY2 + king.getHeight() * p2KingScale) {
 			insideP2King = true;
 		}
-		if (mouseX >= p1BluehoodX && mouseX <= p1BluehoodX + bluehood.getWidth() * p1BluehoodScale
-				&& mouseY >= thumbsY2
+		if (mouseX >= p1BluehoodX
+				&& mouseX <= p1BluehoodX + bluehood.getWidth()
+						* p1BluehoodScale && mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + bluehood.getHeight() * p1BluehoodScale) {
 			insideP1Bluehood = true;
 		}
-		if (mouseX >= p2BluehoodX && mouseX <= p2BluehoodX + bluehood.getWidth() * p2BluehoodScale
-				&& mouseY >= thumbsY2
+		if (mouseX >= p2BluehoodX
+				&& mouseX <= p2BluehoodX + bluehood.getWidth()
+						* p2BluehoodScale && mouseY >= thumbsY2
 				&& mouseY <= thumbsY2 + bluehood.getHeight() * p2BluehoodScale) {
 			insideP2Bluehood = true;
 		}
