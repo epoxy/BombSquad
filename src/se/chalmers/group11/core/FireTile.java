@@ -9,6 +9,10 @@ import se.chalmers.group11.eventbus.EventBus;
 
 /**
  * A class representing a FireTile
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  */
 public class FireTile implements GameTile {// observable
 

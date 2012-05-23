@@ -7,6 +7,10 @@ import se.chalmers.group11.utils.InitSound;
 
 /**
  * A class representing a ExtraFirePowerTile
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  */
 public class ExtraFirePowerTile implements GameTile {
 	@Override

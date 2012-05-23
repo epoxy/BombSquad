@@ -1,5 +1,14 @@
 package se.chalmers.group11.core;
 
+/**
+ * A class that handles character and board options.
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author Henrik Andersson
+ *
+ */
+
 public class GameOptions {
 
 	private static GameOptions gameOptions;

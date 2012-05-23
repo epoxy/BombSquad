@@ -4,6 +4,10 @@ public class BoardWater extends Board {
 
 	/**
 	 * Generates a board that with watertiles
+	 * 
+	 * @version 1.0 23 may 2012
+	 * 
+	 * @author Marcus Thyrén
 	 */
 	public BoardWater() {
 		super();

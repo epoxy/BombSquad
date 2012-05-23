@@ -2,6 +2,10 @@ package se.chalmers.group11.core;
 
 /**
  * Factory class for available tiles
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author Anton Palmqvist
  */
 public class TileFactory {
 	/**

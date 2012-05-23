@@ -1,5 +1,13 @@
 package se.chalmers.group11.core;
 
+/**
+ * Interface for player movement
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
+ *
+ */
 public interface IMovable {
 	
 	/**

@@ -206,10 +206,10 @@ public class Game implements IEventHandler {
 				bombY++;
 				break;
 			case CENTER:	
-					gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-					stopFire(bombX, bombY);
-					break;
-				
+				gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
+				stopFire(bombX, bombY);
+				break;
+
 			}
 			if (isInbounds(bombX, bombY)) {
 				setFireTile(bombX, bombY, dir, firePower);

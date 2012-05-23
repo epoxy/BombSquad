@@ -3,7 +3,11 @@ package se.chalmers.group11.core;
 public class BoardRandom extends Board{
 
 /**
- *Generates a board with random placed blocks and boxes 	
+ *Generates a board with random placed blocks and boxes
+ *
+ *@version 1.0 23 may 2012
+ *
+ *@author Anton Palmqvist	
  */
 	public BoardRandom(){
 	super();

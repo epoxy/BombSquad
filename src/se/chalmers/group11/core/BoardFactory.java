@@ -3,6 +3,9 @@ package se.chalmers.group11.core;
 /**
  * Factory class for available Boards
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author Tomas Selldén
  */
 public class BoardFactory {
 

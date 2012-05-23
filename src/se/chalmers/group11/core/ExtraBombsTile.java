@@ -5,6 +5,10 @@ import se.chalmers.group11.eventbus.EventBus;
 
 /**
  * A class representing an ExtraBombsTile
+ * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  */
 public class ExtraBombsTile implements GameTile {
 
