@@ -53,7 +53,7 @@ public class Game implements IEventHandler {
 	private enum  Direction {UP,DOWN,LEFT,RIGHT,CENTER};
 
 	/**
-	 * Creates two player start positions and a board
+	 * Creates two players, start positions and a board
 	 * @param b
 	 *            the board
 	 * @throws SlickException 
@@ -109,7 +109,7 @@ public class Game implements IEventHandler {
 			if(gameBoard.getTile(bombX, bombY) instanceof EmptyTile){ 
 				gameBoard.setTile(bombX, bombY, TileFactory.getBombTile());
 				gameBoard.setTmpTile(bombX, bombY, TileFactory.getBombTile());
-	
+
 				EventBus.INSTANCE.publish(new Event(Event.Tag.PLACE_BOMB, sound));
 				player[playerNumber-1].decrementBombs();
 				bombCountdown(bombX, bombY, playerNumber);
@@ -154,23 +154,24 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * 
+	 * Starts the explosion process of the bomb.
 	 * @param bombX
 	 *            x coordinate for placed bomb
 	 * @param bombY
 	 *            y coordinate for placed bomb
 	 * @param playerNumber
 	 *            variable representing the two players
-	 * @explodeBomb checks tiles next to the placed bomb and explodes
+	 * @author TomasSelldén 
+	 * @author HenrikAndersson made the method call to placeFire work recursively to get rid of multiple loops.
 	 */
 	public void explodeBomb(int bombX, int bombY, int playerNumber) {
 
 		int firePower = player[playerNumber-1].getFirePower();
-		placeFire(bombX, bombY, Direction.CENTER, firePower);
-		placeFire(bombX, bombY, Direction.LEFT, firePower);
-		placeFire(bombX, bombY, Direction.RIGHT, firePower);
-		placeFire(bombX, bombY, Direction.UP, firePower);
-		placeFire(bombX, bombY, Direction.DOWN, firePower);
+		explodeDirection(bombX, bombY, Direction.CENTER, firePower);
+		explodeDirection(bombX, bombY, Direction.LEFT, firePower);
+		explodeDirection(bombX, bombY, Direction.RIGHT, firePower);
+		explodeDirection(bombX, bombY, Direction.UP, firePower);
+		explodeDirection(bombX, bombY, Direction.DOWN, firePower);
 
 		EventBus.INSTANCE.publish(new Event(Event.Tag.EXPLODE_BOMB));
 		player[playerNumber-1].incrementBombs();
@@ -178,66 +179,76 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * 
+	 * Handles weather or not to go on with the explosion process in the set direction.
 	 * @param bombX
 	 *            x coordinate of placed bomb
 	 * @param bombY
 	 *            y coordinate of placed bomb
-	 * @placeFire place fire on bomb coordinates
+	 * @param dir 
+	 * 			  the direction in which the fire is to be placed
+	 * @param firePower
+	 *            the fire power that is left of the bomb
+	 * @author HenrikAndersson made major changes, replaced multiple loops with one recursive switch/case statment, extraced the placement of the fireTiles to a separate method 
 	 */
-	private void placeFire(int bombX, int bombY, Direction dir, int firePower) {
-	
+	private void explodeDirection(int bombX, int bombY, Direction dir, int firePower) {
 		if (firePower>0){
-
 			switch (dir) {
-
 			case LEFT:
 				bombX--;
-					break;
+				break;
 			case RIGHT:
 				bombX++;
-					break;
+				break;
 			case UP:
 				bombY--;
-					break;
+				break;
 			case DOWN:
 				bombY++;
-					break;
+				break;
 			case CENTER:	
-				if (isInbounds(bombX, bombY)){
 					gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-					setFireTileToEmptyTile(bombX, bombY);
+					stopFire(bombX, bombY);
 					break;
-				}
+				
 			}
 			if (isInbounds(bombX, bombY)) {
 				setFireTile(bombX, bombY, dir, firePower);
 			}
 		}
 	}
-	
+	/**
+	 * Sets the tile on the position to fireTile if the position can receive a fireTile.
+	 * @param bombX
+	 *            x coordinate of placed bomb
+	 * @param bombY
+	 *            y coordinate of placed bomb
+	 * @param dir 
+	 * 			  the direction in which the fire is to be placed
+	 * @param firePower
+	 *            the fire power of the player who placed the bomb
+	 * @author TomasSelldén
+	 * @author HenrikAndersson extracted the implementation into a separate method and made it work with recursion
+	 */
 	private void setFireTile (int bombX, int bombY, Direction dir, int firePower){
 		if (gameBoard.getTile(bombX, bombY) instanceof BoxTile) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-			setFireTileToEmptyTile(bombX, bombY);
+			stopFire(bombX, bombY);
 		}
 		else if(gameBoard.getTile(bombX, bombY).canReceiveFire()) {
 			gameBoard.setTile(bombX, bombY, TileFactory.getFireTile());
-			setFireTileToEmptyTile(bombX, bombY);
-			placeFire(bombX, bombY, dir, firePower-1);
+			stopFire(bombX, bombY);
+			explodeDirection(bombX, bombY, dir, firePower-1);
 		}
 	}
 
 	/**
-	 * 
+	 * After a timer delay stops the fire and changes the tile back to either powerItemTiles or the tile it was before the fire.
 	 * @param fireX
 	 *            x coordinate of placed bomb
 	 * @param fireY
 	 *            y coordinate of placed bomb
-	 * @setFireTileToEmptyTile changes the tiles touched by fire to either
-	 *                         poweritemtiles or just emptytiles
 	 */
-	private void setFireTileToEmptyTile(final int fireX, final int fireY) {
+	private void stopFire(final int fireX, final int fireY) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -264,7 +275,7 @@ public class Game implements IEventHandler {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getWaterTile());						
 					}
-					
+
 					else {
 						gameBoard.setTile(fireX, fireY,
 								TileFactory.getEmptyTile());
@@ -275,9 +286,9 @@ public class Game implements IEventHandler {
 						System.out.println("emptyTileTmp");
 
 					}
-	
-					}
-				
+
+				}
+
 			}
 		};
 		Timer t = new Timer(FIRE_COUNTDOWN, taskPerformer);
