@@ -171,7 +171,7 @@ public class Game implements IEventHandler {
 	 * @author HenrikAndersson made the method call to placeFire work
 	 *         recursively to get rid of multiple loops.
 	 */
-	private void explodeBomb(int bombX, int bombY, int playerNumber) {
+	public void explodeBomb(int bombX, int bombY, int playerNumber) {
 
 		int firePower = player[playerNumber - 1].getFirePower();
 		explodeDirection(bombX, bombY, Direction.CENTER, firePower);

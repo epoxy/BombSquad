@@ -33,9 +33,9 @@ public class TestGame {
 		game.explodeBomb(2, 2, 1);// Explodes a bomb at coordinates 2,2
 		// Checks that the fire from the bomb is spreading to the five tiles
 		// nearby but not further
-		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile); // The
-																		// logical
-																		// check
+		
+		//The logica check
+		assertTrue(game.getBoard().getTile(2, 2) instanceof FireTile); 
 		assertTrue(game.getBoard().getTile(2, 3) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(2, 1) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(1, 2) instanceof FireTile);
@@ -98,9 +98,8 @@ public class TestGame {
 		assertTrue(game.getBoard().getTile(4, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(5, 4) instanceof FireTile);
 		assertTrue(game.getBoard().getTile(6, 4) instanceof FireTile);
-		assertFalse(game.getBoard().getTile(7, 4) instanceof FireTile);// Fire
-																		// ends
-																		// here
+		//Fire ends here
+		assertFalse(game.getBoard().getTile(7, 4) instanceof FireTile);
 	}
 
 	@Test
