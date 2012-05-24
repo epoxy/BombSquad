@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 /**
  * A class to handle all the sprites
  * 
- * @author Tomas SelldŽn
+ * @author Tomas Selldén
  * @author Henrik Andersson refactored the code and added more sprites
  * 
  */

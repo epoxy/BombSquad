@@ -71,14 +71,13 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * 
+	 * Moves the player.
 	 * @param deltaX
 	 *            the x direction the player will take
 	 * @param deltaY
 	 *            the y direction the player will take
 	 * @param playerNumber
 	 *            variable representing the two players
-	 * @setPlayerPosition moves the player
 	 */
 	public void movePlayer(int deltaX, int deltaY, int playerNumber) {
 		Player p = player[playerNumber - 1];
@@ -89,8 +88,7 @@ public class Game implements IEventHandler {
 			if (gameBoard.getTile(nextPosX, nextPosY).canReceivePlayer()) {
 				p.move(deltaX, deltaY);
 				gameBoard.getTile(nextPosX, nextPosY).performOnPlayer(p);
-
-				// Ny metod
+				
 				gameBoard.setTile(p.getPosition().getX(), p.getPosition()
 						.getY(), TileFactory.getEmptyTile());
 			}
@@ -98,7 +96,7 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * @setBomb place bombs on the board
+	 * Place bombs on the board.
 	 * @param playerNumber
 	 *            variable representing the two players
 	 */
@@ -171,7 +169,7 @@ public class Game implements IEventHandler {
 	 * @author HenrikAndersson made the method call to placeFire work
 	 *         recursively to get rid of multiple loops.
 	 */
-	private void explodeBomb(int bombX, int bombY, int playerNumber) {
+	public void explodeBomb(int bombX, int bombY, int playerNumber) {
 
 		int firePower = player[playerNumber - 1].getFirePower();
 		explodeDirection(bombX, bombY, Direction.CENTER, firePower);
@@ -186,14 +184,9 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Handles weather or not to go on with the explosion process in the set direction.
-
-=======
 	 * Handles weather or not to go on with the explosion process in the set
 	 * direction.
 	 * 
->>>>>>> f4ceee2d40303cde25a31066836356def89ac22d
 	 * @param bombX
 	 *            x coordinate of placed bomb
 	 * @param bombY
@@ -202,9 +195,7 @@ public class Game implements IEventHandler {
 	 *            the direction in which the fire is to be placed
 	 * @param firePower
 	 *            the fire power that is left of the bomb
-	 * @author HenrikAndersson made major changes, replaced multiple loops with
-	 *         one recursive switch/case statment, extraced the placement of the
-	 *         fireTiles to a separate method
+	 * @author HenrikAndersson
 	 */
 	private void explodeDirection(int bombX, int bombY, Direction dir,
 			int firePower) {
@@ -318,7 +309,7 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * 
+	 * Checks if the position is inbounds.
 	 * @param x
 	 *            the x coordinate
 	 * @param y
@@ -331,7 +322,7 @@ public class Game implements IEventHandler {
 	}
 
 	/**
-	 * 
+	 * Returns the board that played with
 	 * @return board
 	 */
 	public Board getBoard() {

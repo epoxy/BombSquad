@@ -14,9 +14,9 @@ package se.chalmers.group11.core;
 /**
  *  
         
-A class representing a player in the game. Handels 
-the movements of the player. Also handels the maximum 
-amount of bombs the player can have putted out at the 
+A class representing a player in the game. Handles 
+the movements of the player. Also handles the maximum 
+amount of bombs the player can have put out at the 
 same time. PLayer also keeps count of the fire range, made
 by the explosions of the bombs put out by the player. 
 Both above mentioned counters are regulated by the amount
@@ -26,9 +26,8 @@ The player also knows if it is player 1 or player 2.
  * @version      
         
 1.0 18 May 2012
- * @author          
-        
-Anton Palmqvist
+ * @author Anton Palmqvist
+ * @author Henrik Andersson
  */
 public class Player implements IMovable{
 
@@ -40,8 +39,8 @@ public class Player implements IMovable{
 	/**
 	 * Constructor for making a player.
 	 * 
-	 * @param x startingposition x-wise
-	 * @param y startingposition y-wise
+	 * @param x starting position x-wise
+	 * @param y starting position y-wise
 	 * @param playerNumber number of the player
 	 */
 	public Player(int x, int y, int playerNumber) {

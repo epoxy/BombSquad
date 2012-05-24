@@ -22,8 +22,6 @@ The abstract class used for making boards.
  */
 public abstract class Board {
 	
-	/* A class implementation comment can go here. */
-
 	private GameTile gameTiles[][];
 	private GameTile gameTilestmp[][];
 	final int SIDELENGTH=11;

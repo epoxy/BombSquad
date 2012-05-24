@@ -1,5 +1,5 @@
 /*
- * IBoard
+ * Functions
  * 
  * Version 1.0
  *

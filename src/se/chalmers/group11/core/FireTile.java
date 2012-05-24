@@ -14,7 +14,7 @@ import se.chalmers.group11.eventbus.EventBus;
  * 
  * @author ProjectEleven
  */
-public class FireTile implements GameTile {// observable
+public class FireTile implements GameTile {
 
 	public FireTile() {
 		;

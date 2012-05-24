@@ -1,14 +1,3 @@
-/*
- * LoserKeeper
- * 
- * Version 1.0
- *
- * Date 2012-05-15
- * 
- * No rights reserved
- */
-
-
 package se.chalmers.group11.core;
 
 import java.awt.event.ActionEvent;
@@ -24,10 +13,7 @@ import se.chalmers.group11.eventbus.IEventHandler;
 import se.chalmers.group11.main.Main;
 
 /**
- *  
-
-A class made to transefer the game to the GameOver-state, 
-showing the results of who won the game.
+ *  A class made to transefer the game to the GameOver-state, showing the results of who won the game.
  *
  * @version      
 
