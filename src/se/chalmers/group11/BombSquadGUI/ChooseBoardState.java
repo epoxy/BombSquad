@@ -94,7 +94,7 @@ public class ChooseBoardState extends BasicGameState {
 		boolean insidePowerBoard = false;
 		boolean insideWaterBoard = false;
 
-		//uses mousepointer to decide which board that should be chosen
+		//uses mouseclick to decide which board that should be chosen
 		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150
 				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
@@ -117,7 +117,8 @@ public class ChooseBoardState extends BasicGameState {
 			insideWaterBoard = true;
 		}
 
-		//The boolean tells which board should be set in GameOptions
+		/*The boolean tells which board should be set in GameOptions, where 
+		it could be retrieved from in the future*/
 		if (insideClassicBoard) {
 			if (classicBoardImageScale < 0.25f)
 				classicBoardImageScale += scaleStep * delta;

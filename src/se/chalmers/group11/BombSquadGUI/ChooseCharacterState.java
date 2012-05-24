@@ -50,7 +50,7 @@ public class ChooseCharacterState extends BasicGameState {
 	private int p2HenrikX = 430;
 
 	private float nextButtonScale = 0.5f;
-	private float nextButtonScaleStep = 0.0001f;
+	private float nextButtonScaleStep = 0.0001f; //How fast the scaling should be
 	private float p1DevilScale = 1.5f;
 	private float p2DevilScale = 1.5f;
 	private float p1WizardScale = 1.5f;
@@ -171,7 +171,8 @@ public class ChooseCharacterState extends BasicGameState {
 		boolean insideP2Tomas = false;
 		boolean insideP1Henrik = false;
 		boolean insideP2Henrik = false;
-
+		
+		//uses mouseclick to decide which characters that are chosen
 		if (mouseX >= nextButtonX
 				&& mouseX <= nextButtonX + nextButton.getWidth()
 						* nextButtonScale
@@ -317,6 +318,9 @@ public class ChooseCharacterState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
+		
+		/*The boolean tells which characters should be set in GameOptions, where 
+		they could be retrieved from in the future*/
 		if (insideP1Devil) {
 			if (p1DevilScale < 1.65f)
 				p1DevilScale += thumbsScaleStep * delta;

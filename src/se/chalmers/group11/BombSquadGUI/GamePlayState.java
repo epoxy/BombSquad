@@ -127,7 +127,8 @@ public class GamePlayState extends BasicGameState implements IEventHandler {
 				}
 			}
 		}
-
+		
+		//The players- and enemy-character are drawn
 		sprite1.drawAnimation(game.getPlayer(1).getPosition().getX() * 60, game
 				.getPlayer(1).getPosition().getY() * 60, 60, 60);
 
@@ -185,9 +186,9 @@ public class GamePlayState extends BasicGameState implements IEventHandler {
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			sbg.enterState(Main.SPLASHSCREENSTATE);
 		}
-
-		for (int j = 1; j <= 2; j++) {// Loopar igenom spelarens placering och
-			// ser om han ska dö på rutan han är
+		/*Loops through the positions of the players and checks if they should 
+		 * die by fire*/
+		for (int j = 1; j <= 2; j++) {
 			game.getBoard()
 					.getTile(game.getPlayer(j).getPosition().getX(),
 							game.getPlayer(j).getPosition().getY())
@@ -209,7 +210,8 @@ public class GamePlayState extends BasicGameState implements IEventHandler {
 			}
 		}
 
-		enemyDelay++;
+		//A simple delay of the enemy to make it walk slower
+		enemyDelay++; 
 		if (enemyDelay % 50 == 1) {
 			game.moveEnemyRandomly();
 			enemyDelay = 1;
@@ -229,6 +231,7 @@ public class GamePlayState extends BasicGameState implements IEventHandler {
 		game = new Game(GameOptions.getInstance().getBoard());
 		game.getPlayer(2).put(0, 0);
 		game.getPlayer(1).put(10, 10);
+		//retrieves the chosen skins from GameOptions
 		sprite1 = new SpriteSheets(GameOptions.getInstance().getPlayerOneSkin());
 		sprite2 = new SpriteSheets(GameOptions.getInstance().getPlayerTwoSkin());
 	}

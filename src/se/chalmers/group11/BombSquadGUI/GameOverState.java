@@ -41,8 +41,6 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	private int resetX = 155;
 	private int resetY = 490;
 
-	private Integer loser;
-
 	private float exitImageScale = 1;
 	private float restartImageScale = 1;
 	private float menuImageScale = 1;
@@ -58,9 +56,8 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	private Image podium = null;
 
 	private final Integer[] playerWins = new Integer[2];
-
+	private Integer loser;
 	private TrueTypeFont font;
-
 	private String winnerSkin;
 	private String loserSkin;
 
@@ -101,6 +98,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		resetScore.draw(resetX, resetY, resetImageScale);
 		font.drawString(10, 10, "Player 1's Score: " + playerWins[0]);
 		font.drawString(500, 10, "Player 2's Score: " + playerWins[1]);
+		//The winnersprite is drawn on top of the podium
 		new SpriteSheets(winnerSkin).drawAnimation(295, 180, 90, 90);
 		new SpriteSheets(loserSkin).drawAnimation(440, 335, 60, 60);
 	}
@@ -118,6 +116,7 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		boolean insideMenuGame = false;
 		boolean insideResetScore = false;
 
+		//uses mouseclick to decide which button that will be clicked
 		if (mouseX >= restartX && mouseX <= restartX + 150
 				&& mouseY >= restartY && mouseY <= restartY + 150) {
 			insideRestartGame = true;
@@ -134,7 +133,8 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 			insideResetScore = true;
 		}
 
-		// keeps track of the cursor location
+		/* keeps track of the cursor location, changing the scale thereafter. 
+		   If clicked the button is chosen.*/
 		if (insideRestartGame) {
 			if (restartImageScale < 1.1f) {
 				restartImageScale += scaleStep * delta;
@@ -193,16 +193,18 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	}
 
 	/**
-	 * playerNumber one represents playerIndex zero
-	 * 
 	 * @param playerNumber
 	 *            variable representing one of the two players
 	 * @return playerWins number of wins a player has
 	 */
 	public Integer getPlayerWins(int playerNumber) {
 		return playerWins[playerNumber - 1];
+		//PlayerNumber one represents playerIndex zero
 	}
 
+	/**
+	 * Resets the wincount of both players.
+	 */
 	public void resetPlayerWins() {
 		playerWins[0] = 0;
 		playerWins[1] = 0;
@@ -212,8 +214,9 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 	public void onEvent(Event evt) {
 		if (evt.getTag() == Event.Tag.PLAYER_KILLED) {
 			loser = (Integer) evt.getValue();
-			playerWins[loser % 2] += 1; // loser%2 equals the arraynumber of the
-										// winner
+			/* loser%2 equals the arraynumber of the winner, whose number 
+			 * should be increased here*/
+			playerWins[loser % 2] += 1; 
 			if (loser == 2) {
 				winnerSkin = GameOptions.getInstance().getPlayerOneSkin();
 				loserSkin = GameOptions.getInstance().getPlayerTwoSkin();
