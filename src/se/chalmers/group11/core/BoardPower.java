@@ -4,6 +4,11 @@ public class BoardPower extends Board {
 	
 	/**
 	 * Generates a board with only powerUps
+	 * 
+	 * @version 1.0 23 may 2012
+	 * 
+	 * @author Marcus Thyrén
+	 * 
 	 */
 	public BoardPower(){
 		super();		

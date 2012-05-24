@@ -11,6 +11,10 @@ import se.chalmers.group11.eventbus.IEventHandler;
 /**
  * A class to handle all the sounds, short music clips.
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author Tomas Selldén
+ * @author Anton Palmqvist implemented more tags
  */
 public class InitSound implements IEventHandler {
 

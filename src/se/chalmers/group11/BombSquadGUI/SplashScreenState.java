@@ -19,6 +19,9 @@ import se.chalmers.group11.utils.InitMusic;
  * A state that represent the GUI for our main menu, from here you can start the
  * game or exit the game
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  * 
  */
 public class SplashScreenState extends BasicGameState {

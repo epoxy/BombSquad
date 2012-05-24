@@ -11,7 +11,10 @@ import se.chalmers.group11.eventbus.IEventHandler;
 /**
  * A class to handle all the music
  * 
- * @author
+ * @version 1.0 23 may 2012
+ * 
+ * @author Tomas Selldén
+ * @author Anton Palmqvist implemented more tags
  * 
  */
 public class InitMusic implements IEventHandler {

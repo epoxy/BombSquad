@@ -32,6 +32,9 @@ import se.chalmers.group11.utils.SpriteSheets;
  * A state that handles the GUI for the game BombSquad and also the controller,
  * takes care of the input from the user
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author ProjectEleven
  * 
  */
 public class GamePlayState extends BasicGameState implements IEventHandler {

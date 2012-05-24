@@ -18,7 +18,7 @@ The abstract class used for making boards.
         
 1.0 18 May 2012
  * @author Anton Palmqvist
- * @author HenrikAndersson made abstract class instead of interface, extracted the generation of the tiles into a method
+ * @author Henrik Andersson made abstract class instead of interface, extracted the generation of the tiles into a method
  */
 public abstract class Board {
 	

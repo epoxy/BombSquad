@@ -3,7 +3,11 @@ package se.chalmers.group11.core;
 public class BoardEmpty extends Board{
 
 	/**
-	 *Generates a board without any boxes	
+	 *Generates a board without any boxes
+	 *
+	 *@version 1.0 23 may 2012
+	 *
+	 *@author Anton Palmqvist
 	 */
 	public BoardEmpty() {
 		super();		

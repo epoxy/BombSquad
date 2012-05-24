@@ -22,6 +22,11 @@ import se.chalmers.group11.utils.SpriteSheets;
  * A menu state that represent the GUI for gameOver state, from here you can
  * choose between exit game, restart match or go back to the main menu state
  * 
+ * @version 1.0 23 may 2012
+ * 
+ * @author Marcus Thyrén
+ * @author Anton Palmqvist, added EventBus methods and GUI-code.
+ * 
  * 
  */
 public class GameOverState extends BasicGameState implements IEventHandler {
@@ -187,8 +192,15 @@ public class GameOverState extends BasicGameState implements IEventHandler {
 		return stateID;
 	}
 
-	public Integer getPlayerWins(int i) {
-		return playerWins[i - 1];
+	/**
+	 * playerNumber one represents playerIndex zero
+	 * 
+	 * @param playerNumber
+	 *            variable representing one of the two players
+	 * @return playerWins number of wins a player has
+	 */
+	public Integer getPlayerWins(int playerNumber) {
+		return playerWins[playerNumber - 1];
 	}
 
 	public void resetPlayerWins() {
