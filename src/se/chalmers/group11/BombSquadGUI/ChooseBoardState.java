@@ -41,7 +41,7 @@ public class ChooseBoardState extends BasicGameState {
 	private float randomBoardImageScale = 0.2f;
 	private float powerBoardImageScale = 0.2f;
 	private float waterBoardImageScale = 0.2f;
-	private float scaleStep = 0.0001f;
+	private float scaleStep = 0.0001f; //How fast the scaling should be
 
 	private Image classicBoard = null;
 	private Image emptyBoard = null;
@@ -94,6 +94,7 @@ public class ChooseBoardState extends BasicGameState {
 		boolean insidePowerBoard = false;
 		boolean insideWaterBoard = false;
 
+		//uses mousepointer to decide which board that should be chosen
 		if (mouseX >= classicBoardX && mouseX <= classicBoardX + 150
 				&& mouseY >= classicBoardY && mouseY <= classicBoardY + 150) {
 			insideClassicBoard = true;
@@ -116,6 +117,7 @@ public class ChooseBoardState extends BasicGameState {
 			insideWaterBoard = true;
 		}
 
+		//The boolean tells which board should be set in GameOptions
 		if (insideClassicBoard) {
 			if (classicBoardImageScale < 0.25f)
 				classicBoardImageScale += scaleStep * delta;
