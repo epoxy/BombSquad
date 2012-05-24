@@ -142,7 +142,7 @@ public class Game implements IEventHandler {
 	 *            variable representing the player who placed the bomb
 	 * @bombCountdown starts bomb timer
 	 */
-	public void bombCountdown(final int bombX, final int bombY,
+	private void bombCountdown(final int bombX, final int bombY,
 			final int playerNumber) {
 		ActionListener taskPerformer = new ActionListener() {
 			@Override
@@ -171,7 +171,7 @@ public class Game implements IEventHandler {
 	 * @author HenrikAndersson made the method call to placeFire work
 	 *         recursively to get rid of multiple loops.
 	 */
-	public void explodeBomb(int bombX, int bombY, int playerNumber) {
+	private void explodeBomb(int bombX, int bombY, int playerNumber) {
 
 		int firePower = player[playerNumber - 1].getFirePower();
 		explodeDirection(bombX, bombY, Direction.CENTER, firePower);
@@ -186,9 +186,14 @@ public class Game implements IEventHandler {
 	}
 
 	/**
+<<<<<<< HEAD
+	 * Handles weather or not to go on with the explosion process in the set direction.
+
+=======
 	 * Handles weather or not to go on with the explosion process in the set
 	 * direction.
 	 * 
+>>>>>>> f4ceee2d40303cde25a31066836356def89ac22d
 	 * @param bombX
 	 *            x coordinate of placed bomb
 	 * @param bombY
